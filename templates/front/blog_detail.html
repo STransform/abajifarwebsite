@@ -1,0 +1,203 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block blogs %} active {% endblock %}
+{% block blogs_dynamic %} active {% endblock %}
+
+{% block content %}
+
+<section class="section border-0 py-10 m-0 px-lg-5 pt-4">
+    <div class="row align-items-center text-center pb-3 mb-5 mb-lg-4">
+        <div class="d-flex align-items-end justify-content-end">
+            <ul class="breadcrumb d-block text-center">
+                <li><a href="{% url 'index' %}" class="text-grey">{% trans "Home" %}</a></li>
+                <li class=""><a href="{% url 'blog_list' %}" class="text-grey">{% trans "Blog List" %}</a></li>
+                <li class="active text-primary"> <a href="">{% trans "Blog Detail" %}</a></li>
+
+            </ul>
+        </div>
+        <hr class="bg-light">
+        <div class="col-12 mb-lg-0 ">
+            <div class="d-flex align-items-center mb-2  justify-content-center">
+                <div class="overflow-hidden text-center">
+                    <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                        data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "BLOG DETAIL" %}
+                    </h2>
+                </div>
+            </div>
+            <p class="appear-animation text-center" data-appear-animation="maskRight" data-appear-animation-delay="400">
+                {% trans "Blog on " %}'{{blog.title}}'
+            </p>
+        </div>
+
+    </div>
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-posts single-post">
+
+                    <article class="post post-large blog-single-post border-0 m-0 p-0">
+                        <div class="post-image ms-0">
+                            <a href="javascript:void(0);">
+                                {% if  blog.images %}
+                                <img src="{{blog.images.url}}"
+                                    class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                {% else %}
+                                <img src="{% static 'front/imgs/blog/blog-1.jpg' %}"
+                                    class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                {% endif %}
+
+                            </a>
+                        </div>
+
+                        
+
+                        <div class="post-content ms-0">
+
+                            <h2 class="font-weight-semi-bold"><a href="javascript:void(0);">{{blog.title}}</a></h2>
+                            <div class="post-block mt-4 pt-2 post-author">
+                                <h4 class="text-4 mb-3">{% trans "Author" %}</h4>
+                                <div class="img-thumbnail img-thumbnail-no-borders d-block pb-3">
+                                    <a href="javascript:void(0);" title="{{blog.created_by}}">
+                                        <img src="{% static 'front/imgs/team/user.png' %}" alt="">
+                                    </a>
+
+                                </div>
+                    
+                            </div>
+                            <div class="post-meta">
+                                <span><i class="far fa-clock"></i> <a href="javascript:void(0);">{{blog.created_date|date}}</a></span>
+                                <span><i class="far fa-user"></i> {% trans "By" %} 
+                                    <a href="javascript:void(0);" title="Contact : {{blog.created_by.email}} {% if blog.created_by.phonenumber %} ,{{blog.created_by.phonenumber}} {% endif %}  ">
+                                        {{blog.created_by}}
+                                    </a> 
+                                </span>
+                                <span><i class="far fa-folder"></i> <a href="javascript:void(0);">{{blog.category}}</a></span>
+                                <span><i class="far fa-comments"></i> <a href="javascript:void(0);">{{blog.comments.count}} {% trans "Comments" %}</a></span>
+                            </div>
+
+                            <!-- AddToAny BEGIN -->
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                <a class="a2a_button_facebook"></a>
+                                <a class="a2a_button_email"></a>
+                                <a class="a2a_button_linkedin"></a>
+                                <a class="a2a_button_telegram"></a>
+                                <a class="a2a_button_twitter"></a>
+                                <a class="a2a_button_x"></a>
+                            </div>
+                            <script async src="https://static.addtoany.com/menu/page.js"></script>
+    
+                        </div>
+                    </article>
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="widget latest-posts border border-transparent p-3" style="border-radius: 10px;">
+                    <header>
+                        <h3 class="h6">{% trans "Recent Posts" %}</h3>
+                    </header>
+                    <div class="blog-posts">
+                        {% for recent_blog_item in recent_blogs %}
+                            <a href="{% url 'blog_detail' blog_id=recent_blog_item.id %}">
+                                <div class="item d-flex align-items-center mb-3">
+                                    <div class="image me-3">
+                                        <img src="{{ recent_blog_item.images.url }}"
+                                            class="img-fluid rounded" style="width: 120px; height: 80px; object-fit: cover;" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <strong>{{ recent_blog_item.title|truncatechars:30 }}</strong>
+                                        <div class="d-flex align-items-center">
+                                            <div class="comments"><i class="far fa-clock"></i> {{ recent_blog_item.created_date|date }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="widget twitter-feed border border-transparent p-3" style="border-radius: 10px;">
+                        <header>
+                            <h3 class="h6">{% trans "Twitter Feed" %}</h3>
+                        </header>
+                        <div class="tweets">
+                            <a class="twitter-timeline" href="https://twitter.com/PMEthiopia?ref_src=twsrc%5Etfw" data-height="300"> 
+                                {% trans "Tweets by PM Ethiopia" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-4 px-lg-5" >
+                <p>{{blog.content|safe}}</p>
+
+                <div id="comments" class="post-block mt-5 post-comments">
+                    <h4 class="mb-3">{% trans "Comments" %} ({{blog.comments.count}})</h4>
+
+                    <ul class="comments">
+                        {% for c in comments %}
+                        <li>
+                            <div class="comment">
+                                <div
+                                    class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
+                                    <img class="avatar" alt="User Icon" src="{% static 'front/imgs/team/user.png' %}">
+                                </div>
+                                <div class="comment-block">
+                                    <span class="comment-by">
+                                        <strong>{{c.author}} </strong>
+                                        <p><a href="javascript:void(0)">{{c.email}}</a></p>
+                                    </span>
+                                    <span class="date float-end">{{c.created_at}}</span>
+                                    <p>{{c.message}}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    
+                    </ul>
+
+                </div>
+
+                <div class="post-block mt-5 post-leave-comment">
+                    <h4 class="mb-3">{% trans "Leave a comment" %}</h4>
+
+                    <form class=" p-4 rounded bg-color-grey" action="" method="POST" enctype="multipart/form-data">			
+                        {% csrf_token %}
+                        <div class="p-2">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label required font-weight-bold text-dark">{% trans "Full Name" %}</label>
+                                    <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="author" required="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label required font-weight-bold text-dark">{% trans "Email Address" %}</label>
+                                    <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label class="form-label required font-weight-bold text-dark">{% trans "Comment" %}</label>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control" name="message" required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col mb-0">
+
+                                    <button type="submit"  class="btn btn-primary btn-modern" >{% trans "Post Comments" %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

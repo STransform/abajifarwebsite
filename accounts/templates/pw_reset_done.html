@@ -1,0 +1,48 @@
+
+
+
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %} 
+
+<section class="section border-0 py-10 m-0 px-lg-5 pt-4 mt-5">
+    <div class="container text-center">
+        <div class="col-lg-8 offset-sm-2 px-lg-5 order-1 order-lg-2">
+                                    
+            <div class="row justify-content-md-center text-center">
+                <div class="col-md-10 text-center">
+                    <div class="featured-box featured-box-primary text-start mt-0">
+                        <div class="box-content">
+                            <div class="text-center">
+                                {% if stg.logo %}
+                                <img class="text-center" style="height:100px" src="{{stg.logo.url}}">
+                                {% else %}
+                                <img class="text-center" style="height:100px" src="{% static 'front/imgs/logo/logo-otech.png' %}">
+                                {% endif %}
+                                
+                            </div>
+                            <div  class=" row text-center ">
+                                <p class="color-primary  text-3  mt-3 text-center"> 
+                                    {% trans "We have mailed you instructions for setting your password. If an account exists with the email you entered, you should receive them shortly. If you don't receive an email make sure you have entered the address you register with and check your span folder" %}
+                                  
+                                </p>
+
+                                
+                            <div class="float-end">
+                                <span>{% trans "Don't have account?" %} <a href="/accounts/signup/">{% trans "Create Account" %}</a></span>
+                            </div>
+
+                            </div>
+                            
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</section>
+
+{% endblock%}

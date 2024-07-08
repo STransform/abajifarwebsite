@@ -1,0 +1,95 @@
+{% load static %}
+{% load i18n %}
+
+<footer id="footer" class="footer-texts-more-lighten border-0" style="background-color: #040720;">
+    <div style="background-color: #000;">
+        <div class="container">
+            <div class="pt-2 pb-2">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                        <h5 class="text-4 text-color-light mb-3">{% trans "ABOUT US" %}</h5>
+                        {% for about in about_footer %}
+                        <div class="company-info" style="background-color: #000;">
+                            <h6>{{ about.title }}</h6>
+                            <p class="text-white">{{ about.content }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                        <h5 class="text-4 text-color-light mb-3 footer-title">{% trans "CONTACTS" %}</h5>
+                        <ul class="list list-unstyled">
+                            {% for contacts in contact %}
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Address" %}:</span> 
+                                {{ contacts.address }}
+                            </li>
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Phone" %}:</span>
+                                <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a>
+                            </li>
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Email" %}:</span>
+                                <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+                            </li>
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Website" %}:</span>
+                                <a href="{{ contacts.website }}" target="_blank">{{ contacts.website }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
+                        <h5 class="text-4 text-color-light mb-3 footer-title">{% trans "SOCIAL MEDIA" %}</h5>
+                        <ul class="list list-unstyled">
+                            <!-- Replace with social media icons and links -->
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">Facebook:</span>
+                                <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">Twitter:</span>
+                                <a href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">Instagram:</span>
+                                <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            <li class="pb-1 mb-2">
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">LinkedIn:</span>
+                                <a href="https://www.linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-2">
+                        <h5 class="text-4 text-color-light mb-3">{% trans "QUICK LINKS" %}</h5>
+                        <ul class="list list-unstyled mb-0">
+                            {% for link in quick_links %}
+                                <li class="mb-0"><a href="{{ link.url }}"><i class="fas fa-angle-right text-color-light"></i> {{ link.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <div class="counter counters counters-sm text-white px-4 mt-4">
+                            <strong data-to="{{visitors}}" data-plugin-options="{'decimals': 1}"  data-append="{{visitors_round}}+"></strong>
+                            <label class="text-white">{% trans "Total visitors" %}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="background-color: #550A35;">
+        <div class="pt-2 pb-2">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-color-light">{% trans "Developed by" %} <strong><a href="https://www.otech.et/" target="_blank" class="text-color-light">{% trans "Simon Temesgen: For OTECH Engineering & Technology Solutions" %}</a></strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</footer>

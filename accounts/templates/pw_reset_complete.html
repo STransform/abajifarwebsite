@@ -1,0 +1,52 @@
+
+
+
+
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %} 
+
+<section class="section border-0 py-10 m-0 px-lg-5 pt-4 mt-5">
+    <div class="container text-center">
+        <div class="col-lg-8 offset-sm-2 px-lg-5 order-1 order-lg-2">
+                                    
+            <div class="row justify-content-md-center text-center">
+                <div class="col-md-10 text-center">
+                    <div class="featured-box featured-box-primary text-start mt-0">
+                        <div class="box-content">
+                            <div class="text-center">
+                                {% if stg.logo %}
+                                <img class="text-center" style="height:100px" src="{{stg.logo.url}}">
+                                {% else %}
+                                <img class="text-center" style="height:100px" src="{% static 'front/imgs/logo/logo-otech.png' %}">
+                                {% endif %}
+                                
+                                <h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3 text-center"> Password Reset Complete</h4> 
+
+                            </div>
+                            <div  class=" row text-center ">
+                                <p class="color-primary  text-3  mt-1 text-center"> 
+                                    {% trans "Your new password has been set successfully. You need to use this password to login to your account afterwards." %} 
+                                </p>
+
+                                
+                                <div class="row text-center">
+                                    <div class="form-group col">
+                                        <a class="btn btn-primary btn-modern " href="/accounts/login/">{% trans "Login" %}</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</section>
+
+{% endblock%}

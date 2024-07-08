@@ -1,0 +1,1005 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+{% block css %}
+<style>
+    /* Add margin between dynamically generated images */
+    .owl-carousel .item {
+        margin: 10px; /* Adjust the margin as needed */
+    }
+    /* Set default width and height for images with class "default-resolution" */
+    .default-resolution {
+        width: 300px; /* Set your default width */
+        height: 200px; /* Set your default height */
+    }
+    embed>html{
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+
+{% block home %} active {% endblock %}
+{% block content %}
+
+
+{% if featured_works %}
+<div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
+    data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
+    style="height: 650px;">
+    <div class="owl-stage-outer">
+        <div class="owl-stage">
+            <!-- Dynamic Carousel Slides -->
+            {% for work in featured_works %}
+            <div class="owl-item position-relative"
+                style="background-image: url('{{ work.background_image.url }}'); background-color: #2E3136; background-size: cover; background-position: center; max-height: 600px;">
+                <div class="container position-relative z-index-1 h-100">
+                    <div
+                        class="d-flex flex-column align-items-start justify-content-lg-center justify-content-end h-100 pt-5  px-lg-5 px-md-2 px-sm-0 py-5">
+                        <p class="text-color-light text-4">We are</p>
+                        <h3 class="position-relative text-color-light text-6 line-height-2 font-weight-bold  mb-2 appear-animation"
+                            data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}" style="font-size: 16;">
+                            {% trans "OTECH Engineering & technology Solution" %}</h3>
+                        <h1 class="text-color-light font-weight-light text-4 mb-5  appear-animation col-lg-5 col-md-6 col-sm-12"
+                            data-appear-animation="blurIn" data-appear-animation-delay="500"
+                            data-plugin-options="{'minWindowWidth': 0}" style="font-size: 12px;">{{ work.description|truncatechars:110 }}</h1>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- End Dynamic Carousel Slides -->
+        </div>
+    </div>
+    <div class="owl-nav">
+        <button type="button" role="presentation" class="owl-prev" aria-label="Previous" style="margin-left: -14px;"></button>
+        <button type="button" role="presentation" class="owl-next" aria-label="Next"></button>
+    </div>
+    <div class="owl-dots mb-5" style="text-align: center;">
+        <!-- Dots will be generated automatically based on the number of slides -->
+    </div>
+</div>
+{% else %} 
+
+<div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
+    data-plugin-options="{'autoplayTimeout': 70000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
+    style="height: 700px;">
+    <div class="owl-stage-outer">
+        <div class="owl-stage">
+            <div class="owl-item position-relative"
+                style="background-image: url('{% static 'front/imgs/bg/ad43.jpg' %}'); background-color: #2E3136; background-size: cover; background-position: center; max-height:700px">
+                <div class="container position-relative z-index-1 h-100">
+                    <div
+                        class="d-flex flex-column align-items-start justify-content-lg-center justify-content-end h-100 pt-5  px-lg-5 px-md-2 px-sm-0 py-5">
+                        <h3 class="position-relative text-color-light text-4 line-height-2 font-weight-light  mb-2 appear-animation"
+                            data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
+                           {% trans "OTECH Engineering" %}</h3>
+                        <h1 class="text-color-light font-weight-bold text-9 mb-5  appear-animation col-lg-5 col-md-6 col-sm-12"
+                            data-appear-animation="blurIn" data-appear-animation-delay="500"
+                            data-plugin-options="{'minWindowWidth': 0}">
+                            {% trans "OTECH Engineering dreams and vision" %}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="owl-nav">
+        <button type="button" role="presentation" class="owl-prev" aria-label="Previous"></button>
+        <button type="button" role="presentation" class="owl-next" aria-label="Next"></button>
+    </div>
+    <div class="owl-dots mb-5">
+        <button role="button" class="owl-dot active"><span></span></button>
+        <button role="button" class="owl-dot"><span></span></button>
+        <button role="button" class="owl-dot"><span></span></button>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="container mt-2 mb-5 pb-5 px-lg-5 px-md-3">
+    <div class="row align-items-start">
+        <div class=" d-sm-block d-md-none d-lg-none  align-items-start justify-content-start mb-2 py-4">
+            <div class=" overflow-hidden ms-3">
+                <h2 class="text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
+                    data-appear-animation="maskRight" data-appear-animation-delay="500">{{ about_us.title }}</h2>
+            </div>
+        </div>
+        <div class="col-lg-5 col-sm-10">
+            <div class="position-relative">
+                <div data-plugin-float-element
+                    data-plugin-options="{'startPos': 'top', 'speed': 0.2, 'transition': true, 'transitionDuration': 1000, 'isInsideSVG': true}">
+                    <img src="{{ about_us.image.url }}" style="border-radius: 10px; max-height: 500px; width: 90%;"
+                        class="img-fluid custom-box-shadow-1 appear-animation" data-appear-animation="fadeInLeftShorter"
+                        data-appear-animation-delay="1800" alt="" />
+                </div>
+            </div>
+        </div>
+        <!--For CEO Message-->
+        <div class="col-lg-7 mb-5 mb-lg-0">
+
+            <div class="d-flex d-sm-none d-md-block d-lg-block align-items-start justify-content-start mb-2 py-4">
+                <span class="custom-line appear-animation" data-appear-animation="customLineAnimation"
+                    appear-animation-duration="1s"></span>
+                <div class="overflow-hidden ms-3">
+                    <h2 class="text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
+                        data-appear-animation="maskRight" data-appear-animation-delay="500">{{ about_us.title }}</h2>
+                </div>
+            </div>
+             <p>
+
+               
+             </p>
+             <div data-plugin-readmore="" data-plugin-options="{
+                'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
+                'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
+                'align': 'end'
+                }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
+
+                <p class="card-text"> {{about_us.content}}</p> 
+
+                <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
+                    <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
+                </div>
+                <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
+           
+            </div>   
+            <style>
+                .card-text::selection {
+                  background: red;
+                  color: white;
+                }
+              </style>      
+              
+             
+        </div>
+
+        </div>
+    </div>
+</div>
+
+<section class="section border-0 py-10 m-0 px-lg-5  pt-4" style="background-color: white;">
+    <div class="container" >
+        <div class="row align-items-end pb-3 ">
+            <div class="d-flex align-items-end justify-content-end">
+                <ul class="breadcrumb d-block text-center">
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "About Us" %}</li>
+                </ul>        
+            </div>
+            <hr class="bg-light">
+            <div class="col-12 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "About Us" %}
+                        </h2>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<div class="bg-color-light ">
+    <div id="examples" class="container py-2 pt-5 ">
+        <h2 class="text-color-dark font-weight-normal text-8 mb-2"></h2>
+        
+        <div class="row mb-5 pb-3" >
+            {% for vision in vision_mission %}
+            <div class="col-lg-6 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 250px; ">
+                    <div class="card-body">
+                        <!-- <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}"> -->
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">{{vision.title}}</h4>
+                        
+                        <p class="card-text">{{vision.content}}</p> 
+                        <!--
+                        <div data-plugin-readmore="" data-plugin-options="{
+                            'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
+                            'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
+                            'align': 'end'
+                            }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
+
+                            <p class="card-text">{{vision.content}}</p> 
+
+                            <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
+                                <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
+                            </div>
+                            <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); 
+                            position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
+                       
+                        </div> 
+                        -->                   
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+           
+
+        </div>
+    </div>
+</div>
+
+<section class="section border-0 py-10 m-0 px-lg-5  pt-4" style="background-color: white;">
+    <div class="container">
+        <div class="row align-items-end pb-3 ">
+            <div class="d-flex align-items-end justify-content-end">
+                <ul class="breadcrumb d-block text-center">
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Core Values" %}</li>
+                </ul>        
+            </div>
+            <hr class="bg-light">
+            <div class="col-12 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "Core Values" %}
+                        </h2>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        
+    </div>
+</section>
+<div class="bg-color-light">
+    <div id="examples" class="container py-2 pt-5">
+        <h2 class="text-color-light font-weight-normal text-8 mb-2"></h2>
+        
+        <div class="row mb-5 pb-3">
+            {% for company in company_values %}
+            <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 250px; overflow: hidden; max-height: none;">
+                    <div class="card-body" style="transition: background-color 0.3s;">
+                        <!-- <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}"> -->
+                         
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color: #333;font-size: bold;">{{ company.title }}</h4>
+                      
+                        <p class="card-text">{{ company.content }}</p>              
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-body:hover {
+        background-color: red !important;
+        color: white !important;
+    }
+    .card-body:hover .card-title {
+        color: white !important;
+    }
+    .card-body:hover .card-text {
+        color: white !important;
+    }
+    .card-body:hover .readmore-button-wrapper a {
+        color: white !important;
+    }
+</style>
+
+
+
+
+</div>
+
+</div>
+
+<div class="bg-color-light" style="background-color: red;">
+    <div id="examples" class="container py-2 pt-5">
+        <h2 class="text-color-light font-weight-normal text-8 mb-2"></h2>
+        
+        <div class="row mb-5 pb-3">
+            {% for visions in vision %}
+            <div class="col-lg-10 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                <div class="aligned card border-0 border-shadow text-center" style="min-height: 250px; overflow: hidden; max-height: none; background-color: red;">
+                    <div class="card-body">
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color: #fff;">{{ visions.title }}</h4>
+                        <p class="card-text" style="color: #fff;">{{ visions.content }}</p>              
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% for excellence in otech_excellence %}
+<div class="container mt-2 mb-5 pb-5 px-lg-5 px-md-3" style="background-color: white;">
+    <div class="row align-items-start">
+        
+        <div class="col-lg-5 col-sm-10">
+            <div class="position-relative">
+                <div data-plugin-float-element
+                    data-plugin-options="{'startPos': 'top', 'speed': 0.2, 'transition': true, 'transitionDuration': 1000, 'isInsideSVG': true}">
+                    <img src="{{ excellence.image.url }}" style="border-radius: 10px; max-height: 500px; width: 90%;"
+                        class="img-fluid custom-box-shadow-1 appear-animation" data-appear-animation="fadeInLeftShorter"
+                        data-appear-animation-delay="1800" alt="" />
+                </div>
+            </div>
+        </div>
+        
+        <!-- For CEO Message -->
+        <div class="col-lg-7 mb-5 mb-lg-0">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
+                        data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Transforming Futures with Innovative Excellence" %}</h2>
+                    <p class="card-text">{% trans "OTech pioneers innovation, shaping brighter futures for industries and communities through cutting-edge technology solutions." %}</p>
+                </div>
+            </div>
+
+            <!-- Card 1 -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="d-flex d-sm-none d-md-block d-lg-block align-items-start justify-content-start mb-2 py-4">
+                        <span class="custom-line appear-animation" data-appear-animation="customLineAnimation"
+                            appear-animation-duration="1s"></span>
+                        <div class="overflow-hidden ms-3">
+                            <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
+                                data-appear-animation="maskRight" data-appear-animation-delay="500">{{ excellence.title1 }}</h2>
+                        </div>
+                    </div>
+                    <p class="card-text">{{ excellence.content1 }}</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="d-flex d-sm-none d-md-block d-lg-block align-items-start justify-content-start mb-2 py-4">
+                        <span class="custom-line appear-animation" data-appear-animation="customLineAnimation"
+                            appear-animation-duration="1s"></span>
+                        <div class="overflow-hidden ms-3">
+                            <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
+                                data-appear-animation="maskRight" data-appear-animation-delay="500">{{ excellence.title2 }}</h2>
+                        </div>
+                    </div>
+                    <p class="card-text">{{ excellence.content2 }}</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex d-sm-none d-md-block d-lg-block align-items-start justify-content-start mb-2 py-4">
+                        <span class="custom-line appear-animation" data-appear-animation="customLineAnimation"
+                            appear-animation-duration="1s"></span>
+                        <div class="overflow-hidden ms-3">
+                            <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
+                                data-appear-animation="maskRight" data-appear-animation-delay="500">{{ excellence.title3 }}</h2>
+                        </div>
+                    </div>
+                    <p class="card-text">{{ excellence.content3 }}</p>
+                </div>
+            </div>
+
+            <style>
+                .card-text::selection {
+                  background: red;
+                  color: white;
+                }
+            </style>
+        </div>
+
+    </div>
+</div>
+
+{% endfor %}
+
+<section class="section border-0 py-1 m-0 px-lg-5  pt-4" style="background-color: white;">
+    <div class="container">
+        <div class="row align-items-end pb-3 ">
+            
+            <hr class="bg-light">
+            <div class="col-12 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h4 class="text-color-dark text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "What People Says About Us!" %}
+                    </h4>
+                    <p>{%  trans "Our commitment extends beyond technology – we aim to cultivate enduring <br>partnerships that transcend boundaries and pave the way for transformative <br> advancements."%}</p>
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<div class="bg-color-light">
+    <div id="examples" class="container py-2 pt-5">
+        <h2 class="text-color-light font-weight-normal text-8 mb-2"></h2>
+        
+        <div class="row mb-5 pb-3">
+            {% for saying in people_saying %}
+            <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 250px; overflow: hidden; max-height: none;">
+                    
+
+                    <div class="card-body" style="transition: background-color 0.3s;">
+                        <p class="card-text">{{ saying.content }}</p>
+                        <div class="d-flex align-items-center">
+                            <div class="position-relative me-3">
+                                <img src="{{ saying.image.url }}" style="border-radius: 10px; max-height: 100px; width: auto;"
+                                    class="img-fluid custom-box-shadow-1 appear-animation" data-appear-animation="fadeInLeftShorter"
+                                    data-appear-animation-delay="1800" alt="" />
+                            </div>
+                            <div>
+                                <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
+                                    data-appear-animation="maskRight" data-appear-animation-delay="500">{{ saying.full_name }}</h2>
+                                <p class="card-text">{{ saying.position }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Recent News -->
+<section class="section border-0 py-10  m-0 px-lg-5">
+    <div class="container">
+       <!-- 
+        <div class="row align-items-end mb-3">
+            <div class="col-lg-7 col-xl-8 mb-lg-0">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="overflow-hidden">
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Recent News" %}
+                        </h2>
+                    </div>
+                </div>
+                <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
+                    {% trans "RECENT NEWS DELIVERED FROM US TO YOU" %}
+                </p>
+            </div>
+            <div class="col-lg-5 col-xl-4">
+                <div class="d-flex justify-content-lg-end">
+                    <a href="{% url 'news_list_visitor' %}"
+                        class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1 appear-animation"
+                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">{% trans "See All News" %}
+                    </a>
+                </div>
+            </div>
+        
+        </div>
+        -->
+        <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+            <div class="col">
+                <div class="blog-posts mt-0 ">
+                    <div class="row mt-0">
+                        <!-- Article Loop -->
+                        {% for article in recent_news %}
+                        <div class="col-md-4 col-lg-3 col-sm-6 col-xsm-12">
+                            <article class="post post-medium border-0 pb-0 mb-5 bg-light pb-4">
+                                <div class="post-image">
+                                    <a href="{% url 'news_detail' news_id=article.id %}">
+                                        <img src="{{ article.featured_image.url }}" style="width: 100%; height:150px;"
+                                            class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
+                                    </a>
+                                </div>
+                                <div class="post-content  px-lg-3 px-md-2 px-sm-1 pb-3">
+                                    <h2 class="font-weight-light text-4 line-height-6 mt-3 mb-2">
+                                        <a href="{% url 'news_detail' news_id=article.id %}" style="overflow: hidden; display: inline-block; height: 50px; ">{{article.title|truncatechars:50 }}</a>
+                                    </h2>
+                                    <p style="overflow: hidden; max-height: 150px; height: 150px;">{{ article.content|truncatechars:145 }}</p>
+                                    <div class="post-meta">
+                                        <span><i class="far fa-clock"></i> {{ article.created_at|date:'d-m-Y' }}</span>
+                                        <span class=" float-end"><a href="{% url 'news_detail' news_id=article.id %}"
+                                                class=" text-uppercase">{% trans "Read More" %}</a></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        {% endfor %}
+                        <!-- End Article Loop -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Recent Blogs -->
+<section class="section border-0 py-10 m-0 px-lg-5">
+    <div class="container">
+        <div class="row align-items-end pb-3">
+            <div class="col-lg-7 col-xl-8 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="overflow-hidden">
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Recent Blogs" %}
+                        </h2>
+                    </div>
+                </div>
+                <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
+                    {% trans "BLOGS FROM US TO YOU" %}
+                </p>
+            </div>
+            <div class="col-lg-5 col-xl-4">
+                <div class="d-flex justify-content-lg-end">
+                    <a href="{% url  'blog_list' %}"
+                        class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1 appear-animation"
+                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">
+                        {% trans "SEE ALL BLOGS" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+            <div class="col">
+                <div class="blog-posts mt-0">
+
+                    <div class="row">
+
+                        {% if recent_blogs.count == 4 %}
+
+                        <div class="col-lg-3 col-md-3 mb-3">
+                            <span class="thumb-info thumb-info-swap-content anim-hover-inner-wrapper">
+                                <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
+                                    <img src="{{recent_blogs.0.images.url}}" class="img-fluid"
+                                        style="height: 200px;" alt="">
+                                    <span
+                                        class="thumb-info-title thumb-info-title-vert-align bg-transparent w-100 text-center mw-100 p-3">
+                                        <span class="anim-hover-inner-translate-top-40px transition-2ms d-inline-block">
+                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{recent_blogs.0.date }}</em> {{ recent_blogs.0.title }}</span>
+                                        </span>
+                                    </span>
+                                    <span class="thumb-info-title bg-transparent w-100 mw-100 p-0 text-center"
+                                        style="bottom: 8%;">
+                                        <span class="thumb-info-swap-content-wrapper">
+                                            <span class="thumb-info-inner">
+                                                <a href="#" class="btn btn-primary btn-circle"><i
+                                                        class="fas fa-arrow-right"></i></a>
+                                            </span>
+                                            <span class="thumb-info-inner text-2">
+                                                <a href="{% url 'blog_detail' blog_id=recent_blogs.0.id %}"
+                                                    class="btn btn-modern btn-primary btn-arrow-effect-1 py-2 px-3">{% trans "Read More" %} <i class="fas fa-arrow-right ms-2"></i></a>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="col-lg-9 col-md-8 mb-3 d-xsm-none d-sm-none d-lg-block">
+                            <div class="thumb-info thumb-info-side-image thumb-info-no-zoom"
+                                style="height: 202px; border: 1px solid #ccc; border-left: none;">
+                                <div class="thumb-info-side-image-wrapper">
+                                    <img src="{{recent_blogs.1.images.url}}" class="img-fluid" alt=""
+                                        style="height: 200px;">
+                                </div>
+                                <div class="thumb-info-caption">
+                                    <div class="thumb-info-caption-text text-3 pb-0">
+                                        <h5 class="text-uppercase mb-2 pe-3">{{ recent_blogs.1.title }}</h5>
+                                        <div class="pe-3 post-meta">
+                                            <span><i class="far fa-calendar-alt"></i>{{ recent_blogs.1.created_date}}</span> /
+                                            <span><i class="far fa-user"></i> {{ recent_blogs.1.created_by }} </span> /
+                                            <span><i class="far fa-comments"></i> {{recent_blogs.1.comments.count}}{% trans "Comments" %}</span>
+
+                                        </div>
+                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.1.content|truncatechars:210 }}
+                                        </p>
+                                    </div>
+                                    <span class="thumb-info-inner text-2 float-end pe-5">
+                                        <a href="{% url 'blog_detail' blog_id=recent_blogs.1.id %}" class="btn btn-modern btn-primary btn-arrow-effect-1 py-2 px-3">
+                                            {% trans "Read More" %} <i class="fas fa-arrow-right ms-2"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 mb-3 d-none d-md-block d-lg-block">
+                            <div class="thumb-info thumb-info-side-image thumb-info-no-zoom"
+                                style="height: 202px; border: 1px solid #ccc; border-left: none;">
+                                <div class="thumb-info-side-image-wrapper">
+                                    <img src="{{recent_blogs.2.images.url}}" class="img-fluid" alt=""
+                                        style="height: 200px;">
+                                </div>
+                                <div class="thumb-info-caption">
+                                    <div class="thumb-info-caption-text text-3">
+                                        <h5 class="text-uppercase mb-2">{{ recent_blogs.2.title }}</h5>
+                                        <div class="pe-3 post-meta">
+                                            <span><i class="far fa-calendar-alt"></i> {{ recent_blogs.2.created_date }}</span> 
+
+                                            <span><i class="far fa-user"></i> {{ recent_blogs.2.created_by }} </span> /
+                                            <span><i class="far fa-comments"></i> {{recent_blogs.2.comments.count}} {% trans "Comments" %}</span>
+
+                                        </div>
+                                        <p class="display-element py-0 pe-5 line-height-8">{{ recent_blogs.2.content|truncatechars:210 }}
+                                        </p>
+                                    </div>
+                                    <span class="thumb-info-inner text-2 float-end pe-5">
+                                        <a href="{% url 'blog_detail' blog_id=recent_blogs.2.id %}" class="btn btn-modern btn-primary btn-arrow-effect-1 py-2 px-3">
+                                            {% trans "Read More" %} <i class="fas fa-arrow-right ms-2"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            <span class="thumb-info thumb-info-swap-content anim-hover-inner-wrapper">
+                                <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
+                                    <img src="{{recent_blogs.3.images.url}}" class="img-fluid"
+                                        style="height: 200px;" alt="">
+                                    <span
+                                        class="thumb-info-title thumb-info-title-vert-align bg-transparent w-100 text-center mw-100 p-3">
+                                        <span class="anim-hover-inner-translate-top-40px transition-2ms d-inline-block">
+                                            <span class="thumb-info-inner"><em class="display-element opacity-7">{{recent_blogs.3.created_date }}</em> {{ recent_blogs.3.title}}</span>
+                                        </span>
+                                    </span>
+                                    <span class="thumb-info-title bg-transparent w-100 mw-100 p-0 text-center"
+                                        style="bottom: 8%;">
+                                        <span class="thumb-info-swap-content-wrapper">
+                                            <span class="thumb-info-inner">
+                                                <a href="#" class="btn btn-primary btn-circle"><i
+                                                        class="fas fa-arrow-right"></i></a>
+                                            </span>
+                                            <span class="thumb-info-inner text-2">
+                                                <a href="{% url 'blog_detail' blog_id=recent_blogs.3.id %}"
+                                                    class="btn btn-modern btn-primary btn-arrow-effect-1 py-2 px-3">{% trans "Read More" %} <i class="fas fa-arrow-right ms-2"></i></a>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                        {% else %}
+                            {% for blog in recent_blogs %}
+                            <div class="col-lg-3 col-md-3 mb-3">
+                                <span class="thumb-info thumb-info-swap-content anim-hover-inner-wrapper">
+                                    <span class="thumb-info-wrapper overlay overlay-show overlay-gradient-bottom-content">
+                                        <img src="{{blog.images.url}}" class="img-fluid"
+                                            style="height: 200px;" alt="">
+                                        <span
+                                            class="thumb-info-title thumb-info-title-vert-align bg-transparent w-100 text-center mw-100 p-3">
+                                            <span class="anim-hover-inner-translate-top-40px transition-2ms d-inline-block">
+                                                <span class="thumb-info-inner"><em class="display-element opacity-7">{{blog.date }}</em> {{ blog.title }}</span>
+                                            </span>
+                                        </span>
+                                        <span class="thumb-info-title bg-transparent w-100 mw-100 p-0 text-center"
+                                            style="bottom: 8%;">
+                                            <span class="thumb-info-swap-content-wrapper">
+                                                <span class="thumb-info-inner">
+                                                    <a href="#" class="btn btn-primary btn-circle"><i
+                                                            class="fas fa-arrow-right"></i></a>
+                                                </span>
+                                                <span class="thumb-info-inner text-2">
+                                                    <a href="{% url 'blog_detail' blog_id=blog.id %}"
+                                                        class="btn btn-modern btn-primary btn-arrow-effect-1 py-2 px-3">{% trans "Read More" %} <i class="fas fa-arrow-right ms-2"></i></a>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Resources -->
+<section class="section border-0 py-10 m-0 px-lg-5">
+    <div class="container">
+        <div class="row align-items-end pb-3">
+            <div class="col-lg-7 col-xl-8 mb-4 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="overflow-hidden">
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "RESOURCES" %}
+                        </h2>
+                    </div>
+                </div>
+                <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
+                    {% trans "YOU CAN FIND ALL THE RESOURCES IN THIS SECTION" %}
+                </p>
+            </div>
+
+            <div class="col-lg-5 col-xl-4">
+                <div class="d-flex justify-content-lg-end">
+                    <a href="{% url 'list_docs' %}"
+                        class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1  appear-animation"
+                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">
+                        {% trans "SEE ALL RESOURCES" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+            <div class="col">
+                <div class="row">
+                    
+                    {% for document in recent_documents %}
+                    <div class="col-lg-4 col-md-3 col-sm-6 col-xsm-12 mb-3 p-sm-0">
+                        <div
+                            class="card border-radius-2 bg-color-light box-shadow-3 box-shadow-1-hover">
+                            <div class="feature-box py-2 px-1">
+                                <div class="border-radius-2">
+                                    {% if document.file %}
+                                    {% with doc=document.file.url|get_file_name %}
+                                    
+                                        {% if document.file_extension == '.pdf' %}
+                                            <!-- <embed src="/documents/pdf/{{document.file.url|get_file_name}}" type="application/pdf" class="embed-tag" width="60px" height="70px"> -->
+                                            <img src="{% static 'front/imgs/docs/pdf.png' %}" style="width: 40px; height: 40px;">
+
+                                        {% elif document.file_extension == '.csv' or  document.file_extension == '.xlsx' %}
+                                        <img src="{% static 'front/imgs/docs/excel.png' %}"
+                                            style="width: 40px; height: 40px;">
+
+                                        {% elif document.file_extension == '.doc' or document.file_extension == '.docx' %}
+                                        <img src="{% static 'front/imgs/docs/default.png' %}"
+                                            style="width: 40px; height: 40px;">
+                                        {% else %}
+                                        <!-- Default image if the file extension is not pdf or csv -->
+                                        <img src="{% static 'default.png' %}" style="width: 40px; height: 40px;">
+                                        {% endif %}
+                                   
+                                   
+                                    {% endwith %}
+                                    {% endif %}
+                                </div>
+                                <div class="feature-box-info">
+                                    <a href="{{ document.file.url }}" class="mb-0 border-bottom">{{document.title }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}                            
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="section border-0 m-0 px-lg-5">
+    <div class="container">
+        <div class="row align-items-end  ">
+            <div class="col-lg-7 col-xl-8 col-sm-12 ">
+                <div class="d-flex align-items-center ">
+                    <div class="overflow-hidden">
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "GALLERIES" %}
+                        </h2>
+                    </div>
+                </div>
+                <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
+                    {% trans "PICTURES TAKEN FROM PREVIOUS ACTIVITIES" %}
+                </p>
+            </div>
+            <div class="col-lg-5 col-xl-4">
+                <div class="d-flex justify-content-lg-end">
+                    <a href="{% url 'gallery_images' %}"
+                        class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1  appear-animation"
+                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">
+                        {% trans "SEE ALL" %}
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="container py-2">
+
+                <div class="owl-carousel owl-theme" id="gallery-carousel">
+                    {% for image in gallery_images %}
+                    <div class="item" style="width:280px;">
+                        <div class="portfolio-item">
+                            <a href="{% url 'gallery_images' %}">
+                                <span
+                                    class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
+                                    <span class="thumb-info-wrapper border-radius-0">
+                                        <img src="{{ image.image.url }}" class="img-fluid border-radius-0"
+                                            alt="{{ image.title }}"  style="width:280px; height:300px;">
+                                        <span class="thumb-info-title">
+                                            <span class="thumb-info-inner">{{ image.title }}</span>
+                                            <span class="thumb-info-type">{{ image.category }}</span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}   
+                </div>
+            </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="section section-with-shape-divider border-0 bg-transparent m-0 px-lg-5">
+    <div class="shape-divider shape-divider-reverse-x" style="height: 102px;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 1920 102" preserveAspectRatio="xMinYMin">
+            <path fill="#F4F4F4" d="M1895,78c-56.71-6.03-113.75-12.1-167-17c-75.42-6.94-133.81-10.66-171-13c-62.1-3.91-108.85-5.97-155-8
+                c-35.96-1.58-78.06-3.42-133-5c-59.81-1.72-103.18-2.23-172-3c-92.17-1.03-154.41-1.01-169-1c-69.05,0.05-115.16,0.67-137,1
+                c-43.08,0.65-76.21,1.48-97,2c-28.02,0.7-71.13,1.8-128,4c-16.64,0.64-57.72,2.28-111,5c-26.12,1.33-67.11,3.45-121,7
+                c-21.14,1.39-54.21,3.59-96,7c-19.93,1.63-39.22,3.32-47,4c-16.12,1.41-33.55,2.94-55,5c-26.48,2.54-19.07,2.04-77,8
+                c-19.39,1.99-36.94,3.77-60.59,7.46V103H1923V81C1916.55,80.3,1906.82,79.26,1895,78z" />
+        </svg>
+    </div>
+    <div class="container mt-5">
+        <div class="row align-items-end pb-3">
+            <div class="col-lg-7 col-xl-8 mb-4 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="overflow-hidden">
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "FAQs" %}
+                        </h2>
+                    </div>
+                </div>
+                <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
+                    {% trans "OUR ANSWERS FOR THE MOST QUESTIONS WE GET" %}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="toggle toggle-primary m-0" data-plugin-toggle="">
+            {% for faq in faqs %}
+            <section class="toggle">
+                <a class="toggle-title">{{ faq.question }}</a>
+                <div class="toggle-content" style="display: none;">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+
+</section>
+
+
+<!-- Contact Us -->
+<section class="section border-0 bg-light p-0 m-0 px-lg-5">
+    <div class="container">
+        <div class="row align-items-end pb-3 ">
+            <div class="col-lg-7 col-xl-8  ">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="overflow-hidden">
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Our Office Location" %}
+                        </h2>
+                    </div>
+                </div>
+                <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
+                    {% trans "HAVE SOMETHING TO SAY OR NEED ADDITIONAL INFORMATION? DROP BY TO OUR OFFICE" %}
+                </p>
+            </div>
+
+        </div>
+        <div class="row ">
+            <div class="row mt-0">
+
+                <div class="col-md-6 col-sm-12 overflow-hidden" >
+                    {% if map %}
+                        {{map|safe}}
+                    {% else %}
+                        <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3274.724996388625!2d38.76123931516503!3d9.145004492101012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1635555555555555%3A0x70bba4e6e5c780f5!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sin!4v1643117899813!5m2!1sen!2sin">
+                        </iframe>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 col-sm-12 " style="margin-left: auto;">
+
+                    
+                    <h2 class="font-weight-bold text-7 mt-2 mb-0">{% trans "Contact Us" %}</h2>
+                    <p class="mb-4">{% trans "WE'RE HERE TO ASSIST YOU" %}!</p>
+
+                    <form id="contactFormAdvanced" action="{% url 'contact_us' %}" method="POST"
+                        enctype="multipart/form-data" novalidate="novalidate">
+                        <input type="hidden" value="true" name="emailSent" id="emailSent">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <!-- <label class="form-label mb-1 text-2">Full Name</label> -->
+                                <input name="name" id="name" type="text" value="" placeholder="{% trans 'Full Name' %}"
+                                    data-msg-required="Please enter your name." maxlength="100"
+                                    class="form-control text-3 h-auto py-2" required="">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <!-- <label class="form-label mb-1 text-2">Email Address</label> -->
+                                <input name="email" id="email" type="email" value="" placeholder="{% trans 'Email Address' %}"
+                                    data-msg-required="Please enter your email address."
+                                    data-msg-email="Please enter a valid email address." maxlength="100"
+                                    class="form-control text-3 h-auto py-2" required="">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <!-- <label class="form-label mb-1 text-2">Phone Number</label> -->
+                                <input type="number" name="phone" id="phone" placeholder="{% trans 'Phone Number' %}" value=""
+                                    data-msg-required="Please enter your phone number."
+                                    data-msg-email="Please enter a valid phone number." maxlength="100"
+                                    class="form-control text-3 h-auto py-2" required="">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <!-- <label class="form-label mb-1 text-2">Select Subject</label> -->
+                            <input name="subject" placeholder="{% trans 'Subject' %}" data-msg-required="Please enter the subject."
+                                class="form-control text-3 h-auto py-2" name="subject" id="subject" required="" />
+                            <!-- <select data-msg-required="Please enter the subject." class="form-control text-3 h-auto py-2" name="subject" id="subject" required="">
+                                <option value="">...</option>
+                                <option value="Option 1">General Inquiry</option>
+                                <option value="Option 2">Vacancy update</option>
+                                <option value="Option 3">Status update</option>
+                            </select> -->
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 mb-4">
+
+                                <textarea maxlength="5000" placeholder="{% trans 'Message' %}"
+                                    data-msg-required="Please enter your message." rows="6"
+                                    class="form-control text-3 h-auto py-2" name="message" id="message"
+                                    required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 mb-5 text-center">
+                                <button type="submit" id="contactFormSubmit"
+                                    class="btn btn-primary btn-modern pull-right" data-loading-text="Loading...">{% trans "Send Message" %}</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $('#gallery-carousel').owlCarousel({
+            loop:true,
+            margin:20, // Adjust the margin to add space between images
+            nav:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:5
+                }
+            }
+        });
+
+        $(".embed-tag").on("load", function() {
+                var embedElement = $(this);
+                setTimeout(function() {
+                    var embedChildren = embedElement.contents().find("body").children();
+                    console.log("Child elements:", embedChildren);
+                }, 1000); // Adjust the timeout value as needed
+            });
+    });
+  
+   
+</script>
+
+{% endblock %}
