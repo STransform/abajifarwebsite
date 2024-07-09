@@ -74,7 +74,7 @@ class DirectorateMessage(models.Model):
 
     title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     content = models.TextField()
-    button_text = models.CharField(max_length=80,help_text="Make sure to submit a max of 80 characters.")
+    #button_text = models.CharField(max_length=80,help_text="Make sure to submit a max of 80 characters.")
     image = models.ImageField(upload_to='slider_images/',help_text="Make sure to submit an image proportional with the height of the content.")
     
     def __str__(self):

@@ -175,7 +175,7 @@
                                             </li>
                                             {% else %}
                                             <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link ps-0" href="tel:+011-157-0280"><i
+                                                <a class="nav-link ps-0" href="tel:+09-03-001000"><i
                                                         class="fa fa-phone"></i> +09-03-001000</a>
                                             </li>
                                             {% endif %}
@@ -187,7 +187,7 @@
                                             </li>
                                             {% else %}
                                             <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link" href="mailto:info@aabof.gov.et"><i
+                                                <a class="nav-link" href="mailto:OEST@otech.et"><i
                                                         class="fa fa-envelope"></i>Email: OEST@otech.et</a>
                                             </li>
                                             {% endif %}
@@ -225,11 +225,11 @@
 
                                             {% if stg.youtube %}
                                             <li class="social-icons-youtube"><a href="{{stg.youtube}}"
-                                                target="_blank" title="Facebook"><i class="fab fa-youtube"></i></a>
+                                                target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
                                             </li>
                                             {% else %}
                                             <li class="social-icons-youtube"><a href="https://youtube.com"
-                                                    target="_blank" title="Facebook"><i class="fab fa-youtube"></i></a>
+                                                    target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
                                             </li>
                                             {% endif %}
 
@@ -439,19 +439,19 @@
                                 
                                 <form  id="id_lang_selector_form" class="mt-3" action="{% url 'set_language' %}" method="post">
                                     {% csrf_token %}
-                                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                                    <select name="language" onchange="change_lang(this)"  class="ml-2 btn btn-sm btn-rounded btn-outline-primary" style="margin-left:4px;">
+                                    <input name="next" type="hidden" value="{{ redirect_to }}" >
+                                    <select name="language" onchange="change_lang(this)"  class="ml-2 btn btn-sm btn-rounded btn-outline-light" style="margin-left:4px;color: black;">
                                         {% get_current_language as CURRENT_LANGUAGE %}
                                         {% get_available_languages as AVAILABLE_LANGUAGES %}
                                         {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
                                         {% for language in languages %}
-                                            <option value="{{ language.code }}"{% if language.code == CURRENT_LANGUAGE %} selected{% endif %}>
+                                            <option value="{{ language.code }}"{% if language.code == CURRENT_LANGUAGE %} selected{% endif %} style="background-color: black;color: white;">
                                                 {{ language.name_local }}
                                             </option>
                                         {% endfor %}
                                         
                                     </select>
-
+                                   
                                 </form>
                                 {% if user.is_authenticated and user.is_staff and user.is_active %}
                                 <a class="btn btn-sm btn-rounded ml-2 btn-primary mx-2 "  href="{% url 'admin_dashboard' %}">

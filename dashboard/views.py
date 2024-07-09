@@ -225,7 +225,7 @@ class DeleteView(LoginRequiredMixin,PermissionRequiredMixin, View):
 class ApproveComment(LoginRequiredMixin,DjangoPermissionRequiredMixin, View):
     permission_required = ("blogs.change_blog")
     def get(self, *args, **kwargs):
-        comment = Comment.objects.get(id=self.kwargs['pk'])
+        comment = BlogComment.objects.get(id=self.kwargs['pk'])
         comment.approved= True if not comment.approved else False
         comment.save()
         msg = f"Successfully approved comment to be seen" if comment.approved else f"Successfully hidden comment from being seen"

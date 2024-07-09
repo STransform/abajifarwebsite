@@ -13,7 +13,7 @@ class GalleryImageTO(TranslationOptions):
 
 @register(DirectorateMessage)
 class  DirectorateMessageTO(TranslationOptions):
-    fields = ("title","content", "button_text")
+    fields = ("title","content")
 
 @register(FeaturedWork)
 class  FeaturedWorkTO(TranslationOptions):

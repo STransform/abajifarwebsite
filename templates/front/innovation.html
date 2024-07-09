@@ -9,7 +9,7 @@
 {% if innovation%}
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
     data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
-    style="height: 350px;">
+    style="height: 700px;">
     <div class="owl-stage-outer">
         <div class="owl-stage">
             <!-- Dynamic Carousel Slides -->
@@ -19,10 +19,10 @@
                 <div class="container position-relative z-index-1 h-100">
                     <div
                         class="d-flex flex-column align-items-start justify-content-lg-center justify-content-end h-100 pt-5  px-lg-5 px-md-2 px-sm-0 py-5">
-                        <h3 class="position-relative text-color-light text-4 line-height-2 font-weight-light  mb-2 appear-animation"
+                        <h3 class="position-relative text-color-light text-6 line-height-2 font-weight-light  mb-2 appear-animation"
                             data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
                             {% trans "Consulting & Innovation" %}</h3>
-                        <h1 class="text-color-light font-weight-bold text-9 mb-5  appear-animation col-lg-5 col-md-6 col-sm-12"
+                        <h1 class="text-color-light font-weight-semibold text-4 mb-5  appear-animation col-lg-5 col-md-6 col-sm-12"
                             data-appear-animation="blurIn" data-appear-animation-delay="500"
                             data-plugin-options="{'minWindowWidth': 0}">{{ innovations.invn_content|truncatechars:110 }}</h1>
                     </div>
@@ -56,13 +56,14 @@
                     <li class="active">{% trans "Innovation" %}</li>
                 </ul>        
             </div>
-           
+            
             
         </div>
         
     </div>
+    <h1 style="text-align: center;color: red;">Consulting & Innovation</h1>
 </section>
-<div class="bg-color-grey ">
+<div class="bg-color-light ">
     <div id="examples" class="container py-2 pt-5 ">
         <h2 class="text-color-dark font-weight-normal text-8 mb-2"></h2>
         

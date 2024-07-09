@@ -8,12 +8,14 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
                         <h5 class="text-4 text-color-light mb-3">{% trans "ABOUT US" %}</h5>
-                        {% for about in about_footer %}
+                        
                         <div class="company-info" style="background-color: #000;">
+                            {% for about in about_footer %}
                             <h6>{{ about.title }}</h6>
                             <p class="text-white">{{ about.content }}</p>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
+                       
                     </div>
                     
                     <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
@@ -41,24 +43,24 @@
                     </div>
                     
                     <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
-                        <h5 class="text-4 text-color-light mb-3 footer-title">{% trans "SOCIAL MEDIA" %}</h5>
+                        <h5 class="text-4 text-color-light mb-3 footer-title">{% trans "SOCIAL Icon" %}</h5>
                         <ul class="list list-unstyled">
                             <!-- Replace with social media icons and links -->
                             <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light">Facebook:</span>
-                                <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
+                                <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook" style="font-size: 2em;"></i></a>
                             </li>
                             <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light">Twitter:</span>
-                                <a href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
+                                <a href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter" style="font-size: 2em;"></i></i></a>
                             </li>
                             <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light">Instagram:</span>
-                                <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
+                                <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram" style="font-size: 2em;"></i></i></a>
                             </li>
                             <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light">LinkedIn:</span>
-                                <a href="https://www.linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
+                                <a href="https://www.linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin" style="font-size: 2em;"></i></i></a>
                             </li>
                         </ul>
                     </div>
@@ -82,7 +84,7 @@
             </div>
         </div>
     </div>
-    <div class="container" style="background-color: #550A35;">
+    <div class="container" style="background-color: #F62217;">
         <div class="pt-2 pb-2">
             <div class="row">
                 <div class="col-12 text-center">
