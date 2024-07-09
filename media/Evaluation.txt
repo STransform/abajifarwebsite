@@ -1,0 +1,44 @@
+
+Angular 
+html5
+css
+js 
+DOM
+
+Backend
+server side 
+Node js
+ruby 
+
+Minimum requirements 
+
+API
+restfull 
+Authentication & Authorization
+
+DB
+sql  and no sql
+
+Schema design
+data manipulate,databackup
+
+dev ops 
+
+version control git
+branching and merging 
+
+Continuos integration and delivery
+
+Docker 
+
+Problem solving & Algorithm thinking 
+
+Strength and area of improvements
+feedback and comment
+
+Interview 
+General knowledge about these not for specific projects.
+
+
+
+
