@@ -187,7 +187,7 @@ db.sqlite3
 db1.sqlite3 
 db2.sqlite3
 venv
-media/
+#media/
 staticfiles/
 #Documents/
 .sqlite3

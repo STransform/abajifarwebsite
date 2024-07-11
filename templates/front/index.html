@@ -107,7 +107,7 @@
                     data-plugin-options="{'startPos': 'top', 'speed': 0.2, 'transition': true, 'transitionDuration': 1000, 'isInsideSVG': true}">
                     <img src="{{ about_us.image.url }}" style="border-radius: 10px; max-height: 500px; width: 90%;"
                         class="img-fluid custom-box-shadow-1 appear-animation" data-appear-animation="fadeInLeftShorter"
-                        data-appear-animation-delay="1800" alt="" />
+                        data-appear-animation-delay="500" alt="" />
                 </div>
             </div>
         </div>
@@ -119,7 +119,7 @@
                     appear-animation-duration="1s"></span>
                 <div class="overflow-hidden ms-3">
                     <h2 class="text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
-                        data-appear-animation="maskRight" data-appear-animation-delay="500">{{ about_us.title }}</h2>
+                        data-appear-animation="maskRight" data-appear-animation-delay="300">{{ about_us.title }}</h2>
                 </div>
             </div>
              <p>
@@ -292,42 +292,64 @@
     <div id="examples" class="container py-2 pt-5">
         <h2 class="text-color-light font-weight-normal text-8 mb-2"></h2>
         
-        <div class="row mb-5 pb-3">
-            {% for visions in vision %}
-            <div class="col-lg-12 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
-                <div class="aligned card border-0 border-shadow text-center" style="min-height: 250px; overflow: hidden; max-height: none; background-color: red;">
+        <div class="row mb-5 pb-3 justify-content-center">
+            <div class="col-lg-10 mb-3">
+                {% for visions in vision %}
+                <div class="appear-animation aligned card border-0 border-shadow text-center"
+                     data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300"
+                     style="min-height: 250px; overflow: hidden; max-height: none; background-color: red; margin: 0 10px;">
                     <div class="card-body">
                         <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color: #fff;">{{ visions.title }}</h4>
                         <p class="card-text" style="color: #fff;">{{ visions.content }}</p>              
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
+        
     </div>
 </div>
 
+<section class="section border-0 py-10 m-0 px-lg-5  pt-4" style="background-color: white;">
+    <div class="container">
+        <div class="row align-items-end pb-3 ">
+           
+            <div class="col-12 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "OTECH Excellence!" %}
+                        </h2>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        
+    </div>
+</section>
 {% for excellence in otech_excellence %}
-<div class="container mt-2 mb-5 pb-5 px-lg-5 px-md-3" style="background-color: white;">
+<div class="container mt-8 mb-5 pb-5 px-lg-5 px-md-3" style="background-color: white;">
     <div class="row align-items-start">
         
         <div class="col-lg-5 col-sm-10">
             <div class="position-relative">
+                
                 <div data-plugin-float-element
                     data-plugin-options="{'startPos': 'top', 'speed': 0.2, 'transition': true, 'transitionDuration': 1000, 'isInsideSVG': true}">
                     <img src="{{ excellence.image.url }}" style="border-radius: 10px; max-height: 500px; width: 90%;"
                         class="img-fluid custom-box-shadow-1 appear-animation" data-appear-animation="fadeInLeftShorter"
-                        data-appear-animation-delay="1800" alt="" />
+                        data-appear-animation-delay="500" alt="" />
                 </div>
             </div>
         </div>
         
-        <!-- For CEO Message -->
+        <!-- For OTECH Excellence -->
         <div class="col-lg-7 mb-5 mb-lg-0">
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
-                        data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Transforming Futures with Innovative Excellence" %}</h2>
+                        data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "Transforming Futures with Innovative Excellence" %}</h2>
                     <p class="card-text">{% trans "OTech pioneers innovation, shaping brighter futures for industries and communities through cutting-edge technology solutions." %}</p>
                 </div>
             </div>
@@ -340,7 +362,7 @@
                             appear-animation-duration="1s"></span>
                         <div class="overflow-hidden ms-3">
                             <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
-                                data-appear-animation="maskRight" data-appear-animation-delay="500">{{ excellence.title1 }}</h2>
+                                data-appear-animation="maskRight" data-appear-animation-delay="300">{{ excellence.title1 }}</h2>
                         </div>
                     </div>
                     <p class="card-text">{{ excellence.content1 }}</p>
@@ -370,7 +392,7 @@
                             appear-animation-duration="1s"></span>
                         <div class="overflow-hidden ms-3">
                             <h2 class="card-title text-primary font-weight-semibold line-height-3 text-4 mb-0 appear-animation"
-                                data-appear-animation="maskRight" data-appear-animation-delay="500">{{ excellence.title3 }}</h2>
+                                data-appear-animation="maskRight" data-appear-animation-delay="300">{{ excellence.title3 }}</h2>
                         </div>
                     </div>
                     <p class="card-text">{{ excellence.content3 }}</p>
@@ -446,34 +468,10 @@
 
 
 
-<!-- Recent News -->
+<!-- Recent Blogs -->
 <section class="section border-0 py-10  m-0 px-lg-5">
     <div class="container">
-       <!-- 
-        <div class="row align-items-end mb-3">
-            <div class="col-lg-7 col-xl-8 mb-lg-0">
-                <div class="d-flex align-items-center mb-2">
-                    <div class="overflow-hidden">
-                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Recent News" %}
-                        </h2>
-                    </div>
-                </div>
-                <p class="appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="600">
-                    {% trans "RECENT NEWS DELIVERED FROM US TO YOU" %}
-                </p>
-            </div>
-            <div class="col-lg-5 col-xl-4">
-                <div class="d-flex justify-content-lg-end">
-                    <a href="{% url 'news_list_visitor' %}"
-                        class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1 appear-animation"
-                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">{% trans "See All News" %}
-                    </a>
-                </div>
-            </div>
-        
-        </div>
-        -->
+      
         <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
             <div class="col">
                 <div class="blog-posts mt-0 ">
@@ -519,7 +517,7 @@
             <div class="col-lg-7 col-xl-8 mb-4 mb-lg-0">
                 <div class="d-flex align-items-center mb-2">
                     <div class="overflow-hidden">
-                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                        <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation  "
                             data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "Recent Blogs" %}
                         </h2>
                     </div>
@@ -837,11 +835,11 @@
                 c-19.39,1.99-36.94,3.77-60.59,7.46V103H1923V81C1916.55,80.3,1906.82,79.26,1895,78z" />
         </svg>
     </div>
-    <div class="container mt-5">
+    <div class="container mt-5" >
         <div class="row align-items-end pb-3">
             <div class="col-lg-7 col-xl-8 mb-4 mb-lg-0 ">
                 <div class="d-flex align-items-center mb-2">
-                    <div class="overflow-hidden">
+                    <div class="overflow-hidden" >
                         <h2 class="text-color-primary font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
                             data-appear-animation="maskRight" data-appear-animation-delay="500">{% trans "FAQs" %}
                         </h2>
