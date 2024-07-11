@@ -196,7 +196,9 @@ custom_log.txt
 data_migrater.py
 dbs/
 
-
+news/
+task_manager/
+suppliers/
 
 # Environments
 
