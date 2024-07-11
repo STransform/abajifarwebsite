@@ -1,5 +1,5 @@
 
-## OTECHmain: Dynamic web app for otech
+## OTECHmain: Dynamic web app for OTECH
 
 ## Brief Description**
 
@@ -21,7 +21,7 @@ The following are the core technologies used to build the application.
 
 * Back-end: Django (a Python web framework)
 * Front-end: HTML, CSS, JavaScript, Bootstrap (web development technologies)
-* Database: Default is Sqlite3 which will be automatically created if no other database is configured. You Can also use any relational database  like PostgreSQl or MySQL
+* Database:MySQL 
 
 
 
@@ -47,7 +47,7 @@ Follow the following steps to set up the development environment for your projec
     * Use the provided command to download the project's codebase from GitHub.
     
     ```bash
-    git clone https://github.com/STransform/otech.git
+    git clone https://github.com/STransform/otechwebproject.git
     ```
 
  ## Setting Up the Environment
@@ -79,7 +79,7 @@ This section explains how to launch the development server and access your appli
         * `makemigrations`: Analyzes your models and generates migration files.
        
         ``` bash
-        $ python manage.py makemigrations about_us accounts blogs core dashboard documents news suppliers task_manager vacancies visit_counter
+        $ python manage.py makemigrations about_us accounts blogs core dashboard documents vacancies visit_counter
         ```
 
         * `migrate`: Applies the generated migrations to your database.
@@ -113,9 +113,9 @@ This section explains how to launch the development server and access your appli
     
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        ' NAME': $Your_DB_Name,
-        'USER': $Your_DB_Username,
-        'PASSWORD': $Your_DB_Password,
+        ' NAME': $DB_Name,
+        'USER': $DB_Username,
+        'PASSWORD': $DB_Password,
         'HOST':'localhost',
         'PORT':'3306',
     }
