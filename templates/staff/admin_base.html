@@ -697,6 +697,10 @@
                                     class="side-menu__item {% if model_code == 'OtechExcellence' %} active {% endif %}">Otech Excellence</a></li>
                                 {% endif %}
                                 {% if perms.dashboard.view_about %}
+                                <li class="slide"><a href="{% url 'list_view' model_name='ElevatingSkills' %}" 
+                                    class="side-menu__item {% if model_code == 'ElevatingSkills' %} active {% endif %}">Elevating Skills</a></li>
+                                {% endif %}
+                                {% if perms.dashboard.view_about %}
                                 <li class="slide"><a href="{% url 'list_view' model_name='WhatPeopleSays' %}" 
                                     class="side-menu__item {% if model_code == 'WhatPeopleSays' %} active {% endif %}">What People Says About Us</a></li>
                                 {% endif %}

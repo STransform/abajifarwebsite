@@ -205,3 +205,23 @@ class Innovation(models.Model):
     
     def __str__(self):
         return f"Innovation Page Content"
+
+class ElevatingSkills(models.Model):
+    is_single = True
+    title = models.CharField(max_length =255,help_text="Make sure to submit a max of 255 characters.")
+    # video = models.FileField(upload_to="Gallery/Videos", blank=True, null=True)
+    content = models.TextField(help_text="Would be great if you can summarize the content with a max of 500 characters.")
+    link = models.CharField(max_length=10000, blank=True,default="", help_text="Please submit the embed link, not the url link.")
+    
+    
+    class Meta:
+        ordering = ("-id",)
+
+    def __str__(self):
+        return self.title
+    
+    
+    def get_list_fields():
+        return ['title']
+    
+    list_fields = get_list_fields()

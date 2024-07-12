@@ -411,6 +411,46 @@
 </div>
 
 {% endfor %}
+{% for skills in elevating_skills %}
+
+<section class="section border-0 py-10 m-0 px-lg-5 pt-4" style="background-color: white;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-6 p-0">
+                <div class="aligned border-0  bg-color-light text-center" style="min-height: 200px; overflow: hidden; max-height: none;">
+                    <!-- Title at the top -->
+                    <p class="text-color-primary text-9 font-weight-bold line-height-3 text-5 mb-0 appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="300">{{ skills.title }}</p>
+                    
+                    <!-- Content below the title, centered -->
+                    <p class="text-color-primary mt-3" data-appear-animation="maskRight" data-appear-animation-delay="300">{{ skills.content }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Video link at the bottom, full width and responsive -->
+        <div class="video-container mt-3">
+            <div class="ratio ratio-16x9">
+                {{ skills.link|safe }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .video-container {
+        margin: 0 -5px;
+    }
+    .ratio {
+        width: calc(100% + 10px); /* Full width with extra to compensate for negative margin */
+        margin: 0 auto;
+    }
+</style>
+
+
+
+
+
+
+{% endfor %}
 
 <section class="section border-0 py-1 m-0 px-lg-5  pt-4" style="background-color: white;">
     <div class="container">
