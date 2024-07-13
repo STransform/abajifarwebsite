@@ -4,7 +4,13 @@
 {% block innovation_dynamic %} active {% endblock %}
 {% block content %} 
 {% load static %}
-
+<style>
+    .otech-font {
+   font-style: italic; 
+   font-weight: bold;  
+   color: black;      
+   }
+</style>
 
 {% if innovation%}
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
@@ -81,7 +87,7 @@
                             {% if innovations.invn_image %}
                             <img src="{{ innovations.invn_image.url }}" class="card-img-top" alt="Innovation Image">
                             {% endif %}
-                            <h1 class="card-title mt-2 mb-1 text-4 font-weight-bold">{{innovations.invn_title}}</h1>
+                            <h1 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color:red;">{{innovations.invn_title}}</h1>
                             <!-- Card body containing the text content -->
                             <div class="card-body">
                                 <div data-plugin-readmore="" data-plugin-options="{
@@ -90,7 +96,7 @@
                                                     'align': 'end'
                                                     }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
                         
-                                    <p class="card-text">{{ innovations.invn_content }}</p> 
+                                    <p class="otech-font">{{ innovations.invn_content }}</p> 
                         
                                     <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
                                         <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
@@ -103,6 +109,7 @@
                     </div>
                 </div>
             </div>
+           
             {% endfor %}
            
 

@@ -16,7 +16,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin as DjangoPermissi
 from .forms import *
 from .models import UserProfile
 from blogs.models import Blog
-from task_manager.models import Task
+#from task_manager.models import Task
 
 # user registration page
 class Signup(View):
@@ -89,7 +89,7 @@ class Profile(LoginRequiredMixin,View):
         
         user = UserProfile.objects.get(id=id)
         form = EditProfileForm(instance=user)
-        tasks = Task.objects.filter(assigned_to=user)[:5]
+       # tasks = Task.objects.filter(assigned_to=user)[:5]
         blogs = Blog.objects.all()[:3]
         password_form = None
         if self.request.user == user:
@@ -108,7 +108,7 @@ class Profile(LoginRequiredMixin,View):
                 if session.get_decoded().get('_auth_user_id', None) == str(user.id):
                     user_sessions.append(session)
                 
-        return render(request, 'staff/accounts/profile.html', {'user_obj': user,'user_sessions':user_sessions,'current_session_key':self.request.session.session_key, 'tasks':tasks, 'blogs':blogs, 'form':form,'password_form':password_form, 'title':title })
+        return render(request, 'staff/accounts/profile.html', {'user_obj': user,'user_sessions':user_sessions,'current_session_key':self.request.session.session_key, 'blogs':blogs, 'form':form,'password_form':password_form, 'title':title })
     
     # update user profile data
     def post(self,request, id):

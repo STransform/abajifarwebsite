@@ -4,6 +4,15 @@
 {% block about_dynamic %} active {% endblock %}
 {% block content %} 
 {% load static %}
+
+<style>
+    .otech-font {
+            font-style: italic; 
+            font-weight: bold;  
+            color: black;      
+            }
+</style>
+
 <section class="section border-0 py-10 m-0 px-lg-5  pt-4">
     <div class="container">
         <div class="row align-items-end pb-3 ">
@@ -29,16 +38,12 @@
             <div class="row align-items-center justify-content-center">
                 
                 <div class="col-lg-6 pb-sm-4 pb-lg-0 pe-lg-5 mb-sm-5 mb-lg-0">
-                    <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
+                    <p  class="otech-font text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400" style="color: red;"> 
                         {{about_data.title}}
                     </p>
-                    <p class="">{{ about_data.content }}</p>
+                    <p class="otech-font">{{ about_data.content }}</p>
                 </div>
-                <!-- <div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 position-relative mt-sm-5" style="top: 1.7rem;">
-                    <img src=" about_data.image_one.url }}" class="img-fluid position-absolute d-none d-md-block d-lg-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; left: -60%; width: 220px;" alt="" />
-                    <img src=" about_data.image_two.url }}" class="img-fluid position-absolute d-none d-md-block d-lg-block appear-animation" data-appear-animation="expandIn" style="top: -33%; left: -40%; width: 270px;" alt="" />
-                    <img src=" about_data.image_three.url }}" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="" />
-                </div> -->
+               
 
                 <div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 position-relative mt-sm-5" style="top: 1.7rem;">
                     {% if about_data.image_one %}
@@ -56,6 +61,7 @@
             </div>
         </div>
     </div>
+   
 </section>
 <div class="bg-color-grey ">
     <div id="examples" class="container py-2 pt-5 ">
@@ -70,7 +76,7 @@
                 <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 300px; ">
                     <div class="card-body">
                         <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}">
-                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">{% trans "Mission" %}</h4>
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color: red;">{% trans "Mission" %}</h4>
                         
                         <div data-plugin-readmore="" data-plugin-options="{
                             'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
@@ -78,7 +84,7 @@
                             'align': 'end'
                             }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
 
-                            <p class="card-text">{{ about_data.mission }}</p> 
+                            <p class="otech-font">{{ about_data.mission }}</p> 
                             
                             <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
                                 <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
@@ -92,7 +98,7 @@
                 <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 300px;">
                     <div class="card-body">
                         <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/vision.svg' %}">
-                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">{% trans "Vision" %}</h4>
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color: red;">{% trans "Vision" %}</h4>
                      
                      <div data-plugin-readmore="" data-plugin-options="{
                         'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
@@ -100,7 +106,7 @@
                         'align': 'end'
                         }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
 
-                        <p class="card-text">{{ about_data.vision }}</p>
+                        <p class="otech-font">{{ about_data.vision }}</p>
 
                         <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
                             <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
@@ -116,7 +122,7 @@
                     <div class="card-body ">
                         <div class="text-center">
                             <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}">
-                            <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold ">{% trans "Values" %} </h4>
+                            <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold " style="color: red;">{% trans "Values" %} </h4>
                         </div>
 
                         <div data-plugin-readmore="" data-plugin-options="{
@@ -125,7 +131,7 @@
                             'align': 'end'
                             }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
 
-                            <p class="card-text">{{ about_data.values }}</p>
+                            <p class="otech-font">{{ about_data.values }}</p>
 
                             <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
                                 <a href="#" class="text-decoration-none">{% trans "Read More" %}<i class="fas fa-chevron-down text-2 ms-1"></i></a>
@@ -136,7 +142,7 @@
                 </div>
 
             </div>
-
+       
         </div>
     </div>
 </div>

@@ -23,7 +23,7 @@
                         </h2>
                     </div>
                 </div>
-                <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
+                <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400" style="color: black;font-style: italic; font-weight: bold;"> 
                     {% trans "Keep in touch and send us your thoughts." %}
                 </p>
             </div>
@@ -43,8 +43,8 @@
                                     </h2>
                                 </div>
                             </div>
-                            <p  class="appear-animation"  data-appear-animation="maskRight" data-appear-animation-delay="600"> 
-                                {% trans "HAVE SOMETHING TO SAY OR NEED ADDITIONAL INFORMATION? DROP BY TO OUR OFFICE" %}
+                            <p  class="appear-animation"  data-appear-animation="maskRight" data-appear-animation-delay="600" style="color: black;font-style: italic; font-weight: bold;"> 
+                                {% trans "Have something to say or need additional information? Drop by to our office." %}
                             </p>
                         </div>
                         
@@ -58,14 +58,14 @@
                                 <div class="offset-anchor" id="contact-sent"></div>
 
                                 
-                                <h2 class="font-weight-bold text-7 mt-2 mb-0">{% trans "Contact Us" %}</h2>
-                                <p class="mb-4">{% trans "WE'RE HERE TO ASSIST YOU!" %}</p>
+                                <h2 class="font-weight-bold text-7 mt-2 mb-0" style="color: red;">{% trans "Contact Us" %}</h2>
+                                <p class="mb-4" style="color: black;font-style: italic; font-weight: bold;">{% trans "WE'RE HERE TO ASSIST YOU!" %}</p>
 
                                 <form id="" action="{% url 'contact_us' %}" method="POST" enctype="multipart/form-data" >
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="form-group col-12">
-                                            <input name="name" id="name" type="text" value="" placeholder="{% trans 'Full Name' %}" data-msg-required="Please enter your name." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
+                                            <input name="name" id="name" type="text" value="" placeholder="{% trans 'Full Name' %}"  data-msg-required="Please enter your name." maxlength="100" class="form-control text-3 h-auto py-2"  required="">
                                         </div>
                                         <div class="form-group col-md-6 col-sm-12">
                                             <!-- <label class="form-label mb-1 text-2">Email Address</label> -->

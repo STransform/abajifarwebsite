@@ -86,7 +86,7 @@ def index(request):
         'map':map
         
     }
-    return render(request, 'front/index.html', context)
+    return render(request, 'front/index.html' ,context)
 
 
 def search(request): 
