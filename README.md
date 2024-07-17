@@ -152,19 +152,23 @@ $ python manage.py createsuperuser
     http://127.0.0.1:8000/dashboard/
 
     * Access for admin
-    http://127.0.0.1:8000/admin/
+    http://127.0.0.1:8000/dashboard/
 
 
 # Deployment:
 The web app can be deployed on any hosting platform that supports Python. These include AWS, Azure, Heroku, Pythonanywhere, and VPS (Linux and Windows). Deployment instructions can have some specific differences based on the deployment platform. 
 
 # Branching:
-As a git repo, our repo will follow the common branching strategies. There are 3 main categories, the master, development, and feature branches.
+As a git repo, our repo will follow the common branching strategies. There are 3 main categories, the master, otechmain-dev and feature branches.
 1. The master branch is the deployment branch, which will only contain stable versions that will be used for deployment purposes
-2. The dev branch is the development branch, which is actively being updated and/or merged with feature branches hence having the latest updates from all. Any individual who wants to trach the development of the system should continuously pull from the dev branch
+2. The otechmain-dev branch is the development branch, which is actively being updated and/or merged with feature branches hence having the latest updates from all. Any individual who wants to trach the development of the system should continuously pull from the otechmain-dev branch
 3. The other branches are feature branching which are intended to update specific features of the system. After they are completed they will be merged with the dev branch.
  
 # Following Up:
 Once you've cloned the repository using the provided instructions, if you intend to stay updated with the development process, it's important to take note: each time you pull updates from the development branch to your local machine, make sure to carefully review the commit messages. This practice guarantees the smooth operation of your local branch, minimizing the chances of encountering errors.
+
+# Designed and Developed by Simon Temesgen(S-Transform)
+A passionate developer skilled in Java programming, with numerous projects completed using Java technologies and MySQL databases. 
+Additionally, I develop projects using Django, the Python web framework, due to its simplicity.
 
 
