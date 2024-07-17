@@ -139,8 +139,10 @@ As a git repo, My repo will follow the common branching strategies. There are 2 
 # Following Up:
 Once you've cloned the repository using the provided instructions, if you intend to stay updated with the development process, it's important to take note: each time you pull updates from the development branch to your local machine, make sure to carefully review the commit messages. This practice guarantees the smooth operation of your local branch, minimizing the chances of encountering errors.
 
+
 * By Simon Temesgen(S-Transform)
-A passionate developer skilled in Java programming, with numerous projects completed using Java technologies and MySQL databases. 
-Additionally, I develop projects using Django, the Python web framework, due to its simplicity.
+  
+"A passionate developer skilled in Java programming, with numerous projects completed using Java technologies and MySQL databases. 
+Additionally, I develop projects using Django, the Python web framework, due to its simplicity."
 
 
