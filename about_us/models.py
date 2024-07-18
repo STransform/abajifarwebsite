@@ -36,6 +36,18 @@ class CompanyValues(models.Model):
     
     def __str__(self):
         return f"Core Values "
+class OurPartners(models.Model):
+    # Model for the our service page
+    image = models.ImageField(upload_to='bureau_structure_images/', help_text="Make sure to submit an image proportional to the content")
+
+    class Meta:
+        verbose_name = "Our Partners "
+        verbose_name_plural = "Our Partners"
+    
+    
+    def __str__(self):
+        return f"Our Partners"
+    
 
 class VisionMission(models.Model):
     """ Model for the detail page of about us page"""
@@ -64,6 +76,7 @@ class Vision(models.Model):
     
     def __str__(self):
         return f"Vision  "
+    
 class AboutOtechFooter(models.Model):
     """ Model for the detail page of about us page"""
     is_single = True # Tells if the model should have multiple or single objects

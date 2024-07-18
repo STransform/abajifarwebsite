@@ -1,0 +1,61 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% block our_partners %} active {% endblock %}
+{% block our_partners_dynamic %} active {% endblock %}
+{% block content %} 
+{% load static %}
+<style>
+    .otech-font {
+   font-style: italic; 
+   font-weight: bold;  
+   color: black;      
+   }
+.fixed-dimensions {
+    width: 70%; /*set fixed width */
+    height: 150px; /* Set a fixed height for the images */
+  
+}
+
+
+</style>
+
+
+
+
+
+<section class="section border-0 py-10 m-0 px-lg-5  pt-4">
+    <div class="container">
+        <div class="row align-items-end pb-3 ">
+            <div class="d-flex align-items-end justify-content-end">
+                      
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    <h1 style="text-align: center;color: red;">Our Partners</h1>
+</section>
+<div class="bg-color-light ">
+    <div id="examples" class="container py-2 pt-5 ">
+        
+        
+        <div class="row mb-5 pb-3">
+            {% for partner in our_partners %}
+            <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                <div class="aligned card border-0 ">
+                    <div class="card-body">
+                        <div class="card border-0">
+                            {% if partner.image %}
+                            <img src="{{ partner.image.url }}" class="card-img-top img-fluid fixed-dimensions" alt="Partner Image">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

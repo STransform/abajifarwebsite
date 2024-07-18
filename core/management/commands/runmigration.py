@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
     def delete_default_permissions(self):
         # Delete unnecessary permission objects 
-        default_custom_apps = ["about_us","accounts","blogs","core","dashboard", "documents","news","suppliers", 'task_manager',"vacancies"]
+        default_custom_apps = ["about_us","accounts","blogs","core","dashboard", "documents","news","vacancies"]
         required_apps = getattr(settings,"CUSTOM_INSTALLED_APPS",default_custom_apps) 
         required_apps.append("auth")
 
@@ -51,9 +51,9 @@ class Command(BaseCommand):
                 site = Site.objects.create(domain="bureauoffinance.com", name="Bureau of Finance")
                 print("Created a default site name of ",site.name, " and domain of ",site.domain,end="\n" )
             
-            elif site.name == "example.com":
-                    site.name = "Bureau of Finance"
-                    site.domain = "bureauoffinance.com"
+            elif site.name == "otech.com":
+                    site.name = "OTECH Engineering"
+                    site.domain = "otech.com"
                     site.save()
                     print("Default site name updated to ",site.name, " and domain to ",site.domain,end="\n" )
                 
@@ -72,7 +72,7 @@ class Command(BaseCommand):
         pop_data = options['populate_data']
         self.stdout.write("Making migrations to all apps...")
         call_command('makemigrations','about_us','accounts','blogs','core',
-                     'dashboard','documents','news','suppliers','task_manager','vacancies','visit_counter', interactive=True)
+                     'dashboard','documents','news','vacancies','visit_counter', interactive=True)
         self.stdout.write(" \nMigrating...")
         call_command('migrate', interactive=True)
         self.stdout.write(self.style.SUCCESS("\nMigration completed successfully"))

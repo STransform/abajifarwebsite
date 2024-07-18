@@ -510,67 +510,7 @@
                 </div>
                 <div class="header-content-right">
                     <div class="header-element notifications-dropdown">
-                        <!-- Start::header-link|dropdown-toggle -->
-                        <!-- <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="messageDropdown" aria-expanded="false">
-                            <i class="bx bx-bell header-link-icon"></i>
-                            <span class="badge bg-secondary rounded-pill header-icon-badge pulse pulse-secondary" id="notification-icon-badge">5</span>
-                        </a>
-                        <div class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
-                            <div class="p-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <p class="mb-0 fs-17 fw-semibold">Notifications</p>
-                                    <span class="badge bg-secondary-transparent" id="notifiation-data">2 Unread</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <ul class="list-unstyled mb-0" id="header-notification-scroll">
-                                <li class="dropdown-item">
-                                    <div class="d-flex align-items-start">
-                                         <div class="pe-2">
-                                             <span class="avatar avatar-md bg-primary-transparent avatar-rounded"><i class="ti ti-gift fs-18"></i></span>
-                                         </div>
-                                         <div class="flex-grow-1 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <p class="mb-0 fw-semibold"><a href="">Your are added in a task </a></p>
-                                                <span class="text-muted fw-normal fs-12 header-notification-text">Taks:id 34453</span>
-                                            </div>
-                                            <div>
-                                                <a href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="ti ti-x fs-16"></i></a>
-                                            </div>
-                                         </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item">
-                                    <div class="d-flex align-items-start">
-                                         <div class="pe-2">
-                                             <span class="avatar avatar-md bg-pink-transparent avatar-rounded"><i class="ti ti-user-check fs-18"></i></span>
-                                         </div>
-                                         <div class="flex-grow-1 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <p class="mb-0 fw-semibold"><a href="">TR</a></p>
-                                                <span class="text-muted fw-normal fs-12 header-notification-text">TR</span>
-                                            </div>
-                                            <div>
-                                                <a href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="ti ti-x fs-16"></i></a>
-                                            </div>
-                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="p-3 empty-header-item1 border-top">
-                                <div class="d-grid">
-                                    <a href="" class="btn btn-primary">View All</a>
-                                </div>
-                            </div>
-                            <div class="p-5 empty-item1 d-none">
-                                <div class="text-center">
-                                    <span class="avatar avatar-xl avatar-rounded bg-secondary-transparent">
-                                        <i class="ri-notification-off-line fs-2"></i>
-                                    </span>
-                                    <h6 class="fw-semibold mt-3">No New Notifications</h6>
-                                </div>
-                            </div>
-                        </div> -->
+                       
                     </div>
                     <div class="header-element">
                         <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -595,11 +535,7 @@
                             <li><a class="dropdown-item d-flex" href="{% url 'logout' %}"><i class="ti ti-logout fs-18 me-2 op-7"></i>Log Out</a></li>
                         </ul>
                     </div>
-                    <!-- <div class="header-element">
-                        <a href="javascript:void(0);" class="header-link switcher-icon" data-bs-toggle="offcanvas" data-bs-target="#switcher-canvas">
-                            <i class="bx bx-cog header-link-icon"></i>
-                        </a>
-                    </div> -->
+                   
                 </div>
             </div>
         </header>
@@ -704,12 +640,10 @@
                                 <li class="slide"><a href="{% url 'list_view' model_name='WhatPeopleSays' %}" 
                                     class="side-menu__item {% if model_code == 'WhatPeopleSays' %} active {% endif %}">What People Says About Us</a></li>
                                 {% endif %}
-                                <!--
-                                {% if perms.about_us.view_bureaustructure %}
-                                <li class="slide"><a href="{% url 'list_view' model_name='BureauStructure' %}" 
-                                    class="side-menu__item {% if model_code == 'BureauStructure' %} active {% endif %}">Bureau Structure</a></li>
+                                {% if perms.dashboard.view_about %}
+                                <li class="slide"><a href="{% url 'list_view' model_name='OurPartners' %}" 
+                                    class="side-menu__item {% if model_code == 'OurPartners' %} active {% endif %}">Our Partners</a></li>
                                 {% endif %}
-                                -->
                                 
                                 
                             </ul>
@@ -738,12 +672,7 @@
 
                              
                                 
-                                <!--
-                                {% if perms.about_us.view_about %}
-                                <li class="slide"><a href="{% url 'list_view' model_name='About' %}" 
-                                    class="side-menu__item {% if model_code == 'About' %} active {% endif %}">Services</a></li>
-                                {% endif %}
-                                -->
+                               
                                 {% if perms.dashboard.view_infrastructure %}
                                 <li class="slide"><a href="{% url 'list_view' model_name='Infrastructure' %}" 
                                     class="side-menu__item {% if model_code == 'Infrastructure' %} active {% endif %}">Infrastructure & Deployment</a></li>
@@ -798,27 +727,7 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <!--
-                                <li class="slide has-sub {% if model_code == 'NewsArticle' or model_code == 'NewsCategory'  %} active open {% endif %}">
-                                    {% if perms.news.view_newsarticle or perms.news.view_newscategory %}
-                                    <a href="javascript:void(0);" class="side-menu__item {% if model_code == 'NewsArticle' or model_code == 'NewsCategory'  %} active {% endif %}">News
-                                        <i class="fe fe-chevron-right side-menu__angle"></i></a>
-                                    {% endif %}
-                                    <ul class="slide-menu child2">
-                                        {% if perms.news.view_newsarticle %}
-                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsArticle' %}" 
-                                            class="side-menu__item {% if model_code == 'NewsArticle' %} active {% endif %}">News</a></li>
-                                        {% endif %}
-
-                                        {% if perms.news.view_newscategory %}
-                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsCategory' %}" 
-                                            class="side-menu__item {% if model_code == 'NewsCategory' %} active {% endif %}">News Categories</a></li>
-                                        {% endif %}
-                                
-                                    </ul>
-                                </li>
-                                
-                                -->
+                              
                                 
                                 <li class="slide has-sub {% if model_code == 'Blog' or model_code == 'Comment' or model_code == 'BlogCategory'  %} active open {% endif %}">
                                     {% if perms.blogs.view_blog or perms.blogs.view_blogcategory %}
@@ -916,42 +825,7 @@
                         {% endif %}
                         <!-- End -->
                         
-                        
-                        <!--
-                        <li class="slide__category"><span class="category-name">Internal</span></li>
-                        -->
-                        
-                       <!-- For task management system
-                        
-                        <li class="slide has-sub {% if type %} open {% endif %}">
-                            <a href="javascript:void(0);" class="side-menu__item {% if type %} active {% endif %} ">
-                                <i class="bx bx-task side-menu__icon"></i>
-                                <span class="side-menu__label">Tasks</span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-
-                            <ul class="slide-menu child1">
-                                {% if perms.task_manager.view_task %}
-                                <li class="slide">
-                                    <a id="tab-Group"  href="{% url 'task_list_view' type='All' %}" 
-                                    class="side-menu__item {% if type == 'All' %} active {% endif %}">All Tasks</a>
-                                </li>
-                                {% endif %}
-                                <li class="slide">
-                                    <a id="tab-Monitoring" href="{% url 'task_list_view' type='My' %}" 
-                                    class="side-menu__item {% if type == 'My' %} active {% endif %}">My Tasks</a>
-                                </li>
-                                <li class="slide">
-                                    <a id="tab-Assigned"  href="{% url 'task_list_view' type='Assigned' %}" 
-                                    class="side-menu__item {% if type == 'Assigned' %} active {% endif %}">Assigned Tasks</a>
-                                </li>
-                                <li class="slide">
-                                    <a id="tab-Monitoring" href="{% url 'task_list_view' type='Monitoring' %}" 
-                                    class="side-menu__item {% if type == 'Monitoring' %} active {% endif %}">Monitoring Tasks</a>
-                                </li>
-                            </ul>
-                        </li>
-                       -->
+                      
                         
                     
                         {% if perms.core.view_settings or perms.core.view_pages %}

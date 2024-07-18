@@ -16,5 +16,6 @@ urlpatterns = [
     path('people_saying/', WhatPeopleSaysPage.as_view(), name='people_saying'),
     path('about_footer/', AboutOtechFooterPage.as_view(), name='about_footer'),
     path('elevating_skills/', ElevatingSkillsPage.as_view(), name='elevating_skills'),
+    path('our_partners/', OurPartnersPage.as_view(), name='our_partners'),
 ]
 

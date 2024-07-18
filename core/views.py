@@ -27,6 +27,7 @@ from about_us.models import OtechExcellence
 from about_us.models import WhatPeopleSays
 from about_us.models import AboutOtechFooter
 from about_us.models import ElevatingSkills
+from about_us.models import OurPartners  
 from documents.models import Document
 from django.contrib.admin.models import LogEntry
 
@@ -59,6 +60,7 @@ def index(request):
     people_saying=WhatPeopleSays.objects.all()
     about_footer=AboutOtechFooter.objects.all()
     elevating_skills=ElevatingSkills.objects.all()
+    our_partners=OurPartners.objects.all()
     #technology_service=TechnologyService.objects.all()
     
     paragraphs = about_us.content[:800] + "..." if about_us else about_us
@@ -83,6 +85,7 @@ def index(request):
         'people_saying':people_saying,
         'about_footer':about_footer,
         'elevating_skills':elevating_skills,
+        'our_partners':our_partners,
         'map':map
         
     }

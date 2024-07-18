@@ -1,8 +1,13 @@
 {% load static %}
 {% load i18n %}
 <style>
+    .social-link {
+     color: inherit; /* Ensure the icon inherits the current color */
+     }
 
-    
+    .social-link i:hover {
+     color: red; /* Change color on hover */
+      }
 </style>
 <footer id="footer" class="footer-texts-more-lighten border-0" style="background-color: #040720;">
     <div style="background-color: #000;">
@@ -13,10 +18,10 @@
                         <h5 class="text-4 text-color-light mb-3">{% trans "ABOUT US" %}</h5>
                         
                         <div class="company-info" style="background-color: #000;">
-                            {% for about in about_footer %}
-                            <h6>{{ about.title }}</h6>
-                            <p class="text-white">{{ about.content }}</p>
-                            {% endfor %}
+                           
+                            <h6>{% trans "OTECH Engineering" %}</h6>
+                            <p class="text-grey">{% trans "Is a leading technology company committed to innovating and transforming businesses and governments with cutting-edge solutions." %}</p>
+                           
                         </div>
                        
                     </div>
@@ -42,37 +47,38 @@
                                 <a href="{{ contacts.website }}" target="_blank">{{ contacts.website }}</a>
                             </li>
                             {% endfor %}
+                           
                         </ul>
                     </div>
-                    
+                  
                     <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
-                        <h5 class="text-4 text-color-light mb-3 footer-title">{% trans "SOCIAL Icon" %}</h5>
+                        <h5 class="text-3 text-color-light mb-3 footer-title">{% trans "SOCIAL" %}</h5>
                         <ul class="list list-unstyled">
-                            <!-- Replace with social media icons and links -->
+                            
                             <li class="pb-1 mb-2">
                                 <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook" style="font-size: 2em;"></i></a>
+                                <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link"><i class="fab fa-facebook" style="font-size: 1.5em;"></i></a>
                             </li>
                             <li class="pb-1 mb-2">
                                 <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://twitter.com/yourhandle" target="_blank"><i class="fab fa-twitter" style="font-size: 2em;"></i></i></a>
+                                <a href="https://twitter.com/yourhandle" target="_blank" class="social-link"><i class="fab fa-twitter" style="font-size: 1.5em;"></i></i></a>
                             </li>
                             <li class="pb-1 mb-2">
                                 <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram" style="font-size: 2em;"></i></i></a>
+                                <a href="https://www.instagram.com/yourprofile" target="_blank" class="social-link"><i class="fab fa-instagram" style="font-size: 1.5em;"></i></i></a>
                             </li>
                             <li class="pb-1 mb-2">
                                 <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://www.linkedin.com/company/yourcompany" target="_blank"><i class="fab fa-linkedin" style="font-size: 2em;"></i></i></a>
+                                <a href="https://www.linkedin.com/company/yourcompany" target="_blank" class="social-link"><i class="fab fa-linkedin" style="font-size: 1.5em;"></i></i></a>
                             </li>
                         </ul>
                     </div>
-                    
+                   
                     <div class="col-md-6 col-lg-2">
                         <h5 class="text-4 text-color-light mb-3">{% trans "QUICK LINKS" %}</h5>
                         <ul class="list list-unstyled mb-0">
                             {% for link in quick_links %}
-                                <li class="mb-0"><a href="{{ link.url }}"><i class="fas fa-angle-right text-color-light"></i> {{ link.title }}</a></li>
+                                <li class="mb-0"><a href="{{ link.url }}" class="quick-link" ><i class="fas fa-angle-right text-color-light"></i> {{ link.title }}</a></li>
                             {% endfor %}
                         </ul>
                         
@@ -87,7 +93,7 @@
             </div>
         </div>
     </div>
-    <div class="container" style="background-color: #000;">
+    <div class="container" style="background-color: red;">
         <div class="pt-2 pb-2">
             <div class="row">
                 <div class="col-12 text-center">

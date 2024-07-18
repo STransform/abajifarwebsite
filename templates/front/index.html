@@ -49,8 +49,10 @@
         width: calc(100% + 10px); /* Full width with extra to compensate for negative margin */
         margin: 0 auto;
     }
+    .custom-video-height {
+    height: 300px; /* For the height of video link */
+}
 
-    
 
 </style>
 {% endblock %}
@@ -419,9 +421,9 @@
                 </div>
             </div>
         </div>
-        <!-- Video link at the bottom, full width and responsive -->
+     
         <div class="video-container mt-3">
-            <div class="ratio ratio-16x9">
+            <div class="ratio ratio-16x9 custom-video-height">
                 {{ skills.link|safe }}
             </div>
         </div>

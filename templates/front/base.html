@@ -117,7 +117,25 @@
         .dropdown-menu li a:hover {
             color: red !important; /* Change text color to red on hover */
         }
-       
+        .nav-link i {
+    transition: color 0.3s;
+}
+/* for social icons on the top of the page*/
+.nav-link:hover i {
+    color: red;
+}
+
+/* For social media icons */
+.header-social-icons .social-icons a i {
+    transition: color 0.3s;
+}
+
+.header-social-icons .social-icons-facebook a:hover i {
+    color: red;
+}
+.header-social-icons .social-icons-twitter a:hover i{
+    color: red;
+}
         
     </style>
 
@@ -242,7 +260,7 @@
                         </div>
                     </div>
                 </div>
-               
+             
                 <div class="header-container container">
                     <div class="header-row">
                         <div class="header-column">
@@ -250,7 +268,7 @@
                                 <div class="header-logo">
                                     {% if stg.logo %}
                                     <a href="{% url 'index' %}">
-                                        <img src="{{stg.logo.url}}" class="img-fluid"  alt="Logo" style="width: 75px; height: 60px;" />
+                                        <img src="{{stg.logo.url}}" class="img-fluid"  alt="Logo" style="width: 85px; height: 50px;" />
                                     </a>
                                     {% else %} 
                                     <a href="{% url 'index' %}">
@@ -284,6 +302,9 @@
                                                         {% endif %}
                                                         {% if pages.structure %}
                                                         <li><a class="dropdown-item" href="{% url 'company_values' %}" >{% trans "Company Values" %}</a></li>
+                                                        {% endif %}
+                                                        {% if pages.about %}
+                                                        <li><a class="dropdown-item" href="{% url 'our_partners' %}" >{% trans "Our Partners" %}</a></li>
                                                         {% endif %}
                                                       
                                                 
@@ -361,14 +382,21 @@
                                                 <li><a class="nav-link {% block home %} {% endblock %} {% if index %} active {% endif %}" href="{% url 'index' %}">{% trans "Home" %}</a></li>
                                                 
                                                 <li>
-                                                    <a class="dnav-link {% block about %} {% endblock %} " href="{% url 'about' %}">{% trans "About Us" %}</a>
-                                                 <!--   <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
-                                                        
-                                                        <li><a class="dropdown-item" href="{% url 'services' %}">{% trans "Mission and Vision" %}</a></li>
-                                                        
-                                                    </ul>
-                                                    -->
+                                                    <li class="dropdown ">
+                                                        <!--for about page that is dynamic-->
+                                                        <a class="dropdown-item dropdown-toggle {% block about %} {% endblock %}" href="#">
+                                                           {% trans "About Us" %}
+                                                        </a>
+                                                        <ul class="dropdown-menu" >
+                                                            
+                                                            <li><a class="dropdown-item" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
+                                                          
+                                                            
+                                                            <li><a class="dropdown-item" href="{% url 'company_values' %}" >{% trans "Company Values" %}</a></li>
+                                                            <li><a class="dropdown-item" href="{% url 'our_partners' %}" >{% trans "Our Partners" %}</a></li>
+                                                          
+                                                    
+                                                        </ul>
                                                 </li>
                                               
 
@@ -382,15 +410,7 @@
                                                     </ul>
                                                 </li>
                                                 
-                                                <!--
-                                                <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block resource %} {% endblock %} " href="#">{% trans "Resources" %}</a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'list_docs' %}">{% trans "Documents" %}</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'supplier_list' %}">{% trans "Blocked Suppliers" %} </a></li>
-                                                    </ul>
-                                                </li>
-                                                -->
+                                               
                                                 <li class="dropdown ">
                                                     <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %}" href="#">{% trans "Announcements" %}</a>
                                                     <ul class="dropdown-menu">

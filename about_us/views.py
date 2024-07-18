@@ -66,7 +66,13 @@ class AboutOtechFooterPage(View): # Render service page
     def get(self, request, **kwargs):
         about_footer = AboutOtechFooter.objects.all()
         return render(request, "front/about_footer.html", {'about_footer':about_footer})
+    
 class ElevatingSkillsPage(View): # Render service page 
     def get(self, request, **kwargs):
         elevating_skills = ElevatingSkills.objects.all()
         return render(request, "front/elevating_skills.html", {'elevating_skills':elevating_skills})
+
+class OurPartnersPage(View): # Render service page 
+    def get(self, request, **kwargs):
+        our_partners = OurPartners.objects.all()
+        return render(request, "front/our_partners.html", {'our_partners':our_partners})
