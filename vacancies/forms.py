@@ -22,7 +22,13 @@ class ApplicationForm(forms.ModelForm):
         model = Application 
         exclude = ['job','created_date']
         widgets = {
-            'name':forms.TextInput(attrs={'class':'form-control', 'label':'Full Name', 'placeholder': 'Full Name'}),
-            'email':forms.EmailInput(attrs={'class':'form-control', 'label':'Email', 'placeholder': 'Email'}),
-            'cv':forms.FileInput(attrs={'class':'form-control', 'label':'Cover Letter Document', 'placeholder': 'Document'})
+            'firstname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
+            'lastname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
+            'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder': 'Email'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
+            'cgpa': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'CGPA'}),
+            'year_of_experience': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Years of Experience'}),
+            'birth_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Birth Date', 'type': 'date'}),
+            'gender': forms.Select(attrs={'class': 'form-control'}),
+            'cv': forms.FileInput(attrs={'class':'form-control', 'placeholder': 'Document'})
         }

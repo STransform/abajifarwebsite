@@ -164,7 +164,7 @@ WSGI_APPLICATION = 'otech_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'otech',
+        'NAME': 'otechdbv4',
         'USER': 'root',
         'PASSWORD': 'Simon@1234',
         'HOST': 'localhost',
@@ -226,7 +226,7 @@ django.conf.locale.LANG_INFO = LANG_INFO
 
 ## Settings for model translation
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-MODELTRANSLATION_LANGUAGES = ('en','ax','oro') 
+MODELTRANSLATION_LANGUAGES = ('en','ax','ox') 
 MODELTRANSLATION_ENABLE_FALLBACKS = True
 MODELTRANSLATION_FALLBACK_LANGUAGES = ('en',)
 

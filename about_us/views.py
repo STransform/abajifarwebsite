@@ -26,22 +26,22 @@ class ServicesPage(View): # Render service page
         return render(request, "front/services.html", {'services':services})
 
 
-class TechnologyPage(View): # Render service page 
+class TechnologyPage(View): # Render technology page 
     def get(self, request, **kwargs):
         technology = Technology.objects.all()
         return render(request, "front/technology.html", {'technology':technology})
 
-class InfrastructurePage(View): # Render service page 
+class InfrastructurePage(View): # Render infrastructure page 
     def get(self, request, **kwargs):
         infrastructure = Infrastructure.objects.all()
         return render(request, "front/infrastructure.html", {'infrastructure':infrastructure})
 
-class InnovationPage(View): # Render service page 
+class InnovationPage(View): # Render innovation page 
     def get(self, request, **kwargs):
         innovation = Innovation.objects.all()
         return render(request, "front/innovation.html", {'innovation':innovation})
     
-class CompanyValuesPage(View): # Render service page 
+class CompanyValuesPage(View): # Render values page 
     def get(self, request, **kwargs):
         values = CompanyValues.objects.all()
         return render(request, "front/company_values.html", {'values':values})

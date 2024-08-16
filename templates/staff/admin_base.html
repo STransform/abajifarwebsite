@@ -703,15 +703,14 @@
                                 <li class="slide"><a href="{% url 'list_view' model_name='Document' %}" 
                                     class="side-menu__item {% if model_code == 'Document' %} active {% endif %}">Document</a></li>
                                 {% endif %}
-                                <!--
-                                {% if perms.dashboard.view_event %}
-                                <li class="slide"><a href="{% url 'list_view' model_name='Event' %}" 
-                                    class="side-menu__item {% if model_code == 'Event' %} active {% endif %}">Events</a></li>
-                                {% endif %}
-                                -->
+                                
                                 {% if perms.vacancies.view_job %}
                                 <li class="slide"><a href="{% url 'list_view' model_name='Job' %}" 
                                     class="side-menu__item {% if model_code == 'Job' %} active {% endif %}">Vacancies</a></li>
+                                {% endif %}
+                                {% if perms.vacancies.view_job %}
+                                <li class="slide"><a href="{% url 'application_list' %}" 
+                                    class="side-menu__item {% if model_code == 'Job' %} active {% endif %}">Applicant List</a></li>
                                 {% endif %}
                             </ul>
                         </li>

@@ -13,7 +13,7 @@ class ThreadEmailSender(threading.Thread):
         self.subject = subject
         self.to_email = to_email
         self.params = params or {}
-        self.sender_name = sender_name or "Finance Bureau"
+        self.sender_name = sender_name or "OTech Engineering"
         self.attachments = []  # List to store attachments
         self.result_event = threading.Event()
 

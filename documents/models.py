@@ -33,3 +33,4 @@ class Document(models.Model):
         return ['title', 'category', 'upload_date']
     
     list_fields = get_list_fields()
+

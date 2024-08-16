@@ -19,6 +19,7 @@ from dashboard.models import *
 from blogs.models import Blog
 from core.models import Settings
 from vacancies.models import Job
+from vacancies.models import Application
 from news.models import NewsArticle
 from about_us.models import CompanyValues
 from about_us.models import VisionMission
@@ -55,6 +56,7 @@ def index(request):
     featured_works = FeaturedWork.objects.all()
     company_values=CompanyValues.objects.all()
     vision_mission=VisionMission.objects.all()
+    applications=Application.objects.all()
     vision=Vision.objects.all()
     otech_excellence=OtechExcellence.objects.all()
     people_saying=WhatPeopleSays.objects.all()
@@ -80,6 +82,7 @@ def index(request):
         #'technology_service':technology_service,
         'company_values':company_values,
         'vision_mission':vision_mission,
+        'applications':applications,
         'vision':vision,
         'otech_excellence':otech_excellence,
         'people_saying':people_saying,

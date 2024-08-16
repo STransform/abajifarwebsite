@@ -50,9 +50,16 @@
         margin: 0 auto;
     }
     .custom-video-height {
-    height: 300px; /* For the height of video link */
+        height: 400px; /* for the height of video link */
+    }
+    .custom-selection::selection {
+        background: red;
+        color: white; /* For selecting the elevating skills text  */
+    }
+    .card {
+    height: 100%;
 }
-
+    
 
 </style>
 {% endblock %}
@@ -64,7 +71,7 @@
 {% if featured_works %}
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
     data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['670px','670px','670px','550px','500px']"
-    style="height: 650px;">
+    style="height: 600px;">
     <div class="owl-stage-outer">
         <div class="owl-stage">
             <!-- Dynamic Carousel Slides -->
@@ -77,7 +84,7 @@
                         <p class="text-color-light text-4">We are</p>
                         <h3 class="position-relative text-color-light text-6 line-height-2 font-weight-bold  mb-2 appear-animation"
                             data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}" style="font-size: 16;color: red;">
-                            {% trans "OTECH Engineering & technology Solution" %}</h3>
+                            {% trans "OTech Engineering" %}</h3>
                         <h1 class="text-color-light font-weight-light text-4 mb-5  appear-animation col-lg-5 col-md-6 col-sm-12"
                             data-appear-animation="blurIn" data-appear-animation-delay="500"
                             data-plugin-options="{'minWindowWidth': 0}" style="font-size: 12px;">{{ work.description|truncatechars:110 }}</h1>
@@ -164,20 +171,12 @@
 
                
              </p>
-             <div data-plugin-readmore="" data-plugin-options="{
-                'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
-                'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
-                'align': 'end'
-                }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
-
+           
                 <p class="otech-font"> {{about_us.content}}</p> 
 
-                <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
-                    <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
-                </div>
-                <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
+                
                 <p class="otech-font"> CEO :Amensisa Dereje</p> 
-            </div>   
+            
       
         </div>
 
@@ -198,7 +197,7 @@
             <div class="col-12 mb-lg-0 ">
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
-                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation custom-selection"
                             data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "About Us" %}
                         </h2>
                     </div>
@@ -318,8 +317,8 @@
             <div class="col-12 mb-lg-0 ">
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
-                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
-                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "OTECH Excellence!" %}
+                        <h2 class="text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation custom-selection" style="color:red;"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300" >{% trans "OTECH Excellence!" %}
                         </h2>
                     </div>
                 </div>
@@ -414,14 +413,14 @@
             <div class="col-6 p-0">
                 <div class="aligned border-0  bg-color-light text-center" style="min-height: 200px; overflow: hidden; max-height: none;">
                     <!-- Title at the top -->
-                    <p class="text-color-primary text-9 font-weight-bold line-height-3 text-5 mb-0 appear-animation" data-appear-animation="maskRight" data-appear-animation-delay="300">{{ skills.title }}</p>
+                    <p class="text-9 font-weight-bold line-height-3 text-5 mb-0 appear-animation custom-selection" style="color:red;" data-appear-animation="maskRight" data-appear-animation-delay="300">{{ skills.title }}</p>
                     
                     <!-- Content below the title, centered -->
                     <p class="otech-font " data-appear-animation="maskRight" data-appear-animation-delay="300" style="color: black;">{{ skills.content }}</p>
                 </div>
             </div>
         </div>
-     
+        <!-- Video link at the bottom, full width and responsive -->
         <div class="video-container mt-3">
             <div class="ratio ratio-16x9 custom-video-height">
                 {{ skills.link|safe }}
@@ -441,7 +440,7 @@
             <div class="col-12 mb-lg-0 ">
                 <div class="d-flex align-items-center mb-2  justify-content-center">
                     <div class="overflow-hidden text-center">
-                        <h4 class="text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                        <h4 class="text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation custom-selection"
                             data-appear-animation="maskRight" data-appear-animation-delay="300" style="color: red;" >{% trans "What People Says About Us!" %}
                     </h4>
                     <p class="otech-font">{%  trans "Our commitment extends beyond technology – we aim to cultivate enduring <br>partnerships that transcend boundaries and pave the way for transformative <br> advancements."%}</p>
@@ -465,12 +464,13 @@
             <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
                 <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 250px; overflow: hidden; max-height: none;">
                     
+                    <div class="card h-100">
 
                     <div class="card-body" style="transition: background-color 0.3s;">
                         <p class="otech-font">{{ saying.content }}</p>
                         <div class="d-flex align-items-center">
                             <div class="position-relative me-3">
-                                <img src="{{ saying.image.url }}" style="border-radius: 10px; max-height: 100px; width: auto;"
+                                <img src="{{ saying.image.url }}" style="border-radius: 50%; max-height: 100px; width: auto;"
                                     class="img-fluid custom-box-shadow-1 appear-animation" data-appear-animation="fadeInLeftShorter"
                                     data-appear-animation-delay="1800" alt="" />
                             </div>
@@ -481,6 +481,7 @@
                             </div>
                         </div>
                     </div>
+                  </div>
                 </div>
             </div>
             {% endfor %}
@@ -507,8 +508,8 @@
             <div class="col-lg-5 col-xl-4">
                 <div class="d-flex justify-content-lg-end">
                     <a href="{% url  'blog_list' %}"
-                        class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1 appear-animation"
-                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">
+                        class="btn btn-modern font-weight-light text-3 btn-px-0 py-1 appear-animation"
+                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800" style="color:white;background-color:red;" >
                         {% trans "SEE ALL BLOGS" %}
                     </a>
                 </div>
@@ -692,7 +693,7 @@
                 <div class="d-flex justify-content-lg-end">
                     <a href="{% url 'list_docs' %}"
                         class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1  appear-animation"
-                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">
+                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800" style="color:white;">
                         {% trans "SEE ALL RESOURCES" %}
                     </a>
                 </div>
@@ -766,7 +767,7 @@
                 <div class="d-flex justify-content-lg-end">
                     <a href="{% url 'gallery_images' %}"
                         class="btn btn-primary btn-modern font-weight-light text-3 btn-px-0 py-1  appear-animation"
-                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800">
+                        data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800" style="color:white;">
                         {% trans "SEE ALL" %}
                     </a>
 
@@ -865,15 +866,7 @@
         <div class="row ">
             <div class="row mt-0">
 
-                <div class="col-md-6 col-sm-12 overflow-hidden" >
-                    {% if map %}
-                        {{map|safe}}
-                    {% else %}
-                        <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3274.724996388625!2d38.76123931516503!3d9.145004492101012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1635555555555555%3A0x70bba4e6e5c780f5!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sin!4v1643117899813!5m2!1sen!2sin">
-                        </iframe>
-                    {% endif %}
-                </div>
+                
 
                 <div class="col-md-6 col-sm-12 " style="margin-left: auto;">
 
@@ -883,8 +876,9 @@
 
                     <form id="contactFormAdvanced" action="{% url 'contact_us' %}" method="POST"
                         enctype="multipart/form-data" novalidate="novalidate">
+                         {% csrf_token %}
                         <input type="hidden" value="true" name="emailSent" id="emailSent">
-                        {% csrf_token %}
+                       
                         <div class="row">
                             <div class="form-group col-12">
                                 <!-- <label class="form-label mb-1 text-2">Full Name</label> -->
@@ -911,12 +905,7 @@
                             <!-- <label class="form-label mb-1 text-2">Select Subject</label> -->
                             <input name="subject" placeholder="{% trans 'Subject' %}" data-msg-required="Please enter the subject."
                                 class="form-control text-3 h-auto py-2" name="subject" id="subject" required="" />
-                            <!-- <select data-msg-required="Please enter the subject." class="form-control text-3 h-auto py-2" name="subject" id="subject" required="">
-                                <option value="">...</option>
-                                <option value="Option 1">General Inquiry</option>
-                                <option value="Option 2">Vacancy update</option>
-                                <option value="Option 3">Status update</option>
-                            </select> -->
+                           
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12 mb-4">
@@ -930,11 +919,18 @@
                         <div class="row">
                             <div class="form-group col-md-12 mb-5 text-center">
                                 <button type="submit" id="contactFormSubmit"
-                                    class="btn btn-primary btn-modern pull-right" data-loading-text="Loading...">{% trans "Send Message" %}</button>
+                                    class="btn btn-primary btn-modern pull-right" data-loading-text="Loading..." style="color:white;">{% trans "Send Message" %}</button>
                             </div>
                         </div>
                     </form>
 
+                </div>
+                <div class="col-md-6 col-sm-12 overflow-hidden" >
+                    {% if map %}
+                        {{map|safe}}
+                    {% else %}
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.9032415432657!2d38.6896956!3d8.9810508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b87260a9b8a99%3A0x3988ec2443e70fff!2zQmV0ZVNlYiBBY2FkZW15IHwgQXllciBUZW5hIHwg4Ymk4Ymw4Yiw4YmlIOGKoOGKq-GLs-GImiB8IOGKoOGLqOGIrSDhjKThipM!5e0!3m2!1sen!2set!4v1721033999993!5m2!1sen!2set" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    {% endif %}
                 </div>
 
             </div>

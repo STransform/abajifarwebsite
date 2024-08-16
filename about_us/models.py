@@ -37,7 +37,7 @@ class CompanyValues(models.Model):
     def __str__(self):
         return f"Core Values "
 class OurPartners(models.Model):
-    # Model for the our service page
+    # Model for the our partner page
     image = models.ImageField(upload_to='bureau_structure_images/', help_text="Make sure to submit an image proportional to the content")
 
     class Meta:
