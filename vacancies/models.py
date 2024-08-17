@@ -48,7 +48,7 @@ class Application(models.Model):
     email = models.EmailField(default="stemesgent@gmail.com")
     phone_number = models.CharField(max_length=15,default="0917436690")
     cgpa = models.DecimalField(max_digits=4, decimal_places=2,default="3.16")
-    year_of_experience = models.IntegerField(default=6)
+    year_of_experience = models.IntegerField(default=0)
     birth_date = models.DateTimeField(default=date(2000, 8, 14))
     gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female')], default='Male')
     
