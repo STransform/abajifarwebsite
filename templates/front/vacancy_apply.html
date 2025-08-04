@@ -1,0 +1,37 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% block announcement %} active {% endblock %}
+{% block announcement_dynamic %} active {% endblock %}
+
+{% block content %} 
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <div class="offset-anchor" id="apply-form"></div>
+            <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">{% trans "Apply for Vacancy" %}</h2>
+            <p class="mb-4 text-center">{% trans "Fill in the details to apply for the vacancy" %}</p>
+
+            <form id="vacancyForm" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="row">
+                    {% for field in form %}
+                    <div class="form-group col-md-6 col-sm-12">
+                        <label>{{field.label}}</label>
+                        {{field}}
+                        {{field.errors}}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12 mb-5 text-center">
+                        <button type="submit" id="applyFormSubmit" class="btn btn-primary btn-modern" data-loading-text="Loading...">{% trans "Apply" %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

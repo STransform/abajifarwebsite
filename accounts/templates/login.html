@@ -1,0 +1,77 @@
+
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %} 
+
+<section class="section border-0 py-10 m-0 px-lg-5 pt-4 mt-5">
+    <div class="container text-center">
+        <div class="col-lg-8 offset-sm-2 px-lg-5 order-1 order-lg-2">
+                                    
+            <div class="row justify-content-md-center text-center">
+                <div class="col-md-10 text-center">
+                    <div class="featured-box featured-box-primary text-start mt-0">
+                        <div class="box-content">
+                            <div class="text-center">
+                                {% if stg.logo %}
+                                <img class="text-center" style="height:100px" src="{{stg.logo.url}}">
+                                {% else %}
+                                <img class="text-center" style="height:100px" src="{% static 'front/imgs/logo/logo-otech.png' %}">
+                                {% endif %}
+                                <h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3 text-center">{% trans "LogIn" %}</h4>
+                                
+                            </div>
+                            <form action=""  method="post" class="form-fields-rounded form-with-icons">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label class="form-label">{% trans "Email Address" %}</label>
+                                        <div class="position-relative">
+                                            <i class="fa fa-envelope text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
+                                            <input type="email" name="email" value="" class="form-control " style="padding-left: 2.5rem;" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label class="form-label">{% trans "Password" %}</label>
+                                        <div class="position-relative">
+                                            <i class="fa fa-key text-color-primary text-3 position-absolute left-15 top-50pct transform3dy-n50"></i>
+                                            <input type="password" name="password" value="" class="form-control " style="padding-left: 2.5rem;" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- <div class="form-group col-lg-6">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" name="rememberme" class="custom-control-input" id="rememberme">
+                                            <label class="custom-control-label text-2" for="rememberme">{% trans "Remember Me" %}</label>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group col-lg-12 float-end">
+                                        <a class="float-end text-primary" href="{% url 'reset_password' %}"> <strong> {% trans "Forgot Password?" %}</strong></a>
+                                    </div>
+                                    
+                                <div class="row text-center">
+                                    <div class="form-group col">
+                                        <input type="submit" value="Login" class="btn btn-primary btn-modern " data-loading-text="Loading...">
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+                            
+                            <div class="float-end">
+                                <span>{% trans "Don't have account" %} <a href="/accounts/signup/">{% trans "Create Account" %}</a></span>
+                            </div>
+                            
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</section>
+
+{% endblock%}

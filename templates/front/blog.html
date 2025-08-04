@@ -1,0 +1,98 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block news %} active {% endblock %}
+{% block blogs_dynamic %} active {% endblock %}
+
+{% block content %}
+<section class="section border-0 py-10 m-0 px-lg-5 pt-4">
+    <div class="container">
+        <div class="row align-items-end pb-3 mb-5 mb-lg-4">
+            <div class="d-flex align-items-end justify-content-end">
+                <ul class="breadcrumb d-block text-center">
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Blogs" %}</li>
+                </ul>        
+            </div>
+            <hr class="bg-light">
+            <div class="col-12 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "BLOGS" %}
+                        </h2>
+                    </div>
+                </div>
+                <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
+                    {% trans "YOU CAN FIND ALL THE RESOURCES IN THIS SECTION" %}
+                </p>
+            </div>
+        </div>
+        <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+            <div class="col">
+                <div class="row">
+                    {% for blog in blogs %}
+                    <div class="  col-md-4 col-lg-4">
+                        <article class="card p-3  post post-medium border-0 pb-0 mb-5">
+                            <div class="post-image">
+                                <a href="{% url 'blog_detail' blog_id=blog.id %}">
+                                    <img src="{{blog.images.url}}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" style="width: 360px; height: 250px;" alt="" />
+                                </a>
+                            </div>
+
+                            <div class="post-content">
+                                <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="{% url 'blog_detail' blog_id=blog.id %}">{{blog.title|truncatechars:30}}</a></h2>
+                                <p style="overflow: hidden; height: 90px;">{{blog.content|truncatechars:130}}
+                                <div class="post-meta">
+                                    <span><i class="far fa-calendar-alt "></i><a href="javascript:void(0)">{{blog.created_date}}</a></span>
+                                    <span><i class="far fa-user"></i> {% trans "By" %} <a href="javascript:void(0)"  title="{{blog.created_by}} ">{{blog.created_by}}</a></span>
+                                    <span><i class="far fa-comments"></i> <a href="javascript:void(0)">{{blog.comments.count}} {% trans "Comments" %} </a></span>
+                                    <span class="d-block mt-2 float-end mb-3"><a href="{% url 'blog_detail' blog_id=blog.id %}" class="btn btn-md btn-primary " style="color:white;">{% trans "Read More" %} <i class="fa fa-angle-right"></i></a></span>
+                                </div>
+
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+
+ 
+
+                </div>
+
+            </div>
+            
+             <!-- pagination -->
+             <div class="row align-items-center text-center">
+                <div class="col-12">
+                    <ul class="pagination justify-content-center align-items-center">
+
+                        {% if blogs.has_previous %}
+                            <li class="page-item"><a href="?page={{blogs.previous_page_number}}" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                            <li class="page-item"><a href="?page={{blogs.previous_page_number}}" class="page-link">{{blogs.previous_page_number}}</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        {% endif %}
+
+                            <li class="page-item active"><a href="" class="page-link">{{blogs.number}}</a></li>
+                        
+                        {% if blogs.has_next %}
+                            <li class="page-item"><a href="?page={{blogs.next_page_number}}" class="page-link">{{blogs.next_page_number}}</a></li>
+                            {% if blogs.next_page_number != blogs.paginator.num_pages %}
+                                <li class="page-item disabled"><a href="" class="page-link">...</a></li>
+                                <li class="page-item"><a href="?page={{blogs.paginator.num_pages}}" class="page-link">{{blogs.paginator.num_pages}}</a></li>
+                            {% endif %}
+                            <li class="page-item"><a href="?page={{blogs.next_page_number}}" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a href="" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+            <!-- end pagination -->
+            
+           
+        </div>
+    </div>
+</section>
+{% endblock %}

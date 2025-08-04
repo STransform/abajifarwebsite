@@ -1,0 +1,69 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% block services %} active {% endblock %}
+{% block services_dynamic %} active {% endblock %}
+{% block content %} 
+{% load static %}
+<section class="section border-0 py-10 m-0 px-lg-5  pt-4">
+    <div class="container">
+        <div class="row align-items-end pb-3 ">
+            <div class="d-flex align-items-end justify-content-end">
+                <ul class="breadcrumb d-block text-center">
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Services" %}</li>
+                </ul>        
+            </div>
+            <hr class="bg-light">
+            <div class="col-12 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "Our Services" %}
+                        </h2>
+                    </div>
+                </div>
+                <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
+                    {% trans "Detail about our services" %}
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+<div class="bg-color-grey ">
+    <div id="examples" class="container py-2 pt-5 ">
+        <h2 class="text-color-dark font-weight-normal text-8 mb-2"></h2>
+        
+        <div class="row mb-5 pb-3" >
+            {% for service in services %}
+            <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+                <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 250px; ">
+                    <div class="card-body">
+                        <!-- <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}"> -->
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">{{service.title}}</h4>
+                        
+                        
+                        <div data-plugin-readmore="" data-plugin-options="{
+                            'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
+                            'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
+                            'align': 'end'
+                            }" class="position-relative" style="height: 250px; overflow: hidden; max-height: none;">
+
+                            <p class="card-text">{{service.content}}</p> 
+
+                            <div class="readmore-button-wrapper text-end" style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
+                                <a href="#" class="text-decoration-none">{% trans "Read More" %} <i class="fas fa-chevron-down text-2 ms-1"></i></a>
+                            </div>
+                            <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
+                       
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+           
+
+        </div>
+    </div>
+</div>
+{% endblock %}

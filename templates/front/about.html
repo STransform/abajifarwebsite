@@ -1,0 +1,204 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% block about %} active {% endblock %}
+{% block about_dynamic %} active {% endblock %}
+{% block content %} 
+{% load static %}
+
+<style>
+    .otech-font {
+            font-style: italic;
+            font-weight: bold;
+            color: black;
+            text-align: justify;
+            line-height: 1.6;
+            margin: 0 0 1em;
+            padding: 0;  
+               
+            }
+             .card-body:hover {
+        background-color: red !important;
+        color: white !important;
+    }
+    .card-body:hover .card-title {
+        color: white !important;
+    }
+    .card-body:hover .card-text {
+        color: white !important;
+    }
+    /* Ensure that card containers are displayed as flex items */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content to occupy full height */
+  height: 100%; /* Ensures cards stretch to full height of parent */
+}
+
+/* Optional: Add a fixed height or min-height to the card */
+.card {
+  min-height: 300px; /* Adjust based on your design needs */
+}
+
+/* Ensure all card-body elements have equal height */
+.card-body {
+  flex: 1; /* Allows card-body to stretch and fill available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically if needed */
+}
+    
+</style>
+
+<section class="section border-0 py-10 m-0 px-lg-5  pt-4">
+    <div class="container">
+        <div class="row align-items-end pb-3 ">
+            <div class="d-flex align-items-end justify-content-end">
+                <ul class="breadcrumb d-block text-center">
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "About Us" %}</li>
+                </ul>        
+            </div>
+            <hr class="bg-light">
+            <div class="col-12 mb-lg-0 ">
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0 appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">{% trans "About Us" %}
+                        </h2>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                
+                <div class="col-lg-6 pb-sm-4 pb-lg-0 pe-lg-5 mb-sm-5 mb-lg-0">
+                    <p  class="otech-font text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400" style="color: #000;"> 
+                        {{about_data.title}}
+                    </p>
+                    <p class="otech-font">{{ about_data.content }}</p>
+                </div>
+               
+
+                <div class="col-sm-8 col-md-6 col-lg-4 offset-sm-4 offset-md-4 offset-lg-2 position-relative mt-sm-5" style="top: 1.7rem;">
+                    {% if about_data.image_one %}
+                    <img src="{{ about_data.image_one.url }}" class="img-fluid position-absolute d-none d-md-block d-lg-block appear-animation" data-appear-animation="expandIn" data-appear-animation-delay="300" style="top: 10%; left: -60%; width: 220px;" alt="" />
+                    {% endif %}
+
+                    {% if about_data.image_two %}
+                    <img src="{{ about_data.image_two.url }}" class="img-fluid position-absolute d-none d-md-block d-lg-block appear-animation" data-appear-animation="expandIn" style="top: -33%; left: -40%; width: 270px;" alt="" />
+                    {% endif %}
+                    
+                    {% if about_data.image_three %}
+                    <img src="{{ about_data.image_three.url }}" class="img-fluid position-relative appear-animation mb-2" data-appear-animation="expandIn" data-appear-animation-delay="600" alt="" />
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</section>
+<div class="bg-color-grey ">
+    <div id="examples" class="container py-2 pt-5 ">
+        <h2 class="text-color-dark font-weight-normal text-8 mb-2">
+            {% trans "Mission" %} 
+            <span class="font-weight-light">/</span>  {% trans "Vision" %}  
+            <span class="font-weight-light">/</span> {% trans "Values" %} 
+        </h2>
+        <div class="row mb-5 pb-3" >
+            <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300">
+
+                <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 300px; ">
+                    <div class="card-body">
+                        <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}">
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color: red;">{% trans "Mission" %}</h4>
+                       
+                            <p class="otech-font">{{ about_data.mission }}</p> 
+                                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">
+                <div class="aligned card border-0 border-shadow bg-color-light text-center" style="min-height: 300px;">
+                    <div class="card-body">
+                        <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/vision.svg' %}">
+                        <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold" style="color: red;">{% trans "Vision" %}</h4>
+                     
+                     
+
+                        <p class="otech-font">{{ about_data.vision }}</p>
+
+                   
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 appear-animation mb-3" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="500">
+                <div class="aligned card border-0 border-shadow bg-color-light " style="min-height: 300px;">
+                    <div class="card-body ">
+                        <div class="text-center">
+                            <img class="icons text-2 " style="height: 50px;" src="{% static 'front/imgs/about/value.svg' %}">
+                            <h4 class="card-title mt-2 mb-1 text-4 font-weight-bold " style="color: red;">{% trans "Values" %} </h4>
+                        </div>
+
+                            <p class="otech-font">{{ about_data.values }}</p>
+
+                    </div>
+                </div>
+
+            </div>
+       
+        </div>
+    </div>
+</div>
+<div id="" class="container py-2 pt-5 pb-5 px-5">
+    <h2 class="font-weight-normal text-8 mb-2" style="color: red;text-align: center;">{% trans "Our Teams" %}</h2>
+    <div class="row mt-lg-5">
+        {% for member in team_members %}
+        <div class="col-lg-3 mb-4">
+            <span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-lighten thumb-info-bottom-info thumb-info-bottom-info-linear thumb-info-centered-icons">
+                <span class="thumb-info-wrapper">
+                    <img src="{{ member.image.url }}" class="img-fluid" style="height:290px;" alt="">
+                    <span class="thumb-info-title">
+                        <span class="thumb-info-inner line-height-1 font-weight-bold text-dark position-relative top-3">{{ member.name }}</span>
+                        <span class="thumb-info-type">{{ member.role }}</span>
+                    </span>													
+                    <span class="thumb-info-action">
+                        <a href="{{ member.social_facebook }}">
+                            <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fab fa-facebook-f text-dark text-dark"></i></span>
+                        </a>
+                        <a href="{{ member.social_twitter }}" aria-label="">
+                            <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fab fa-twitter text-dark"></i></span>
+                        </a>
+                        <a href="{{ member.social_google_plus }}" aria-label="">
+                            <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fab fa-google-plus-g text-dark"></i></span>
+                        </a>
+                    </span>
+                </span>
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+{% block js %}
+
+<script>
+    var max = 0;
+    $(".aligned").each(function(i, elem){
+        if ($(this).attr('height') > max){
+            max = $(this).attr('height');
+        }
+    });
+  
+    $(".aligned").each(function(elem){
+        $(this).attr("height",max);
+    })
+
+</script>
+<script src="{% static 'front/vendor/gsap/gsap.min.js' %}"></script>
+{% endblock %}
+

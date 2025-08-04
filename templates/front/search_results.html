@@ -1,0 +1,300 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+
+<!-- Search Result Content -->
+<section class="section border-0 py-10 m-0 px-lg-5 pt-4">
+    <div class="container">
+        
+        <div class="row align-items-center text-center pb-3 mb-5 mb-lg-4">
+            <div class="d-flex align-items-end justify-content-end">
+                <ul class="breadcrumb d-block text-center">
+                    <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    <li class="active">{% trans "Search Results" %}</li>
+                </ul>        
+            </div>
+            <hr class="bg-light">
+            <div class="col-12 mb-lg-0 ">
+                
+                <div class="d-flex align-items-center mb-2  justify-content-center">
+                    <div class="overflow-hidden text-center">
+                        <h2 class="text-color-primary text-9 text-center font-weight-semibold line-height-3 text-5 mb-0  appear-animation"
+                            data-appear-animation="maskRight" data-appear-animation-delay="300">
+                            {% if no_result %} {% trans "No Result Found" %} {% else %} {% trans "Your Search Results" %} {% endif %}
+                        </h2>
+                    </div>
+                </div>
+                <p  class="appear-animation text-center"  data-appear-animation="maskRight" data-appear-animation-delay="400"> 
+                    {% trans "Searched our whole site" %} "news", "blogs", "gallery", "vacancies", "events" and "documents"
+                </p>
+            </div>
+            
+        </div>
+
+        <div class="row appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+            <div class="col">
+
+
+                <!-- for news -->
+                {% if news_articles %}
+
+                <div class="blog-posts mb-3 ">
+
+                    <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in News" %}
+                    </h4>
+
+                    <div class="row mt-0">
+                         
+                        {% for article in news_articles %}
+                        <div class="col-md-4 col-lg-3">
+                            <article class="post post-medium border-0 pb-0 mb-5 bg-light pb-4">
+                                <div class="post-image">
+                                    <a href="{% url 'news_detail' news_id=article.id %}">
+                                        <img src="{{ article.featured_image.url }}" style="width: 100%; height:150px; " 
+                                        class="img-fluid img-thumbnail img-thumbnail-no-borders" alt="" />
+                                    </a>
+                                </div>
+                                <div class="post-content  px-lg-3 px-md-2 px-sm-1 pb-3">
+
+                                    <h2 class="font-weight-light text-4 line-height-6 mt-3 mb-2">
+                                        <a href="{% url 'news_detail' news_id=article.id %}">{{ article.title }}</a></h2>
+                                        <p>{{ article.content|truncatechars:200 }}</p> <!-- Truncate to 300 characters -->
+
+                                    <div class="post-meta">
+                                        <span><i class="far fa-clock"></i> <a href="#">{{ article.created_at }}</a></span>
+                                        <span class=" float-end"><a href="{% url 'news_detail' news_id=article.id %}" class=" text-uppercase">{% trans "Read More" %}</a></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                <!-- end news -->
+
+
+                
+                <!-- for blogs -->
+                {% if blogs %}
+
+                <div class="blog-posts mb-3 ">
+
+                    <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Blogs" %}
+                    </h4>
+
+                    <div class="row mt-0">
+                         
+                        {% for blog in blogs %}
+                        <div class="  col-md-4 col-lg-4">
+                            <article class="card p-3  post post-medium border-0 pb-0 mb-5">
+                                <div class="post-image">
+                                    <a href="{% url 'blog_detail' blog_id=blog.id %}">
+                                        <img src="{{blog.images.url}}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                    </a>
+                                </div>
+
+                                <div class="post-content">
+                                    <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="{% url 'blog_detail' blog_id=blog.id %}">{{blog.title|truncatechars:35}}</a></h2>
+                                    <p>{{blog.content|truncatechars:70}}
+                                    <div class="post-meta">
+                                        <span><i class="far fa-calendar-alt "></i><a href="#">{{blog.created_date}}</a></span>
+                                        <span><i class="far fa-user"></i> By <a href="#">{{blog.created_by}}</a></span>
+                                        <span><i class="far fa-comments"></i> <a href="#">{% trans "Comments" %}</a></span>
+                                    </div>
+
+                                </div>
+                            </article>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                <!-- end blog -->
+
+
+                
+                <!-- for vacancies -->
+                {% if jobs %}
+
+                <div class="blog-posts mb-3 ">
+
+                    <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Vacancies" %}
+                    </h4>
+
+                    <div class="row mt-0">
+                         
+                        {% for job in jobs %}
+                        <div class="row mb-2 pb-2">
+                            <div class="col-lg-12 col-md-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+                                <div class="card border-2 box-shadow-1 bg-color-light">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">{{ job.job_title }}</h4>
+                                        <span class="btn btn-sm {% if job.Status == 'Active' %}btn-success{% else %}btn-danger{% endif %} float-end">{{ job.Status }}</span>
+                                        <p><strong><i class="fa fa-calendar"></i> {% trans "Deadline" %}:</strong> {{ job.job_deadline }}</p>
+                                        <p class="card-text">{{ job.job_description }}</p>
+                                        <p><strong><i class="fa fa-map-marker"></i> {% trans "Location" %}:</strong> {{ job.location }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                <!-- end vcancies -->
+
+
+                
+                <!-- for gallery -->
+                {% if images %}
+
+                <div class="blog-posts mb-5 ">
+
+                    <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Gallery" %} 
+                    </h4>
+
+                    <div class="row mt-0">
+                         
+                        {% for image in images %}
+                        <div class="col-sm-6 col-lg-3 isotope-item ">
+                            <div class="portfolio-item">
+                                <a href="{{ image.image.url }}" target="_blank">
+                                    <span class="thumb-info thumb-info-centered-info thumb-info-no-borders border-radius-0">
+                                        <span class="thumb-info-wrapper border-radius-0">
+                                            <img src="{{ image.image.url }}" class="img-fluid border-radius-0" alt="{{ image.title }}"  style=" height:300px;">
+                                            <span class="thumb-info-title">
+                                                <span class="thumb-info-inner">{{ image.title }}</span>
+                                                <span class="thumb-info-type">{{ category }}</span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                <!-- end gallery -->
+
+
+                
+                <!-- for document -->
+                {% if documents %}
+
+                <div class="blog-posts mb-3 ">
+
+                    <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Documents" %} 
+                    </h4>
+
+                    <div class="row mt-0">
+                         
+                        {% for document in documents %}
+                        <div class="col-lg-4 col-md-3 col-sm-6 col-xsm-12 mb-3 p-sm-0">
+                            <div class="card border-radius-2 bg-color-light box-shadow-3 box-shadow-1-hover">
+                                <div class="feature-box py-2 px-1">
+                                    <div class="border-radius-2">
+                                        {% if document.file_extension == '.pdf' %}
+                                        <img src="{% static 'front/imgs/docs/pdf.png' %}" style="width: 40px; height: 40px;">
+                                        {% elif document.file_extension == '.csv' %}
+                                        <img src="{% static 'front/imgs/docs/excel.png' %}" style="width: 40px; height: 40px;">
+                                        {% else %}
+                                        <!-- Default image if the file extension is not pdf or csv -->
+                                        <img src="{% static 'path_to_default_image.png' %}" style="width: 40px; height: 40px;">
+                                        {% endif %}
+                                    </div>
+                                    <div class="feature-box-info">
+                                        <a href="{{ document.file.url }}" class="mb-0 border-bottom">{{ document.title }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                <!-- end document -->
+
+
+                
+                <!-- for event -->
+                {% if events %}
+
+                <div class="blog-posts mb-3 ">
+
+                    <h4 class="text-color-primary text-5  font-weight-semibold line-height-3  mb-3 appear-animation"
+                        data-appear-animation="maskLeft" data-appear-animation-delay="300">{% trans "Result in Events" %}
+                    </h4>
+
+                    <div class="row mt-0">
+                         
+                        {% for event in events %}
+                        <div class="box-shadow-2 col-lg-6 isotope-item mt-4" data-appear-animation="maskRight" data-appear-animation-delay="300">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="portfolio-item">
+                                        <a href="">
+                                            <span class="thumb-info thumb-info-no-zoom thumb-info-lighten border-radius-0 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="100">
+                                                <span class="thumb-info-wrapper border-radius-0">
+                                                    <img src="{{ event.image.url }}" class="img-fluid border-radius-5" alt="{{ event.title }}">
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="overflow-hidden">
+                                        <h4 class="text-color-dark font-weight-bold text-4 mb-3 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">{{ event.title }}</h4>
+                                    </div>
+                                    <ul class="list list-icons list-primary list-borders text-2 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">
+                                        <li><i class="fas fa-calendar left-10"></i><strong>{% trans "Date" %}:</strong> {{ event.date }}</li>
+                                        <li><i class="fas fa-clock left-10"></i><strong>{% trans "Time" %}:</strong> {{ event.time }}</li>
+                                        <li><i class="fas fa-map-marker left-10"></i><strong>{% trans "Location" %}:</strong> {{ event.location }}</li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+                <!-- end events -->
+
+
+
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Result -->
+
+{% endblock %}
