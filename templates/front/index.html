@@ -76,6 +76,92 @@
     .partner-container {
         margin-bottom: 20px; /* Add spacing between the partner cards */
     }   
+.hero-waves {
+  position: relative;
+  top:-4px;
+  width: 100%;
+  height: 60px;
+  
+  display: block;
+  background-color: black;
+}
+/* Apply height and object-fit to images inside the carousel */
+.owl-carousel .item img {
+    height: 400px !important; /* Force height to 400px */
+    object-fit: cover !important; /* Ensure the images fill the space without distortion */
+    width: 100% !important; /* Make sure the width takes full available space */
+}
+
+/* Ensure the carousel item itself is constrained to 400px height */
+.owl-carousel .item {
+    height: 400px !important; /* Make sure the item container has the same height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center content vertically */
+}
+
+/* Optional: Ensure the outer owl carousel container doesn't override the height */
+.owl-carousel {
+    height: 400px !important;
+}
+.owl-carousel {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+svg.hero-waves {
+    margin-top: -5px; /* Adjust this value as needed */
+}
+.owl-carousel, .hero-waves {
+  margin: 0;
+  padding: 0;
+}
+.wave1 use {
+  animation: move-forever1 10s linear infinite;
+  animation-delay: -2s;
+  fill: black; 
+  opacity: 0.6;
+}
+
+.wave2 use {
+  animation: move-forever2 8s linear infinite;
+  animation-delay: -2s;
+  fill: red;
+  opacity: 0.4;
+}
+
+.wave3 use {
+  animation: move-forever3 6s linear infinite;
+  animation-delay: -2s;
+  fill: white; 
+  
+}
+
+@keyframes move-forever1 {
+  0% {
+    transform: translate(85px, 0%);
+  }
+  100% {
+    transform: translate(-90px, 0%);
+  }
+}
+
+@keyframes move-forever2 {
+  0% {
+    transform: translate(-90px, 0%);
+  }
+  100% {
+    transform: translate(85px, 0%);
+  }
+}
+
+@keyframes move-forever3 {
+  0% {
+    transform: translate(-90px, 0%);
+  }
+  100% {
+    transform: translate(85px, 0%);
+  }
+}
 
 </style>
 {% endblock %}
@@ -93,11 +179,11 @@
             <!-- Dynamic Carousel Slides -->
             {% for work in featured_works %}
             <div class="owl-item position-relative"
-                style="background-image: url('{{ work.background_image.url }}'); background-color: #2E3136; background-size: cover; background-position: center; max-height: 600px;">
+                style="background-image: url('{{ work.background_image.url }}'); background-color: #2E3136; background-size: cover; background-position: center; ">
                 <div class="container position-relative z-index-1 h-100">
                     <div
                         class="d-flex flex-column align-items-start justify-content-lg-center justify-content-end h-100 pt-5  px-lg-5 px-md-2 px-sm-0 py-5">
-                        <p class="text-color-light text-4">We are</p>
+                        <p class="text-color-light text-4"></p>
                         <h3 class="position-relative text-color-light text-6 line-height-2 font-weight-bold  mb-2 appear-animation"
                             data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}" style="font-size: 16;color: red;">
                             {% trans "OTech Engineering" %}</h3>
@@ -117,6 +203,21 @@
     </div>
    
 </div>
+<!-- Wave Animation SVG -->
+<svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" >
+    <defs>
+      <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+    </defs>
+    <g class="wave1">
+      <use xlink:href="#wave-path" x="50" y="3"></use>
+    </g>
+    <g class="wave2">
+      <use xlink:href="#wave-path" x="50" y="0"></use>
+    </g>
+    <g class="wave3">
+      <use xlink:href="#wave-path" x="50" y="9"></use>
+    </g>
+</svg>
 {% else %} 
 
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover nav-inside nav-inside-plus nav-dark nav-md nav-font-size-md show-nav-hover mb-0"
@@ -151,6 +252,7 @@
         <button role="button" class="owl-dot"><span></span></button>
     </div>
 </div>
+
 {% endif %}
 
 
@@ -191,7 +293,7 @@
                 <p class="otech-font"> {{about_us.content}}</p> 
 
                 
-                <p class="otech-font"> CEO :Amensisa Dereje</p> 
+                <p class="otech-font"> Engineer, Amensisa Dereje</p> 
             
       
         </div>

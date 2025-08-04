@@ -16,8 +16,13 @@ SECRET_KEY = 'django-insecure-vl1osx-&@rl##2ogt%^kv$dri#h)tppm8)&5qg1f+i233$g$2$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://otech.et', 
+    'https://www.otech.et',  
+]
+
 # lists of allowed hosts
-ALLOWED_HOSTS = ['localhost', 'otech.com','www.otech.com', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['172.10.10.83', 'otech.et', 'www.otech.et','127.0.0.1','localhost']
 CSRF_COOKIE_SECURE = True
 
 # Application definition
@@ -164,7 +169,7 @@ WSGI_APPLICATION = 'otech_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'otechdbv5',
+        'NAME': 'smndb',
         'USER': 'root',
         'PASSWORD': 'Simon@1234',
         'HOST': 'localhost',
@@ -266,14 +271,13 @@ AUTH_USER_MODEL = 'accounts.UserProfile'
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # send email configuration
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER='stemesgent@gmail.com'
-EMAIL_FROM ='Simon '
-EMAIL_HOST_PASSWORD='bbwzyevacrlsqrhb'
-EMAIL_USE_TLS=True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'stemesgent@gmail.com'
+EMAIL_HOST_PASSWORD = 'bjatascgxcuiwzlb'  # App-specific password, not your Gmail login
+EMAIL_FROM = 'Simon <stemesgent@gmail.com>'
 
 # Package settings
 

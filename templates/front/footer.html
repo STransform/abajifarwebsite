@@ -1,106 +1,152 @@
 {% load static %}
 {% load i18n %}
 <style>
-    .social-link {
-     color: inherit; /* Ensure the icon inherits the current color */
-     }
+    /* General footer styling */
+    footer {
+        margin: 0;
+        padding: 0;
+        background-color: #060606;
+    }
 
-    .social-link i:hover {
-     color: red; /* Change color on hover */
-      }
+    footer .container {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .social-link {
+        color: inherit;
+        transition: color 0.3s ease;
+    }
+
+    .social-link i {
+        font-size: 1.8em;
+    }
+
+    .social-link:hover {
+        color: red;
+    }
+
+    /* Styling for quick links */
+    .quick-link {
+        color: inherit;
+        transition: color 0.3s ease;
+    }
+
+    .quick-link:hover {
+        color: red;
+    }
+
+    .hover-text-color-primary:hover {
+        color: red !important;
+    }
+
+   
 </style>
-<footer id="footer" class="footer-texts-more-lighten border-0" style="background-color: #040720;">
-    <div style="background-color: #000;">
-        <div class="container">
-            <div class="pt-2 pb-2">
-                <div class="row">
-                    <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-                        <h5 class="text-4 text-color-light mb-3">{% trans "ABOUT US" %}</h5>
-                        
-                        <div class="company-info" style="background-color: #000;">
-                           
-                            <h6>{% trans "OTECH Engineering" %}</h6>
-                            <p class="text-grey">{% trans "Is a leading technology company committed to innovating and transforming businesses and governments with cutting-edge solutions." %}</p>
-                           
-                        </div>
-                       
+
+
+<svg xmlns="http://www.w3.org/2000/svg" 
+viewBox="0 0 1440 320" height="80px" preserveAspectRatio="none" style="width: 100%;background-color: white;">
+<path fill="#060606" fill-opacity="1" 
+d="M0,160L26.7,160C53.3,160,107,160,160,181.3C213.3,203,267,245,320,256C373.3,267,427,245,480,197.3C533.3,149,587,75,640,90.7C693.3,107,747,213,800,218.7C853.3,224,907,128,960,112C1013.3,96,1067,160,1120,181.3C1173.3,203,1227,181,1280,144C1333.3,107,1387,53,1413,26.7L1440,0L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"></path></svg>
+<footer>
+    
+    <div class="container">
+        <div class="pt-4 pb-4">
+            <div class="row">
+                <!-- About Us Section -->
+                <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                    <h5 class="text-4 text-color-light mb-3">{% trans "ABOUT US" %}</h5>
+                    <div class="company-info">
+                        <h6 class="text-3 text-color-light">{% trans "OTECH Engineering" %}</h6>
+                        <p class="text-grey">{% trans "We are a leading technology company committed to innovating and transforming businesses and governments with cutting-edge solutions." %}</p>
                     </div>
-                    
-                    <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-                        <h5 class="text-4 text-color-light mb-3 footer-title">{% trans "CONTACTS" %}</h5>
-                        <ul class="list list-unstyled">
-                            {% for contacts in contact %}
+                </div>
+                
+                <!-- Contact Section -->
+                <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
+                    <h5 class="text-4 text-color-light mb-3 footer-title">{% trans "CONTACTS" %}</h5>
+                    <ul class="list list-unstyled">
+                        {% for contacts in contact %}
                             <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Address" %}:</span> 
-                                {{ contacts.address }}
+                                <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Address" %}:</span> {{ contacts.address }}
                             </li>
                             <li class="pb-1 mb-2">
                                 <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Phone" %}:</span>
-                                <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a>
+                                <a href="tel:{{ contacts.phone }}" class="text-color-light hover-text-color-primary">{{ contacts.phone }}</a>
                             </li>
                             <li class="pb-1 mb-2">
                                 <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Email" %}:</span>
-                                <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
+                                <a href="mailto:{{ contacts.email }}" class="text-color-light hover-text-color-primary">{{ contacts.email }}</a>
                             </li>
                             <li class="pb-1 mb-2">
                                 <span class="d-block font-weight-normal line-height-1 text-color-light">{% trans "Website" %}:</span>
-                                <a href="{{ contacts.website }}" target="_blank">{{ contacts.website }}</a>
+                                <a href="{{ contacts.website }}" target="_blank" class="text-color-light hover-text-color-primary">{{ contacts.website }}</a>
                             </li>
-                            {% endfor %}
-                           
-                        </ul>
-                    </div>
-                  
-                    <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
-                        <h5 class="text-3 text-color-light mb-3 footer-title">{% trans "SOCIAL" %}</h5>
-                        <ul class="list list-unstyled">
-                            
-                            <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://www.facebook.com/yourpage" target="_blank" class="social-link"><i class="fab fa-facebook" style="font-size: 1.5em;"></i></a>
-                            </li>
-                            <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://twitter.com/yourhandle" target="_blank" class="social-link"><i class="fab fa-twitter" style="font-size: 1.5em;"></i></i></a>
-                            </li>
-                            <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://www.instagram.com/yourprofile" target="_blank" class="social-link"><i class="fab fa-instagram" style="font-size: 1.5em;"></i></i></a>
-                            </li>
-                            <li class="pb-1 mb-2">
-                                <span class="d-block font-weight-normal line-height-1 text-color-light"></span>
-                                <a href="https://www.linkedin.com/company/yourcompany" target="_blank" class="social-link"><i class="fab fa-linkedin" style="font-size: 1.5em;"></i></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                   
-                    <div class="col-md-6 col-lg-2">
-                        <h5 class="text-4 text-color-light mb-3">{% trans "QUICK LINKS" %}</h5>
-                        <ul class="list list-unstyled mb-0">
-                            {% for link in quick_links %}
-                                <li class="mb-0"><a href="{{ link.url }}" class="quick-link" ><i class="fas fa-angle-right text-color-light"></i> {{ link.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                        
-                    </div>
-                    <div class="col-md-6 col-lg-2">
-                        <div class="counter counters counters-sm text-white px-4 mt-4">
-                            <strong data-to="{{visitors}}" data-plugin-options="{'decimals': 1}"  data-append="{{visitors_round}}+"></strong>
-                            <label class="text-white">{% trans "Total visitors" %}</label>
-                        </div>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <!-- Social Media Links -->
+                <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
+                    <h5 class="text-3 text-color-light mb-3 footer-title">{% trans "SOCIAL" %}</h5>
+                    <ul class="list list-unstyled">
+                        <li class="pb-1 mb-2">
+                            <a href="https://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61556411611103" target="_blank" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="pb-1 mb-2">
+                            <a href="https://www.youtube.com/@OTECHENGINEERING" target="_blank" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li class="pb-1 mb-2">
+                            <a href="https://twitter.com/" target="_blank" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="pb-1 mb-2">
+                            <a href="https://www.instagram.com/" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="pb-1 mb-2">
+                            <a href="https://www.linkedin.com/" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-md-6 col-lg-2">
+                    <h5 class="text-4 text-color-light mb-3">{% trans "QUICK LINKS" %}</h5>
+                    <ul class="list list-unstyled mb-0">
+                        {% for link in quick_links %}
+                            <li class="mb-0"><a href="{{ link.url }}" class="quick-link"><i class="fas fa-angle-right text-color-light"></i> {{ link.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Visitor Counter -->
+                <div class="col-md-6 col-lg-2">
+                    <div class="counter counters counters-sm text-white px-4 mt-4">
+                        <strong data-to="{{visitors}}" data-plugin-options="{'decimals': 1}" data-append="{{visitors_round}}+"></strong>
+                        <label class="text-white">{% trans "Total visitors" %}</label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container" style="background-color: red;">
-        <div class="pt-2 pb-2">
+
+    <!-- Footer Bottom Section -->
+    <div class="container" style="background-color: #800000;">
+        <div class="pt-3 pb-3">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="mb-0 text-color-light">{% trans "Developed by" %} <strong><a href="https://www.otech.et/" target="_blank" class="text-color-light">{% trans "OTECH Engineering & Technology Solutions" %}</a></strong></p>
+                    <p class="mb-0 text-color-light">{% trans "Developed by" %} <strong><a href="https://www.otech.et/" target="_blank" class="text-color-light hover-text-color-primary">{% trans "OTECH Engineering & Technology Solutions" %}</a></strong></p>
                 </div>
             </div>
         </div>
     </div>
-    
 </footer>
