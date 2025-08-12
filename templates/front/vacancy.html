@@ -67,7 +67,7 @@
                         <div class="card-body">
                             <h4 class="card-title mb-1 text-5 font-weight-bold d-inline-block">{{ job.job_title }}</h4>
                             <span class="btn btn-sm {% if job.Status == 'Active' %}btn-success{% else %}btn-danger{% endif %} float-end">{{ job.Status }}</span>
-                            <p><strong><i class="fa fa-calendar"></i> {% trans "Deadline" %}:</strong> {{ job.job_deadline }}</p>
+                            <!-- <p><strong><i class="fa fa-calendar"></i> {% trans "Deadline" %}:</strong> {{ job.deadline }}</p> -->
                             <div data-plugin-readmore="" data-plugin-options="{
                                 'buttonOpenLabel': 'Read More <i class=\'fas fa-chevron-down text-2 ms-1\'></i>',
                                 'buttonCloseLabel': 'Read Less <i class=\'fas fa-chevron-up text-2 ms-1\'></i>',
@@ -80,7 +80,7 @@
                                 <div class="readmore-overlay" style="background: linear-gradient(rgba(2, 0, 36, 0) 0%, rgb(255, 255, 255) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 100px; z-index: 1;"></div>
                             </div>
                             <p><strong><i class="fa fa-map-marker"></i> {% trans "Location" %}:</strong> {{ job.location }}</p>
-                            <p><strong><i class="fa fa-graduation-cap"></i> {% trans "CGPA Requirement" %}:</strong> {{ job.cgpa_requirement }}</p>
+                            <p><strong><i class="fa fa-graduation-cap"></i> {% trans "Minimum CGPA" %}:</strong> {{ job.cgpa_requirement }}</p>
                             <p><strong><i class="fa fa-briefcase"></i> {% trans "Career Level" %}:</strong> {{ job.career_level }}</p>
                             {% if job.Status == 'Active' %}
                             <a href="{% url 'jobs_apply' pk=job.id %}" class="btn btn-primary btn-sm">{% trans "Apply" %}</a>
