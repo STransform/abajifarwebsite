@@ -3,35 +3,58 @@
 {% block announcement %} active {% endblock %}
 {% block announcement_dynamic %} active {% endblock %}
 
-{% block content %} 
-
+{% block content %}
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12">
+            <!-- Header -->
             <div class="offset-anchor" id="apply-form"></div>
-            <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">{% trans "Apply for Vacancy" %}</h2>
-            <p class="mb-4 text-center">{% trans "Fill in the details to apply for the vacancy" %}</p>
+            <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">
+                {% trans "Apply for" %} {{ job.job_title }}
+            </h2>
+            <p class="mb-4 text-center" style="color: black; font-style: italic; font-weight: bold;">
+                {% trans "Fill in the details to apply for the vacancy" %}
+            </p>
 
-            <form id="vacancyForm" action="" method="POST" enctype="multipart/form-data">
+            <!-- Job Details -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p><strong>{% trans "Description" %}:</strong> {{ job.job_description|default:"No description available" }}</p>
+                    <p><strong>{% trans "CGPA Requirement" %}:</strong> {{ job.cgpa_requirement|floatformat:2 }}</p>
+                    <p><strong>{% trans "Career Level" %}:</strong> {{ job.career_level|default:"Not Specified" }}</p>
+                    <p><strong>{% trans "Deadline" %}:</strong> {{ job.job_deadline|default:"Not Specified" }}</p>
+                    <p><strong>{% trans "Location" %}:</strong> {{ job.location|default:"Remote" }}</p>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form id="vacancyForm" action="{% url 'jobs_apply' pk=job.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                
+                {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 <div class="row">
                     {% for field in form %}
                     <div class="form-group col-md-6 col-sm-12">
-                        <label>{{field.label}}</label>
-                        {{field}}
-                        {{field.errors}}
+                        <label class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        <div class="text-danger small">{{ field.errors }}</div>
                     </div>
                     {% endfor %}
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12 mb-5 text-center">
-                        <button type="submit" id="applyFormSubmit" class="btn btn-primary btn-modern" data-loading-text="Loading...">{% trans "Apply" %}</button>
+                        <button type="submit" id="applyFormSubmit" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+                            {% trans "Apply" %}
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
 {% endblock %}

@@ -1,4 +1,4 @@
-#!/home/openproject/otechwebsite/Otechmain-dev/otech-venv/bin/python3
+#!/home/simon/otech-website/otech-venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
