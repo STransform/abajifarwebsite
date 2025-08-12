@@ -1,235 +1,45 @@
-{% extends 'staff/admin_base.html' %}
-{% load static %}
-{% load humanize %}
-{% load custom_filters %}
-{% block main %}
-<style>
-    /* Custom styles for the Apply Filters button */
-    .btn-apply-filters {
-        background-color: red; /* Background color for Apply Filters button */
-        color: white; /* Text color for Apply Filters button */
-        padding: 8px 16px;
-        font-size: 14px;
-        border-radius: 4px;
-        border: none; /* Remove default border */
-        cursor: pointer;
-    }
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="container py-5">
+    <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">{% trans "Applications" %}</h2>
+    <form action="" method="get">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <input type="text" name="search" class="form-control" placeholder="{% trans 'Search by name or email' %}" value="{{ search }}">
+            </div>
+            <div class="col-md-3">
+                <input type="number" step="0.01" name="min_cgpa" class="form-control" placeholder="{% trans 'Min CGPA' %}" value="{{ min_cgpa }}">
+            </div>
+            <div class="col-md-3">
+                <input type="number" name="min_age" class="form-control" placeholder="{% trans 'Min Age' %}" value="{{ min_age }}">
+            </div>
+            <div class="col-md-3">
+                <input type="number" name="min_experience" class="form-control" placeholder="{% trans 'Min Experience' %}" value="{{ min_experience }}">
+            </div>
+            <div class="col-md-12 text-center mt-3">
+                <button type="submit" class="btn btn-primary">{% trans "Filter" %}</button>
+            </div>
+        </div>
+    </form>
 
-    .btn-apply-filters:hover {
-        background-color: black; /* Background color on hover */
-        color: white; /* Text color on hover */
-    }
-    /* Custom styles for the Export button */
-    .btn-export {
-        background-color: red; /* Set your desired background color */
-        color: white; /* Set your desired text color */
-        padding: 8px 16px;
-        font-size: 14px;
-        border-radius: 4px;
-        border: none; /* Remove default border */
-        cursor: pointer;
-    }
-
-    /* Change hover effect for the Export button */
-    .btn-export:hover {
-        background-color: black; /* Darker green on hover */
-        color: #fff;
-    }
-     /* Custom styles for the Export button */
-     .btn-export {
-        background-color: red; /* Background color for Export button */
-        color: white; /* Text color for Export button */
-        padding: 8px 16px;
-        font-size: 14px;
-        border-radius: 4px;
-        border: none; /* Remove default border */
-        cursor: pointer;
-    }
-
-    .btn-export:hover {
-        background-color: black; /* Hover color for Export button */
-        color: white;
-    }
-
-    /* Custom styles for Excel button */
-    .btn-excel {
-        background-color: darkred; /* Set background color for Excel button */
-        color: white; /* Set text color for Excel button */
-    }
-
-    /* Custom styles for PDF button */
-    .btn-pdf {
-        background-color: darkgreen; /* Set background color for PDF button */
-        color: white; /* Set text color for PDF button */
-    }
-
-    /* Custom styles for Print button */
-    .btn-print {
-        background-color: darkred; /* Set background color for Print button */
-        color: white; /* Set text color for Print button */
-    }
-
-    /* Optional: Customize hover effects for these buttons */
-    .btn-excel:hover {
-        background-color: black;
-    }
-
-    .btn-pdf:hover {
-        background-color: red;
-    }
-
-    .btn-print:hover {
-        background-color: black;
-    }
-    
-</style>
-
-<div class="container-fluid">
-    <!-- Start:: row-4 -->
     <div class="row">
-        <div class="col-xl-12">
-            <div class="card custom-card">
-                <div class="card-header">
-                    <div class="card-title">List of Applicants</div>
-                </div>
-                
+        {% for application in applications %}
+        <div class="col-md-12 mb-4">
+            <div class="card">
                 <div class="card-body">
-                    <!-- Filter Form -->
-                    <form method="get" class="mb-4">
-                        <div class="row">
-                            <div class="col-md-3 mb-2">
-                                <label for="min_cgpa">Minimum CGPA</label>
-                                <input type="number" id="min_cgpa" name="min_cgpa" class="form-control" step="0.01" value="{{ min_cgpa }}">
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <label for="min_age">Minimum Age</label>
-                                <input type="number" id="min_age" name="min_age" class="form-control" value="{{ min_age }}">
-                            </div>
-                           
-                            <div class="col-md-3 mb-2">
-                                <label for="min_experience">Minimum Experience (Years)</label>
-                                <input type="number" id="min_experience" name="min_experience" class="form-control" value="{{ min_experience }}">
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <button type="submit" class="btn btn-apply-filters mt-4" >Apply Filters</button>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <div class="table-responsive col-12 mt-3">
-                        <table id="job-applications-table" class="table table-bordered text-nowrap w-100">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Phone Number</th>
-                                    <th>CGPA</th>
-                                    <th>Experience</th>
-                                    <th>Birth Date</th>
-                                    <th>Position</th>
-                                    <th>Email</th>
-                                    <th>CV</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for application in applications %}
-                                <tr>
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>{{ application.firstname }}</td>
-                                    <td>{{ application.lastname }}</td>
-                                    <td>{{ application.phone_number }}</td>
-                                    <td>{{ application.cgpa }}</td>
-                                    <td>{{ application.year_of_experience }}</td>
-                                    <td>{{ application.birth_date|date:"Y-m-d" }}</td>
-                                    <td>{{ application.job.job_title }}</td>
-                                    <td>{{ application.email }}</td>
-                                    <td>
-                                        {% if application.cv %}
-                                        <a href="{{ application.cv.url }}" download>Download</a>
-                                        {% else %}
-                                        No attachment
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="11" class="text-center">No applications found.</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                    <h5 class="card-title">{{ application.firstname }}</h5>
+                    <p><strong>{% trans "Email" %}:</strong> {{ application.email }}</p>
+                    <p><strong>{% trans "Phone" %}:</strong> {{ application.phone }}</p>
+                    <p><strong>{% trans "CGPA" %}:</strong> {{ application.cgpa }}</p>
+                    <p><strong>{% trans "Experience" %}:</strong> {{ application.year_of_experience }} years</p>
+                    <p><strong>{% trans "Job ID" %}:</strong> {{ application.job_odoo_id }}</p>
                 </div>
             </div>
         </div>
+        {% empty %}
+        <p class="text-center">{% trans "No applications found." %}</p>
+        {% endfor %}
     </div>
-    <!-- End:: row-4 -->
 </div>
-{% endblock %}
-{% block js %}
-<!-- Datatables CDN -->
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#job-applications-table').DataTable({
-            responsive: true,
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'collection',
-                    text: 'Export',
-                    className: 'btn-export',  // Custom class for the main Export button
-                    buttons: [
-                        {
-                            extend: 'excel',
-                            text: 'Excel',
-                            className: 'btn-excel',  // Custom class for Excel button
-                        },
-                        {
-                            extend: 'pdf',
-                            text: 'PDF',
-                            className: 'btn-pdf',  // Custom class for PDF button
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            className: 'btn-print',  // Custom class for Print button
-                        }
-                    ]
-                }
-            ],
-            "pageLength": 5,
-            "lengthMenu": [5, 10, 25, 50, 100],
-            "processing": true,
-            "serverSide": false,
-            "columnDefs": [
-                {
-                    "targets": [8, 9], // Email and CV columns
-                    "visible": true,
-                    "responsivePriority": 1
-                },
-                {
-                    "targets": [2, 3], // Last Name and Phone Number columns
-                    "responsivePriority": 2
-                },
-                {
-                    "targets": [7], // Position column
-                    "visible": true, // Ensure Position column is visible
-                    "responsivePriority": 3
-                }
-            ]
-        });
-    });
-</script>
-
-
 {% endblock %}
