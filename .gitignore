@@ -179,7 +179,7 @@ celerybeat-schedule
 celerybeat.pid
 
 # custom git ignores
-.env
+# .env
 .uploads
 check.py
 check2.py
