@@ -4,7 +4,7 @@ from decouple import config
 
 def get_odoo_connection():
     ODOO_URL = config('ODOO_URL', default='http://172.10.12.208:3334/')
-    ODOO_DB = config('ODOO_DB', default='odb15')
+    ODOO_DB = config('ODOO_DB', default='otech_testing')
     ODOO_USERNAME = config('ODOO_USERNAME', default='admin')
     ODOO_PASSWORD = config('ODOO_PASSWORD', default='admin')
 
