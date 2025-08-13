@@ -1,6 +1,5 @@
-# /home/simon/otech-website/vacancies/forms.py
 from django import forms
-from .models import Job
+from .models import Job, Application
 
 
 class JobForm(forms.ModelForm):
@@ -74,8 +73,7 @@ class ApplicationForm(forms.Form):
     )
     experience = forms.IntegerField(
         required=False,
-        initial=0,
-        label="Experience",
+        label="Years of Experience",
         widget=forms.NumberInput(attrs={
             'class': 'form-control',
             'min': 0,
@@ -90,7 +88,7 @@ class ApplicationForm(forms.Form):
             'placeholder': 'https://linkedin.com/in/username'
         })
     )
-    cv = forms.FileField(
+    attachment_ids = forms.FileField(
         required=False,
         label="Resume",
         widget=forms.ClearableFileInput(attrs={
