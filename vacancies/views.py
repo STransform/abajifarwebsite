@@ -18,7 +18,7 @@ def job_list(request):
     
     if not jobs:
         messages.warning(request, "No jobs found in Odoo. Displaying local jobs. Check Odoo configuration and server console for details.")
-        jobs = Job.objects.filter(Status='Active').order_by('-created_at')  # Sort by created_at descending
+        jobs = Job.objects.filter(Status='Active').order_by('-id')  # Sort by id descending
         if search:
             jobs = jobs.filter(Q(job_title__icontains=search) | Q(job_description__icontains=search))
         jobs = jobs.values('id', 'job_title', 'job_description', 'job_deadline', 'location', 'level')
