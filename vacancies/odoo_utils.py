@@ -2,7 +2,7 @@ import xmlrpc.client
 from decouple import config
 
 def get_odoo_connection():
-    ODOO_URL = config('ODOO_URL', default='http://172.10.12.208:3334/')
+    ODOO_URL = config('ODOO_URL', default='http://172.10.12.208:3334')
     ODOO_DB = config('ODOO_DB', default='otech_testing')
     ODOO_USERNAME = config('ODOO_USERNAME', default='admin')
     ODOO_PASSWORD = config('ODOO_PASSWORD', default='admin')
@@ -10,11 +10,9 @@ def get_odoo_connection():
     try:
         common = xmlrpc.client.ServerProxy(f'{ODOO_URL}/xmlrpc/2/common')
         version = common.version()
-        print(f"Odoo Version: {version}")
         if not version:
             raise Exception("Failed to connect to Odoo server.")
         uid = common.authenticate(ODOO_DB, ODOO_USERNAME, ODOO_PASSWORD, {})
-        print(f"Authenticated with UID: {uid}")
         if not uid:
             raise Exception("Odoo authentication failed. Check database, username, or password.")
         models = xmlrpc.client.ServerProxy(f'{ODOO_URL}/xmlrpc/2/object')
@@ -30,14 +28,13 @@ def fetch_odoo_jobs(search=None, offset=0, limit=12):
         domain = [('is_published', '=', True), ('website_published', '=', True)]
         if search:
             domain.append(('name', 'ilike', search))
-        print(f"Fetching jobs with domain: {domain}")
         job_ids = models.execute_kw(db, uid, password, 'hr.job', 'search', [domain], {
             'offset': offset,
-            'limit': limit
+            'limit': limit,
+            'order': 'create_date desc'  # Sort by create_date descending
         })
-        print(f"Found job IDs: {job_ids}")
         if not job_ids:
-            print("No jobs found. Check if hr.job records exist and match the domain filter.")
+            pass
 
         jobs_data = models.execute_kw(db, uid, password, 'hr.job', 'read', 
             [job_ids, ['id', 'name', 'description', 'career_level', 'cgpa_requirement', 'deadline', 'company_id']])
@@ -59,15 +56,11 @@ def fetch_odoo_jobs(search=None, offset=0, limit=12):
                     'recruitment_request_id': False
                 }
                 jobs.append(job_entry)
-                print(f"Processed job ID {job['id']}: {job['name']}, Deadline: {job.get('deadline', '')}, Company ID: {job.get('company_id')}")
             except Exception as e:
-                print(f"Skipping job ID {job.get('id', 'unknown')}: {str(e)}")
                 continue
 
-        print(f"Processed jobs: {jobs}")
         return jobs
     except Exception as e:
-        print(f"Error fetching jobs from Odoo: {str(e)}")
         return []
 
 def create_odoo_application(vals):
@@ -77,9 +70,7 @@ def create_odoo_application(vals):
         # Check hr.candidate fields for debugging
         candidate_fields = models.execute_kw(db, uid, password, 'ir.model.fields', 'search_read',
                                             [[('model', '=', 'hr.candidate')]], {'fields': ['name', 'ttype', 'required']})
-        print(f"hr.candidate fields: {candidate_fields}")
-        required_fields = [f['name'] for f in candidate_fields if f['required']]
-        print(f"Required hr.candidate fields: {required_fields}")
+        required_fields = [f.name for f in candidate_fields if f['required']]
 
         # Create res.partner record
         partner_data = {
@@ -89,12 +80,11 @@ def create_odoo_application(vals):
             'company_id': vals.get('company_id', False),
         }
         partner_id = models.execute_kw(db, uid, password, 'res.partner', 'create', [partner_data])
-        print(f"Created partner ID: {partner_id}")
         vals['partner_id'] = partner_id
 
         # Create hr.candidate record
         candidate_data = {
-            'partner_name': vals['partner_name'],  # Use partner_name instead of name
+            'partner_name': vals['partner_name'],
             'email_from': vals.get('email_from', ''),
             'partner_phone': vals.get('partner_phone', ''),
             'company_id': vals.get('company_id', False),
@@ -104,11 +94,9 @@ def create_odoo_application(vals):
         for field in required_fields:
             if field not in candidate_data:
                 if field in ['partner_name', 'email_from', 'partner_phone', 'company_id', 'partner_id']:
-                    continue  # Already set
-                candidate_data[field] = False  # Default for unknown fields
-        print(f"Creating hr.candidate with data: {candidate_data}")
+                    continue
+                candidate_data[field] = False
         candidate_id = models.execute_kw(db, uid, password, 'hr.candidate', 'create', [candidate_data])
-        print(f"Created candidate ID: {candidate_id}")
         vals['candidate_id'] = candidate_id
 
         # Handle CV attachment
@@ -130,23 +118,16 @@ def create_odoo_application(vals):
                                          [[('name', '=', 'Initial Qualification')]], {'limit': 1})
         if initial_stage:
             vals['stage_id'] = initial_stage[0]
-        else:
-            print("Warning: Initial Qualification stage not found. Application will be created without stage.")
 
         # Remove invalid fields
         if 'company_id' in vals and not vals['company_id']:
-            print(f"Removing invalid company_id from vals: {vals['company_id']}")
             del vals['company_id']
         if 'department_id' in vals:
             del vals['department_id']
 
-        print(f"Creating hr.applicant with vals: {vals}")
         applicant_id = models.execute_kw(db, uid, password, 'hr.applicant', 'create', [vals])
-        print(f"Created applicant ID: {applicant_id}")
         return applicant_id
     except xmlrpc.client.Fault as e:
-        print(f"Odoo XML-RPC Fault: Code: {e.faultCode}, String: {e.faultString}")
-        raise Exception(f"Odoo error: {e.faultString}")
+        raise Exception(f"Error: {e.faultString}")
     except Exception as e:
-        print(f"Error creating application in Odoo: {str(e)}")
         raise
