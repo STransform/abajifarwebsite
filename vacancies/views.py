@@ -1,12 +1,11 @@
-# vacancies/views.py
 import base64
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .forms import ApplicationForm
 from .odoo_utils import fetch_odoo_jobs, create_odoo_application, get_odoo_connection
-from django.db.models import Q
 from .models import Application, Job
 from django.db import connection
 
@@ -19,7 +18,7 @@ def job_list(request):
     
     if not jobs:
         messages.warning(request, "No jobs found in Odoo. Displaying local jobs. Check Odoo configuration and server console for details.")
-        jobs = Job.objects.filter(Status='Active')
+        jobs = Job.objects.filter(Status='Active').order_by('-created_at')  # Sort by created_at descending
         if search:
             jobs = jobs.filter(Q(job_title__icontains=search) | Q(job_description__icontains=search))
         jobs = jobs.values('id', 'job_title', 'job_description', 'job_deadline', 'location', 'level')
@@ -51,7 +50,6 @@ def job_list(request):
 
 class jobs_apply(View):
     def _fetch_job(self, job_id):
-        print(f"Fetching job with ID: {job_id}")
         jobs = fetch_odoo_jobs()
         job = next((j for j in jobs if j['id'] == job_id), None)
         if not job:
@@ -71,12 +69,9 @@ class jobs_apply(View):
                     'company_id': False,
                     'department_id': False,
                 }
-                print(f"Found local job: {job}")
             except Job.DoesNotExist:
-                print(f"Job ID {job_id} not found in Odoo or local database")
                 return None
         if not job.get('id'):
-            print(f"Job object missing 'id': {job}")
             return None
         return job
 
@@ -103,27 +98,35 @@ class jobs_apply(View):
             return redirect('job_list')
 
         form = ApplicationForm(self.request.POST, self.request.FILES)
-        print(f"POST: Form data: {self.request.POST}, Files: {self.request.FILES}")
-
         if form.is_valid():
-            print(f"Form is valid. Cleaned data: {form.cleaned_data}")
+            cgpa = form.cleaned_data.get('cgpa_requirement', 0.0) or 0.0
+            cgpa_requirement = job.get('cgpa_requirement', 0.0) or 0.0
+
+            # Perform CGPA validation in Django
+            if cgpa < cgpa_requirement:
+                error_msg = f"Your CGPA ({cgpa}) does not meet the minimum requirement of {cgpa_requirement} for the position '{job['job_title']}'."
+                messages.error(self.request, error_msg)
+                return render(self.request, 'front/vacancy_apply.html', {
+                    'form': form,
+                    'job': job,
+                    'job_id': job_id,
+                    'debug': True
+                })
+
             vals = {
                 'partner_name': form.cleaned_data['partner_name'],
                 'email_from': form.cleaned_data['email_from'],
                 'partner_phone': form.cleaned_data['partner_phone'] or '',
-                'cgpa_requirement': form.cleaned_data['cgpa_requirement'] or 0.0,
+                'cgpa_requirement': cgpa,
                 'job_id': job_id,
                 'linkedin_profile': form.cleaned_data.get('linkedin_profile', ''),
                 'experience': form.cleaned_data.get('experience', 0),
             }
-            print(f"POST: Application vals: {vals}")
 
             if form.cleaned_data.get('attachment_ids'):
                 cv_file = form.cleaned_data['attachment_ids']
                 vals['cv_filename'] = cv_file.name
                 vals['cv_data'] = base64.b64encode(cv_file.read()).decode('utf-8')
-
-            print(f"POST: Job data: {job}")
 
             is_local_job = job.get('Status') == 'Active'
             company_id = None
@@ -136,13 +139,11 @@ class jobs_apply(View):
                         raise Exception(f"Job ID {job_id} does not exist or is not published in Odoo.")
                     job_data = models.execute_kw(db, uid, password, 'hr.job', 'read',
                                                 [job_id, ['name', 'company_id']])
-                    print(f"POST: Odoo job data for ID {job_id}: {job_data}")
                     if not job_data[0].get('company_id'):
                         raise Exception(f"Job ID {job_id} has no valid company_id in Odoo.")
                     company_id = job_data[0]['company_id'][0]
                     vals['company_id'] = company_id
                 except Exception as e:
-                    print(f"POST: Job validation error: {str(e)}")
                     messages.error(self.request, f"Error validating job: {str(e)}")
                     return redirect('job_list')
 
@@ -150,19 +151,16 @@ class jobs_apply(View):
                 # Log Application model fields
                 from django.db.models import Field
                 application_fields = [f.name for f in Application._meta.get_fields() if isinstance(f, Field)]
-                print(f"Application model fields: {application_fields}")
 
                 # Log database schema
                 with connection.cursor() as cursor:
                     cursor.execute("DESCRIBE vacancies_application")
                     db_columns = [row[0] for row in cursor.fetchall()]
-                    print(f"Database columns for vacancies_application: {db_columns}")
 
                 if not is_local_job:
                     create_odoo_application(vals)
 
                 # Verify Application record creation
-                print(f"Creating Application record with: {vals}")
                 application = Application.objects.create(
                     partner_name=vals['partner_name'],
                     email_from=vals['email_from'],
@@ -173,13 +171,11 @@ class jobs_apply(View):
                     attachment_ids=form.cleaned_data.get('attachment_ids'),
                     linkedin_profile=vals['linkedin_profile'],
                 )
-                print(f"Created Application record: {application}")
 
                 messages.success(self.request, "Applied Successfully.")
                 return redirect('job_list')
             except Exception as e:
-                print(f"POST: Application submission error: {str(e)}")
-                messages.error(self.request, f"Error submitting application: {str(e)}")
+                messages.error(self.request, f"Error: {str(e)}")
                 return render(self.request, 'front/vacancy_apply.html', {
                     'form': form,
                     'job': job,
@@ -187,7 +183,6 @@ class jobs_apply(View):
                     'debug': True
                 })
         else:
-            print(f"POST: Form invalid. Errors: {form.errors.as_data()}")
             messages.error(self.request, f"Invalid form data: {form.errors.as_text()}")
             return render(self.request, 'front/vacancy_apply.html', {
                 'form': form,
@@ -199,7 +194,7 @@ class jobs_apply(View):
 def application_list(request):
     search = request.GET.get('search', None)
     min_cgpa = request.GET.get('cgpa_requirement', None)
-    min_experience = request.GET.get('min_experience', None)
+    min_experience = request.GET.get('min_experience')
 
     filters = Q()
     if search:
