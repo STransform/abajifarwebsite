@@ -52,6 +52,9 @@ class Application(models.Model):
     # applicant_notes = models.TextField(blank=True, null=True)
     job_odoo_id = models.IntegerField()  # Store Odoo hr.job ID
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ('-created_at',) 
 
     def __str__(self):
         return f"{self.partner_name} - {self.job_odoo_id}"
