@@ -10,14 +10,21 @@
             <!-- Header -->
             <div class="offset-anchor" id="apply-form"></div>
             <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">
-                {% trans "Apply for vacancy" %} {{ job.job_title }}
+                {% trans "Apply for vacancy" %} {{ job.job_title|default:"Unknown Job" }}
             </h2>
             <p class="mb-4 text-center" style="color: black; font-style: italic; font-weight: bold;">
                 {% trans "Fill in the details to apply for the vacancy" %}
             </p>
 
+            <!-- Debug Output -->
+            <!-- {% if debug %}
+            <p>Debug: Job = {{ job|safe }}</p>
+            <p>Debug: Job ID = {{ job_id }}</p>
+            {% endif %} -->
+
             <!-- Form -->
-            <form id="vacancyForm" action="{% url 'jobs_apply' pk=job.id %}" method="POST" enctype="multipart/form-data">
+            {% if job_id %}
+            <form id="vacancyForm" action="{% url 'jobs_apply' pk=job_id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if messages %}
                 <div class="alert alert-danger">
@@ -43,6 +50,12 @@
                     </div>
                 </div>
             </form>
+            {% else %}
+            <div class="alert alert-danger">
+                <p>{% trans "Error: Job not found. Please select a valid job." %}</p>
+                <a href="{% url 'job_list' %}" class="btn btn-primary">{% trans "Back to Job List" %}</a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
