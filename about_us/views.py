@@ -9,7 +9,7 @@ def about(request): # Render about us page
     team_members = TeamMember.objects.all()
     context = {
         'about_data': about_data,
-        'team_members': team_members,
+        'team_members': team_members, 'about_page': True,
     }
 
     return render(request, 'front/about.html', context)
@@ -23,28 +23,61 @@ def bureau_structure(request): # Render structure page
 class ServicesPage(View): # Render service page 
     def get(self, request, **kwargs):
         services = Service.objects.all()
-        return render(request, "front/services.html", {'services':services})
+        return render(request, "front/services.html", {'services':services, 
+        'service_page': True, 'page_title': 'Our Services', 'page_subtitle': 'Delivering impactful solutions that turn your vision into reality.'})
 
 
 class TechnologyPage(View): # Render technology page 
     def get(self, request, **kwargs):
-        technology = Technology.objects.all()
-        return render(request, "front/technology.html", {'technology':technology})
+        technologies = Technology.objects.all()
+        services = []
+
+        for tech in technologies:
+            services.append({
+                "image_url": tech.image.url if tech.image else None,
+                "content": tech.content,
+                "title": tech.title
+            })
+            
+        return render(request, "front/services.html", {'services':services, 
+        'service_page': True, 'page_title': 'Tech Solutions & Services', 
+                                                       'page_subtitle': 'Empowering businesses with tailored digital strategies and tools.'})
 
 class InfrastructurePage(View): # Render infrastructure page 
     def get(self, request, **kwargs):
-        infrastructure = Infrastructure.objects.all()
-        return render(request, "front/infrastructure.html", {'infrastructure':infrastructure})
+        infrastructures = Infrastructure.objects.all()
+        services = []
+
+        for infrastructure in infrastructures:
+            services.append({
+                "image_url": infrastructure.infr_image.url if infrastructure.infr_image else None,
+                "content": infrastructure.infr_content,
+                "title": infrastructure.infr_title
+            })
+            
+        return render(request, "front/services.html", {'services':services,
+        'service_page': True, 'page_title': 'Infrastructure & Deployment', 'page_subtitle': 'Building scalable, secure, and efficient technology foundations.'})
 
 class InnovationPage(View): # Render innovation page 
     def get(self, request, **kwargs):
-        innovation = Innovation.objects.all()
-        return render(request, "front/innovation.html", {'innovation':innovation})
+        innovations = Innovation.objects.all()
+        services = []
+
+        for innovation in innovations:
+            services.append({
+                "image_url": innovation.invn_image.url if innovation.invn_image else None,
+                "content": innovation.invn_content,
+                "title": innovation.invn_title
+            })
+            
+        return render(request, "front/services.html", {'services':services,
+        'service_page': True, 'page_title': 'Consulting & Innovation', 'page_subtitle': 'Transforming ideas into impactful, future-ready solutions.'})
     
 class CompanyValuesPage(View): # Render values page 
     def get(self, request, **kwargs):
         values = CompanyValues.objects.all()
-        return render(request, "front/company_values.html", {'values':values})
+        return render(request, "front/company_values.html", {'values':values,
+        'about_page': True,})
 class VisionMissionPage(View): # Render service page 
     def get(self, request, **kwargs):
         vision_mission = VisionMission.objects.all()
@@ -75,4 +108,4 @@ class ElevatingSkillsPage(View): # Render service page
 class OurPartnersPage(View): # Render service page 
     def get(self, request, **kwargs):
         our_partners = OurPartners.objects.all()
-        return render(request, "front/our_partners.html", {'our_partners':our_partners})
+        return render(request, "front/our_partners.html", {'our_partners':our_partners, 'about_page': True,})

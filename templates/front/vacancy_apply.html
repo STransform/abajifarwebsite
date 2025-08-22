@@ -3,59 +3,124 @@
 {% block announcement %} active {% endblock %}
 {% block announcement_dynamic %} active {% endblock %}
 
+{% block css %}
+<style>
+    .row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 0 75px;
+    }
+
+    .col-md-6 {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .col-md-12 {
+        width: 100%;
+    }
+
+    .col-md-7 {
+        flex: 2;
+    }
+
+    .col-md-5 {
+        flex: 1;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-end {
+        text-align: right;
+    }
+
+    .alert {
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: var(--accent-color);
+    }
+
+    .text-danger {
+        color: var(--accent-color);
+    }
+
+    .small {
+        font-size: 0.9rem;
+    }
+
+    .mb-0 {
+        margin-bottom: 0;
+    }
+
+    .mb-5 {
+        margin-bottom: 3rem;
+    }
+
+    .me-2 {
+        margin-right: 0.5rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 576px) {
+        .application-form {
+            padding: 30px 20px;
+        }
+
+
+        .row {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .col-md-6,
+        .col-md-8,
+        .col-md-4 {
+            flex: none;
+            width: 100%;
+        }
+
+        .job-meta {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .job-title {
+            font-size: 2rem;
+        }
+
+        .text-end {
+            text-align: center;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-sm-12">
-            <!-- Header -->
-            <div class="offset-anchor" id="apply-form"></div>
-            <h2 class="font-weight-bold text-7 mt-2 mb-4 text-center">
-                {% trans "Apply for vacancy" %} {{ job.job_title|default:"Unknown Job" }}
-            </h2>
-            <p class="mb-4 text-center" style="color: black; font-style: italic; font-weight: bold;">
-                {% trans "Fill in the details to apply for the vacancy" %}
-            </p>
+<!-- HEADER -->
+{% include 'front/announcement_page/01header.html'  %}
 
-            <!-- Debug Output -->
-            <!-- {% if debug %}
-            <p>Debug: Job = {{ job|safe }}</p>
-            <p>Debug: Job ID = {{ job_id }}</p>
-            {% endif %} -->
-
-            <!-- Form -->
-            {% if job_id %}
-            <form id="vacancyForm" action="{% url 'jobs_apply' pk=job_id %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% if messages %}
-                <div class="alert alert-danger">
-                    {% for message in messages %}
-                    <p>{{ message }}</p>
-                    {% endfor %}
-                </div>
-                {% endif %}
-                <div class="row">
-                    {% for field in form %}
-                    <div class="form-group col-md-6 col-sm-12">
-                        <label class="form-label">{{ field.label }}</label>
-                        {{ field }}
-                        <div class="text-danger small">{{ field.errors }}</div>
-                    </div>
-                    {% endfor %}
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12 mb-5 text-center">
-                        <button type="submit" id="applyFormSubmit" class="btn btn-primary btn-modern" data-loading-text="Loading...">
-                            {% trans "Apply" %}
-                        </button>
-                    </div>
-                </div>
-            </form>
-            {% else %}
-            <div class="alert alert-danger">
-                <p>{% trans "Error: Job not found. Please select a valid job." %}</p>
-                <a href="{% url 'job_list' %}" class="btn btn-primary">{% trans "Back to Job List" %}</a>
+<!-- Added main container with new styling -->
+<div class="job-application-container">
+    <div class="py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-sm-12">
+                <!-- Include job description for better context -->
+                {% include 'front/announcement_page/04job_description.html'  %}
             </div>
-            {% endif %}
+
+            <div class="col-lg-5 col-sm-12">
+                {% include 'front/announcement_page/03application_form.html'  %}
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,31 @@
+{% load i18n %} {% load static %}
+
+<!-- CSS -->
+{% block css %}
+<style>
+    .widget-header {
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .widget-header h3 {
+        color: var(--primary-black);
+        font-weight: 600;
+        margin: 0;
+    }
+</style>
+
+{% endblock %}
+
+
+<div class="sidebar-widget">
+    <div class="widget-header">
+        <h3>{% trans "Twitter Feed" %}</h3>
+    </div>
+    <div class="tweets">
+        <a class="twitter-timeline" href="https://twitter.com/PMEthiopia?ref_src=twsrc%5Etfw" data-height="300">
+            {% trans "Tweets by PM Ethiopia" %}
+        </a>
+    </div>
+</div>

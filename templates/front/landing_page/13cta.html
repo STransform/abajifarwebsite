@@ -1,0 +1,67 @@
+{% load i18n %} {% load static %} {% block css %}
+<style>
+  .cta-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--primary-black) 0%, #2c2c2c 100%);
+    position: relative;
+  }
+
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-white);
+    margin-bottom: 20px;
+  }
+
+  .cta-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .cta-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+{% endblock %}
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">{% trans "Ready to Transform Your Business?" %}</h2>
+      <p class="cta-subtitle">
+        {% trans "Let's discuss how OTECH Engineering can help you achieve your
+        technology goals." %}
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="{% url 'contact_us' %}" class="btn btn-corporate-red btn-lg">
+          {% trans "Get Started" %}
+        </a>
+        <a href="{% url 'services' %}" class="btn btn-outline-light btn-lg">
+          {% trans "View Services" %}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
