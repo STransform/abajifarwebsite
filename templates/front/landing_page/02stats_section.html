@@ -1,0 +1,119 @@
+{% load i18n %} {% load static %} {% block css %}
+<style>
+  .stats-section {
+    background-color: var(--light-gray);
+    padding: 80px 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .stat-number {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--medium-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .stat-number {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+
+{% endblock %}
+
+<section class="stats-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <div class="stat-item">
+          <!-- Added data attributes for animation -->
+          <span class="stat-number" data-target="150" data-suffix="+">0+</span>
+          <span class="stat-label">{% trans "Projects Completed" %}</span>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <div class="stat-item">
+          <!-- Added data attributes for animation -->
+          <span class="stat-number" data-target="50" data-suffix="+">0+</span>
+          <span class="stat-label">{% trans "Happy Clients" %}</span>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <div class="stat-item">
+          <!-- Added data attributes for animation -->
+          <span class="stat-number" data-target="10" data-suffix="+">0+</span>
+          <span class="stat-label">{% trans "Years Experience" %}</span>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <!-- Special handling for 24/7 format -->
+          <span class="stat-number" data-target="24" data-suffix="/7">0/7</span>
+          <span class="stat-label">{% trans "Support Available" %}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Added JavaScript for count-up animation -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const statNumbers = document.querySelectorAll('.stat-number');
+
+    function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+      const suffix = element.getAttribute('data-suffix') || '';
+      const duration = 2000; // 2 seconds
+      const increment = target / (duration / 16); // 60fps
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        element.textContent = Math.floor(current) + suffix;
+      }, 16);
+    }
+
+    // Create intersection observer to trigger animation when section is visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumbers = entry.target.querySelectorAll('.stat-number');
+          statNumbers.forEach(stat => {
+            if (!stat.classList.contains('animated')) {
+              stat.classList.add('animated');
+              animateCounter(stat);
+            }
+          });
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    // Observe the stats section
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+  });
+</script>

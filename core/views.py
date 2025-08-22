@@ -50,7 +50,7 @@ def index(request):
     recent_news = NewsArticle.objects.order_by('-created_at')[:4]
     map = Settings.objects.first().map_link if Settings.objects.first() else ''
     recent_documents = Document.objects.order_by('-upload_date')[:9]
-    gallery_images = GalleryImage.objects.all()[:7]
+    gallery_images = GalleryImage.objects.all()
     faqs = FAQ.objects.all()
     about_us = DirectorateMessage.objects.first()
     featured_works = FeaturedWork.objects.all()
@@ -134,6 +134,9 @@ class GalleryImagePage(View):
         context = {
             'images':images_list,
             'categories':[cat.name for cat in GalleryCategory.objects.all()],
+            'page_title': 'GALLERY IMAGES', 
+            'page_subtitle': 'PICTURES TAKEN FROM PREVIOUS ACTIVITIES',
+        'gallery_page': True
         }
 
         return render(request, 'front/gallery.html', context)
@@ -146,7 +149,8 @@ class GalleryVideoPage(View):
         gallery_videos_list = paginate( gallery_videos, 5, self.request)
 
         categories = [cat.name for cat in GalleryCategory.objects.all()]
-        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos_list, 'categories':categories})
+        return render(self.request, 'front/videos.html', {'gallery_videos':gallery_videos_list, 'categories':categories,
+        'gallery_page': True})
 
     
 class EventListPage(View):
@@ -161,7 +165,10 @@ class EventListPage(View):
 class Contact(View):
     def get (self, *args, **kwargs):
         map = Settings.objects.first().map_link if Settings.objects.first() else ''
-        return render( self.request, 'front/contact.html', {'map':map})
+        return render( self.request, 'front/contact.html', {
+            'map':map,
+            'contact_page': True
+        })
     
     def post(self, *args, **kwargs):
         data = self.request.POST
@@ -178,4 +185,5 @@ class BidPage(View):
     def get(self, request):
         bids = Bid.objects.all()
         bids_list = paginate( bids, 5, self.request)
-        return render(request, "front/bid.html", {'bids':bids_list})
+        return render(request, "front/bid.html", {'bids':bids_list, 'page_title': 'Bids', 'page_subtitle': 'List of All Our Bids', 'bid_page': True,
+        'announcement_page': True})

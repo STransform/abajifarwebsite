@@ -1,0 +1,111 @@
+{% load i18n %} {% load static %} {% block css %}
+<style>
+  .services-section {
+    padding: 100px 0;
+    background-color: var(--primary-white);
+  }
+
+  .service-card {
+    background: var(--primary-white);
+    border: none;
+    border-radius: 0;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover .service-icon {
+    background-color: var(--primary-black);
+  }
+
+  .service-icon i {
+    font-size: 2rem;
+    color: var(--primary-white);
+  }
+
+  .service-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-black);
+    margin-bottom: 15px;
+  }
+
+  .service-description {
+    color: var(--medium-gray);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+</style>
+{% endblock %}
+
+<section class="services-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title display-4">{% trans "Our Services" %}</h2>
+        <p class="lead text-muted">
+          {% trans "Comprehensive technology solutions tailored to your business
+          needs" %}
+        </p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="service-card corporate-card">
+          <div class="service-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3 class="service-title">{% trans "Tech Solutions" %}</h3>
+          <p class="service-description">
+            {% trans "Custom software development and technology consulting
+            services to drive your business forward." %}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="service-card corporate-card">
+          <div class="service-icon">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3 class="service-title">{% trans "Infrastructure" %}</h3>
+          <p class="service-description">
+            {% trans "Robust infrastructure solutions and deployment services
+            for scalable business operations." %}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="service-card corporate-card">
+          <div class="service-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3 class="service-title">{% trans "Innovation" %}</h3>
+          <p class="service-description">
+            {% trans "Strategic consulting and innovative solutions to keep your
+            business ahead of the competition." %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

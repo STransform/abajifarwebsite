@@ -10,7 +10,7 @@ from .models import Application, Job
 from django.db import connection
 
 def job_list(request):
-    search = request.GET.get('search', None)
+    search = request.GET.get('search', "")
     page_number = request.GET.get('page', 1)
     offset = (page_number - 1) * 12
     
@@ -45,7 +45,10 @@ def job_list(request):
     return render(request, 'front/vacancy.html', {
         'jobs': page_obj.object_list,
         'page_obj': page_obj,
-        'search': search
+        'search': search,
+        'page_title': 'Vacancies',
+        'page_subtitle': 'Explore Our Current Job Openings',
+        'announcement_page': True
     })
 
 class jobs_apply(View):
@@ -70,24 +73,16 @@ class jobs_apply(View):
                     'department_id': False,
                 }
             except Job.DoesNotExist:
-                return None
-        if not job.get('id'):
-            return None
-        return job
-
-    def get(self, *args, **kwargs):
-        job_id = self.kwargs['pk']
-        job = self._fetch_job(job_id)
-        if not job:
-            messages.error(self.request, "Job not found.")
-            return redirect('job_list')
-
+                messages.error(self.request, "Job not found.")
+                return redirect('job_list')
+        else:
+            job['Status'] = job.get('Status', 'Active' if job.get('is_published', True) else 'Closed')
+        
         form = ApplicationForm()
-        return render(self.request, 'front/vacancy_apply.html', {
-            'form': form,
-            'job': job,
-            'job_id': job_id,
-            'debug': True
+        return render(self.request, 'front/vacancy_apply.html', {'form': form, 
+                                                                 'job': job, 'page_title': 'Apply for Vacancy', 
+                                                                 'page_subtitle': 'Fill in the details to apply for the vacancy',
+                                                                'announcement_page': True
         })
 
     def post(self, *args, **kwargs):

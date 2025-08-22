@@ -1,0 +1,207 @@
+{% load i18n %} {% load static %}
+<!-- CSS -->
+{% block css %}
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, var(--primary-black) 0%, #2c2c2c 100%);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-title {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-white);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-carousel-item {
+    min-height: 80vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .hero-carousel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .carousel-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-white);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    width: 100%;
+  }
+
+  .carousel-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 5%;
+    opacity: 0.8;
+  }
+
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    opacity: 1;
+  }
+
+  .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: var(--accent-color);
+    border: 2px solid var(--primary-white);
+  }
+
+  @media (max-width: 768px) {
+    .carousel-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+{% endblock %}
+
+<!-- Hero Carousel  -->
+{% if featured_works %}
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-indicators">
+    {% for work in featured_works %}
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {%
+      if
+      forloop.first
+      %} class="active" aria-current="true" {%
+      endif
+      %} aria-label="Slide {{ forloop.counter }}"></button>
+    {% endfor %}
+  </div>
+
+  <div class="carousel-inner">
+    {% for work in featured_works %}
+    <div class="carousel-item hero-carousel-item {% if forloop.first %}active{% endif %}"
+      style="background-image: url('{{ work.background_image.url }}');">
+      <div class="carousel-caption">
+        <div class="container">
+          <h1 class="carousel-title">
+            {{ work.title}}
+          </h1>
+          <p class="carousel-subtitle">
+            {{ work.description|truncatechars:150 }}
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="{% url 'services' %}" class="btn btn-corporate-red btn-lg">
+              {% trans "Our Services" %}
+            </a>
+            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">
+              {% trans "Learn More" %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% else %}
+<!-- Fallback hero section if no featured works -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            {% trans "Engineering Excellence" %}<br />
+            <span class="text-corporate-red">{% trans "For Tomorrow" %}</span>
+          </h1>
+          <p class="hero-subtitle">
+            {% trans "OTECH Engineering pioneers innovative solutions that
+            transform industries and shape the future of technology." %}
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="{% url 'services' %}" class="btn btn-corporate-red btn-lg">
+              {% trans "Our Services" %}
+            </a>
+            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">
+              {% trans "Learn More" %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

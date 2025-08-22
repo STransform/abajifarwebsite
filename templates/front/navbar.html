@@ -1,0 +1,404 @@
+{% load i18n %} {% load static %}
+
+<!-- CSS -->
+{% block css %}
+{% endblock %}
+
+<!-- Navigation Bar -->
+<header id="header" style="max-height: 65px; height:65px;" class="header-effect-shrink"
+    data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
+    <div id="top-header" class="header-body header-body-bottom-border border-top-0"
+        style="position:relative!important; top:0;">
+        <div class="header-top header-top-bottom-containered-border" style="background-color: #040720;">
+            <div class="container">
+                <div class="header-row">
+                    <div class="header-column justify-content-start">
+                        <div class="header-row">
+                            <span class="text-light">
+                                {% if stg.title %} {{stg.title}}
+                                {% else %}{% trans "OTECH Engineering" %}{% endif %}
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="header-column justify-content-end ">
+
+                        <div class="header-row">
+                            <nav class="header-nav-top">
+                                <ul class="nav nav-pills mx-2">
+                                    {% if stg.phone1 %}
+                                    <li class="nav-item nav-item-anim-icon d-none d-lg-block">
+                                        <a class="nav-link ps-0" href="tel:{{stg.phone1}}"><i class="fa fa-phone"></i>
+                                            {{stg.phone1}}
+                                        </a>
+                                    </li>
+                                    {% else %}
+                                    <li class="nav-item nav-item-anim-icon d-none d-lg-block">
+                                        <a class="nav-link ps-0" href="tel:+09-03-001000"><i class="fa fa-phone"></i>
+                                            +09-03-001000</a>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if stg.email %}
+                                    <li class="nav-item nav-item-anim-icon d-none d-lg-block">
+                                        <a class="nav-link" href="mailto:{{stg.email}}"><i
+                                                class="fa fa-envelope"></i>Email:{{stg.email}}</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="nav-item nav-item-anim-icon d-none d-lg-block">
+                                        <a class="nav-link" href="mailto:OEST@otech.et"><i
+                                                class="fa fa-envelope"></i>Email: OEST@otech.et</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                <ul
+                                    class="header-social-icons social-icons social-icons-clean social-icons-medium position-relative right-7 d-none d-md-block ms-0">
+                                    {% if stg.instagram %}
+                                    <li class="social-icons-instagram"><a href="{{stg.instagram}}" target="_blank"
+                                            title="Instagram"><i class="fab fa-instagram  "
+                                                style="color: white;"></i></a>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if stg.twitter %}
+                                    <li class="social-icons-twitter"><a href="{{stg.twitter}}" target="_blank"
+                                            title="Twitter"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if stg.facebook %}
+                                    <li class="social-icons-facebook"><a href="{{stg.facebook}}" target="_blank"
+                                            title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    {% endif %}
+
+                                    {% if stg.youtube %}
+                                    <li class="social-icons-youtube"><a href="{{stg.youtube}}" target="_blank"
+                                            title="Youtube"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-container container">
+            <div class="header-row">
+                <div class="header-column">
+                    <div class="header-row">
+                        <div class="header-logo">
+                            {% if stg.logo %}
+                            <a href="{% url 'index' %}">
+                                <img src="{{stg.logo.url}}" class="img-fluid" alt="Logo"
+                                    style="width: 60px; height: 60px;" />
+                            </a>
+                            {% else %}
+                            <a href="{% url 'index' %}">
+                                <img src="/static/front/imgs/logo/logo-otech.png" class="img-fluid" alt="Logo"
+                                    style="width: 75px; height: 60px;" />
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="header-column justify-content-end">
+                    <div class="header-row">
+                        <div class="header-nav header-nav-links">
+                            <div
+                                class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
+                                <nav class="collapse">
+                                    <ul class="nav nav-pills" id="mainNav">
+                                        {% if pages %}
+
+                                        <li><a class="nav-link {% block home_dynamic %} {% endblock %} {% if index %} active {% endif %}"
+                                                href="{% url 'index' %}">
+                                                {% trans "Home" %}
+                                            </a></li>
+
+                                        {% if pages.about %}
+                                        <li class="dropdown ">
+                                            <!--for about page that is dynamic-->
+                                            <a class="dropdown-item dropdown-toggle {% block about_dynamic %} {% endblock %} {% if about_page %} active {% endif %}"
+                                                href="#">
+                                                {% trans "About" %}
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                {% if pages.about %}
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'about' %}">{% trans "About Us" %}</a></li>
+                                                {% endif %}
+                                                {% if pages.structure %}
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'company_values' %}">{% trans "Company Values" %}</a>
+                                                </li>
+                                                {% endif %}
+                                                {% if pages.about %}
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'our_partners' %}">{% trans "Our Partners" %}</a>
+                                                </li>
+                                                {% endif %}
+
+
+                                            </ul>
+                                        </li>
+
+                                        {% endif %}
+                                        <!--for services page that is dynamic-->
+                                        {% if pages.services %}
+                                        <li class="dropdown ">
+                                            <a class="dropdown-item dropdown-toggle {% block services_dynamic %} {% endblock %} {% if service_page %} active {% endif %}"
+                                                href="{% url 'services' %}">{% trans "Services" %}</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'technology' %}">{% trans "Tech Solutions & Services " %}</a>
+                                                </li>
+
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'infrastructure' %}">{% trans "Infrastructure and Deployment" %}</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'innovation' %}">{% trans "Consulting and Innovation" %}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        {% endif %}
+
+
+
+                                        {% if pages.vacancy or pages.events or pages.bid %}
+                                        <li class="dropdown ">
+                                            <!--for announcement page that is dynamic-->
+                                            <a class="dropdown-item dropdown-toggle {% block announcement_dynamic %} {% endblock %} {% if announcement_page %} active {% endif %}"
+                                                href="#">
+                                                {% trans "Announcements" %}</a>
+                                            <ul class="dropdown-menu">
+                                                {% if pages.bid %}
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'bid' %}">{% trans "Bids" %}</a></li>
+                                                {% endif %}
+                                                <!--
+                                                        {% if pages.events %}
+                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">{% trans "Events" %}</a></li>
+                                                        {% endif %}
+                                                        -->
+                                                {% if pages.vacancy %}
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
+                                                {% endif %}
+                                            </ul>
+                                        </li>
+                                        {% endif %}
+
+                                        <!-- news -->
+                                        {% if pages.blogs %}
+                                        <li><a class="nav-link {% block blogs_dynamic %} {% endblock %} {% if blog_page %} active {% endif %}"
+                                                href="{% url 'blog_list' %}">{% trans "Blogs" %}</a></li>
+
+                                        {% endif %}
+
+
+                                        {% if pages.gallery %}
+                                        <li class="dropdown ">
+                                            <a class="dropdown-item dropdown-toggle {% block gallery_dynamic %} {% endblock %} {% if gallery_page %} active {% endif %}"
+                                                href="#">{% trans "Gallery" %}</a>
+                                            <ul class="dropdown-menu">
+                                                <!--For gallery page that is dynamic-->
+                                                <li><a class="dropdown-item {% block gallery_page_dynamic %} {% endblock %}"
+                                                        href="{% url 'gallery_images' %}">{% trans "Images" %}</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'gallery_videos' %}">{% trans "Videos" %}</a></li>
+                                            </ul>
+                                        </li>
+                                        {% endif %}
+
+                                        {% if pages.contact_us %}
+                                        <li><a class="nav-link {% block contact_us_dynamic %} {% endblock %} {% if contact_page %} active {% endif %}"
+                                                href="{% url 'contact_us' %}">
+                                                {% trans "Contact Us" %}
+                                            </a></li>
+                                        {% endif %}
+
+
+                                        {% else %}
+
+                                        <li><a class="nav-link {% block home %} {% endblock %} {% if index %} active {% endif %}"
+                                                href="{% url 'index' %}">{% trans "Home" %}</a></li>
+
+                                        <li>
+                                        <li class="dropdown ">
+                                            <!--for about page that is dynamic-->
+                                            <a class="dropdown-item dropdown-toggle {% block about %} {% endblock %} {% if about_page %} active {% endif %}"
+                                                href="#">
+                                                {% trans "About Us" %}
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{% url 'about' %}">{% trans "About Us" %}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{% url 'company_values' %}">{% trans "Company Values" %}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{% url 'our_partners' %}">{% trans "Our Partners" %}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown ">
+                                            <a class="dropdown-item dropdown-toggle {% block services %} {% endblock %} {% if service_page %} active {% endif %}"
+                                                href="{% url 'services' %}">{% trans "Services" %}</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'technology' %}">{% trans "Tech Solutions & Services " %}</a>
+                                                </li>
+
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'infrastructure' %}">{% trans "Infrastructure and Deployment" %}</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'innovation' %}">{% trans "Consulting and Innovation" %}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="dropdown ">
+                                            <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %} {% if announcement_page %} active {% endif %}"
+                                                href="#">{% trans "Announcements" %}</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'bid' %}">{% trans "Bids" %}</a></li>
+                                                <!--  <li><a class="dropdown-item" href="{% url 'events_list' %}">{% trans "Events" %}</a></li> -->
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
+
+                                            </ul>
+                                        </li>
+                                        <li><a class="nav-link {% block Blogs %} {% endblock %} {% if blog_page %} active {% endif %}"
+                                                href="{% url 'blog_list' %}">{% trans "Blogs" %}</a>
+                                        </li>
+
+                                        <li class="dropdown ">
+                                            <a class="dropdown-item dropdown-toggle {% block gallery %} {% endblock %} {% if gallery_page %} active {% endif %}"
+                                                href="#">{% trans "Gallery" %}</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item {% block gallery_page %} {% endblock %}"
+                                                        href="{% url 'gallery_images' %}">{% trans "Images" %}</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="{% url 'gallery_images' %}">{% trans "Videos" %}</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="nav-link {% block contact_us %} {% endblock %} {% if contact_page %} active {% endif %}"
+                                                href="{% url 'contact_us' %}">{% trans "Contact Us" %}</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <div class="header-nav-features " style="margin-left: 0;margin-right:2px;">
+                            <div class="header-nav-feature header-nav-features-search d-inline-flex ">
+                                <a href="#" class="header-nav-features-toggle text-decoration-none"
+                                    data-focus="headerSearch" aria-label="Search"><i
+                                        class="fas fa-search header-nav-top-icon"></i></a>
+                                <div class="header-nav-features-dropdown" id="headerTopSearchDropdown">
+                                    <form role="search" action="{% url 'search' %}" method="get">
+                                        <div class="simple-search input-group">
+                                            <input class="form-control text-1" id="headerSearch" name="searched_item"
+                                                type="search" value="" placeholder="Search...">
+                                            <button class="btn" type="submit" aria-label="Search">
+                                                <i class="fas fa-search header-nav-top-icon"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="id_lang_selector_form" class="mt-3" action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                            <select name="language" onchange="change_lang(this)"
+                                class="ml-2 btn btn-sm btn-rounded btn-outline-light"
+                                style="margin-left:4px;color: black;">
+                                {% get_current_language as CURRENT_LANGUAGE %}
+                                {% get_available_languages as AVAILABLE_LANGUAGES %}
+                                {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+                                {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == CURRENT_LANGUAGE %}
+                                    selected{% endif %} style="background-color: black;color: white;">
+                                    {{ language.name_local }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+
+                        </form>
+                        {% if user.is_authenticated and user.is_staff and user.is_active %}
+                        <a class="btn btn-sm btn-rounded ml-2 btn-primary mx-2 " href="{% url 'admin_dashboard' %}">
+                            <span style="color: white;" class="mr-2">Dashboard</span>
+                        </a>
+                        {% endif %}
+
+                        <button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"
+                            data-bs-target=".header-nav-main nav">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+{% block js %}
+<script>
+    $('.child').each(function () {
+        $(this).addClass("dropdown");
+        $(this).find("ul").addClass("dropdown-menu")
+    });
+
+    // limit header to max-height of 65px
+    document.getElementById('header').style['max-height'] = "65px;";
+    // update style of top-header
+    document.getElementById('top-header').style['position'] = "relative!important";
+
+    // Function to change language 
+    function change_lang(s) {
+        document.querySelector("#id_lang_selector_form").submit()
+    }
+
+    // Show dropdowns on hover effect 
+    $('.hover-active').hover(function () {
+        $('.hover-active').each(function () {
+            $(this).removeClass("active");
+            $($(this).attr("href")).removeClass("active");
+        });
+
+        $(this).addClass("active");
+        $($(this).attr("href")).addClass("active");
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var heroCarousel = document.getElementById('heroCarousel');
+        if (heroCarousel) {
+            new bootstrap.Carousel(heroCarousel, {
+                interval: 7000,
+                wrap: true,
+                keyboard: true
+            });
+        }
+    });
+</script>
+
+{% endblock %}

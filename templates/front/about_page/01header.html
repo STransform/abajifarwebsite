@@ -1,0 +1,38 @@
+{% load i18n %} {% load static %} {% block css %}
+<style>
+  .hero-about-section {
+    background: linear-gradient(135deg,
+        var(--primary-white) 0%,
+        var(--light-gray) 100%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-about-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: var(--accent-color);
+    opacity: 0.05;
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+  }
+</style>
+{% endblock %}
+
+<!-- Hero Section  -->
+<section class="hero-about-section">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-12">
+        <h1 class="about-title appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+          {% trans "About Us" %}
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>

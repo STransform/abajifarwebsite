@@ -22,7 +22,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # lists of allowed hosts
-ALLOWED_HOSTS = ['172.10.10.83', 'otech.et', 'www.otech.et','127.0.0.1','localhost']
+ALLOWED_HOSTS = [ '172.10.11.211', '192.168.0.102','172.10.10.83', 'otech.et', 'www.otech.et','127.0.0.1','localhost']
 CSRF_COOKIE_SECURE = True
 
 # Application definition

@@ -6,29 +6,31 @@
 
 <!DOCTYPE html>
 <html lang="en"
-    data-style-switcher-options="{'showBordersStyle': true, 'showLayoutStyle': false, 'showBackgroundColor': false, 'changeLogo': false, 'colorPrimary': '#00a1cd', 'colorSecondary': '#183f72', 'colorTertiary': '#0281d7', 'colorQuaternary': '#383f48', 'borderRadius': 4}">
+    data-style-switcher-options="{'showBordersStyle': true, 'showLayoutStyle': false, 'showBackgroundColor': false, 'changeLogo': false, 'colorPrimary': '#dc3545', 'colorSecondary': '#000000', 'colorTertiary': '#ffffff', 'colorQuaternary': '#f8f9fa', 'borderRadius': 4}">
+
 <head>
     <!-- Basic -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFKWP9GTGX"></script>
-    
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-BFKWP9GTGX');
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    {% if stg.title %}
-    <title>{{stg.title}}</title>
-    {% else %}
-    <title>
-        {% block title %}{% endblock %}
-        {% page_attribute "page_title" %}
-    </title>
-    {% endif %}
+    <title>{% block title %}OTECH Engineering{% endblock %}</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Keep existing static files for compatibility -->
+    <link rel="stylesheet" href="{% static 'front/vendor/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendor/animate/animate.compat.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/vendor/magnific-popup/magnific-popup.min.css' %}">
 
     <!-- Add website title to meta tags -->
     <meta name="keywords" content="{{stg.title}} Website, OTECH Engineering" />
@@ -36,474 +38,186 @@
     <meta name="author" content="OTECH Engineering">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" 
-        {% if stg.logo %} href="{{stg.logo.url}}"
-        {% else %} href="/static/front/imgs/logo/logo-otech.png" {% endif %}
-        type="image/x-icon" />
+    <link rel="shortcut icon" {% if stg.logo %} href="{{stg.logo.url}}" {% else %}
+        href="/static/front/imgs/logo/logo-otech.png" {% endif %} type="image/x-icon" />
 
-    <link   rel="apple-touch-icon" 
-            {% if stg.logo %} href="{{stg.logo.url}}"
-            {% else %} href="/static/front/imgs/logo/logo-otech.png" {% endif %}>
-
+    <link rel="apple-touch-icon" {% if stg.logo %} href="{{stg.logo.url}}" {% else %}
+        href="/static/front/imgs/logo/logo-otech.png" {% endif %}>
 
     <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-    <meta name="google-translate-customization" content="2a346d14a229c668-7e7397a8cc152430-g725eaceb7864f0fd-12"></meta>
-		
-    <!-- Web Fonts  -->
-    <!-- <link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CRoboto+Slab:300,400,700,900&amp;display=swap" rel="stylesheet" type="text/css"> -->
+    <meta name="google-translate-customization" content="2a346d14a229c668-7e7397a8cc152430-g725eaceb7864f0fd-12">
+    </meta>
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="{% static 'front/vendor/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'front/vendor/fontawesome-free/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'front/vendor/animate/animate.compat.css' %}">
     <link rel="stylesheet" href="{% static 'front/vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
     <link rel="stylesheet" href="{% static 'front/vendor/owl.carousel/assets/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'front/vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'front/vendor/magnific-popup/magnific-popup.min.css' %}">
-    
+
+    <!-- Added comprehensive corporate styling with 60-30-10 color scheme -->
+    <style>
+        :root {
+            --primary-white: #ffffff;
+            --primary-black: #000000;
+            --accent-color: #ed242a;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6c757d;
+            --dark-gray: #343a40;
+            --green-color: #28a745;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.6;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-corporate-dark {
+            background-color: var(--primary-black) !important;
+        }
+
+        .bg-corporate-light {
+            background-color: var(--light-gray) !important;
+        }
+
+        .text-corporate-red {
+            color: var(--accent-color) !important;
+        }
+
+        .btn-corporate-red {
+            background-color: var(--accent-color);
+            color: var(--primary-white);
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-corporate-red:hover {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-outline-corporate-red {
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            background: transparent;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline-corporate-red:hover {
+            background: var(--accent-color);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 20, 43, 0.3);
+        }
+
+        .corporate-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .corporate-card {
+            border: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .corporate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            margin: 60px auto;
+            width: 100px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--primary-black);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{% static 'front/css/theme.css' %}">
     <link rel="stylesheet" href="{% static 'front/css/theme-elements.css' %}">
     <link rel="stylesheet" href="{% static 'front/css/theme-blog.css' %}">
     <link rel="stylesheet" href="{% static 'front/css/theme-shop.css' %}">
 
-    <link id="skinCSS" rel="stylesheet" href="{% static 'front/css/skins/mofed.css' %}">
+    <!-- Demo CSS -->
+    <link rel="stylesheet" href="{% static 'front/css/demos/demo-business-consulting-3.css' %}">
+
+    <!-- Skin CSS -->
+    <link id="skinCSS" rel="stylesheet" href="{% static 'front/css/skins/skin-business-consulting-3.css' %}">
 
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{% static 'front/css/custom.css' %}">
 
-    <style>
-        .cms_block{
-            padding: 7rem 3rem;
-        }
-        @media(max-width:500px){
-            .cms_block{
-                padding: 5rem 1rem;
-            }
-        }
-        .footer-title {
-            border-bottom: 2px solid #fff;
-            width: 9%;
-        }
-        div.cms .cms-toolbar-item-logo a:before{
-            content:none !important;
-            font-size: medium;
-            font-weight: 600;
-        }
-    </style>
-    {% if stg.main_color %}
-    <style> :root {
-            --primary: {{stg.main_color}};
-            --primary-inverse: {{stg.main_reverse_color}};
-            --grey: {{stg.grey}};
-            --grey-800: {{stg.grey}};
-        }
-    </style>
-    
-    {% endif %}
-   
-
-    {% render_block "css" %}
-    {% block css %}  {% endblock %}
-    <style>
-        .dropdown-menu {
-            background-color: black !important ; /* Set submenu background color to black */
-        }
-    
-        .dropdown-menu li a {
-            color: white !important; /* Set text color of submenu items to white */
-        }
-    
-        .dropdown-menu li a:hover {
-            color: red !important; /* Change text color to red on hover */
-        }
-        .nav-link i {
-    transition: color 0.3s;
-}
-/* for social icons on the top of the page*/
-.nav-link:hover i {
-    color: red;
-}
-
-/* For social media icons */
-.header-social-icons .social-icons a i {
-    transition: color 0.3s;
-}
-
-.header-social-icons .social-icons-facebook a:hover i {
-    color: red;
-}
-.header-social-icons .social-icons-twitter a:hover i{
-    color: red;
-}
-        
-    </style>
+    {% block css %}{% endblock %}
 
 </head>
 
-<body>
+<body data-plugin-page-transition>
+    <!-- Added loading animation include at the very beginning of body -->
+    {% include 'front/loading_animation.html' %}
 
     <div class="body">
-        {% if messages %}
-        <div  class="col-12  justify-content-end mt-5 msg-alert" style="z-index: 1100; position: absolute; right:1rem;top:3rem;">
-           
-            {% for m in messages %}
-             
-                <div id="message" class="float-end col-md-7 col-sm-12 col-xsm-12 alert  alert-{{m.tags}} alert-dismissible" role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>
-                        {% if m.tags == 'success' %}<i class="far fa-thumbs-up"></i> {% trans "Success" %}!
-                        {% elif m.tags == 'warning' %}<i class="far fa-thumbs-down"></i> {% trans "Warning" %}!
-                        {% else %} <i class="fas fa-exclamation-triangle"></i> {% trans "Error" %}! {% endif %}
-                    </strong> {{m}}
-                </div> 
-            {% endfor %}
-            
-        </div>
-    {% endif %}
-    
-    {% cms_toolbar %} 
-    
-    {% render_block "js" %} 
-        <header id="header" style="max-height: 65px; height:65px;" class="header-effect-shrink" 
-            data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 85}">
-            <div id="top-header" class="header-body header-body-bottom-border border-top-0" 
-                style="position:relative!important; top:0;">
-                <div class="header-top header-top-bottom-containered-border" style="background-color: #040720;">
-                    <div class="container">
-                        <div class="header-row">
-                            <div class="header-column justify-content-start">
-                                <div class="header-row">
-                                    <span class="text-light">
-                                        {% if stg.title %} {{stg.title}}
-                                        {% else %}{% trans "OTECH Engineering" %}{% endif %}
-                                    </span>
+        <!-- Navigation Bar -->
+        {% include  'front/navbar.html'  %}
 
-                                </div>
-                            </div>
-                            <div class="header-column justify-content-end ">
-
-                                <div class="header-row">
-                                    <nav class="header-nav-top">
-                                        <ul class="nav nav-pills " >
-                                            {% if stg.phone1 %}
-                                            <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link ps-0" href="tel:{{stg.phone1}}"><i
-                                                        class="fa fa-phone"></i> {{stg.phone1}}
-                                                </a>
-                                            </li>
-                                            {% else %}
-                                            <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link ps-0" href="tel:+09-03-001000"><i
-                                                        class="fa fa-phone"></i> +09-03-001000</a>
-                                            </li>
-                                            {% endif %}
-
-                                            {% if stg.email %}
-                                            <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link" href="mailto:{{stg.email}}"><i
-                                                        class="fa fa-envelope"></i>Email:{{stg.email}}</a>
-                                            </li>
-                                            {% else %}
-                                            <li class="nav-item nav-item-anim-icon d-none d-lg-block">
-                                                <a class="nav-link" href="mailto:OEST@otech.et"><i
-                                                        class="fa fa-envelope"></i>Email: OEST@otech.et</a>
-                                            </li>
-                                            {% endif %}
-                                        </ul>
-                                        <ul
-                                            class="header-social-icons social-icons social-icons-clean social-icons-medium position-relative right-7 d-none d-md-block ms-0">
-                                            {% if stg.instagram %}
-                                            <li class="social-icons-instagram"><a href="{{stg.instagram}}"
-                                                    target="_blank" title="Instagram"><i class="fab fa-instagram  "
-                                                        style="color: white;"></i></a>
-                                                    </li>
-                                            
-                                            {% endif %}
-
-                                            {% if stg.twitter %}
-                                            <li class="social-icons-twitter"><a href="{{stg.twitter}}"
-                                                    target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            {% else %}
-                                            <li class="social-icons-twitter"><a href="http://www.twitter.com/"
-                                                target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            {% endif %}
-
-                                            {% if stg.facebook %}
-                                            <li class="social-icons-facebook"><a href="{{stg.facebook}}"
-                                                    target="_blank" title="Facebook"><i
-                                                        class="fab fa-facebook-f"></i></a></li>
-                                            {% else %} 
-                                            <li class="social-icons-facebook"><a href="http://www.facebook.com/"
-                                                target="_blank" title="Facebook"><i
-                                                    class="fab fa-facebook-f"></i></a></li>
-
-                                            {% endif %}
-
-                                            {% if stg.youtube %}
-                                            <li class="social-icons-youtube"><a href="{{stg.youtube}}"
-                                                target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
-                                            </li>
-                                            {% else %}
-                                            <li class="social-icons-youtube"><a href="https://youtube.com"
-                                                    target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
-                                            </li>
-                                            {% endif %}
-
-                                        </ul>
-                                    </nav>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-             
-                <div class="header-container container">
-                    <div class="header-row">
-                        <div class="header-column">
-                            <div class="header-row">
-                                <div class="header-logo">
-                                    {% if stg.logo %}
-                                    <a href="{% url 'index' %}">
-                                        <img src="{{stg.logo.url}}" class="img-fluid"  alt="Logo" style="width: 85px; height: 50px;" />
-                                    </a>
-                                    {% else %} 
-                                    <a href="{% url 'index' %}">
-                                        <img src="/static/front/imgs/logo/logo-otech.png" class="img-fluid"  alt="Logo" style="width: 75px; height: 60px;" />
-                                    </a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="header-column justify-content-end">
-                            <div class="header-row">
-                                <div class="header-nav header-nav-links">
-                                    <div class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
-                                        <nav class="collapse">
-                                            <ul class="nav nav-pills" id="mainNav">
-                                            {% if pages %}
-                                                
-                                                <li><a class="nav-link {% block home_dynamic %} {% endblock %} {% if index %} active {% endif %}" href="{% url 'index' %}">
-                                                    {% trans "Home" %}
-                                                </a></li>
-                                                
-                                                {% if pages.about %}
-                                               <li class="dropdown ">
-                                                    <!--for about page that is dynamic-->
-                                                    <a class="dropdown-item dropdown-toggle {% block about_dynamic %} {% endblock %}" href="#">
-                                                       {% trans "About" %}
-                                                    </a>
-                                                    <ul class="dropdown-menu" >
-                                                        {% if pages.about %}
-                                                        <li><a class="dropdown-item" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
-                                                        {% endif %}
-                                                        {% if pages.structure %}
-                                                        <li><a class="dropdown-item" href="{% url 'company_values' %}" >{% trans "Company Values" %}</a></li>
-                                                        {% endif %}
-                                                        {% if pages.about %}
-                                                        <li><a class="dropdown-item" href="{% url 'our_partners' %}" >{% trans "Our Partners" %}</a></li>
-                                                        {% endif %}
-                                                      
-                                                
-                                                    </ul>
-                                                </li>
-                                              
-                                                {% endif %}
-                                                <!--for services page that is dynamic-->
-                                                {% if pages.services %}
-                                                <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block services_dynamic %} {% endblock %} " href="{% url 'services' %}">{% trans "Services" %}</a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'technology' %}">{% trans "Tech Solutions & Services " %}</a></li>
-                                                        
-                                                        <li><a class="dropdown-item" href="{% url 'infrastructure' %}">{% trans "Infrastructure and Deployment" %}</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'innovation' %}">{% trans "Consulting and Innovation" %}</a></li>
-                                                    </ul>
-                                                </li>
-                                                {% endif %}
-                                              
-
-                                                
-                                                {% if pages.vacancy or pages.events or pages.bid %}
-                                                <li class="dropdown ">
-                                                    <!--for announcement page that is dynamic-->
-                                                    <a class="dropdown-item dropdown-toggle {% block announcement_dynamic %} {% endblock %}" href="#">
-                                                        {% trans "Announcements" %}</a>
-                                                    <ul class="dropdown-menu">
-                                                        {% if pages.bid %}
-                                                        <li><a class="dropdown-item" href="{% url 'bid' %}">{% trans "Bids" %}</a></li>
-                                                        {% endif %}
-                                                       <!--
-                                                        {% if pages.events %}
-                                                        <li><a class="dropdown-item" href="{% url 'events_list' %}">{% trans "Events" %}</a></li>
-                                                        {% endif %}
-                                                        -->
-                                                        {% if pages.vacancy %}
-                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
-                                                        {% endif %}
-                                                        
-                                                        
-                                                    </ul>
-                                                </li>
-                                                {% endif %}
-                                                
-                                                <!-- news -->
-                                                {% if pages.blogs %}
-                                                <li><a class="nav-link {% block blogs_dynamic %} {% endblock %}" href="{% url 'blog_list' %}">{% trans "Blogs" %}</a></li>    
-                                               
-                                                {% endif %}
-                                                
-                                                
-                                                {% if pages.gallery %}
-                                                <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block gallery_dynamic %} {% endblock %}" 
-                                                    href="#">{% trans "Gallery" %}</a>
-                                                    <ul class="dropdown-menu">
-                                                        <!--For gallery page that is dynamic-->
-                                                        <li><a class="dropdown-item {% block gallery_page_dynamic %} {% endblock %}" 
-                                                            href="{% url 'gallery_images' %}" >{% trans "Images" %}</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'gallery_videos' %}">{% trans "Videos" %}</a></li>
-                                                    </ul>
-                                                </li>
-                                                {% endif %}
-
-                                                {% if pages.contact_us %}
-                                                <li><a class="nav-link {% block contact_us_dynamic %} {% endblock %}" href="{% url 'contact_us' %}">
-                                                    {% trans "Contact Us" %}
-                                                </a></li>
-                                                {% endif %}
-                                                
-                                           
-                                            {% else %}
-                                            
-                                                <li><a class="nav-link {% block home %} {% endblock %} {% if index %} active {% endif %}" href="{% url 'index' %}">{% trans "Home" %}</a></li>
-                                                
-                                                <li>
-                                                    <li class="dropdown ">
-                                                        <!--for about page that is dynamic-->
-                                                        <a class="dropdown-item dropdown-toggle {% block about %} {% endblock %}" href="#">
-                                                           {% trans "About Us" %}
-                                                        </a>
-                                                        <ul class="dropdown-menu" >
-                                                            
-                                                            <li><a class="dropdown-item" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
-                                                          
-                                                            
-                                                            <li><a class="dropdown-item" href="{% url 'company_values' %}" >{% trans "Company Values" %}</a></li>
-                                                            <li><a class="dropdown-item" href="{% url 'our_partners' %}" >{% trans "Our Partners" %}</a></li>
-                                                          
-                                                    
-                                                        </ul>
-                                                </li>
-                                              
-
-                                                <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block services %} {% endblock %} " href="{% url 'services' %}">{% trans "Services" %}</a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'technology' %}">{% trans "Tech Solutions & Services " %}</a></li>
-                                                        
-                                                        <li><a class="dropdown-item" href="{% url 'infrastructure' %}">{% trans "Infrastructure and Deployment" %}</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'innovation' %}">{% trans "Consulting and Innovation" %}</a></li>
-                                                    </ul>
-                                                </li>
-                                                
-                                               
-                                                <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block announcement %} {% endblock %}" href="#">{% trans "Announcements" %}</a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="{% url 'bid' %}">{% trans "Bids" %}</a></li>
-                                                     <!--  <li><a class="dropdown-item" href="{% url 'events_list' %}">{% trans "Events" %}</a></li> --> 
-                                                        <li><a class="dropdown-item" href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
-                                                        
-                                                    </ul>
-                                                </li>
-                                                <li><a class="nav-link {% block Blogs %} {% endblock %}" href="{% url 'blog_list' %}">{% trans "Blogs" %}</a></li>                  
-                                                
-
-                                                
-                                                <li class="dropdown ">
-                                                    <a class="dropdown-item dropdown-toggle {% block gallery %} {% endblock %}" href="#">{% trans "Gallery" %}</a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item {% block gallery_page %} {% endblock %}" href="{% url 'gallery_images' %}" >{% trans "Images" %}</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'gallery_images' %}">{% trans "Videos" %}</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a class="nav-link {% block contact_us %} {% endblock %}" href="{% url 'contact_us' %}">{% trans "Contact Us" %}</a></li>
-                                                
-                                            
-                                            {% endif %}
-
-                                            {% show_menu 0 100 100 100 %}
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                                
-                                <div class="header-nav-features " style="margin-left: 0;margin-right:2px;">
-                                    <div class="header-nav-feature header-nav-features-search d-inline-flex ">
-                                        <a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="Search"><i class="fas fa-search header-nav-top-icon"></i></a>
-                                        <div class="header-nav-features-dropdown" id="headerTopSearchDropdown">
-                                            <form role="search" action="{% url 'search' %}" method="get">
-                                                <div class="simple-search input-group">
-                                                    <input class="form-control text-1" id="headerSearch" name="searched_item" type="search" value="" placeholder="Search...">
-                                                    <button class="btn" type="submit" aria-label="Search">
-                                                        <i class="fas fa-search header-nav-top-icon"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-								</div>
-                                
-                                <form  id="id_lang_selector_form" class="mt-3" action="{% url 'set_language' %}" method="post">
-                                    {% csrf_token %}
-                                    <input name="next" type="hidden" value="{{ redirect_to }}" >
-                                    <select name="language" onchange="change_lang(this)"  class="ml-2 btn btn-sm btn-rounded btn-outline-light" style="margin-left:4px;color: black;">
-                                        {% get_current_language as CURRENT_LANGUAGE %}
-                                        {% get_available_languages as AVAILABLE_LANGUAGES %}
-                                        {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
-                                        {% for language in languages %}
-                                            <option value="{{ language.code }}"{% if language.code == CURRENT_LANGUAGE %} selected{% endif %} style="background-color: black;color: white;">
-                                                {{ language.name_local }}
-                                            </option>
-                                        {% endfor %}
-                                        
-                                    </select>
-                                   
-                                </form>
-                                {% if user.is_authenticated and user.is_staff and user.is_active %}
-                                <a class="btn btn-sm btn-rounded ml-2 btn-primary mx-2 "  href="{% url 'admin_dashboard' %}">
-                                    <span style="color: white;" class="mr-2">Dashboard</span>
-                                </a>
-                                {% endif %}
-                                     
-                                <button class="btn header-btn-collapse-nav"  data-bs-toggle="collapse"
-                                    data-bs-target=".header-nav-main nav">
-                                    <i class="fas fa-bars"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-         <!-- include 'front/header.html'  -->
-
-       
-        <div role="main" class="main "  >
+        <div role="main" class="main ">
             <!-- Main Content area to be used by Django templates -->
-            {% block content %} 
+            {% block content %}
             {% endblock %}
 
             <!-- Extra space to extend django template pages using cms -->
-            {% block cms_extended_content %} 
+            {% block cms_extended_content %}
             {% endblock %}
-            
+
         </div>
 
         <!-- Add footer  -->
@@ -511,48 +225,25 @@
 
     </div>
 
-   
+
     <!-- Vendor -->
     <script src="{% static 'front/vendor/plugins/js/plugins.min.js' %}"></script>
-    <script>    
-    $('.child').each(function(){
-            $(this).addClass("dropdown");
-            $(this).find("ul").addClass("dropdown-menu")
-        });
 
-        // limit header to max-height of 65px
-        document.getElementById('header').style['max-height'] = "65px;";
-        // update style of top-header
-        document.getElementById('top-header').style['position'] = "relative!important";
-        
-        // Function to change language 
-        function change_lang(s){
-            document.querySelector("#id_lang_selector_form").submit()            
-        }
-
-        // Show dropdowns on hover effect 
-        $('.hover-active').hover(function() { 
-            $('.hover-active').each(function(){
-                $(this).removeClass("active");
-                $($(this).attr("href")).removeClass("active");
-            });
-
-            $(this).addClass("active");
-            $($(this).attr("href")).addClass("active");    
-        });
-
-    </script>
 
     <!-- Theme Base, Components and Settings -->
     <script src="{% static 'front/js/theme.js' %}"></script>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+
     <!-- Current Page Vendor and Views -->
     <script src="{% static 'front/js/views/view.contact.js' %}"></script>
-    
+
     <!-- Theme Initialization Files -->
     <script src="{% static 'front/js/theme.init.js' %}"></script>
 
-   {% block js %}{% endblock %}
+    {% block js %}{% endblock %}
 
 </body>
 

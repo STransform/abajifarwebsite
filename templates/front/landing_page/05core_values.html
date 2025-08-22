@@ -1,0 +1,60 @@
+{% load i18n %} {% load static %} {% block css %}
+<style>
+  .values-section {
+    padding: 100px 0;
+    background-color: var(--primary-white);
+  }
+
+  .value-card {
+    background: var(--primary-white);
+    border: 1px solid #e9ecef;
+    border-radius: 0;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(220, 53, 69, 0.1);
+  }
+
+  .value-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+
+  .value-description {
+    color: var(--medium-gray);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+</style>
+{% endblock %} {% if company_values %}
+<section class="values-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title display-4">{% trans "Our Core Values" %}</h2>
+        <p class="lead text-muted">
+          {% trans "The principles that guide everything we do" %}
+        </p>
+      </div>
+    </div>
+    <div class="row g-4">
+      {% for company in company_values %}
+      <div class="col-lg-4 col-md-6">
+        <div class="value-card corporate-card">
+          <h4 class="value-title">{{ company.title }}</h4>
+          <p class="value-description">{{ company.content }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

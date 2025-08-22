@@ -1,0 +1,87 @@
+{% load i18n %} {% load static %} {% block css %}
+<style>
+  .faq-section {
+    padding: 100px 0;
+    background-color: var(--light-gray);
+  }
+
+  .accordion-item {
+    border: none;
+    border-radius: 0;
+    margin-bottom: 15px;
+  }
+
+  .accordion-item:focus {
+    outline: none;
+  }
+
+  .accordion-button {
+    background-color: var(--primary-white);
+    border: 1px solid #e9ecef;
+    color: var(--primary-black);
+    font-weight: 600;
+  }
+
+  .accordion-button:hover {
+    background-color: var(--light-gray);
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: var(--accent-color);
+    color: var(--primary-white);
+  }
+
+  .accordion-body {
+    background-color: var(--light-gray);
+    padding: 20px;
+    border: none;
+    border-radius: 0;
+  }
+</style>
+
+{% endblock %} {% if faqs %}
+<section class="faq-section bg-corporate-light">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title display-4 text-corporate-red">
+          {% trans "FAQs" %}
+        </h2>
+        <p class="lead text-muted">
+          {% trans "OUR ANSWERS FOR THE MOST QUESTIONS WE GET" %}
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="faqAccordion">
+          {% for faq in faqs %}
+          <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse{{ forloop.counter }}"
+                aria-expanded="false"
+                aria-controls="collapse{{ forloop.counter }}"
+              >
+                {{ faq.question }}
+              </button>
+            </h2>
+            <div
+              id="collapse{{ forloop.counter }}"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading{{ forloop.counter }}"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">{{ faq.answer }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
