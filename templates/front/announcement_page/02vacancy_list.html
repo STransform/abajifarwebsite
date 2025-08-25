@@ -259,6 +259,7 @@
 
 <div class="main-container">
     <!-- Filter Sidebar -->
+    {% if jobs %}
     <div class="filter-sidebar">
         <h4 class="filter-title">{% trans "Filter Jobs" %}</h4>
 
@@ -306,6 +307,7 @@
 
         <button class="btn-outline-corporate-red" onclick="clearAllFilters()">{% trans "Clear All Filters" %}</button>
     </div>
+    {% endif %}
 
     <!-- Job Listings -->
     <div class="job-listings-container">
