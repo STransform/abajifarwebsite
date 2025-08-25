@@ -13417,13 +13417,6 @@ body.page-transition-active {
     z-index: 1
 }
 
-.readmore-rendered .readmore-button-wrapper {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2
-}
 
 .style-switcher-open-loader {
     color: var(--light) !important;
@@ -16960,7 +16953,8 @@ html.boxed .slider-container {
     font-size: 12.8px;
     font-size: .8rem
 }
-.header-nav-top .social-icons li a{
+
+.header-nav-top .social-icons li a {
     color: var(--light) !important;
 }
 
@@ -17484,7 +17478,8 @@ html.gecko .sort-destination.sort-destination-margin>[class*=col-] {
     border-bottom-color: var(--primary) !important;
     color: var(--primary) !important
 }
-.sort-source li.nav-item{
+
+.sort-source li.nav-item {
     border: 1px solid #999;
     padding: .1rem 1rem;
     border-radius: 10px;
@@ -18388,12 +18383,15 @@ html.dark body .tabs .nav-tabs .nav-link:hover,
 html.dark body .tabs .nav-tabs .nav-link .active {
     color: var(--primary)
 }
-.nav-link .header-tabs .active{
+
+.nav-link .header-tabs .active {
     color: var(--light) !important;
-} 
+}
+
 html.dark body .tabs .header-tabs .nav-tabs .nav-link .active {
     color: var(--light)
 }
+
 html body .tabs .nav-tabs .nav-link:hover,
 html body .tabs .nav-tabs .nav-link:focus,
 html body .tabs .nav-tabs .nav-link.active,

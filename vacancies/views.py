@@ -89,6 +89,10 @@ class jobs_apply(View):
              'page_subtitle': 'Fill in the details to apply for the vacancy',
              'announcement_page': True
         })
+    
+    def get(self, request, *args, **kwargs):
+        job_id = self.kwargs['pk']
+        return self._fetch_job(job_id)
 
     def post(self, *args, **kwargs):
         job_id = self.kwargs['pk']

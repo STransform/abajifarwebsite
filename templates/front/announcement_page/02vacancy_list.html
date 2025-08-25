@@ -75,22 +75,6 @@
         flex: 1;
     }
 
-    .clear-filters {
-        background: var(--medium-gray);
-        color: var(--primary-white);
-        border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
-        font-size: 0.8rem;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-        width: 100%;
-    }
-
-    .clear-filters:hover {
-        background: var(--dark-gray);
-    }
-
     .job-listings-container {
         flex: 1;
         min-width: 0;
@@ -351,33 +335,34 @@
                     </div>
                 </div>
 
+
+                <div class="vacancy-description-section">
+                    <div class="vacancy-description-content" data-plugin-readmore="" data-plugin-options="{
+                                'buttonOpenLabel': 'See More',
+                                'buttonCloseLabel': 'See Less',
+                                'align': 'end'
+                                }" style="height: 150px; overflow: hidden; max-height: none;">
+
+                        <div class="vacancy-description-text">{{ job.job_description }}</div>
+
+                        <div class="vacancy-actions readmore-button-wrapper mt-2">
+                            <a href="javascript:void(0);" class="see-more">{% trans "See More" %}</a>
+                            {% if job.Status == 'Active' %}
+                            <a href="{% url 'jobs_apply' pk=job.id %}" class="btn-corporate-red">
+                                {% trans "Apply Now" %}
+                            </a>
+                            {% else %}
+                            <button class="btn-corporate-red" disabled>
+                                {% trans "Closed" %}
+                            </button>
+                            {% endif %}
+                        </div>;
+                    </div>
+                </div>
+                <!-- 
                 <div class="vacancy-description" id="desc-{{ job.id }}">
                     {{ job.job_description|truncatechars:300 }}
-                </div>
-
-                <div class="vacancy-actions">
-                    <div>
-                        {% if job.job_description|length > 300 %}
-                        <a href="javascript:void(0);" class="see-more" data-job-id="{{ job.id }}"
-                            data-full="{{ job.job_description|escape }}"
-                            data-short="{{ job.job_description|truncatechars:300|escape }}">
-                            {% trans "See More" %}
-                        </a>
-                        {% endif %}
-                    </div>
-
-                    <div>
-                        {% if job.Status == 'Active' %}
-                        <a href="{% url 'jobs_apply' pk=job.id %}" class="btn-corporate-red">
-                            {% trans "Apply Now" %}
-                        </a>
-                        {% else %}
-                        <button class="btn-corporate-red" disabled>
-                            {% trans "Closed" %}
-                        </button>
-                        {% endif %}
-                    </div>
-                </div>
+                </div> -->
             </div>
             {% endfor %}
         </div>
@@ -392,9 +377,11 @@
 {% block js %}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const elements = document.querySelectorAll(".vacancy-description");
 
-        elements.forEach(el => {
+        // Convert all bid description elements to plain text with structure preserved
+        const bidDescriptions = document.querySelectorAll(".vacancy-description-text");
+
+        bidDescriptions.forEach(el => {
             // Remove <br> tags if needed
             let html = el.innerHTML.replace(/<br\s*\/?>/gi, "");
 
@@ -407,42 +394,6 @@
 
             const formattedText = plainText.replace(/\n/g, '<br>');
             el.innerHTML = formattedText;
-        });
-
-        const seeMoreLinks = document.querySelectorAll('.see-more');
-
-        seeMoreLinks.forEach(link => {
-            const jobId = link.getAttribute('data-job-id');
-            const fullHTML = link.getAttribute('data-full');
-            const shortHTML = link.getAttribute('data-short');
-            const descElement = document.getElementById('desc-' + jobId);
-
-            // Convert HTML content to plain text using same approach as bid list
-            function convertToPlainText(htmlContent) {
-                const tempDiv = document.createElement("div");
-                tempDiv.innerHTML = htmlContent.replace(/<br\s*\/?>/gi, "");
-                return tempDiv.innerText.replace(/\n/g, '<br>');
-            }
-
-            // Pre-convert both full and short content to plain text with preserved formatting
-            const fullText = convertToPlainText(fullHTML);
-            const shortText = convertToPlainText(shortHTML);
-
-            // Set initial content (already converted above, but ensure consistency)
-            descElement.innerHTML = shortText;
-
-            // Add click event listener
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                if (this.textContent.trim() === '{% trans "See More" %}') {
-                    descElement.innerHTML = fullText;
-                    this.textContent = '{% trans "See Less" %}';
-                } else {
-                    descElement.innerHTML = shortText;
-                    this.textContent = '{% trans "See More" %}';
-                }
-            });
         });
 
         const vacancyItems = document.querySelectorAll('.vacancy-item');

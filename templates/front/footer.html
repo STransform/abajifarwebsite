@@ -192,9 +192,9 @@
               {% trans "OTECH Engineering" %}
             </h6>
             <p>
-              {% trans "We are a leading technology company committed to
+              We are a leading technology company committed to
               innovating and transforming businesses and governments with
-              cutting-edge solutions." %}
+              cutting-edge solutions.
             </p>
           </div>
         </div>
@@ -206,39 +206,29 @@
           <div class="contact-item">
             <i class="fas fa-map-marker-alt contact-icon"></i>
             <div class="contact-text">
-              <strong class="text-white d-block mb-1"
-                >{% trans "Address" %}</strong
-              >
+              <strong class="text-white d-block mb-1">{% trans "Address" %}</strong>
               {{ contacts.address }}
             </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-phone contact-icon"></i>
             <div class="contact-text">
-              <strong class="text-white d-block mb-1"
-                >{% trans "Phone" %}</strong
-              >
+              <strong class="text-white d-block mb-1">{% trans "Phone" %}</strong>
               <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a>
             </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-envelope contact-icon"></i>
             <div class="contact-text">
-              <strong class="text-white d-block mb-1"
-                >{% trans "Email" %}</strong
-              >
+              <strong class="text-white d-block mb-1">{% trans "Email" %}</strong>
               <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
             </div>
           </div>
           <div class="contact-item">
             <i class="fas fa-globe contact-icon"></i>
             <div class="contact-text">
-              <strong class="text-white d-block mb-1"
-                >{% trans "Website" %}</strong
-              >
-              <a href="{{ contacts.website }}" target="_blank"
-                >{{ contacts.website }}</a
-              >
+              <strong class="text-white d-block mb-1">{% trans "Website" %}</strong>
+              <a href="{{ contacts.website }}" target="_blank">{{ contacts.website }}</a>
             </div>
           </div>
           {% endfor %}
@@ -248,44 +238,20 @@
         <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
           <h5 class="footer-title">{% trans "SOCIAL" %}</h5>
           <div class="d-flex flex-wrap">
-            <a
-              href="https://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61556411611103"
-              target="_blank"
-              class="social-link"
-              title="Facebook"
-            >
+            <a href="https://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61556411611103" target="_blank" class="social-link"
+              title="Facebook">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a
-              href="https://www.youtube.com/@OTECHENGINEERING"
-              target="_blank"
-              class="social-link"
-              title="YouTube"
-            >
+            <a href="https://www.youtube.com/@OTECHENGINEERING" target="_blank" class="social-link" title="YouTube">
               <i class="fab fa-youtube"></i>
             </a>
-            <a
-              href="https://twitter.com/"
-              target="_blank"
-              class="social-link"
-              title="Twitter"
-            >
+            <a href="https://twitter.com/" target="_blank" class="social-link" title="Twitter">
               <i class="fab fa-twitter"></i>
             </a>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              class="social-link"
-              title="Instagram"
-            >
+            <a href="https://www.instagram.com/" target="_blank" class="social-link" title="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              class="social-link"
-              title="LinkedIn"
-            >
+            <a href="https://www.linkedin.com/" target="_blank" class="social-link" title="LinkedIn">
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
@@ -308,11 +274,8 @@
         <!-- Enhanced Visitor Counter with gradient background -->
         <div class="col-md-6 col-lg-2">
           <div class="visitor-counter">
-            <strong
-              data-to="{{ visitors|floatformat:1 }}"
-              data-plugin-options="{'decimals': 1}"
-              data-append="{{ visitors_round }}+"
-            >
+            <strong data-to="{{ visitors|floatformat:1 }}" data-plugin-options="{'decimals': 1}"
+              data-append="{{ visitors_round }}+">
               {{ visitors|floatformat:1 }}{{ visitors_round }}+
             </strong>
             <label>{% trans "Total visitors" %}</label>
@@ -329,19 +292,15 @@
         <div class="row align-items-center">
           <div class="col-md-6 text-center text-md-start">
             <p class="mb-0 text-white-50">
-              &copy; {% now "Y" %} {% trans "OTECH Engineering & Technology
-              Solutions" %}. {% trans "All rights reserved." %}
+              &copy; {% now "Y" %} OTECH Engineering & Technology
+              Solutions. {% trans "All rights reserved." %}
             </p>
           </div>
           <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
             <p class="mb-0">
               {% trans "Developed by" %}
-              <a
-                href="https://www.otech.et/"
-                target="_blank"
-                class="text-white fw-bold text-decoration-none developed-by"
-                style="transition: color 0.3s ease"
-              >
+              <a href="https://www.otech.et/" target="_blank"
+                class="text-white fw-bold text-decoration-none developed-by" style="transition: color 0.3s ease">
                 {% trans "OTECH Engineering & Technology Solutions" %}
               </a>
             </p>
