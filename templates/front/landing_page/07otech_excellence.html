@@ -24,28 +24,22 @@
   <div class="container">
     <div class="col-12 text-center">
       <h2 class="section-title display-4">
-        {% trans "Transforming Futures with Innovative Excellence" %}
+        Transforming Futures with Innovative Excellence
       </h2>
       <p class="lead text-muted">
-        {% trans "OTech pioneers innovation, shaping brighter futures for
-        industries and communities through cutting-edge technology solutions."
-        %}
+        OTech pioneers innovation, shaping brighter futures for
+        industries and communities through cutting-edge technology solutions.
       </p>
     </div>
     {% for excellence in otech_excellence %}
     <div class="row d-flex justify-content-stretch align-items-center g-5 mb-5">
       <div class="col-lg-6">
         <div class="">
-          <img
-            src="{{ excellence.image.url }}"
-            alt="{{ excellence.title1 }}"
-            style="
+          <img src="{{ excellence.image.url }}" alt="{{ excellence.title1 }}" style="
             height: auto;
-            width:100%
+            width:100%;
             object-fit: cover;
-            "
-            class="img-fluid"
-          />
+            " class="img-fluid" />
         </div>
       </div>
       <div class="col-lg-6">
