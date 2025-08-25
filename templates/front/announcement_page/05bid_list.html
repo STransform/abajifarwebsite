@@ -38,7 +38,7 @@
     }
 
     .bid-status-badge {
-        background: var(--accent-color);
+        background: var(--green-color);
         color: var(--primary-white);
         padding: 8px 16px;
         border-radius: 20px;
@@ -244,6 +244,7 @@
 
 
 <div class="container">
+    {% if bids %}
     <div class="row mb-2 pb-2">
         {% for bid in bids %}
         <!-- Updated card styling to match professional design -->
@@ -304,10 +305,7 @@
                             style="position: absolute; bottom: 0px; left: 0px; width: 100%; z-index: 2;">
                             <a href="#" class="bid-readmore-btn btn-corporate-red">{% trans "Read More" %} <i
                                     class="fas fa-chevron-down"></i></a>
-                        </div>
-                        <div class="readmore-overlay"
-                            style="background: linear-gradient(rgba(248, 249, 250, 0) 0%, var(--light-gray) 100%); position: absolute; bottom: 0px; left: 0px; width: 100%; height: 60px; z-index: 1;">
-                        </div>
+                        </div>;
                     </div>
                 </div>
             </div>
@@ -372,6 +370,16 @@
             </ul>
         </div>
     </div>
+    {% else %}
+    <div class="col-12">
+        <div class="text-center py-5">
+            <i class="fas fa-briefcase fa-3x text-muted mb-3"></i>
+            <h5>{% trans "No bids available at the moment" %}</h5>
+            <p class="text-muted">
+                {% trans "Please check back later or contact us directly." %}</p>
+        </div>
+    </div>
+    {% endif %}
 </div>
 
 

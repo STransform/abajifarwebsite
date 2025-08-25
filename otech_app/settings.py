@@ -172,9 +172,9 @@ WSGI_APPLICATION = 'otech_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'smndb',
+        'NAME': 'otechh',
         'USER': 'root',
-        'PASSWORD': 'Simon@1234',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '3306',
     }

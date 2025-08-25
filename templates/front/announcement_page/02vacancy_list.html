@@ -123,7 +123,6 @@
 
     .vacancy-item:hover {
         background-color: #fafbfc;
-        transform: translateY(-1px);
     }
 
     .vacancy-header {
@@ -203,7 +202,7 @@
     }
 
     .see-more {
-        color: var(--accent-color);
+        color: var(--accent-color) !important;
         text-decoration: none;
         font-size: 0.85rem;
         font-weight: 600;
@@ -212,7 +211,7 @@
     }
 
     .see-more:hover {
-        color: var(--primary-black);
+        color: var(--primary-black) !important;
         transform: translateX(2px);
     }
 
@@ -231,10 +230,6 @@
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
-    }
-
-    #vacancy-description1 {
-        display: none;
     }
 
     @media (max-width: 768px) {
@@ -325,7 +320,7 @@
             </div>
         </div>
 
-        <button class="clear-filters" onclick="clearAllFilters()">{% trans "Clear All Filters" %}</button>
+        <button class="btn-outline-corporate-red" onclick="clearAllFilters()">{% trans "Clear All Filters" %}</button>
     </div>
 
     <!-- Job Listings -->
@@ -364,8 +359,8 @@
                     <div>
                         {% if job.job_description|length > 300 %}
                         <a href="javascript:void(0);" class="see-more" data-job-id="{{ job.id }}"
-                            data-full="{{ job.job_description }}"
-                            data-short="{{ job.job_description|truncatechars:300 }}">
+                            data-full="{{ job.job_description|escape }}"
+                            data-short="{{ job.job_description|truncatechars:300|escape }}">
                             {% trans "See More" %}
                         </a>
                         {% endif %}
@@ -397,7 +392,6 @@
 {% block js %}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Convert all vacancy-description elements to plain text with structure preserved
         const elements = document.querySelectorAll(".vacancy-description");
 
         elements.forEach(el => {
@@ -411,28 +405,42 @@
             // Get structured plain text
             const plainText = tempDiv.innerText;
 
-            // Replace inner HTML with structured plain text
-            el.innerHTML = plainText;
+            const formattedText = plainText.replace(/\n/g, '<br>');
+            el.innerHTML = formattedText;
         });
 
-        // Handle "See More" links
         const seeMoreLinks = document.querySelectorAll('.see-more');
 
         seeMoreLinks.forEach(link => {
-            link.addEventListener('click', function () {
-                const jobId = this.getAttribute('data-job-id');
-                const fullHTML = this.getAttribute('data-full');
-                const shortHTML = this.getAttribute('data-short');
-                const descElement = document.getElementById('desc-' + jobId);
+            const jobId = link.getAttribute('data-job-id');
+            const fullHTML = link.getAttribute('data-full');
+            const shortHTML = link.getAttribute('data-short');
+            const descElement = document.getElementById('desc-' + jobId);
 
-                if (this.textContent.trim() === 'See More') {
-                    // Show full description
-                    descElement.innerHTML = fullHTML;
-                    this.textContent = 'See Less';
+            // Convert HTML content to plain text using same approach as bid list
+            function convertToPlainText(htmlContent) {
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = htmlContent.replace(/<br\s*\/?>/gi, "");
+                return tempDiv.innerText.replace(/\n/g, '<br>');
+            }
+
+            // Pre-convert both full and short content to plain text with preserved formatting
+            const fullText = convertToPlainText(fullHTML);
+            const shortText = convertToPlainText(shortHTML);
+
+            // Set initial content (already converted above, but ensure consistency)
+            descElement.innerHTML = shortText;
+
+            // Add click event listener
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (this.textContent.trim() === '{% trans "See More" %}') {
+                    descElement.innerHTML = fullText;
+                    this.textContent = '{% trans "See Less" %}';
                 } else {
-                    // Show short description
-                    descElement.innerHTML = shortHTML;
-                    this.textContent = 'See More';
+                    descElement.innerHTML = shortText;
+                    this.textContent = '{% trans "See More" %}';
                 }
             });
         });
@@ -504,7 +512,6 @@
         }
 
         function applyFilters() {
-            const searchTerm = searchFilter.value.toLowerCase();
             const minCgpa = parseFloat(cgpaFilter.value) || 0;
             const showActive = statusActive.checked;
             const showInactive = statusInactive.checked;
@@ -523,11 +530,6 @@
                 const status = item.getAttribute('data-status');
 
                 let show = true;
-
-                // Search filter
-                if (searchTerm && !title.includes(searchTerm)) {
-                    show = false;
-                }
 
                 // Location filter
                 if (selectedLocations.length > 0 && !selectedLocations.includes(location)) {
