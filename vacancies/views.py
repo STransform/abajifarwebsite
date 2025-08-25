@@ -79,10 +79,15 @@ class jobs_apply(View):
             job['Status'] = job.get('Status', 'Active' if job.get('is_published', True) else 'Closed')
         
         form = ApplicationForm()
-        return render(self.request, 'front/vacancy_apply.html', {'form': form, 
-                                                                 'job': job, 'page_title': 'Apply for Vacancy', 
-                                                                 'page_subtitle': 'Fill in the details to apply for the vacancy',
-                                                                'announcement_page': True
+        
+        return render(
+            self.request, 
+            'front/vacancy_apply.html', 
+            {'form': form,
+             'job': job,
+             'page_title': 'Apply for Vacancy',
+             'page_subtitle': 'Fill in the details to apply for the vacancy',
+             'announcement_page': True
         })
 
     def post(self, *args, **kwargs):
