@@ -43,33 +43,40 @@
   }
 
   .partner-card {
-    border-radius: 12px;
+    border-radius: 8px;
     text-align: center;
     background: var(--primary-white);
-    box-shadow: 0 8px 25px rgba(26, 26, 26, 0.06);
+    box-shadow: 0 4px 15px rgba(26, 26, 26, 0.04);
     position: relative;
     overflow: hidden;
+    padding: 15px 10px;
   }
 
   .marquee {
     position: relative;
-    margin: 40px 0;
+    margin: 20px 0;
+    /* Constrain marquee width instead of full screen */
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
   }
 
   .marquee-track {
     display: flex;
-    gap: 30px;
+    gap: 20px;
+    /* Remove transition that was causing jerky animation */
+    will-change: transform;
   }
 
   .marquee-item {
-    flex: 0 0 280px;
+    flex: 0 0 200px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .partner-card img {
-    max-height: 120px;
+    max-height: 80px;
     max-width: 100%;
     width: auto;
     height: auto;
@@ -77,26 +84,31 @@
     filter: grayscale(0.2) opacity(0.9);
   }
 
-  /* Responsive improvements */
   @media (max-width: 768px) {
     .partners-section {
       padding: 60px 0;
     }
 
+    /* Adjust marquee width for mobile */
+    .marquee {
+      max-width: 100%;
+      margin: 20px 15px;
+    }
+
     .marquee-item {
-      flex: 0 0 220px;
+      flex: 0 0 160px;
     }
 
     .marquee-track {
-      gap: 20px;
+      gap: 15px;
     }
 
     .partner-card {
-      padding: 20px 15px;
+      padding: 12px 8px;
     }
 
     .partner-card img {
-      max-height: 80px;
+      max-height: 60px;
     }
   }
 </style>
@@ -139,15 +151,16 @@
     const items = track.children;
     const itemsArray = Array.from(items);
 
-    // Duplicate items for seamless scrolling
-    itemsArray.forEach((item) => {
-      const clone = item.cloneNode(true);
-      track.appendChild(clone);
-    });
+    for (let i = 0; i < 4; i++) {
+      itemsArray.forEach((item) => {
+        const clone = item.cloneNode(true);
+        track.appendChild(clone);
+      });
+    }
 
     let position = 0;
-    const speed = 0.1;
-    const itemWidth = 280 + 30;
+    const speed = 0.5;
+    const itemWidth = 200 + 20;
     const totalWidth = itemWidth * itemsArray.length;
 
     function animate() {
@@ -161,12 +174,7 @@
       requestAnimationFrame(animate);
     }
 
-    // Start animation
     animate();
-
-    marquee.addEventListener("mouseleave", function () {
-      track.style.animationPlayState = "running";
-    });
   });
 </script>
 {% endblock %}
