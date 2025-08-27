@@ -31,6 +31,7 @@
         margin-bottom: 24px;
     }
 
+
     .filter-group h6 {
         color: var(--dark-gray);
         font-size: 0.9rem;
@@ -105,10 +106,6 @@
         border-bottom: none;
     }
 
-    .vacancy-item:hover {
-        background-color: #fafbfc;
-    }
-
     .vacancy-header {
         display: flex;
         justify-content: space-between;
@@ -178,12 +175,42 @@
         padding-left: 2px;
     }
 
-    .vacancy-actions {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 4px;
+    .vacancy-description-content {
+        height: 150px;
+        background: var(--primary-white);
+        overflow: hidden;
+        max-height: none;
     }
+
+    .vacancy-description-content:hover {
+        background: var(--primary-white) !important;
+    }
+
+    .vacancy-actions {
+        position: relative;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+        padding: 16px 0 0 0;
+        margin-top: 16px;
+        border-top: 1px solid #f1f3f4;
+    }
+
+    #vacancy-description-text ul {
+        margin-bottom: 0;
+    }
+
+    #vacancy-description-text li {
+        margin-bottom: 0;
+        line-height: 1;
+    }
+
+    #vacancy-description-text li p {
+        margin: 0;
+        padding: 0;
+    }
+
 
     .see-more {
         color: var(--accent-color) !important;
@@ -192,6 +219,7 @@
         font-weight: 600;
         position: relative;
         transition: all 0.2s ease;
+        flex-shrink: 0;
     }
 
     .see-more:hover {
@@ -337,18 +365,21 @@
                     </div>
                 </div>
 
-
                 <div class="vacancy-description-section">
                     <div class="vacancy-description-content" data-plugin-readmore="" data-plugin-options="{
                                 'buttonOpenLabel': 'See More',
                                 'buttonCloseLabel': 'See Less',
                                 'align': 'end'
-                                }" style="height: 150px; overflow: hidden; max-height: none;">
-
+                                }">
                         <div class="vacancy-description-text">{{ job.job_description }}</div>
-
-                        <div class="vacancy-actions readmore-button-wrapper mt-2">
+                        <div class="readmore-button-wrapper">
                             <a href="javascript:void(0);" class="see-more">{% trans "See More" %}</a>
+                        </div>
+                    </div>
+
+                    <!-- Moved vacancy-actions outside of the description content to prevent overlap -->
+                    <div class="vacancy-actions">
+                        <div>
                             {% if job.Status == 'Active' %}
                             <a href="{% url 'jobs_apply' pk=job.id %}" class="btn-corporate-red">
                                 {% trans "Apply Now" %}
@@ -358,13 +389,9 @@
                                 {% trans "Closed" %}
                             </button>
                             {% endif %}
-                        </div>;
+                        </div>
                     </div>
                 </div>
-                <!-- 
-                <div class="vacancy-description" id="desc-{{ job.id }}">
-                    {{ job.job_description|truncatechars:300 }}
-                </div> -->
             </div>
             {% endfor %}
         </div>
@@ -396,6 +423,8 @@
 
             const formattedText = plainText.replace(/\n/g, '<br>');
             el.innerHTML = formattedText;
+
+            el.querySelectorAll("br").forEach(br => br.remove());
         });
 
         const vacancyItems = document.querySelectorAll('.vacancy-item');
