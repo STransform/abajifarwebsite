@@ -3,19 +3,6 @@
 <!-- CSS -->
 {% block css %}
 <style>
-    .blog-card {
-        background: var(--primary-white);
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        margin-bottom: 2rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .blog-card:hover {
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    }
-
     .blog-image {
         position: relative;
         overflow: hidden;
@@ -133,67 +120,63 @@
 </style>
 {% endblock %}
 
+<div class="blog-card">
+    <div class="blog-image">
+        {% if blog.images %}
+        <img src="{{blog.images.url}}" alt="{{blog.title}}" />
+        {% else %}
+        <img src="{% static 'front/imgs/blog/blog-1.jpg' %}" alt="{{blog.title}}" />
+        {% endif %}
+    </div>
 
-
-<div class="col-lg-8">
-    <div class="blog-card">
-        <div class="blog-image">
-            {% if blog.images %}
-            <img src="{{blog.images.url}}" alt="{{blog.title}}" />
-            {% else %}
-            <img src="{% static 'front/imgs/blog/blog-1.jpg' %}" alt="{{blog.title}}" />
-            {% endif %}
-        </div>
-
-        <div class="blog-content">
-            <h1 class="blog-title">{{blog.title}}</h1>
-
-            <!-- Modern author section -->
-            <div class="author-section">
-                <img src="{% static 'front/imgs/team/user.png' %}" alt="{{blog.created_by}}" class="author-avatar">
-                <div class="author-info">
-                    <h4>{% trans "Author" %}</h4>
-                    <p class="mb-0">{{blog.created_by}}</p>
-                </div>
+    <div class="blog-content">
+        <h1 class="blog-title">{{blog.title}}</h1>
+        <div class="blog-meta">
+            <div class="meta-item">
+                <i class="far fa-clock"></i>
+                <span>{{blog.created_date|date}}</span>
+            </div>
+            <div class="meta-item">
+                <i class="far fa-user"></i>
+                <span>{% trans "By" %}
+                    <a href="javascript:void(0);"
+                        title="Contact : {{blog.created_by.email}} {% if blog.created_by.phonenumber %} ,{{blog.created_by.phonenumber}} {% endif %}">
+                        {{blog.created_by}}
+                    </a>
+                </span>
+            </div>
+            <div class="meta-item">
+                <i class="far fa-folder"></i>
+                <a href="javascript:void(0);">{{blog.category}}</a>
+            </div>
+            <div class="meta-item">
+                <i class="far fa-comments"></i>
+                <a href="javascript:void(0);">{{blog.comments.count}} {% trans "Comments" %}</a>
             </div>
 
-
-            <div class="blog-meta">
-                <div class="meta-item">
-                    <i class="far fa-clock"></i>
-                    <span>{{blog.created_date|date}}</span>
-                </div>
-                <div class="meta-item">
-                    <i class="far fa-user"></i>
-                    <span>{% trans "By" %}
-                        <a href="javascript:void(0);"
-                            title="Contact : {{blog.created_by.email}} {% if blog.created_by.phonenumber %} ,{{blog.created_by.phonenumber}} {% endif %}">
-                            {{blog.created_by}}
-                        </a>
-                    </span>
-                </div>
-                <div class="meta-item">
-                    <i class="far fa-folder"></i>
-                    <a href="javascript:void(0);">{{blog.category}}</a>
-                </div>
-                <div class="meta-item">
-                    <i class="far fa-comments"></i>
-                    <a href="javascript:void(0);">{{blog.comments.count}} {% trans "Comments" %}</a>
-                </div>
-            </div>
-
-
-            <div class="social-share">
-                <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                    <a class="a2a_button_facebook"></a>
-                    <a class="a2a_button_email"></a>
-                    <a class="a2a_button_linkedin"></a>
-                    <a class="a2a_button_telegram"></a>
-                    <a class="a2a_button_twitter"></a>
-                    <a class="a2a_button_x"></a>
-                </div>
-                <script async src="https://static.addtoany.com/menu/page.js"></script>
+            <div class="meta-item">
+                <a href="javascript:void(0);" id="shareBtn">
+                    <i class="fas fa-share"></i> Share</a>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<script>
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: "Check out this post: {{ blog.title|escapejs }}", // <-- Django variable, escaped for JS
+                    text: `Check out this post: {{ blog.title|escapejs }}`,
+                    url: window.location.href
+                });
+                console.log("Shared successfully!");
+            } catch (err) {
+                console.warn("Share was cancelled or failed:", err);
+            }
+        }
+    });
+</script>

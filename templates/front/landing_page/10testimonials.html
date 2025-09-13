@@ -25,11 +25,9 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(
-      180deg,
-      var(--accent-color),
-      rgba(255, 20, 43, 0.3)
-    );
+    background: linear-gradient(180deg,
+        var(--accent-color),
+        rgba(255, 20, 43, 0.3));
     transform: scaleY(0);
     transition: transform 0.4s ease;
   }
@@ -100,13 +98,9 @@
       {% for saying in people_saying %}
       <div class="col-lg-4 col-md-6">
         <div class="testimonial-card h-100">
-          <p class="testimonial-content">{{ saying.content }}</p>
+          <p class="testimonial-content text-justify">{{ saying.content }}</p>
           <div class="testimonial-author d-flex align-items-center mt-4">
-            <img
-              src="{{ saying.image.url }}"
-              alt="{{ saying.full_name }}"
-              class="testimonial-avatar me-3"
-            />
+            <img src="{{ saying.image.url }}" alt="{{ saying.full_name }}" class="testimonial-avatar me-3" />
             <div>
               <h5 class="mb-0">{{ saying.full_name }}</h5>
               <small>{{ saying.position }}</small>

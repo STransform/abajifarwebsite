@@ -15,12 +15,45 @@
     .blog-content-text {
         background: var(--primary-white);
         padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         margin: 2rem 0;
         font-size: 1.1rem;
         line-height: 1.8;
         color: var(--dark-gray);
+    }
+
+    /* Make the row stretch its children */
+    .row.align-items-stretch {
+        display: flex;
+        align-items: stretch;
+    }
+
+    /* Ensure both columns grow to the same height */
+    .row.align-items-stretch>[class*="col-"] {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Make inner wrappers fill the column height */
+    .recent-posts-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: var(--primary-white);
+        margin-bottom: 2rem;
+    }
+
+    .blog-card-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: var(--primary-white);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 2rem;
+    }
+
+    .blog-card-wrapper:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     }
 </style>
 
@@ -31,32 +64,32 @@
 
 <section class="section border-0 py-5 m-0 blog-detail-container">
     <div class="container">
-        <div class="row">
-            <!-- Blog Card -->
-            {% include 'front/blogs_page/03blog_card.html'  %}
-
-
-            <div class="col-lg-4">
-                <!-- Recent Posts -->
-                {% include 'front/blogs_page/04recent_posts.html'  %}
-
-
-                <!-- Twitter Feed -->
-                {% include 'front/blogs_page/05twitter_section.html'  %}
+        <!-- Blog Card + Sidebar -->
+        <div class="row align-items-stretch">
+            <div class="col-lg-8 ">
+                <div class="blog-card-wrapper">
+                    {% include 'front/blogs_page/03blog_card.html' %}
+                </div>
             </div>
 
-            <!-- Blog Content & Comments -->
-            <div class="col-12">
-                <!-- Blog Content -->
-                <div class="blog-content-text">
-                    {{blog.content|safe}}
+            <div class="col-lg-4">
+                <div class="recent-posts-wrapper">
+                    {% include 'front/blogs_page/04recent_posts.html' %}
                 </div>
+            </div>
+        </div>
 
-                <!-- Comments -->
-                {% include 'front/blogs_page/06comments.html'  %}
+        <!-- Blog Content & Comments -->
+        <div class="row">
+            <div class="col-12">
+                <div class="blog-content-text text-justify">
+                    {{ blog.content|safe }}
+                </div>
+                {% include 'front/blogs_page/06comments.html' %}
             </div>
         </div>
     </div>
 </section>
+
 
 {% endblock %}
