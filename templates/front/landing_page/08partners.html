@@ -3,6 +3,7 @@
   .partners-section {
     overflow: hidden;
     position: relative;
+    padding: 100px 0;
   }
 
   .partners-section::before {
@@ -12,9 +13,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg,
-        var(--primary-white) 0%,
-        rgba(26, 26, 26, 0.02) 100%);
+    background: linear-gradient(135deg, var(--primary-white) 0%, rgba(85, 122, 189, 0.05) 100%);
     pointer-events: none;
   }
 
@@ -33,7 +32,7 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color-deep);
     border-radius: 2px;
   }
 
@@ -117,9 +116,9 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
-        <h2 class="section-title display-4">Our Partners</h2>
+        <h2 class="section-title display-4">{% trans "Our Partners" %}</h2>
         <p class="lead">
-          Trusted partnerships that drive innovation and excellence
+          {% trans "Trusted relationships that strengthen delivery and impact" %}
         </p>
       </div>
     </div>
@@ -159,7 +158,7 @@
     }
 
     let position = 0;
-    const speed = 0.5;
+    const speed = 0.45;
     const itemWidth = 200 + 20;
     const totalWidth = itemWidth * itemsArray.length;
 

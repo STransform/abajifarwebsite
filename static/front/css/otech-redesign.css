@@ -1,0 +1,394 @@
+:root {
+  --primary-white: #ffffff;
+  --primary-black: #0f1f38;
+  --accent-color: #557abd;
+  --accent-color-deep: #385d9b;
+  --accent-color-soft: #eef4ff;
+  --accent-color-muted: #d9e6ff;
+  --light-gray: #f6f9ff;
+  --medium-gray: #5f6f86;
+  --dark-gray: #23344f;
+  --success-color: #1f8c6b;
+  --surface-color: #ffffff;
+  --surface-border: rgba(54, 91, 153, 0.12);
+  --shadow-soft: 0 24px 70px rgba(38, 66, 112, 0.12);
+  --shadow-card: 0 20px 50px rgba(25, 52, 96, 0.1);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --container-max: 1240px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(85, 122, 189, 0.09), transparent 28%),
+    linear-gradient(180deg, #fbfdff 0%, #f6f9ff 100%);
+  color: var(--dark-gray);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display,
+.section-title,
+.hero-title,
+.carousel-title,
+.cta-title {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: var(--container-max);
+}
+
+.main {
+  overflow: hidden;
+}
+
+.btn-corporate-red,
+.btn-outline-corporate-red,
+.btn-outline-light {
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+}
+
+.btn-corporate-red {
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-deep) 100%);
+  border: none;
+  color: var(--primary-white);
+  box-shadow: 0 16px 35px rgba(85, 122, 189, 0.26);
+}
+
+.btn-corporate-red:hover {
+  color: var(--primary-white);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 45px rgba(85, 122, 189, 0.34);
+}
+
+.btn-outline-corporate-red {
+  border: 1px solid rgba(85, 122, 189, 0.28);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent-color-deep);
+}
+
+.btn-outline-corporate-red:hover {
+  background: var(--accent-color-soft);
+  color: var(--accent-color-deep);
+  border-color: var(--accent-color);
+}
+
+.btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary-white);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline-light:hover {
+  color: var(--primary-white);
+  border-color: var(--primary-white);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.section-title {
+  color: var(--primary-black);
+  font-weight: 700;
+}
+
+.bg-corporate-light {
+  background-color: var(--light-gray) !important;
+}
+
+.bg-corporate-dark {
+  background-color: var(--primary-black) !important;
+}
+
+.text-corporate-red {
+  color: var(--accent-color-deep) !important;
+}
+
+.section-title::after {
+  background: linear-gradient(90deg, var(--accent-color) 0%, #7b9bdd 100%);
+  border-radius: 999px;
+}
+
+.lead,
+.service-description,
+.value-description,
+.contact-text,
+.blog-excerpt,
+.testimonial-content,
+.header-subtitle {
+  color: var(--medium-gray) !important;
+}
+
+.corporate-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-card);
+}
+
+.soft-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.otech-topbar {
+  background: linear-gradient(90deg, #16325d 0%, #284a82 100%);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.92rem;
+}
+
+.otech-topbar a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.otech-nav-shell {
+  position: sticky;
+  top: 0;
+  z-index: 1040;
+  background: rgba(246, 249, 255, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.otech-navbar {
+  padding: 0.9rem 0;
+}
+
+.otech-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+}
+
+.otech-brand-logo {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: var(--primary-white);
+  border: 1px solid rgba(85, 122, 189, 0.16);
+  box-shadow: 0 10px 30px rgba(36, 67, 120, 0.12);
+}
+
+.otech-brand-mark {
+  line-height: 1.05;
+}
+
+.otech-brand-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent-color-deep);
+}
+
+.otech-brand-title {
+  display: block;
+  color: var(--primary-black);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.otech-nav-link,
+.otech-navbar .dropdown-toggle,
+.otech-navbar .dropdown-item {
+  font-weight: 600;
+}
+
+.otech-navbar .nav-link,
+.otech-navbar .dropdown-toggle {
+  color: var(--dark-gray);
+  border-radius: 999px;
+  padding: 0.7rem 1rem !important;
+}
+
+.otech-navbar .nav-link.active,
+.otech-navbar .dropdown-toggle.active,
+.otech-navbar .nav-link:hover,
+.otech-navbar .dropdown-toggle:hover {
+  color: var(--accent-color-deep);
+  background: rgba(85, 122, 189, 0.08);
+}
+
+.otech-navbar .dropdown-menu {
+  border: 1px solid var(--surface-border);
+  border-radius: 18px;
+  padding: 0.75rem;
+  box-shadow: var(--shadow-card);
+}
+
+.otech-navbar .dropdown-item {
+  border-radius: 12px;
+  padding: 0.65rem 0.85rem;
+}
+
+.otech-navbar .dropdown-item:hover,
+.otech-navbar .dropdown-item.active {
+  background: var(--accent-color-soft);
+  color: var(--accent-color-deep);
+}
+
+.otech-toolbar {
+  gap: 0.75rem;
+}
+
+.otech-search {
+  min-width: 240px;
+}
+
+.otech-lang {
+  border-radius: 999px;
+  border: 1px solid rgba(85, 122, 189, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--dark-gray);
+}
+
+.otech-page-hero,
+.hero-about-section,
+.hero-header {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0 4.25rem;
+  background:
+    radial-gradient(circle at right top, rgba(85, 122, 189, 0.14), transparent 24%),
+    linear-gradient(135deg, #f7faff 0%, #edf3ff 100%);
+}
+
+.hero-about-section::before,
+.hero-header::before,
+.otech-page-hero::before {
+  content: "";
+  position: absolute;
+  inset: auto -120px -120px auto;
+  width: 340px;
+  height: 340px;
+  background: rgba(85, 122, 189, 0.12);
+  border-radius: 50%;
+}
+
+.about-title,
+.header-title {
+  color: var(--primary-black);
+}
+
+.header-accent-line {
+  background: linear-gradient(90deg, var(--accent-color) 0%, #93b2f0 100%) !important;
+  box-shadow: none !important;
+}
+
+.contact-form-wrapper,
+.resource-card,
+.accordion-item,
+.gallery-item,
+.blog-card,
+.testimonial-card,
+.service-card,
+.value-card,
+.excellence-card,
+.partner-card {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-card);
+}
+
+.form-control,
+.form-select,
+.accordion-button {
+  border-radius: 16px;
+  border-color: rgba(85, 122, 189, 0.18);
+}
+
+.form-control:focus,
+.form-select:focus,
+.accordion-button:focus {
+  border-color: rgba(85, 122, 189, 0.4);
+  box-shadow: 0 0 0 0.2rem rgba(85, 122, 189, 0.12);
+}
+
+.accordion-button:not(.collapsed) {
+  background: var(--accent-color-soft);
+  color: var(--accent-color-deep);
+}
+
+.otech-footer {
+  background:
+    radial-gradient(circle at top left, rgba(122, 160, 225, 0.2), transparent 28%),
+    linear-gradient(160deg, #112846 0%, #1a3a69 55%, #234980 100%);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.otech-footer .footer-title {
+  color: #ffffff !important;
+}
+
+.otech-footer .footer-title::after {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.otech-footer .quick-link,
+.otech-footer .contact-text,
+.otech-footer .company-info p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.otech-footer .social-link {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.otech-footer .social-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 24px rgba(10, 20, 38, 0.22);
+}
+
+@media (max-width: 991.98px) {
+  .otech-navbar .navbar-collapse {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .otech-toolbar {
+    align-items: stretch !important;
+  }
+
+  .otech-search {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .otech-brand-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .otech-page-hero,
+  .hero-about-section,
+  .hero-header {
+    padding: 4.75rem 0 3.5rem;
+  }
+}

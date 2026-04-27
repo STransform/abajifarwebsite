@@ -1,306 +1,142 @@
 {% load static %} {% load i18n %}
 
-<!--  CSS    -->
 {% block css %}
 <style>
-  footer {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, var(--primary-black) 0%, #2c2c2c 100%);
-    position: relative;
-    overflow: hidden;
-  }
-
-  footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.1;
-  }
-
-  footer .container {
-    position: relative;
-    z-index: 2;
-  }
-
-  .footer-title {
-    color: var(--accent-color) !important;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1.5rem !important;
-    position: relative;
-  }
-
-  .footer-title::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: var(--accent-color);
-  }
-
-  .social-link {
+  .footer-badge {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
+    gap: 0.6rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    color: #ffffff;
-    transition: all 0.3s ease;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.86rem;
   }
 
-  .social-link:hover {
-    background: var(--accent-color);
-    color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+  .otech-footer .visitor-counter {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
   }
 
-  .social-link i {
-    font-size: 1.2em;
-  }
-
-  .quick-link {
-    color: #b8b8b8;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    padding: 5px 0;
-    position: relative;
-  }
-
-  .quick-link:hover {
-    color: var(--accent-color);
-    padding-left: 10px;
-  }
-
-  .quick-link i {
-    margin-right: 8px;
-    transition: transform 0.3s ease;
-  }
-
-  .quick-link:hover i {
-    transform: translateX(5px);
-  }
-
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-  }
-
-  .contact-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .contact-icon {
-    width: 20px;
-    margin-right: 15px;
-    color: var(--accent-color);
-    margin-top: 2px;
-  }
-
-  .contact-text {
-    color: #b8b8b8;
-    line-height: 1.5;
-  }
-
-  .contact-text a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .contact-text a:hover {
-    color: var(--accent-color);
-  }
-
-  .visitor-counter {
-    background: linear-gradient(135deg, #dc3545, #b02a37);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.3);
-    margin-top: 20px;
-  }
-
-  .visitor-counter strong {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff;
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .visitor-counter label {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .footer-bottom {
-    background: rgba(0, 0, 0, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 40px;
-  }
-
-  .company-info p {
-    color: #b8b8b8;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  @media (max-width: 768px) {
-    .social-link {
-      width: 40px;
-      height: 40px;
-      margin-right: 8px;
-    }
-
-    .visitor-counter strong {
-      font-size: 2rem;
-    }
+  .otech-footer .visitor-counter strong,
+  .otech-footer .visitor-counter label,
+  .otech-footer .contact-text a,
+  .otech-footer .developed-by {
+    color: #ffffff !important;
   }
 </style>
 {% endblock %}
 
-<footer>
+<footer class="otech-footer pt-5">
   <div class="container">
-    <div class="py-5">
-      <div class="row">
-        <!-- Enhanced About Us Section with better styling -->
-        <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-          <h5 class="footer-title">{% trans "ABOUT US" %}</h5>
+    <div class="row g-4 align-items-start mb-5">
+      <div class="col-lg-5">
+        <div class="pe-lg-4">
+          <span class="footer-badge mb-3">
+            <i class="fas fa-landmark"></i>
+            {% trans "National engineering and technology partner" %}
+          </span>
+          <h5 class="footer-title mt-4">{% trans "ABOUT US" %}</h5>
           <div class="company-info">
             <h6 class="text-white mb-3 fw-bold">
-              {% trans "OTECH Engineering" %}
+              {% if stg.title %}{{ stg.title }}{% else %}{% trans "OTECH Engineering" %}{% endif %}
             </h6>
-            <p class=" text-justify">
-              We are a leading technology company committed to
-              innovating and transforming businesses and governments with
-              cutting-edge solutions.
+            <p>
+              {% trans "We build practical digital, infrastructure, and innovation solutions that help institutions and businesses operate with confidence and scale with purpose." %}
             </p>
           </div>
         </div>
+      </div>
 
-        <!-- Enhanced Contact Section with icons and better layout -->
-        <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-          <h5 class="footer-title">{% trans "CONTACTS" %}</h5>
-          {% for contacts in contact %}
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt contact-icon"></i>
-            <div class="contact-text">
-              <strong class="text-white d-block mb-1">{% trans "Address" %}</strong>
-              {{ contacts.address }}
-            </div>
+      <div class="col-md-6 col-lg-3">
+        <h5 class="footer-title">{% trans "CONTACTS" %}</h5>
+        {% for contacts in contact %}
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt contact-icon"></i>
+          <div class="contact-text">
+            <strong class="text-white d-block mb-1">{% trans "Address" %}</strong>
+            {{ contacts.address }}
           </div>
-          <div class="contact-item">
-            <i class="fas fa-phone contact-icon"></i>
-            <div class="contact-text">
-              <strong class="text-white d-block mb-1">{% trans "Phone" %}</strong>
-              <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a>
-            </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone contact-icon"></i>
+          <div class="contact-text">
+            <strong class="text-white d-block mb-1">{% trans "Phone" %}</strong>
+            <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope contact-icon"></i>
-            <div class="contact-text">
-              <strong class="text-white d-block mb-1">{% trans "Email" %}</strong>
-              <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
-            </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope contact-icon"></i>
+          <div class="contact-text">
+            <strong class="text-white d-block mb-1">{% trans "Email" %}</strong>
+            <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-globe contact-icon"></i>
-            <div class="contact-text">
-              <strong class="text-white d-block mb-1">{% trans "Website" %}</strong>
-              <a href="{{ contacts.website }}" target="_blank">{{ contacts.website }}</a>
-            </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-globe contact-icon"></i>
+          <div class="contact-text">
+            <strong class="text-white d-block mb-1">{% trans "Website" %}</strong>
+            <a href="{{ contacts.website }}" target="_blank">{{ contacts.website }}</a>
           </div>
+        </div>
+        {% empty %}
+        <p class="company-info mb-0">{% trans "Contact information will appear here once added from the admin panel." %}</p>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-6 col-lg-2">
+        <h5 class="footer-title">{% trans "LINKS" %}</h5>
+        <ul class="list-unstyled mb-4">
+          {% for link in quick_links %}
+          <li class="mb-2">
+            <a href="{{ link.url }}" class="quick-link"><i class="fas fa-angle-right"></i>{{ link.title }}</a>
+          </li>
+          {% empty %}
+          <li class="mb-2"><a href="{% url 'about' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "About Us" %}</a></li>
+          <li class="mb-2"><a href="{% url 'services' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "Services" %}</a></li>
+          <li class="mb-2"><a href="{% url 'contact_us' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "Contact Us" %}</a></li>
           {% endfor %}
-        </div>
+        </ul>
 
-        <!-- Enhanced Social Media Section with circular buttons -->
-        <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
-          <h5 class="footer-title">{% trans "SOCIAL" %}</h5>
-          <div class="d-flex flex-wrap">
-            <a href="https://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61556411611103" target="_blank" class="social-link"
-              title="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/@OTECHENGINEERING" target="_blank" class="social-link" title="YouTube">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://twitter.com/" target="_blank" class="social-link" title="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://www.instagram.com/" target="_blank" class="social-link" title="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/" target="_blank" class="social-link" title="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
+        <div class="d-flex flex-wrap">
+          <a href="https://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61556411611103" target="_blank" class="social-link" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/@OTECHENGINEERING" target="_blank" class="social-link" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://twitter.com/" target="_blank" class="social-link" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" class="social-link" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
         </div>
+      </div>
 
-        <!-- Enhanced Quick Links with hover animations -->
-        <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
-          <h5 class="footer-title">{% trans "QUICK LINKS" %}</h5>
-          <ul class="list-unstyled mb-0">
-            {% for link in quick_links %}
-            <li class="mb-2">
-              <a href="{{ link.url }}" class="quick-link">
-                <i class="fas fa-angle-right"></i> {{ link.title }}
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-
-        <!-- Enhanced Visitor Counter with gradient background -->
-        <div class="col-md-6 col-lg-2">
-          <div class="visitor-counter">
-            <strong data-to="{{ visitors|floatformat:1 }}" data-plugin-options="{'decimals': 1}"
-              data-append="{{ visitors_round }}+">
-              {{ visitors|floatformat:1 }}{{ visitors_round }}+
-            </strong>
-            <label>{% trans "Total visitors" %}</label>
-          </div>
+      <div class="col-lg-2">
+        <div class="visitor-counter h-100">
+          <strong data-to="{{ visitors|floatformat:1 }}" data-plugin-options="{'decimals': 1}" data-append="{{ visitors_round }}+">
+            {{ visitors|floatformat:1 }}{{ visitors_round }}+
+          </strong>
+          <label>{% trans "Total visitors" %}</label>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Enhanced Footer Bottom Section -->
-  <div class="footer-bottom">
-    <div class="container">
+    <div class="footer-bottom">
       <div class="py-4">
         <div class="row align-items-center">
           <div class="col-md-6 text-center text-md-start">
             <p class="mb-0 text-white-50">
-              &copy; {% now "Y" %} OTECH Engineering & Technology
-              Solutions. {% trans "All rights reserved." %}
+              &copy; {% now "Y" %} {% if stg.title %}{{ stg.title }}{% else %}OTECH Engineering{% endif %}. {% trans "All rights reserved." %}
             </p>
           </div>
           <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
             <p class="mb-0">
               {% trans "Developed by" %}
-              <a href="https://www.otech.et/" target="_blank"
-                class="text-white fw-bold text-decoration-none developed-by" style="transition: color 0.3s ease">
+              <a href="https://www.otech.et/" target="_blank" class="text-white fw-bold text-decoration-none developed-by">
                 {% trans "OTECH Engineering & Technology Solutions" %}
               </a>
             </p>

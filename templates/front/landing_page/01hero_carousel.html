@@ -1,203 +1,385 @@
 {% load i18n %} {% load static %}
-<!-- CSS -->
+
 {% block css %}
 <style>
-  .hero-section {
-    background: linear-gradient(135deg, var(--primary-black) 0%, #2c2c2c 100%);
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
+  .otech-hero {
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, #102747 0%, #1f4277 50%, #557abd 100%);
   }
 
-  .hero-section::before {
+  .otech-hero::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.3;
+    inset: 0;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 22%),
+      linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 40%);
+    pointer-events: none;
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-title {
-    font-family: "Playfair Display", serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--primary-white);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    font-weight: 300;
-  }
-
-  .hero-carousel-item {
-    min-height: 80vh;
-    background-size: cover;
-    background-position: center;
+  .hero-carousel-item,
+  .hero-section {
+    min-height: 72vh;
+    height: 72vh;
+    display: flex;
+    align-items: center;
     position: relative;
   }
 
   .hero-carousel-item::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10, 26, 49, 0.86) 0%, rgba(10, 26, 49, 0.56) 45%, rgba(10, 26, 49, 0.2) 100%);
   }
 
   .carousel-caption {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    text-align: left;
+    position: relative;
+    inset: auto;
+    transform: none;
     width: 100%;
-    max-width: 800px;
+    max-width: none;
+    text-align: left;
+    padding: 5.75rem 0 2.4rem;
+    z-index: 2;
   }
 
-  .carousel-title {
-    font-family: "Playfair Display", serif;
-    font-size: 2.5rem;
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.15rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .carousel-title,
+  .hero-title {
+    font-size: clamp(2.9rem, 5vw, 5rem);
     font-weight: 700;
     color: var(--primary-white);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.02;
+    margin: 1.2rem 0 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    max-inline-size: none;
+    white-space: normal;
+  }
+
+  .carousel-subtitle,
+  .hero-subtitle {
+    width: 100%;
+    max-width: 100%;
+    font-size: 1.18rem;
+    color: rgba(255, 255, 255, 0.86);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .hero-side-panel {
+    padding: 1.35rem 1.5rem;
+    border-radius: 22px;
+    background: rgba(13, 28, 53, 0.52);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 24px 50px rgba(6, 14, 29, 0.24);
+  }
+
+  .hero-side-panel h6 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .hero-side-panel p {
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  .hero-metric {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .hero-metric strong {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .hero-metric span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .hero-content-wrap {
+    max-width: 100%;
+    min-height: calc(72vh - 8.15rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-bottom-strip {
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-info-card {
+    min-height: 100%;
+  }
+
+  .hero-actions-row {
+    margin-top: auto;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
     width: 100%;
   }
 
-  .carousel-subtitle {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    font-weight: 300;
+  .hero-actions .btn {
+    min-width: 220px;
+    padding: 1rem 1.85rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    border-radius: 999px;
+    letter-spacing: 0.01em;
+    box-shadow: 0 16px 35px rgba(9, 17, 35, 0.28);
   }
 
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 5%;
-    opacity: 0.8;
+  .hero-actions .btn-corporate-red {
+    background: linear-gradient(135deg, #6d8fda 0%, #4f71bb 100%);
+    border: none;
   }
 
-  .carousel-control-prev:hover,
-  .carousel-control-next:hover {
-    opacity: 1;
+  .hero-actions .btn-outline-light {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .hero-actions .btn:hover {
+    transform: translateY(-3px);
+  }
+
+  .hero-nav-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 58px;
+    height: 58px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: var(--primary-white);
+    backdrop-filter: blur(10px);
+    z-index: 4;
+    transition: all 0.25s ease;
+  }
+
+  .hero-nav-control:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  .hero-nav-prev {
+    left: 2rem;
+  }
+
+  .hero-nav-next {
+    right: 2rem;
+  }
+
+  .hero-nav-control i {
+    font-size: 1.1rem;
+  }
+
+  .carousel-indicators {
+    bottom: 2rem;
   }
 
   .carousel-indicators button {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin: 0 5px;
-    background-color: var(--accent-color);
-    border: 2px solid var(--primary-white);
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 0;
+    opacity: 0.45;
   }
 
-  @media (max-width: 768px) {
-    .carousel-title {
-      font-size: 2.5rem;
+  .carousel-indicators button.active {
+    opacity: 1;
+  }
+
+  @media (max-width: 991.98px) {
+    .hero-carousel-item,
+    .hero-section {
+      min-height: 64vh;
+      height: 64vh;
+    }
+
+    .carousel-caption {
+      padding-top: 5rem;
+      padding-bottom: 1.8rem;
+    }
+
+    .hero-content-wrap {
+      min-height: calc(64vh - 6.8rem);
+    }
+
+    .hero-bottom-strip {
+      margin-top: auto;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-actions-row {
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-nav-prev {
+      left: 1rem;
+    }
+
+    .hero-nav-next {
+      right: 1rem;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767.98px) {
+    .hero-carousel-item,
+    .hero-section {
+      min-height: 58vh;
+      height: auto;
+    }
+
+    .carousel-title,
     .hero-title {
-      font-size: 2.5rem;
+      max-inline-size: none;
+      font-size: clamp(2.4rem, 10vw, 3.6rem);
     }
 
+    .carousel-subtitle,
     .hero-subtitle {
-      font-size: 1.1rem;
+      max-width: 100%;
+      font-size: 1rem;
+    }
+
+    .hero-nav-control {
+      width: 48px;
+      height: 48px;
+    }
+
+    .hero-content-wrap {
+      min-height: auto;
+    }
+
+    .carousel-caption {
+      padding-top: 4.25rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .hero-bottom-strip {
+      margin-top: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-actions-row {
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-actions {
+      flex-wrap: wrap;
+    }
+
+    .hero-actions .btn {
+      min-width: 190px;
+      padding: 0.9rem 1.35rem;
     }
   }
 </style>
 {% endblock %}
 
-<!-- Hero Carousel  -->
 {% if featured_works %}
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-  <div class="carousel-indicators">
-    {% for work in featured_works %}
-    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {%
-      if
-      forloop.first
-      %} class="active" aria-current="true" {%
-      endif
-      %} aria-label="Slide {{ forloop.counter }}"></button>
-    {% endfor %}
-  </div>
+<section class="otech-hero">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
+    <div class="carousel-indicators">
+      {% for work in featured_works %}
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+        {% if forloop.first %}class="active" aria-current="true"{% endif %}
+        aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
 
-  <div class="carousel-inner">
-    {% for work in featured_works %}
-    <div class="carousel-item hero-carousel-item {% if forloop.first %}active{% endif %}"
-      style="background-image: url('{{ work.background_image.url }}');">
-      <div class="carousel-caption">
-        <div class="container">
-          <h1 class="carousel-title">
-            {{ work.title}}
-          </h1>
-          <p class="carousel-subtitle">
-            {{ work.description|truncatechars:150 }}
-          </p>
-          <div class="d-flex flex-wrap gap-3">
-            <a href="{% url 'services' %}" class="btn btn-corporate-red btn-lg">
-              {% trans "Our Services" %}
-            </a>
-            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">
-              {% trans "Learn More" %}
-            </a>
+    <div class="carousel-inner">
+      {% for work in featured_works %}
+      <div class="carousel-item hero-carousel-item {% if forloop.first %}active{% endif %}"
+        style="background: linear-gradient(90deg, rgba(12, 26, 49, 0.2), rgba(12, 26, 49, 0.2)), url('{{ work.background_image.url }}') center/cover no-repeat;">
+        <div class="carousel-caption">
+          <div class="container">
+            <div class="hero-content-wrap">
+              <div class="row hero-bottom-strip">
+                
+                <div class="col-12 hero-actions-row">
+                  <div class="hero-actions">
+                    <a href="{% url 'services' %}" class="btn btn-corporate-red btn-lg">{% trans "Explore Services" %}</a>
+                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">{% trans "About OTECH" %}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
 
-  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+    {% if featured_works|length > 1 %}
+    <button class="hero-nav-control hero-nav-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous slide">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <button class="hero-nav-control hero-nav-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next slide">
+      <i class="fas fa-arrow-right"></i>
+    </button>
+    {% endif %}
+  </div>
+</section>
 {% else %}
-<!-- Fallback hero section if no featured works -->
-<section class="hero-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-8">
-        <div class="hero-content">
-          <h1 class="hero-title">
-            {% trans "Engineering Excellence" %}<br />
-            <span class="text-corporate-red">{% trans "For Tomorrow" %}</span>
-          </h1>
-          <p class="hero-subtitle">
-            {% trans "OTech Engineering pioneers innovative solutions that
-            transform industries and shape the future of technology." %}
-          </p>
-          <div class="d-flex flex-wrap gap-3">
-            <a href="{% url 'services' %}" class="btn btn-corporate-red btn-lg">
-              {% trans "Our Services" %}
-            </a>
-            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">
-              {% trans "Learn More" %}
-            </a>
+<section class="otech-hero hero-section">
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="hero-content-wrap">
+      <div class="row hero-bottom-strip">
+        <div class="col-lg-7 col-xl-6">
+          <div class="hero-side-panel hero-info-card">
+            <h6>{% trans "Institutional Focus" %}</h6>
+            <p>{% trans "A modern, benchmark-inspired experience built to present public information with clarity, trust, and visual strength." %}</p>
+          </div>
+        </div>
+        <div class="col-lg-5 col-xl-3">
+          <div class="hero-side-panel hero-info-card">
+            <div class="hero-metric mt-0 pt-0 border-0">
+              <strong>24/7</strong>
+              <span>{% trans "Accessible information for citizens, partners, and stakeholders" %}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-12 hero-actions-row">
+          <div class="hero-actions">
+            <a href="{% url 'services' %}" class="btn btn-corporate-red btn-lg">{% trans "Explore Services" %}</a>
+            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">{% trans "About OTECH" %}</a>
           </div>
         </div>
       </div>

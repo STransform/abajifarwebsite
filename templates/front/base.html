@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Keep existing static files for compatibility -->
@@ -56,95 +56,28 @@
     <link rel="stylesheet" href="{% static 'front/vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'front/vendor/magnific-popup/magnific-popup.min.css' %}">
 
-    <!-- Added comprehensive corporate styling with 60-30-10 color scheme -->
+    <!-- Core shared variables -->
     <style>
         :root {
             --primary-white: #ffffff;
-            --primary-black: #000000;
-            --accent-color: #ed242a;
-            --light-gray: #f8f9fa;
-            --medium-gray: #6c757d;
-            --dark-gray: #343a40;
-            --green-color: #28a745;
+            --primary-black: #0f1f38;
+            --accent-color: #557abd;
+            --accent-color-deep: #385d9b;
+            --light-gray: #f6f9ff;
+            --medium-gray: #5f6f86;
+            --dark-gray: #23344f;
+            --green-color: #1f8c6b;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary-white);
-            color: var(--primary-black);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
             line-height: 1.6;
         }
 
         .font-display {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .bg-corporate-dark {
-            background-color: var(--primary-black) !important;
-        }
-
-        .bg-corporate-light {
-            background-color: var(--light-gray) !important;
-        }
-
-        .text-corporate-red {
-            color: var(--accent-color) !important;
-        }
-
-        .btn-corporate-red {
-            background-color: var(--accent-color);
-            color: var(--primary-white);
-            padding: 12px 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-corporate-red:hover {
-            background-color: var(--primary-black);
-            color: var(--primary-white);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
-        }
-
-        .btn-outline-corporate-red {
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            background: transparent;
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-outline-corporate-red:hover {
-            background: var(--accent-color);
-            color: var(--primary-white);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 20, 43, 0.3);
-        }
-
-        .corporate-shadow {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .corporate-card {
-            border: none;
-            border-radius: 0;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-
-        .corporate-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            font-family: 'Cormorant Garamond', serif;
         }
 
         .section-divider {
@@ -155,7 +88,7 @@
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
             color: var(--primary-black);
             margin-bottom: 30px;
@@ -196,6 +129,7 @@
 
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{% static 'front/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'front/css/otech-redesign.css' %}">
 
     {% block css %}{% endblock %}
 

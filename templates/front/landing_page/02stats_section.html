@@ -1,20 +1,26 @@
 {% load i18n %} {% load static %} {% block css %}
 <style>
   .stats-section {
-    background-color: var(--light-gray);
-    padding: 80px 0;
+    margin-top: -3.2rem;
+    position: relative;
+    z-index: 3;
+    padding-bottom: 90px;
   }
 
   .stat-item {
-    text-align: center;
-    padding: 30px 20px;
+    text-align: left;
+    padding: 2rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(85, 122, 189, 0.14);
+    box-shadow: var(--shadow-card);
+    height: 100%;
   }
 
   .stat-number {
-    font-family: "Playfair Display", serif;
     font-size: 3rem;
     font-weight: 700;
-    color: var(--accent-color);
+    color: var(--accent-color-deep);
     display: block;
     margin-bottom: 10px;
   }
@@ -22,9 +28,7 @@
   .stat-label {
     font-size: 1rem;
     color: var(--medium-gray);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   @media (max-width: 768px) {
@@ -41,30 +45,26 @@
     <div class="row">
       <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
         <div class="stat-item">
-          <!-- Added data attributes for animation -->
           <span class="stat-number" data-target="8" data-suffix="+">0+</span>
-          <span class="stat-label">{% trans "Projects Completed" %}</span>
+          <span class="stat-label">{% trans "Projects Delivered" %}</span>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
         <div class="stat-item">
-          <!-- Added data attributes for animation -->
           <span class="stat-number" data-target="10" data-suffix="+">0+</span>
-          <span class="stat-label">{% trans "Happy Clients" %}</span>
+          <span class="stat-label">{% trans "Partner Institutions" %}</span>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
         <div class="stat-item">
-          <!-- Added data attributes for animation -->
           <span class="stat-number" data-target="2" data-suffix="+">0+</span>
-          <span class="stat-label">{% trans "Years Experience" %}</span>
+          <span class="stat-label">{% trans "Years of Operations" %}</span>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
         <div class="stat-item">
-          <!-- Special handling for 24/7 format -->
           <span class="stat-number" data-target="24" data-suffix="/7">0/7</span>
-          <span class="stat-label">{% trans "Support Available" %}</span>
+          <span class="stat-label">{% trans "Public Access" %}</span>
         </div>
       </div>
     </div>

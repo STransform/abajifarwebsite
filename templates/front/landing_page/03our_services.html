@@ -1,19 +1,14 @@
 {% load i18n %} {% load static %} {% block css %}
 <style>
   .services-section {
-    padding: 100px 0;
-    background-color: var(--primary-white);
+    padding: 110px 0;
   }
 
   .service-card {
-    background: var(--primary-white);
-    border: none;
-    border-radius: 0;
-    padding: 40px 30px;
-    text-align: center;
+    padding: 2.25rem;
+    text-align: left;
     transition: all 0.3s ease;
     height: 100%;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   }
 
   .service-card:hover {
@@ -24,21 +19,25 @@
   .service-icon {
     width: 80px;
     height: 80px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color-soft) 0%, var(--accent-color-muted) 100%);
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 25px;
+    margin: 0 0 25px;
     transition: all 0.3s ease;
   }
 
   .service-card:hover .service-icon {
-    background-color: var(--primary-black);
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-deep) 100%);
   }
 
   .service-icon i {
     font-size: 2rem;
+    color: var(--accent-color-deep);
+  }
+
+  .service-card:hover .service-icon i {
     color: var(--primary-white);
   }
 
@@ -62,10 +61,10 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
-        <h2 class="section-title display-4">Our Services</h2>
+        <span class="hero-badge text-dark border-0" style="background: var(--accent-color-soft); color: var(--accent-color-deep) !important;">{% trans "What We Do" %}</span>
+        <h2 class="section-title display-4 mt-3">{% trans "Service lines shaped for public and enterprise needs" %}</h2>
         <p class="lead text-muted">
-          Comprehensive technology solutions tailored to your business
-          needs
+          {% trans "A benchmark-inspired presentation of the same working services already managed from your Django system." %}
         </p>
       </div>
     </div>
@@ -75,10 +74,9 @@
           <div class="service-icon">
             <i class="fas fa-code"></i>
           </div>
-          <h3 class="service-title">Tech Solutions</h3>
+          <h3 class="service-title">{% trans "Tech Solutions" %}</h3>
           <p class="service-description">
-            Custom software development and technology consulting
-            services to drive your business forward.
+            {% trans "Digital products, custom systems, and applied technology support for operational growth." %}
           </p>
         </div>
       </div>
@@ -87,10 +85,9 @@
           <div class="service-icon">
             <i class="fas fa-server"></i>
           </div>
-          <h3 class="service-title">Infrastructure</h3>
+          <h3 class="service-title">{% trans "Infrastructure" %}</h3>
           <p class="service-description">
-            Robust infrastructure solutions and deployment services
-            for scalable business operations.
+            {% trans "Reliable deployment, networking, and physical technology environments built for resilience." %}
           </p>
         </div>
       </div>
@@ -99,10 +96,9 @@
           <div class="service-icon">
             <i class="fas fa-lightbulb"></i>
           </div>
-          <h3 class="service-title">Innovation</h3>
+          <h3 class="service-title">{% trans "Innovation" %}</h3>
           <p class="service-description">
-            Strategic consulting and innovative solutions to keep your
-            business ahead of the competition.
+            {% trans "Consulting, transformation planning, and future-ready ideas turned into practical initiatives." %}
           </p>
         </div>
       </div>

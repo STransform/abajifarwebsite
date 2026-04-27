@@ -2,7 +2,7 @@
 <style>
   .cta-section {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--primary-black) 0%, #2c2c2c 100%);
+    background: linear-gradient(135deg, #16325d 0%, #24487e 55%, #557abd 100%);
     position: relative;
   }
 
@@ -49,17 +49,16 @@
 <section class="cta-section">
   <div class="container">
     <div class="cta-content">
-      <h2 class="cta-title">Ready to Transform Your Business?</h2>
+      <h2 class="cta-title">{% trans "Ready to transform your public-facing digital experience?" %}</h2>
       <p class="cta-subtitle">
-        Let's discuss how OTech Engineering can help you achieve your
-        technology goals.
+        {% trans "Let's carry the same working Django functionality into a stronger modern interface." %}
       </p>
       <div class="d-flex flex-wrap justify-content-center gap-3">
         <a href="{% url 'contact_us' %}" class="btn btn-corporate-red btn-lg">
-          Get Started
+          {% trans "Get Started" %}
         </a>
         <a href="{% url 'services' %}" class="btn btn-outline-light btn-lg">
-          View Services
+          {% trans "View Services" %}
         </a>
       </div>
     </div>
