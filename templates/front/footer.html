@@ -2,26 +2,256 @@
 
 {% block css %}
 <style>
+  .otech-footer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .otech-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.08), transparent 24%),
+      radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.08), transparent 18%);
+    pointer-events: none;
+  }
+
+  .otech-footer .footer-shell {
+    position: relative;
+    z-index: 1;
+  }
+
   .footer-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.55rem 1rem;
+    padding: 0.65rem 1.15rem;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 18px 36px rgba(6, 18, 42, 0.12);
     color: rgba(255, 255, 255, 0.88);
     font-size: 0.86rem;
   }
 
-  .otech-footer .visitor-counter {
+  .otech-footer .footer-panel {
+    height: 100%;
+    padding: 1.5rem 1.4rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+  }
+
+  .otech-footer .footer-panel-soft {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .otech-footer .footer-section-copy {
+    max-width: 540px;
+  }
+
+  .otech-footer .footer-company-name {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .otech-footer .footer-lead {
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.76);
+  }
+
+  .otech-footer .footer-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.2rem;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.92rem;
+  }
+
+  .otech-footer .footer-title {
+    margin-bottom: 1.35rem;
+    font-size: 0.92rem;
+    letter-spacing: 0.12em;
+  }
+
+  .otech-footer .contact-stack {
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .otech-footer .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .otech-footer .contact-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .otech-footer .contact-item:first-child {
+    padding-top: 0;
+  }
+
+  .otech-footer .contact-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .otech-footer .contact-label {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  .otech-footer .contact-text,
+  .otech-footer .contact-text a {
+    color: rgba(255, 255, 255, 0.86) !important;
+    line-height: 1.7;
+  }
+
+  .otech-footer .quick-links {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .otech-footer .quick-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.15rem 0;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .otech-footer .quick-link:hover {
+    transform: translateX(4px);
+  }
+
+  .otech-footer .quick-link i {
+    font-size: 0.78rem;
+    opacity: 0.8;
+  }
+
+  .otech-footer .social-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+
+  .otech-footer .social-link {
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .otech-footer .social-link:hover {
+    transform: translateY(-2px);
+  }
+
+  .otech-footer .visitor-counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    padding: 1.4rem 1.3rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: none;
+  }
+
+  .otech-footer .visitor-counter .counter-kicker {
+    margin-bottom: 0.9rem;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .otech-footer .visitor-counter strong {
+    display: block;
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .otech-footer .visitor-counter label {
+    font-size: 0.98rem;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .otech-footer .footer-bottom {
+    position: relative;
+    z-index: 1;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .otech-footer .footer-bottom p {
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .otech-footer .footer-bottom-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .otech-footer .developed-by {
+    color: #ffffff !important;
+  }
+
+  @media (max-width: 991.98px) {
+    .otech-footer .footer-panel {
+      padding: 1.35rem 1.1rem;
+    }
+
+    .otech-footer .footer-bottom-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .otech-footer .footer-badge {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .otech-footer .visitor-counter strong {
+      font-size: 1.7rem;
+    }
   }
 
   .otech-footer .visitor-counter strong,
   .otech-footer .visitor-counter label,
-  .otech-footer .contact-text a,
   .otech-footer .developed-by {
     color: #ffffff !important;
   }
@@ -29,77 +259,86 @@
 {% endblock %}
 
 <footer class="otech-footer pt-5">
-  <div class="container">
+  <div class="container footer-shell">
     <div class="row g-4 align-items-start mb-5">
       <div class="col-lg-5">
-        <div class="pe-lg-4">
-          <span class="footer-badge mb-3">
+        <div class="footer-panel footer-panel-soft pe-lg-4">
+          <!-- <span class="footer-badge mb-3">
             <i class="fas fa-landmark"></i>
             {% trans "National engineering and technology partner" %}
-          </span>
+          </span> -->
           <h5 class="footer-title mt-4">{% trans "ABOUT US" %}</h5>
-          <div class="company-info">
-            <h6 class="text-white mb-3 fw-bold">
+          <div class="company-info footer-section-copy">
+            <h6 class="text-white mb-3 fw-bold footer-company-name">
               {% if stg.title %}{{ stg.title }}{% else %}{% trans "Abajifar General Trading" %}{% endif %}
             </h6>
-            <p>
-              {% trans "We build practical digital, infrastructure, and innovation solutions that help institutions and businesses operate with confidence and scale with purpose." %}
+            <p class="footer-lead">
+              {% trans "Abajifar Trading $ Tour is a professional tour and travel company based in Ethiopia, offering customized and reliable travel solutions for domestic and international clients. Built on a strong foundation of hospitality and local expertise, we specialize in cultural tours, adventure travel, guided excursions, transportation, and accommodation services across the country." %}
             </p>
+            <!-- <div class="footer-note">
+              <i class="fas fa-heart"></i>
+              <span>{% trans "Designed to be clear, welcoming, and easy to navigate." %}</span>
+            </div> -->
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
+        <div class="footer-panel">
         <h5 class="footer-title">{% trans "CONTACTS" %}</h5>
+        <div class="contact-stack">
         {% for contacts in contact %}
         <div class="contact-item">
           <i class="fas fa-map-marker-alt contact-icon"></i>
           <div class="contact-text">
-            <strong class="text-white d-block mb-1">{% trans "Address" %}</strong>
+            <div class="contact-label">{% trans "Address" %}</div>
             {{ contacts.address }}
           </div>
         </div>
         <div class="contact-item">
           <i class="fas fa-phone contact-icon"></i>
           <div class="contact-text">
-            <strong class="text-white d-block mb-1">{% trans "Phone" %}</strong>
+            <div class="contact-label">{% trans "Phone" %}</div>
             <a href="tel:{{ contacts.phone }}">{{ contacts.phone }}</a>
           </div>
         </div>
         <div class="contact-item">
           <i class="fas fa-envelope contact-icon"></i>
           <div class="contact-text">
-            <strong class="text-white d-block mb-1">{% trans "Email" %}</strong>
+            <div class="contact-label">{% trans "Email" %}</div>
             <a href="mailto:{{ contacts.email }}">{{ contacts.email }}</a>
           </div>
         </div>
         <div class="contact-item">
           <i class="fas fa-globe contact-icon"></i>
           <div class="contact-text">
-            <strong class="text-white d-block mb-1">{% trans "Website" %}</strong>
+            <div class="contact-label">{% trans "Website" %}</div>
             <a href="{{ contacts.website }}" target="_blank">{{ contacts.website }}</a>
           </div>
         </div>
         {% empty %}
         <p class="company-info mb-0">{% trans "Contact information will appear here once added from the admin panel." %}</p>
         {% endfor %}
+        </div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-2">
+        <div class="footer-panel">
         <h5 class="footer-title">{% trans "LINKS" %}</h5>
-        <ul class="list-unstyled mb-4">
+        <ul class="list-unstyled quick-links">
           {% for link in quick_links %}
-          <li class="mb-2">
+          <li>
             <a href="{{ link.url }}" class="quick-link"><i class="fas fa-angle-right"></i>{{ link.title }}</a>
           </li>
           {% empty %}
-          <li class="mb-2"><a href="{% url 'about' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "About Us" %}</a></li>
-          <li class="mb-2"><a href="{% url 'services' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "Services" %}</a></li>
-          <li class="mb-2"><a href="{% url 'contact_us' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "Contact Us" %}</a></li>
+          <li><a href="{% url 'about' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "About Us" %}</a></li>
+          <li><a href="{% url 'services' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "Services" %}</a></li>
+          <li><a href="{% url 'contact_us' %}" class="quick-link"><i class="fas fa-angle-right"></i>{% trans "Contact Us" %}</a></li>
           {% endfor %}
         </ul>
 
-        <div class="d-flex flex-wrap">
+        <div class="social-row">
           <a href="https://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61556411611103" target="_blank" class="social-link" title="Facebook">
             <i class="fab fa-facebook-f"></i>
           </a>
@@ -113,10 +352,12 @@
             <i class="fab fa-instagram"></i>
           </a>
         </div>
+        </div>
       </div>
 
       <div class="col-lg-2">
         <div class="visitor-counter h-100">
+          <span class="counter-kicker">{% trans "Audience Reach" %}</span>
           <strong data-to="{{ visitors|floatformat:1 }}" data-plugin-options="{'decimals': 1}" data-append="{{ visitors_round }}+">
             {{ visitors|floatformat:1 }}{{ visitors_round }}+
           </strong>
@@ -127,17 +368,17 @@
 
     <div class="footer-bottom">
       <div class="py-4">
-        <div class="row align-items-center">
-          <div class="col-md-6 text-center text-md-start">
+        <div class="footer-bottom-wrap">
+          <div class="text-center text-md-start">
             <p class="mb-0 text-white-50">
               &copy; {% now "Y" %} {% if stg.title %}{{ stg.title }}{% else %}Abajifar General Trading{% endif %}. {% trans "All rights reserved." %}
             </p>
           </div>
-          <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+          <div class="text-center text-md-end mt-3 mt-md-0">
             <p class="mb-0">
               {% trans "Developed by" %}
-              <a href="https://www.otech.et/" target="_blank" class="text-white fw-bold text-decoration-none developed-by">
-                {% trans "Abajifar General Trading PLC " %}
+              <a href="https://www.melka.com/" target="_blank" class="text-white fw-bold text-decoration-none developed-by">
+                {% trans "MelkaTech " %}
               </a>
             </p>
           </div>

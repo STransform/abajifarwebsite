@@ -184,8 +184,8 @@ class Technology(models.Model):
     image = models.ImageField(upload_to='bureau_structure_images/', help_text="Make sure to submit an image proportional to the content")
 
     class Meta:
-        verbose_name = "Technology"
-        verbose_name_plural = "Technology"
+        verbose_name = "Transportation Service"
+        verbose_name_plural = "Transportation Services"
     
     
     def __str__(self):
@@ -198,8 +198,8 @@ class Infrastructure(models.Model):
     infr_image = models.ImageField(upload_to='bureau_structure_images/', help_text="Make sure to submit an image proportional to the content")
 
     class Meta:
-        verbose_name = "Infrastructure"
-        verbose_name_plural = "Infrastructure"
+        verbose_name = "Hotel & Accommodation Booking"
+        verbose_name_plural = "Hotel & Accommodation Booking"
     
     
     def __str__(self):
@@ -212,8 +212,8 @@ class Innovation(models.Model):
     invn_image = models.ImageField(upload_to='bureau_structure_images/', help_text="Make sure to submit an image proportional to the content")
 
     class Meta:
-        verbose_name = "Innovation"
-        verbose_name_plural = "Innovation"
+        verbose_name = "Travel Planning & Consultation"
+        verbose_name_plural = "Travel Planning & Consultation"
     
     
     def __str__(self):

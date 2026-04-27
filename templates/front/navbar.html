@@ -57,9 +57,9 @@
                 {% trans "Services" %}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'technology' %}">{% trans "Tech Solutions & Services" %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'infrastructure' %}">{% trans "Infrastructure and Deployment" %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'innovation' %}">{% trans "Consulting and Innovation" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'technology' %}">{% trans "Transportation Services" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'infrastructure' %}">{% trans "Hotel & Accommodation Booking" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'innovation' %}">{% trans "Travel Planning & Consultation" %}</a></li>
               </ul>
             </li>
             {% endif %}
@@ -81,11 +81,20 @@
             </li>
             {% endif %}
 
-            {% if pages.blogs %}
-            <li class="nav-item">
-              <a class="nav-link {% block blogs_dynamic %}{% endblock %} {% if blog_page %}active{% endif %}" href="{% url 'blog_list' %}">
-                {% trans "Blogs" %}
+            {% if pages.blogs or pages.news %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle {% block blogs_dynamic %}{% endblock %} {% block news_dynamic %}{% endblock %} {% if blog_page or news_page %}active{% endif %}" href="#"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% trans "Latest" %}
               </a>
+              <ul class="dropdown-menu">
+                {% if pages.blogs %}
+                <li><a class="dropdown-item" href="{% url 'blog_list' %}">{% trans "Blogs" %}</a></li>
+                {% endif %}
+                {% if pages.news %}
+                <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">{% trans "News" %}</a></li>
+                {% endif %}
+              </ul>
             </li>
             {% endif %}
 
@@ -131,9 +140,9 @@
                 {% trans "Services" %}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'technology' %}">{% trans "Tech Solutions & Services" %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'infrastructure' %}">{% trans "Infrastructure and Deployment" %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'innovation' %}">{% trans "Consulting and Innovation" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'technology' %}">{% trans "Transportation Services" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'infrastructure' %}">{% trans "Hotel & Accommodation Booking" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'innovation' %}">{% trans "Travel Planning & Consultation" %}</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -146,8 +155,13 @@
                 <li><a class="dropdown-item" href="{% url 'job_list' %}">{% trans "Vacancies" %}</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link {% block Blogs %}{% endblock %} {% if blog_page %}active{% endif %}" href="{% url 'blog_list' %}">{% trans "Blogs" %}</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle {% block Blogs %}{% endblock %} {% block news %}{% endblock %} {% if blog_page or news_page %}active{% endif %}" href="#"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans "Latest" %}</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'blog_list' %}">{% trans "Blogs" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'news_list_visitor' %}">{% trans "News" %}</a></li>
+              </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle {% block gallery %}{% endblock %} {% if gallery_page %}active{% endif %}" href="#"
@@ -168,7 +182,7 @@
           </ul>
 
           <div class="otech-toolbar d-flex flex-column flex-lg-row align-items-lg-center ms-lg-3">
-            <form action="{% url 'search' %}" method="get" class="d-flex">
+            <form action="{% url 'search' %}" method="get" class="d-flex otech-search-form">
               <div class="input-group otech-search">
                 <span class="input-group-text bg-white border-end-0 rounded-pill rounded-end-0">
                   <i class="fas fa-search text-muted"></i>
@@ -178,7 +192,7 @@
               </div>
             </form>
 
-            <form id="id_lang_selector_form" action="{% url 'set_language' %}" method="post">
+            <form id="id_lang_selector_form" class="otech-lang-form" action="{% url 'set_language' %}" method="post">
               {% csrf_token %}
               <input name="next" type="hidden" value="{{ redirect_to }}">
               <select name="language" onchange="change_lang(this)" class="form-select otech-lang">
@@ -194,7 +208,7 @@
             </form>
 
             {% if user.is_authenticated and user.is_staff and user.is_active %}
-            <a class="btn btn-corporate-red btn-sm" href="{% url 'admin_dashboard' %}">{% trans "Dashboard" %}</a>
+            <a class="btn btn-corporate-red btn-sm otech-dashboard-btn" href="{% url 'admin_dashboard' %}">{% trans "Dashboard" %}</a>
             {% endif %}
           </div>
         </div>

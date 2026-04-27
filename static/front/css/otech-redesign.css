@@ -178,6 +178,9 @@ a {
   align-items: center;
   gap: 0.9rem;
   text-decoration: none;
+  margin-left: 0.35rem;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
 }
 
 .otech-brand-logo {
@@ -192,6 +195,7 @@ a {
 
 .otech-brand-mark {
   line-height: 1.05;
+  max-width: 220px;
 }
 
 .otech-brand-label {
@@ -208,6 +212,20 @@ a {
   color: var(--primary-black);
   font-size: 1.15rem;
   font-weight: 800;
+  line-height: 1.05;
+}
+
+.otech-navbar .navbar {
+  align-items: center;
+  gap: 1rem;
+}
+
+.otech-navbar .navbar-collapse {
+  flex-grow: 1;
+}
+
+.otech-navbar .navbar-nav {
+  flex-wrap: nowrap;
 }
 
 .otech-nav-link,
@@ -221,6 +239,11 @@ a {
   color: var(--dark-gray);
   border-radius: 999px;
   padding: 0.7rem 1rem !important;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
 }
 
 .otech-navbar .nav-link.active,
@@ -250,18 +273,52 @@ a {
 }
 
 .otech-toolbar {
+  margin-left: auto;
   gap: 0.75rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.otech-search-form {
+  flex: 0 1 auto;
 }
 
 .otech-search {
-  min-width: 240px;
+  min-width: 220px;
+  max-width: 260px;
+}
+
+.otech-lang-form {
+  margin-left: 0.25rem;
 }
 
 .otech-lang {
+  width: 78px;
+  min-width: 78px;
+  padding-left: 0.85rem;
+  padding-right: 2rem;
   border-radius: 999px;
   border: 1px solid rgba(85, 122, 189, 0.18);
   background: rgba(255, 255, 255, 0.9);
   color: var(--dark-gray);
+}
+
+.otech-dashboard-btn {
+  white-space: nowrap;
+}
+
+@media (min-width: 992px) {
+  .otech-navbar .container {
+    max-width: 1380px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .otech-navbar .navbar-nav > .nav-item > .nav-link,
+  .otech-navbar .navbar-nav > .nav-item > .dropdown-toggle {
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+  }
 }
 
 .otech-page-hero,
@@ -371,12 +428,27 @@ a {
     box-shadow: var(--shadow-card);
   }
 
+  .otech-navbar .navbar-nav {
+    flex-wrap: wrap;
+  }
+
+  .otech-brand {
+    margin-right: 0;
+  }
+
   .otech-toolbar {
     align-items: stretch !important;
+    flex-wrap: wrap;
   }
 
   .otech-search {
     min-width: 100%;
+    max-width: none;
+  }
+
+  .otech-lang-form,
+  .otech-dashboard-btn {
+    align-self: flex-start;
   }
 }
 
@@ -390,5 +462,9 @@ a {
   .hero-about-section,
   .hero-header {
     padding: 4.75rem 0 3.5rem;
+  }
+
+  .otech-brand-mark {
+    max-width: 170px;
   }
 }

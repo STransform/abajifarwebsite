@@ -40,8 +40,8 @@ class TechnologyPage(View): # Render technology page
             })
             
         return render(request, "front/services.html", {'services':services, 
-        'service_page': True, 'page_title': 'Tech Solutions & Services', 
-                                                       'page_subtitle': 'Empowering businesses with tailored digital strategies and tools.'})
+        'service_page': True, 'page_title': 'Transportation Services', 
+                                                       'page_subtitle': 'Coordinating dependable transport solutions tailored to your travel and mobility needs.'})
 
 class InfrastructurePage(View): # Render infrastructure page 
     def get(self, request, **kwargs):
@@ -56,7 +56,7 @@ class InfrastructurePage(View): # Render infrastructure page
             })
             
         return render(request, "front/services.html", {'services':services,
-        'service_page': True, 'page_title': 'Infrastructure & Deployment', 'page_subtitle': 'Building scalable, secure, and efficient technology foundations.'})
+        'service_page': True, 'page_title': 'Hotel & Accommodation Booking', 'page_subtitle': 'Helping travelers secure comfortable stays with smooth booking support.'})
 
 class InnovationPage(View): # Render innovation page 
     def get(self, request, **kwargs):
@@ -71,7 +71,7 @@ class InnovationPage(View): # Render innovation page
             })
             
         return render(request, "front/services.html", {'services':services,
-        'service_page': True, 'page_title': 'Consulting & Innovation', 'page_subtitle': 'Transforming ideas into impactful, future-ready solutions.'})
+        'service_page': True, 'page_title': 'Travel Planning & Consultation', 'page_subtitle': 'Guiding clients with practical travel advice, planning, and trip coordination.'})
     
 class CompanyValuesPage(View): # Render values page 
     def get(self, request, **kwargs):

@@ -180,9 +180,17 @@ class Contact(View):
         contact = ContactUs.objects.create(full_name = data['name'], email = data['email'], phone = data['phone'], subject = data['subject'], message = data['message'])
         contact.save()
         msg = f"A visitor called {data['name']} with a phone number of {data['phone']} has sent a message with a subject of {data['subject']}. \n {data['message']}"
-        messages.success(self.request,"Successfully sent your feed back to our staff. We'll get back to you soon.")
         email = Settings.objects.first().email_for_contact_us if Settings.objects.first() else 'stemesgent@gmail.com'
-        e = EmailMultiAlternatives(f"Visitor message : {data['subject']}",msg,from_email="OTECH",to=[str(email)]).send()
+        try:
+            EmailMultiAlternatives(
+                f"Visitor message : {data['subject']}",
+                msg,
+                from_email="OTECH",
+                to=[str(email)]
+            ).send(fail_silently=True)
+        except Exception:
+            pass
+        messages.success(self.request,"Successfully sent your feed back to our staff. We'll get back to you soon.")
         return redirect(self.request.path)         
 
 

@@ -3,89 +3,369 @@
 {% block contact_us %} active {% endblock %}
 {% block contact_us_dynamic %} active {% endblock %}
 
-<!--  CSS    -->
 {% block css %}
 <style>
-    .contact-section {
-        padding: 100px 0;
-        background-color: var(--primary-white);
+    .contact-page {
+        padding: 72px 0 96px;
+        background:
+            radial-gradient(circle at top left, rgba(85, 122, 189, 0.12), transparent 26%),
+            linear-gradient(180deg, #f8fbff 0%, #ffffff 42%, #f8fbff 100%);
     }
 
-    .contact-form-wrapper {
-        background: var(--primary-white);
-        border: none;
-        border-radius: 0;
-        padding: 40px 30px;
+    .contact-hero {
+        max-width: 860px;
+        margin: 0 auto 3.5rem;
         text-align: center;
-        transition: all 0.3s ease;
+    }
+
+    .contact-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        background: rgba(85, 122, 189, 0.09);
+        border: 1px solid rgba(85, 122, 189, 0.14);
+        color: var(--accent-color-deep);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .contact-title {
+        margin: 1.35rem 0 1rem;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        font-weight: 600;
+        line-height: 0.95;
+        color: var(--primary-black);
+    }
+
+    .contact-subtitle {
+        margin: 0 auto;
+        max-width: 760px;
+        color: var(--medium-gray);
+        font-size: 1.05rem;
+        line-height: 1.9;
+    }
+
+    .contact-layout {
+        align-items: stretch;
+    }
+
+    .contact-card {
         height: 100%;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(85, 122, 189, 0.12);
+        box-shadow: 0 28px 70px rgba(23, 45, 84, 0.09);
+        overflow: hidden;
     }
 
-    .contact-form-wrapper:hover {
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    .contact-form-card {
+        padding: 2rem;
     }
 
-    .map-wrapper {
-        border-radius: 8px;
+    .contact-map-card {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .contact-card-head {
+        margin-bottom: 1.6rem;
+    }
+
+    .contact-card-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 0.7rem;
+        color: var(--accent-color-deep);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .contact-card-title {
+        margin-bottom: 0.55rem;
+        color: var(--primary-black);
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.15;
+    }
+
+    .contact-card-copy {
+        margin-bottom: 0;
+        color: var(--medium-gray);
+        line-height: 1.75;
+    }
+
+    .contact-highlights {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .contact-highlight {
+        padding: 1rem 1.1rem;
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(85, 122, 189, 0.08), rgba(85, 122, 189, 0.03));
+        border: 1px solid rgba(85, 122, 189, 0.1);
+    }
+
+    .contact-highlight strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        color: var(--primary-black);
+        font-size: 1rem;
+    }
+
+    .contact-highlight span {
+        color: var(--medium-gray);
+        font-size: 0.95rem;
+    }
+
+    .contact-page-form .form-label {
+        margin-bottom: 0.55rem;
+        color: var(--dark-gray);
+        font-weight: 600;
+    }
+
+    .contact-page-form .form-control {
+        min-height: 58px;
+        border-radius: 18px;
+        padding: 0.95rem 1.05rem;
+        background: #ffffff;
+    }
+
+    .contact-page-form textarea.form-control {
+        min-height: 180px;
+        resize: vertical;
+    }
+
+    .contact-submit {
+        min-height: 58px;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 700;
+        box-shadow: 0 20px 40px rgba(85, 122, 189, 0.22);
+    }
+
+    .contact-info-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        padding: 1rem;
+        border-radius: 22px;
+        background: rgba(85, 122, 189, 0.05);
+        border: 1px solid rgba(85, 122, 189, 0.1);
+    }
+
+    .contact-info-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: rgba(85, 122, 189, 0.12);
+        color: var(--accent-color-deep);
+        font-size: 1.05rem;
+    }
+
+    .contact-info-label {
+        margin-bottom: 0.2rem;
+        color: var(--primary-black);
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+
+    .contact-info-value,
+    .contact-info-value a {
+        color: var(--medium-gray);
+        line-height: 1.7;
+        word-break: break-word;
+    }
+
+    .contact-map-shell {
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(85, 122, 189, 0.12);
+        background: #edf3ff;
+        min-height: 320px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    }
+
+    .contact-map-shell iframe,
+    .contact-map-shell > iframe {
+        width: 100% !important;
+        min-height: 360px;
+        border: 0 !important;
+        display: block;
+    }
+
+    .contact-map-shell p {
+        margin: 0;
+    }
+
+    .contact-map-fallback {
+        min-height: 360px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        color: var(--medium-gray);
+    }
+
+    .contact-map-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .contact-map-note {
+        color: var(--medium-gray);
+        font-size: 0.95rem;
+    }
+
+    .contact-map-note strong {
+        color: var(--primary-black);
+    }
+
+    .contact-directions {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.85rem 1.15rem;
+        border-radius: 999px;
+        background: rgba(85, 122, 189, 0.1);
+        border: 1px solid rgba(85, 122, 189, 0.14);
+        color: var(--accent-color-deep);
+        font-weight: 700;
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .contact-directions:hover {
+        transform: translateY(-1px);
+        background: rgba(85, 122, 189, 0.14);
+        color: var(--accent-color-deep);
+    }
+
+    @media (max-width: 991.98px) {
+        .contact-page {
+            padding: 56px 0 80px;
+        }
+
+        .contact-form-card,
+        .contact-map-card {
+            padding: 1.4rem;
+        }
+
+        .contact-highlights,
+        .contact-info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .contact-title {
+            font-size: 2.8rem;
+        }
+
+        .contact-map-actions {
+            align-items: flex-start;
+            flex-direction: column;
+        }
     }
 </style>
 {% endblock %}
 
 {% block content %}
-
-<!--  Contact Us Section    -->
-<section class="contact-section">
+<section class="contact-page">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h2 class="section-title display-4 ">
-                    {% trans "Contact Us" %}
-                </h2>
-                <p class="lead text-muted">
-                    HAVE SOMETHING TO SAY OR NEED ADDITIONAL INFORMATION? DROP
-                    BY TO OUR OFFICE
-                </p>
-            </div>
+        <div class="contact-hero">
+            <span class="contact-kicker">
+                <i class="fas fa-headset"></i>
+                {% trans "We Are Here to Help" %}
+            </span>
+            <h1 class="contact-title">{% trans "Contact Us" %}</h1>
+            <p class="contact-subtitle">
+                {% trans "Have a question, need travel support, or want to plan your next trip with confidence? Send us a message, call our team, or use the map below to locate our office." %}
+            </p>
         </div>
-        <div class="row g-5">
-            <div class="col-lg-6">
-                <div class="contact-form-wrapper">
-                    <div class="mb-4">
-                        <h4 class="h5 fw-bold text-dark mb-2">
-                            <i class="fas fa-envelope me-2" style="color: var(--accent-color);"></i>
-                            {% trans "Send us a Message" %}
-                        </h4>
-                        <p class="text-muted small mb-0">Fill out the form below and we'll get back to you</p>
+
+        <div class="row g-4 contact-layout">
+            <div class="col-xl-5">
+                <div class="contact-card contact-form-card">
+                    <div class="contact-card-head">
+                        <span class="contact-card-label">
+                            <i class="fas fa-paper-plane"></i>
+                            {% trans "Quick Message" %}
+                        </span>
+                        <h2 class="contact-card-title">{% trans "Send us a Message" %}</h2>
+                        <p class="contact-card-copy">
+                            {% trans "Fill out the form below and our team will get back to you as soon as possible." %}
+                        </p>
                     </div>
-                    <form id="contactFormAdvanced" action="{% url 'contact_us' %}" method="POST"
-                        enctype="multipart/form-data">
+
+                    <div class="contact-highlights">
+                        <div class="contact-highlight">
+                            <strong>{% trans "Fast Response" %}</strong>
+                            <span>{% trans "We review inquiries promptly during working hours." %}</span>
+                        </div>
+                        <div class="contact-highlight">
+                            <strong>{% trans "Professional Support" %}</strong>
+                            <span>{% trans "Travel, booking, and general questions are all welcome." %}</span>
+                        </div>
+                    </div>
+
+                    <form id="contactFormAdvanced" class="contact-page-form" action="{% url 'contact_us' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" value="true" name="emailSent" id="emailSent" />
 
                         <div class="row g-3">
                             <div class="col-12">
-                                <input name="name" id="name" type="text" placeholder="{% trans 'Full Name' %}"
+                                <label class="form-label" for="name">{% trans "Full Name" %}</label>
+                                <input name="name" id="name" type="text" placeholder="{% trans 'Enter your full name' %}"
                                     class="form-control form-control-lg" required />
                             </div>
                             <div class="col-md-6">
-                                <input name="email" id="email" type="email" placeholder="{% trans 'Email Address' %}"
+                                <label class="form-label" for="email">{% trans "Email Address" %}</label>
+                                <input name="email" id="email" type="email" placeholder="{% trans 'you@example.com' %}"
                                     class="form-control form-control-lg" required />
                             </div>
                             <div class="col-md-6">
-                                <input type="tel" name="phone" id="phone" placeholder="{% trans 'Phone Number' %}"
+                                <label class="form-label" for="phone">{% trans "Phone Number" %}</label>
+                                <input type="tel" name="phone" id="phone" placeholder="{% trans 'Your phone number' %}"
                                     class="form-control form-control-lg" required />
                             </div>
                             <div class="col-12">
-                                <input name="subject" placeholder="{% trans 'Subject' %}"
+                                <label class="form-label" for="subject">{% trans "Subject" %}</label>
+                                <input name="subject" id="subject" placeholder="{% trans 'How can we help you?' %}"
                                     class="form-control form-control-lg" required />
                             </div>
                             <div class="col-12">
-                                <textarea name="message" id="message" rows="5" placeholder="{% trans 'Message' %}"
+                                <label class="form-label" for="message">{% trans "Message" %}</label>
+                                <textarea name="message" id="message" rows="6" placeholder="{% trans 'Tell us more about your request' %}"
                                     class="form-control form-control-lg" required></textarea>
                             </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-corporate-red btn-lg w-100">
+                            <div class="col-12 pt-2">
+                                <button type="submit" class="btn btn-corporate-red btn-lg w-100 contact-submit">
                                     {% trans "Send Message" %}
                                 </button>
                             </div>
@@ -93,22 +373,96 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="map-wrapper">
-                    <div class="mb-4">
-                        <h4 class="h5 fw-bold text-dark mb-2">
-                            <i class="fas fa-map-marker-alt me-2" style="color: var(--accent-color);"></i>
-                            {% trans "Find us Here" %}
-                        </h4>
-                        <p class="text-muted small mb-0">Visit our office or locate us on the map</p>
+
+            <div class="col-xl-7">
+                <div class="contact-card contact-map-card">
+                    <div class="contact-card-head mb-0">
+                        <span class="contact-card-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            {% trans "Visit Our Office" %}
+                        </span>
+                        <h2 class="contact-card-title">{% trans "Find Us Here" %}</h2>
+                        <p class="contact-card-copy">
+                            {% trans "Use the map for location guidance, or reach out directly using the contact details below." %}
+                        </p>
                     </div>
-                    {% if map %} {{ map|safe }} {% else %}
-                    {{ map }}
-                    {% endif %}
+
+                    <div class="contact-info-grid">
+                        <div class="contact-info-item">
+                            <span class="contact-info-icon"><i class="fas fa-location-dot"></i></span>
+                            <div>
+                                <div class="contact-info-label">{% trans "Address" %}</div>
+                                <div class="contact-info-value">
+                                    {% if stg and stg.address %}{{ stg.address }}{% else %}{% trans "Office address will appear here once added from the admin panel." %}{% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <span class="contact-info-icon"><i class="fas fa-clock"></i></span>
+                            <div>
+                                <div class="contact-info-label">{% trans "Working Hours" %}</div>
+                                <div class="contact-info-value">
+                                    {% if stg and stg.working_hours %}{{ stg.working_hours }}{% else %}{% trans "Working hours will appear here once added from the admin panel." %}{% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <span class="contact-info-icon"><i class="fas fa-phone"></i></span>
+                            <div>
+                                <div class="contact-info-label">{% trans "Call Us" %}</div>
+                                <div class="contact-info-value">
+                                    {% if stg and stg.phone1 %}<a href="tel:{{ stg.phone1 }}">{{ stg.phone1 }}</a>{% endif %}
+                                    {% if stg and stg.phone2 %}
+                                    <br><a href="tel:{{ stg.phone2 }}">{{ stg.phone2 }}</a>
+                                    {% endif %}
+                                    {% if not stg.phone1 and not stg.phone2 %}{% trans "Phone numbers will appear here once added from the admin panel." %}{% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <span class="contact-info-icon"><i class="fas fa-envelope"></i></span>
+                            <div>
+                                <div class="contact-info-label">{% trans "Email" %}</div>
+                                <div class="contact-info-value">
+                                    {% if stg and stg.email %}<a href="mailto:{{ stg.email }}">{{ stg.email }}</a>{% else %}{% trans "Email address will appear here once added from the admin panel." %}{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-map-shell">
+                        {% if map %}
+                            {{ map|safe }}
+                        {% else %}
+                        <div class="contact-map-fallback">
+                            <div>
+                                <h3 class="h5 mb-3 text-dark">{% trans "Google Map Will Appear Here" %}</h3>
+                                <p class="mb-0">
+                                    {% trans "Add the Google Maps embed iframe inside Settings > map link in the admin panel to display the live office location here." %}
+                                </p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="contact-map-actions">
+                        <div class="contact-map-note">
+                            <strong>{% trans "Need directions?" %}</strong>
+                            {% trans "Open the location in Google Maps for turn-by-turn navigation." %}
+                        </div>
+                        {% if stg and stg.address %}
+                        <a class="contact-directions" href="https://www.google.com/maps/search/?api=1&query={{ stg.address|urlencode }}" target="_blank" rel="noopener">
+                            <i class="fas fa-route"></i>
+                            {% trans "Get Directions" %}
+                        </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 {% endblock %}
