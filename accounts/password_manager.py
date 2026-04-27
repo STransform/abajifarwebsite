@@ -42,7 +42,7 @@ class PasswordResetForm(DefaultPasswordResetForm):
 
         ThreadEmailSender(
             template=email_template_name,
-            subject="OTech Engineering password Reset.",
+            subject="Abajifar password Reset.",
             to_email=to_email,
             params=context
         ).start()

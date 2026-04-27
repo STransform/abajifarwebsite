@@ -3,38 +3,6 @@
 {% block css %}{% endblock %}
 
 <div class="otech-nav-shell">
-  <div class="otech-topbar py-2">
-    <div class="container">
-      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-2">
-        <div class="d-flex flex-wrap align-items-center gap-3">
-          <span>
-            {% if stg.title %}{{ stg.title }}{% else %}{% trans "OTech Engineering" %}{% endif %}
-          </span>
-          {% if stg.phone1 %}
-          <a href="tel:{{ stg.phone1 }}"><i class="fa fa-phone me-1"></i>{{ stg.phone1 }}</a>
-          {% endif %}
-          {% if stg.email %}
-          <a href="mailto:{{ stg.email }}"><i class="fa fa-envelope me-1"></i>{{ stg.email }}</a>
-          {% endif %}
-        </div>
-        <div class="d-flex flex-wrap align-items-center gap-3">
-          {% if stg.facebook %}
-          <a href="{{ stg.facebook }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          {% endif %}
-          {% if stg.twitter %}
-          <a href="{{ stg.twitter }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          {% endif %}
-          {% if stg.instagram %}
-          <a href="{{ stg.instagram }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          {% endif %}
-          {% if stg.youtube %}
-          <a href="{{ stg.youtube }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-
   <header class="otech-navbar">
     <div class="container">
       <nav class="navbar navbar-expand-lg p-0">

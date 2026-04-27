@@ -3,7 +3,7 @@
 
 ## Brief Description**
 
-This dynamic web-based system is developed for OTech Engineering & Technology Solutions Plc
+This dynamic web-based system is developed for Abajifar General Tradiing and Tour P.L.C.
 
 # Technology Stack
 

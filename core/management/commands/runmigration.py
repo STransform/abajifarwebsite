@@ -52,7 +52,7 @@ class Command(BaseCommand):
                 print("Created a default site name of ",site.name, " and domain of ",site.domain,end="\n" )
             
             elif site.name == "otech.com":
-                    site.name = "OTECH Engineering"
+                    site.name = "Abajifar"
                     site.domain = "otech.com"
                     site.save()
                     print("Default site name updated to ",site.name, " and domain to ",site.domain,end="\n" )

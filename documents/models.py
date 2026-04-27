@@ -8,7 +8,7 @@ def get_file_extension(filename):
     
 class Document(models.Model):
     CATEGORY_CHOICES = (
-        ('OTECH Engineering Docs', _('OTECH Engineering Docs')),
+        ('Abajifar Docs', _('Abajifar Docs')),
         ('Java Training ', _('Java Training')),
         ('Django Training', _('Django Training')),
         ('Annual Plan Report', _('Annual Plan Report')),

@@ -26,7 +26,7 @@ class ContactUs(models.Model):
 
 class Settings(models.Model):
     is_single = True # Tells if the model should have multiple or single objects
-    title = models.CharField(max_length=255, blank=False, default ="OTech Engineering", 
+    title = models.CharField(max_length=255, blank=False, default ="Aba Jifar", 
                              help_text="Make sure to submit a max of 255 characters.")
     logo = models.ImageField(upload_to="Logo",help_text="Make sure to submit an image of equal width and height preferably with empty background.")
     phone1 = models.CharField(max_length=255, blank=False, )
@@ -50,7 +50,7 @@ class Settings(models.Model):
         super().save(*args, **kwargs)
         try:
             # Whenever there is an update on the title of main site, change the cms header site name and site domain
-            site = Site.objects.first() if Site.objects.first() else Site.objects.create(domain="OTECH Engineering", name="OTECH Engineering")
+            site = Site.objects.first() if Site.objects.first() else Site.objects.create(domain="Aba Jifar", name="Abajifar")
             if site.name != self.title:
                 site.name = self.title
                 site.domain = str(self.title).replace(" ","").lower()+".com"
