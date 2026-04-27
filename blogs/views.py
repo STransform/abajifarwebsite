@@ -26,6 +26,6 @@ class blog_detail(View):
         blog = Blog.objects.get(id = self.kwargs['blog_id'])
         data = self.request.POST
         BlogComment.objects.create(blog =blog, author = data['author'], email = data['email'], message = data['message'])
-        messages.success(self.request, _("Successfully commented! Thank you for your comment. Your comment will be visible once approved by our web managers."))
+        messages.success(self.request, _("Successfully commented! Thank you for sharing your thoughts."))
         return redirect("blog_detail", blog_id= blog.id,)
      

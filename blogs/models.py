@@ -27,7 +27,7 @@ class Blog(models.Model):
         return self.title
 
     def comments(self):
-        return self.comment_set.filter(approved = True)
+        return self.comment_set.all()
 
     def get_list_fields():
         return ['title', 'blog_category','created_by','created_date','published_status' ]
@@ -43,7 +43,7 @@ class BlogComment(models.Model):
     author = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField()
-    approved = models.BooleanField(default=False)
+    approved = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -57,5 +57,4 @@ class BlogComment(models.Model):
     
     list_fields = get_list_fields()
     
-
 

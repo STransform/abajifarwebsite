@@ -144,6 +144,17 @@
         {% include  'front/navbar.html'  %}
 
         <div role="main" class="main ">
+            {% if messages %}
+            <div class="container pt-4">
+                {% for m in messages %}
+                <div class="alert alert-{{ m.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                    {{ m }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <!-- Main Content area to be used by Django templates -->
             {% block content %}
             {% endblock %}

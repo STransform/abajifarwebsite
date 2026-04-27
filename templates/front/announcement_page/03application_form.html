@@ -98,6 +98,9 @@
             <div class="form-group col-md-6 col-sm-12">
                 <label class="form-label">{{ field.label }}</label>
                 {{ field }}
+                {% if field.help_text %}
+                <div class="small text-muted mt-1">{{ field.help_text }}</div>
+                {% endif %}
                 <div class="text-danger small">{{ field.errors }}</div>
             </div>
             {% endfor %}

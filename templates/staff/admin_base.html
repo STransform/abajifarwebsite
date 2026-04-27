@@ -733,11 +733,11 @@
                         </li>
                         {% endif %}
                         <!-- Start::Announcements -->
-                        {% if perms.dashboard.view_bid or perms.dashboard.view_event or perms.vacancies.view_job %}
+                        {% if perms.dashboard.view_bid or perms.dashboard.view_event or perms.vacancies.view_job or perms.vacancies.view_application %}
                         <li
-                            class="slide has-sub {% if model_code == 'Bid' or model_code == 'Event' or model_code == 'Job' %} active open {% endif %}">
+                            class="slide has-sub {% if model_code == 'Bid' or model_code == 'Event' or model_code == 'Job' or model_code == 'Application' %} active open {% endif %}">
                             <a href="javascript:void(0);"
-                                class="side-menu__item {% if model_code == 'Bid' or model_code == 'Event' or model_code == 'Job' %} active {% endif %}">
+                                class="side-menu__item {% if model_code == 'Bid' or model_code == 'Event' or model_code == 'Job' or model_code == 'Application' %} active {% endif %}">
                                 <i class="bx bx-task side-menu__icon"></i>
                                 <span class="side-menu__label">Announcements </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
@@ -759,9 +759,9 @@
                                         class="side-menu__item {% if model_code == 'Job' %} active {% endif %}">Vacancies</a>
                                 </li>
                                 {% endif %}
-                                {% if perms.vacancies.view_job %}
-                                <li class="slide"><a href="{% url 'application_list' %}"
-                                        class="side-menu__item {% if model_code == 'Job' %} active {% endif %}">Applicant
+                                {% if perms.vacancies.view_application %}
+                                <li class="slide"><a href="{% url 'list_view' model_name='Application' %}"
+                                        class="side-menu__item {% if model_code == 'Application' %} active {% endif %}">Applicant
                                         List</a></li>
                                 {% endif %}
                             </ul>
@@ -776,11 +776,32 @@
                             <a href="javascript:void(0);"
                                 class="side-menu__item  {% if model_code == 'NewsArticle' or model_code == 'NewsCategory' or model_code == 'Blog' or model_code == 'BlogComment' or model_code == 'BlogCategory' %}  active {% endif %}">
                                 <i class="bx bx-news side-menu__icon"></i>
-                                <span class="side-menu__label">Blogs </span>
+                                <span class="side-menu__label">News & Blogs</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
 
+                                <li
+                                    class="slide has-sub {% if model_code == 'NewsArticle' or model_code == 'NewsCategory' %} active open {% endif %}">
+                                    {% if perms.news.view_newsarticle or perms.news.view_newscategory %}
+                                    <a href="javascript:void(0);"
+                                        class="side-menu__item {% if model_code == 'NewsArticle' or model_code == 'NewsCategory' %} active {% endif %}">News
+                                        <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                                    {% endif %}
+                                    <ul class="slide-menu child2">
+                                        {% if perms.news.view_newsarticle %}
+                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsArticle' %}"
+                                                class="side-menu__item {% if model_code == 'NewsArticle' %} active {% endif %}">News</a>
+                                        </li>
+                                        {% endif %}
+
+                                        {% if perms.news.view_newscategory %}
+                                        <li class="slide"><a href="{% url 'list_view' model_name='NewsCategory' %}"
+                                                class="side-menu__item {% if model_code == 'NewsCategory' %} active {% endif %}">News
+                                                Categories</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
 
                                 <li
                                     class="slide has-sub {% if model_code == 'Blog' or model_code == 'Comment' or model_code == 'BlogCategory'  %} active open {% endif %}">

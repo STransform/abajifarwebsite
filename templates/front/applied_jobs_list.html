@@ -28,12 +28,12 @@
         <div class="col-md-12 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ application.firstname }}</h5>
-                    <p><strong>{% trans "Email" %}:</strong> {{ application.email }}</p>
-                    <p><strong>{% trans "Phone" %}:</strong> {{ application.phone }}</p>
-                    <p><strong>{% trans "CGPA" %}:</strong> {{ application.cgpa }}</p>
-                    <p><strong>{% trans "Experience" %}:</strong> {{ application.year_of_experience }} years</p>
-                    <p><strong>{% trans "Job ID" %}:</strong> {{ application.job_odoo_id }}</p>
+                    <h5 class="card-title">{{ application.partner_name }}</h5>
+                    <p><strong>{% trans "Email" %}:</strong> {{ application.email_from }}</p>
+                    <p><strong>{% trans "Phone" %}:</strong> {{ application.partner_phone|default:"-" }}</p>
+                    <p><strong>{% trans "CGPA" %}:</strong> {{ application.cgpa_requirement|default:"-" }}</p>
+                    <p><strong>{% trans "Experience" %}:</strong> {{ application.experience|default:0 }} years</p>
+                    <p><strong>{% trans "Job" %}:</strong> {{ application.get_job_title }}</p>
                 </div>
             </div>
         </div>

@@ -70,7 +70,7 @@ class GalleryVideo(models.Model):
 
 class DirectorateMessage(models.Model):
     # A message from the bureau director displayed at the homepage
-    is_single = True # Tells if the model should have multiple or single objects,Director message should not be many pages...it should be one page only
+    #is_single = True # Tells if the model should have multiple or single objects,Director message should not be many pages...it should be one page only
 
     title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     content = models.TextField()

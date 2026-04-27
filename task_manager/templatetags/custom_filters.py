@@ -20,6 +20,10 @@ def get_key_tasks(task):
 def get_field_attr(obj, field):
     if hasattr(obj, field):
         value = getattr(obj,field, None)
+        if callable(value):
+            value = value()
+        if hasattr(value, "__html__"):
+            return value
         if isinstance(value, str) and len(value)>25:
             value = value[:25] +"..."
         elif isinstance(value, datetime):

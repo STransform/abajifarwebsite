@@ -1,6 +1,7 @@
 from django.views import View
 from django.apps import apps
 from django.conf import settings
+from django.db.models import Q
 from django.db.models.base import ModelBase
 from django.shortcuts import render,redirect
 from django.utils.translation import gettext as _
@@ -144,7 +145,7 @@ class ChangeView(LoginRequiredMixin,PermissionRequiredMixin, View):
         child_obj, child_obj_fields  = None, [] 
 
         if model == Job:
-            child_obj = obj.application_set.all()
+            child_obj = Application.objects.filter(job_odoo_id=obj.id)
         elif model == Blog:
             child_obj = obj.comment_set.all()
         
@@ -182,11 +183,61 @@ class ListView(LoginRequiredMixin,PermissionRequiredMixin, View):
             return redirect("create_view", model_name = self.kwargs['model_name'])
         
         objs = model.objects.all()
+        filter_values = {}
+
+        if model == Application:
+            search = self.request.GET.get('search', '').strip()
+            min_cgpa = self.request.GET.get('min_cgpa', '').strip()
+            max_cgpa = self.request.GET.get('max_cgpa', '').strip()
+            min_experience = self.request.GET.get('min_experience', '').strip()
+            max_experience = self.request.GET.get('max_experience', '').strip()
+
+            if search:
+                matching_job_ids = Job.objects.filter(job_title__icontains=search).values_list('id', flat=True)
+                objs = objs.filter(
+                    Q(partner_name__icontains=search)
+                    | Q(email_from__icontains=search)
+                    | Q(partner_phone__icontains=search)
+                    | Q(job_odoo_id__in=matching_job_ids)
+                )
+
+            if min_cgpa:
+                try:
+                    objs = objs.filter(cgpa_requirement__gte=float(min_cgpa))
+                except ValueError:
+                    pass
+
+            if max_cgpa:
+                try:
+                    objs = objs.filter(cgpa_requirement__lte=float(max_cgpa))
+                except ValueError:
+                    pass
+
+            if min_experience:
+                try:
+                    objs = objs.filter(experience__gte=int(min_experience))
+                except ValueError:
+                    pass
+
+            if max_experience:
+                try:
+                    objs = objs.filter(experience__lte=int(max_experience))
+                except ValueError:
+                    pass
+
+            filter_values = {
+                'search': search,
+                'min_cgpa': min_cgpa,
+                'max_cgpa': max_cgpa,
+                'min_experience': min_experience,
+                'max_experience': max_experience,
+            }
+
         list_fields = getattr(model, 'list_fields',[])
         
         return render (self.request, "staff/list_page.html", 
                       {'model_name':formal_name, 'model_code':self.kwargs['model_name'], 'single':config['single'],
-                       'objs':objs,'fields':list_fields}
+                       'objs':objs,'fields':list_fields, 'filter_values': filter_values}
                     ) 
 
 # deletes an object for requested model

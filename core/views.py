@@ -53,7 +53,7 @@ def index(request):
     recent_documents = Document.objects.order_by('-upload_date')[:9]
     gallery_images = GalleryImage.objects.all()
     faqs = FAQ.objects.all()
-    about_us = DirectorateMessage.objects.first()
+    leadership_messages = DirectorateMessage.objects.order_by('-id')
     featured_works = FeaturedWork.objects.all()
     company_values=CompanyValues.objects.all()
     vision_mission=VisionMission.objects.all()
@@ -67,6 +67,7 @@ def index(request):
     services = Service.objects.order_by('-created_date')
     #technology_service=TechnologyService.objects.all()
     
+    about_us = leadership_messages.first()
     paragraphs = about_us.content[:800] + "..." if about_us else about_us
     paragraphs = paragraphs.split('\n') if paragraphs else paragraphs
     logs = LogEntry.objects.all().order_by('-action_time')[:20]  # Retrieve last 20 log entries
@@ -79,6 +80,7 @@ def index(request):
         'gallery_images': gallery_images,
         'faqs': faqs,
         'about_us': about_us,
+        'leadership_messages': leadership_messages,
         'paragraphs': paragraphs,  # Pass preprocessed paragraphs to template context
         'featured_works': featured_works,  # Add Featured Works data to context
         #'technology_service':technology_service,

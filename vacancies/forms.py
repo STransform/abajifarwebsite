@@ -16,6 +16,12 @@ class JobForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Number of Vacancies'
             }),
+            'cgpa_requirement': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'step': '0.01',
+                'min': '0',
+                'placeholder': 'Minimum required CGPA'
+            }),
             'skills': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Skills (comma separated)'
@@ -95,3 +101,36 @@ class ApplicationForm(forms.Form):
             'class': 'form-control-file'
         })
     )
+
+    def __init__(self, *args, job=None, **kwargs):
+        self.job = job
+        super().__init__(*args, **kwargs)
+
+        required_cgpa = getattr(job, 'cgpa_requirement', None)
+        if required_cgpa is not None:
+            self.fields['cgpa_requirement'].required = True
+            self.fields['cgpa_requirement'].help_text = (
+                f"Minimum required CGPA for this vacancy is {required_cgpa:.2f}."
+            )
+            self.fields['cgpa_requirement'].widget.attrs['placeholder'] = (
+                f"Enter your CGPA (minimum {required_cgpa:.2f})"
+            )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        required_cgpa = getattr(self.job, 'cgpa_requirement', None)
+        applicant_cgpa = cleaned_data.get('cgpa_requirement')
+
+        if required_cgpa is not None:
+            if applicant_cgpa is None:
+                self.add_error(
+                    'cgpa_requirement',
+                    f"Please enter your CGPA. Minimum required CGPA is {required_cgpa:.2f}."
+                )
+            elif applicant_cgpa < required_cgpa:
+                self.add_error(
+                    'cgpa_requirement',
+                    f"Your CGPA must be at least {required_cgpa:.2f} for this vacancy."
+                )
+
+        return cleaned_data

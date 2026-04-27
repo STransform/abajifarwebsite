@@ -102,7 +102,7 @@ INSTALLED_APPS = [
 CUSTOM_INSTALLED_APPS = [
     'about_us',
     'documents',
-    # 'news',
+    'news',
     #'suppliers',
     'vacancies',
     'dashboard',

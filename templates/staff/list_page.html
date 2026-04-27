@@ -19,6 +19,37 @@
                         <a class="btn btn-primary float-end mb-3" href="{% url 'create_view' model_name=model_code %}">Add New </a>
                     </div>
                     {% endif %}
+
+                    {% if model_code == 'Application' %}
+                    <form method="get" class="row g-3 mb-4">
+                        <div class="col-md-3">
+                            <label class="form-label">Search applicant/job</label>
+                            <input type="text" name="search" class="form-control" value="{{ filter_values.search }}" placeholder="Name, email, phone, job title">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Min CGPA</label>
+                            <input type="number" step="0.01" name="min_cgpa" class="form-control" value="{{ filter_values.min_cgpa }}" placeholder="0.00">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Max CGPA</label>
+                            <input type="number" step="0.01" name="max_cgpa" class="form-control" value="{{ filter_values.max_cgpa }}" placeholder="4.00">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Min Experience</label>
+                            <input type="number" name="min_experience" class="form-control" value="{{ filter_values.min_experience }}" placeholder="0">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Max Experience</label>
+                            <input type="number" name="max_experience" class="form-control" value="{{ filter_values.max_experience }}" placeholder="10">
+                        </div>
+                        <div class="col-md-1 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100">Filter</button>
+                        </div>
+                        <div class="col-12">
+                            <a class="btn btn-light border" href="{% url 'list_view' model_name=model_code %}">Clear filters</a>
+                        </div>
+                    </form>
+                    {% endif %}
                     
                     <div class="table-responsive col-12 mt-3">
                        
