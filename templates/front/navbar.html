@@ -222,5 +222,58 @@
   function change_lang() {
     document.querySelector("#id_lang_selector_form").submit();
   }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const dropdownItems = document.querySelectorAll(".otech-navbar .nav-item.dropdown");
+
+    function closeAllDropdowns(currentItem) {
+      dropdownItems.forEach((item) => {
+        if (item !== currentItem) {
+          item.classList.remove("show");
+          const toggle = item.querySelector(".dropdown-toggle");
+          const menu = item.querySelector(".dropdown-menu");
+          if (toggle) toggle.setAttribute("aria-expanded", "false");
+          if (menu) menu.classList.remove("show");
+        }
+      });
+    }
+
+    dropdownItems.forEach((item) => {
+      const toggle = item.querySelector(".dropdown-toggle");
+      const menu = item.querySelector(".dropdown-menu");
+
+      if (!toggle || !menu) return;
+
+      toggle.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen = menu.classList.contains("show");
+        closeAllDropdowns(item);
+
+        if (!isOpen) {
+          item.classList.add("show");
+          menu.classList.add("show");
+          toggle.setAttribute("aria-expanded", "true");
+        } else {
+          item.classList.remove("show");
+          menu.classList.remove("show");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".otech-navbar .nav-item.dropdown")) {
+        closeAllDropdowns();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeAllDropdowns();
+      }
+    });
+  });
 </script>
 {% endblock %}

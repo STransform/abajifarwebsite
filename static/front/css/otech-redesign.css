@@ -255,10 +255,26 @@ a {
 }
 
 .otech-navbar .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  left: 0;
+  min-width: 220px;
   border: 1px solid var(--surface-border);
   border-radius: 18px;
   padding: 0.75rem;
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: var(--shadow-card);
+  z-index: 1200;
+}
+
+.otech-navbar .nav-item.dropdown {
+  position: relative;
+}
+
+.otech-navbar .nav-item.dropdown > .dropdown-menu.show {
+  display: block;
 }
 
 .otech-navbar .dropdown-item {
@@ -430,6 +446,13 @@ a {
 
   .otech-navbar .navbar-nav {
     flex-wrap: wrap;
+  }
+
+  .otech-navbar .dropdown-menu {
+    position: static;
+    min-width: 100%;
+    margin-top: 0.45rem;
+    box-shadow: none;
   }
 
   .otech-brand {
