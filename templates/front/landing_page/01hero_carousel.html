@@ -230,6 +230,7 @@
   }
 
   @media (max-width: 991.98px) {
+
     .hero-carousel-item,
     .hero-section {
       min-height: calc(64vh + var(--hero-stats-overlap));
@@ -264,6 +265,7 @@
   }
 
   @media (max-width: 767.98px) {
+
     .hero-carousel-item,
     .hero-section {
       min-height: 58vh;
@@ -319,28 +321,27 @@
 
 {% if featured_works %}
 <section class="otech-hero">
-  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000"
+    data-bs-pause="false">
     <div class="carousel-indicators">
       {% for work in featured_works %}
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
-        {% if forloop.first %}class="active" aria-current="true"{% endif %}
-        aria-label="Slide {{ forloop.counter }}"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true" {% endif %} aria-label="Slide {{ forloop.counter }}"></button>
       {% endfor %}
     </div>
 
     <div class="carousel-inner">
       {% for work in featured_works %}
       <div class="carousel-item hero-carousel-item {% if forloop.first %}active{% endif %}"
-        style="background: linear-gradient(90deg, rgba(12, 26, 49, 0.2), rgba(12, 26, 49, 0.2)), url('{{ work.background_image.url }}') center/cover no-repeat;">
+        style="background: url('{{ work.background_image.url }}') center center/contain no-repeat; background-color: #102747;">
         <div class="carousel-caption">
           <div class="container">
             <div class="hero-content-wrap">
               <div class="row hero-bottom-strip">
-                
+
                 <div class="col-12 hero-actions-row">
                   <div class="hero-actions">
                     <a href="{% url 'services' %}" class="btn btn-corporate-red btn-lg">{% trans "Explore Services" %}</a>
-                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">{% trans "About OTECH" %}</a>
+                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">{% trans "About Abajifar" %}</a>
                   </div>
                 </div>
               </div>
@@ -352,10 +353,12 @@
     </div>
 
     {% if featured_works|length > 1 %}
-    <button class="hero-nav-control hero-nav-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous slide">
+    <button class="hero-nav-control hero-nav-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"
+      aria-label="Previous slide">
       <i class="fas fa-arrow-left"></i>
     </button>
-    <button class="hero-nav-control hero-nav-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next slide">
+    <button class="hero-nav-control hero-nav-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"
+      aria-label="Next slide">
       <i class="fas fa-arrow-right"></i>
     </button>
     {% endif %}
