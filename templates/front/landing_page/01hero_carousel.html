@@ -325,7 +325,7 @@
     data-bs-pause="false">
     <div class="carousel-indicators">
       {% for work in featured_works %}
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true" {% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true" {% endif %} aria-label="{% blocktrans with number=forloop.counter %}Slide {{ number }}{% endblocktrans %}"></button>
       {% endfor %}
     </div>
 
@@ -354,11 +354,11 @@
 
     {% if featured_works|length > 1 %}
     <button class="hero-nav-control hero-nav-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"
-      aria-label="Previous slide">
+      aria-label="{% trans 'Previous slide' %}">
       <i class="fas fa-arrow-left"></i>
     </button>
     <button class="hero-nav-control hero-nav-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"
-      aria-label="Next slide">
+      aria-label="{% trans 'Next slide' %}">
       <i class="fas fa-arrow-right"></i>
     </button>
     {% endif %}

@@ -829,31 +829,29 @@ msgstr "አካባቢ"
 
 #: templates/front/landing_page/01hero_carousel.html:342
 #: templates/front/landing_page/01hero_carousel.html:385
-#, fuzzy
-#| msgid "Our Services"
 msgid "Explore Services"
-msgstr "አገልግሎቶች"
+msgstr "አገልግሎቶችን ያስሱ"
 
 #: templates/front/landing_page/01hero_carousel.html:343
 #: templates/front/landing_page/01hero_carousel.html:386
-#, fuzzy
-#| msgid "About Us"
 msgid "About OTECH"
-msgstr "ስለ እኛ"
+msgstr "ስለ ኦቴክ"
 
 #: templates/front/landing_page/01hero_carousel.html:371
 msgid "Institutional Focus"
-msgstr ""
+msgstr "የተቋም ትኩረት"
 
 #: templates/front/landing_page/01hero_carousel.html:372
 msgid ""
 "A modern, benchmark-inspired experience built to present public information "
 "with clarity, trust, and visual strength."
 msgstr ""
+"ዘመናዊ፣ በመለኪያ የተነሳሳ ልምድ ሲሆን የህዝብ መረጃን በግልጽነት፣ "
+"በእምነት እና በተሟላ እይታ ለማቅረብ የተገነባ ነው።"
 
 #: templates/front/landing_page/01hero_carousel.html:379
 msgid "Accessible information for citizens, partners, and stakeholders"
-msgstr ""
+msgstr "ለዜጎች፣ አጋሮች እና ባለድርሻ አካላት ተደራሽ መረጃ"
 
 #: templates/front/landing_page/02stats_section.html:49
 msgid "Projects Delivered"
@@ -861,17 +859,59 @@ msgstr ""
 
 #: templates/front/landing_page/02stats_section.html:55
 msgid "Partner Institutions"
-msgstr ""
+msgstr "አጋር ተቋማት"
 
 #: templates/front/landing_page/02stats_section.html:61
 msgid "Years of Operations"
-msgstr ""
+msgstr "የሥራ ዓመታት"
 
 #: templates/front/landing_page/02stats_section.html:67
-#, fuzzy
-#| msgid "Success"
 msgid "Public Access"
-msgstr "ስኬት"
+msgstr "የህዝብ ተደራሽነት"
+
+#: templates/front/base.html:19 templates/front/base.html:39
+msgid "Abajifar General Trading PLC"
+msgstr "አባጂፋር ጄኔራል ትሬዲንግ ኃ.የተ.የግ.ማ"
+
+#: templates/front/base.html:38
+msgid "Official website of %(site_title)s"
+msgstr "የ%(site_title)s ኦፊሴላዊ ድህረ ገጽ"
+
+#: templates/front/base.html:38
+msgid "Official website"
+msgstr "ኦፊሴላዊ ድህረ ገጽ"
+
+#: templates/front/base.html:152
+msgid "Close"
+msgstr "ዝጋ"
+
+#: templates/front/navbar.html:11 templates/front/navbar.html:13
+msgid "Logo"
+msgstr "አርማ"
+
+#: templates/front/navbar.html:24
+msgid "Toggle navigation"
+msgstr "መዳሰሻን ክፈት/ዝጋ"
+
+#: templates/front/landing_page/01hero_carousel.html:328
+msgid "Slide %(number)s"
+msgstr "ስላይድ %(number)s"
+
+#: templates/front/landing_page/01hero_carousel.html:342
+msgid "About Abajifar"
+msgstr "ስለ አባጂፋር"
+
+#: templates/front/landing_page/01hero_carousel.html:357
+msgid "Previous slide"
+msgstr "ያለፈው ስላይድ"
+
+#: templates/front/landing_page/01hero_carousel.html:361
+msgid "Next slide"
+msgstr "ቀጣይ ስላይድ"
+
+#: templates/front/landing_page/02stats_section.html:43
+msgid "Clients Served"
+msgstr "የተገለገሉ ደንበኞች"
 
 #: templates/front/landing_page/03our_services.html:209
 msgid "What We Do"

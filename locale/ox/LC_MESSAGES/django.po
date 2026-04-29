@@ -822,31 +822,29 @@ msgstr "Argama"
 
 #: templates/front/landing_page/01hero_carousel.html:342
 #: templates/front/landing_page/01hero_carousel.html:385
-#, fuzzy
-#| msgid "Our Services"
 msgid "Explore Services"
-msgstr "Tajaajila Keenya"
+msgstr "Tajaajiloota keessa ilaali"
 
 #: templates/front/landing_page/01hero_carousel.html:343
 #: templates/front/landing_page/01hero_carousel.html:386
-#, fuzzy
-#| msgid "About Us"
 msgid "About OTECH"
-msgstr "Waa'ee Keenya"
+msgstr "Waa'ee OTECH"
 
 #: templates/front/landing_page/01hero_carousel.html:371
 msgid "Institutional Focus"
-msgstr ""
+msgstr "Xiyyeeffannoo dhaabbataa"
 
 #: templates/front/landing_page/01hero_carousel.html:372
 msgid ""
 "A modern, benchmark-inspired experience built to present public information "
 "with clarity, trust, and visual strength."
 msgstr ""
+"Muuxannoo ammayyaa, fakkeenya gaarii irraa kaka'e kan odeeffannoo uummataa "
+"iftoomina, amanamummaa fi humna mul'ataa waliin dhiheessuuf ijaarame."
 
 #: templates/front/landing_page/01hero_carousel.html:379
 msgid "Accessible information for citizens, partners, and stakeholders"
-msgstr ""
+msgstr "Odeeffannoo mootummaa kan lammiilee, hojii-waltajjii fi qaamolee dhimmi ilaallatuuf mijatu"
 
 #: templates/front/landing_page/02stats_section.html:49
 msgid "Projects Delivered"
@@ -854,17 +852,15 @@ msgstr ""
 
 #: templates/front/landing_page/02stats_section.html:55
 msgid "Partner Institutions"
-msgstr ""
+msgstr "Dhaabbilee mootummaa michuu"
 
 #: templates/front/landing_page/02stats_section.html:61
 msgid "Years of Operations"
-msgstr ""
+msgstr "Waggaa hojii"
 
 #: templates/front/landing_page/02stats_section.html:67
-#, fuzzy
-#| msgid "Success"
 msgid "Public Access"
-msgstr "Milkaa'ina"
+msgstr "Qaqqabummaa uummataa"
 
 #: templates/front/landing_page/03our_services.html:209
 msgid "What We Do"
@@ -883,6 +879,50 @@ msgstr "Tajaajila Keenya"
 #: templates/front/landing_page/03our_services.html:240
 msgid "Add services from the admin panel to display them here."
 msgstr ""
+
+#: templates/front/base.html:19 templates/front/base.html:39
+msgid "Abajifar General Trading PLC"
+msgstr "Abajifar General Trading PLC"
+
+#: templates/front/base.html:38
+msgid "Official website of %(site_title)s"
+msgstr "Marsariitii mootummaa kan %(site_title)s"
+
+#: templates/front/base.html:38
+msgid "Official website"
+msgstr "Marsariitii mootummaa"
+
+#: templates/front/base.html:152
+msgid "Close"
+msgstr "Cufi"
+
+#: templates/front/navbar.html:11 templates/front/navbar.html:13
+msgid "Logo"
+msgstr "Asxaa"
+
+#: templates/front/navbar.html:24
+msgid "Toggle navigation"
+msgstr "Daandii keessa deemuu bani/cufi"
+
+#: templates/front/landing_page/01hero_carousel.html:328
+msgid "Slide %(number)s"
+msgstr "Islaayidii %(number)s"
+
+#: templates/front/landing_page/01hero_carousel.html:342
+msgid "About Abajifar"
+msgstr "Waa'ee Abajifar"
+
+#: templates/front/landing_page/01hero_carousel.html:357
+msgid "Previous slide"
+msgstr "Islaayidii darbe"
+
+#: templates/front/landing_page/01hero_carousel.html:361
+msgid "Next slide"
+msgstr "Islaayidii itti aanu"
+
+#: templates/front/landing_page/02stats_section.html:43
+msgid "Clients Served"
+msgstr "Maamiltoota tajaajilamanii"
 
 #: templates/front/landing_page/04ceo_message.html:210
 #, fuzzy
