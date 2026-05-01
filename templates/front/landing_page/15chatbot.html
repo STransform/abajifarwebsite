@@ -1,0 +1,439 @@
+{% load i18n %}
+{% block css %}
+<style>
+  .faq-chatbot {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1100;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .faq-chatbot__toggle {
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 22px;
+    background: linear-gradient(135deg, #1f3c88, #5fa8d3);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 18px 35px rgba(31, 60, 136, 0.32);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .faq-chatbot__toggle:hover,
+  .faq-chatbot__toggle:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 40px rgba(31, 60, 136, 0.36);
+    color: #fff;
+  }
+
+  .faq-chatbot__panel {
+    width: min(380px, calc(100vw - 28px));
+    max-height: min(78vh, 720px);
+    margin-bottom: 14px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 25px 60px rgba(15, 31, 56, 0.2);
+    border: 1px solid rgba(85, 122, 189, 0.15);
+    transform: translateY(12px) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .faq-chatbot.is-open .faq-chatbot__panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .faq-chatbot__header {
+    padding: 20px 22px;
+    background: linear-gradient(180deg, #22305f 0%, #4e89ae 100%);
+    color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .faq-chatbot__title {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .faq-chatbot__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 1.35rem;
+    flex-shrink: 0;
+  }
+
+  .faq-chatbot__status {
+    margin: 4px 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.95rem;
+  }
+
+  .faq-chatbot__close {
+    border: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .faq-chatbot__body {
+    padding: 22px;
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  }
+
+  .faq-chatbot__messages {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  .faq-chatbot__bubble {
+    max-width: 88%;
+    padding: 14px 16px;
+    border-radius: 22px;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    box-shadow: 0 8px 24px rgba(34, 48, 95, 0.08);
+  }
+
+  .faq-chatbot__bubble--bot {
+    background: #fff;
+    color: var(--dark-gray);
+    border-top-left-radius: 8px;
+  }
+
+  .faq-chatbot__bubble--user {
+    margin-left: auto;
+    background: linear-gradient(135deg, #385d9b, #5fa8d3);
+    color: #fff;
+    border-top-right-radius: 8px;
+  }
+
+  .faq-chatbot__quick {
+    margin-top: 18px;
+    border-top: 1px solid rgba(85, 122, 189, 0.14);
+    padding-top: 18px;
+  }
+
+  .faq-chatbot__quick-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-weight: 700;
+    color: var(--primary-black);
+  }
+
+  .faq-chatbot__quick-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .faq-chatbot__quick-btn {
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgba(85, 122, 189, 0.16);
+    background: #fff;
+    color: var(--dark-gray);
+    border-radius: 20px;
+    padding: 14px 16px;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .faq-chatbot__quick-btn:hover,
+  .faq-chatbot__quick-btn:focus {
+    border-color: rgba(56, 93, 155, 0.45);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(34, 48, 95, 0.1);
+  }
+
+  .faq-chatbot__composer {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .faq-chatbot__input {
+    flex: 1;
+    border-radius: 999px;
+    border: 1px solid rgba(85, 122, 189, 0.2);
+    padding: 14px 18px;
+    background: #fff;
+    color: var(--dark-gray);
+  }
+
+  .faq-chatbot__input:focus {
+    outline: none;
+    border-color: rgba(56, 93, 155, 0.45);
+    box-shadow: 0 0 0 4px rgba(85, 122, 189, 0.12);
+  }
+
+  .faq-chatbot__send {
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7ab8d6, #385d9b);
+    color: #fff;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .faq-chatbot__hint {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: var(--medium-gray);
+  }
+
+  .faq-chatbot__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 767.98px) {
+    .faq-chatbot {
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+    }
+
+    .faq-chatbot__panel {
+      width: 100%;
+      max-height: calc(100vh - 110px);
+    }
+
+    .faq-chatbot__toggle {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+{% endblock %}
+
+<div class="faq-chatbot" id="faqChatbot">
+  <div class="faq-chatbot__panel" id="faqChatbotPanel" aria-hidden="true">
+    <div class="faq-chatbot__header">
+      <div class="faq-chatbot__title">
+        <span class="faq-chatbot__icon">
+          <i class="bi bi-robot"></i>
+        </span>
+        <div>
+          <h3 class="h4 text-white mb-1">{% trans "Abajifar Assistant" %}</h3>
+          <!-- <p class="faq-chatbot__status mb-0">{% trans "Online • Instant FAQ replies" %}</p> -->
+        </div>
+      </div>
+      <button class="faq-chatbot__close" id="faqChatbotClose" type="button" aria-label="{% trans 'Close assistant' %}">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="faq-chatbot__body">
+      <div class="faq-chatbot__messages" id="faqChatbotMessages">
+        <div class="faq-chatbot__bubble faq-chatbot__bubble--bot">
+          {% trans "Welcome. I can help with quick answers about our services, company information, and common questions. Choose one of the questions below or type your message." %}
+        </div>
+      </div>
+
+      <div class="faq-chatbot__quick">
+        <div class="faq-chatbot__quick-header">
+          <span><i class="bi bi-lightbulb me-2"></i>{% trans "Quick Questions" %}</span>
+        </div>
+
+        <div class="faq-chatbot__quick-list" id="faqChatbotQuickList">
+            <button
+              class="faq-chatbot__quick-btn"
+              type="button"
+              data-question="{% trans 'What services does Abajifar provide?' %}"
+              data-answer="{% trans 'Abajifar provides services such as ' %}{% for service in services %}{{ service.title }}{% if not forloop.last %}, {% endif %}{% empty %}software development, IT consulting, digital solutions{% endfor %}.">
+              {% trans "What services does Abajifar provide?" %}
+            </button>
+            <button
+              class="faq-chatbot__quick-btn"
+              type="button"
+              data-question="{% trans 'What is your address and contact info?' %}"
+              data-answer="{% trans 'Our office is located at ' %}{% if stg and stg.address %}{{ stg.address }}{% else %}{% trans 'our headquarters' %}{% endif %}. {% trans 'You can email us at ' %}{% if stg and stg.email %}{{ stg.email }}{% else %}info@abajifar.com{% endif %} {% trans 'or call us at ' %}{% if stg and stg.phone %}{{ stg.phone }}{% else %}our office numbers{% endif %}.">
+              {% trans "What is your address and contact info?" %}
+            </button>
+            <button
+              class="faq-chatbot__quick-btn"
+              type="button"
+              data-question="{% trans 'Do you work with partner institutions?' %}"
+              data-answer="{% trans 'Yes. We collaborate with various institutions and clients on technology projects, implementation, and support services.' %}">
+              {% trans "Do you work with partner institutions?" %}
+            </button>
+            <button
+              class="faq-chatbot__quick-btn"
+              type="button"
+              data-question="{% trans 'Where can I learn more about your work?' %}"
+              data-answer="{% trans 'You can explore our services, news, blogs, and gallery sections on this website to learn more about our work.' %}">
+              {% trans "Where can I learn more about your work?" %}
+            </button>
+        </div>
+      </div>
+
+      <form class="faq-chatbot__composer" id="faqChatbotForm">
+        <label class="faq-chatbot__sr-only" for="faqChatbotInput">{% trans "Type your message" %}</label>
+        <input
+          id="faqChatbotInput"
+          class="faq-chatbot__input"
+          type="text"
+          placeholder="{% trans 'Type your message...' %}"
+          autocomplete="off">
+        <button class="faq-chatbot__send" type="submit" aria-label="{% trans 'Send message' %}">
+          <i class="bi bi-send-fill"></i>
+        </button>
+      </form>
+
+      <p class="faq-chatbot__hint mb-0">
+        {% trans "This assistant gives quick FAQ-style replies. For detailed help, please use the contact page." %}
+      </p>
+    </div>
+  </div>
+
+  <button class="faq-chatbot__toggle" id="faqChatbotToggle" type="button" aria-expanded="false" aria-controls="faqChatbotPanel">
+    <i class="bi bi-chat-dots-fill"></i>
+    <span>{% trans "Chat Now!" %}</span>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const chatbot = document.getElementById('faqChatbot');
+    if (!chatbot) {
+      return;
+    }
+
+    const toggle = document.getElementById('faqChatbotToggle');
+    const closeButton = document.getElementById('faqChatbotClose');
+    const panel = document.getElementById('faqChatbotPanel');
+    const messages = document.getElementById('faqChatbotMessages');
+    const form = document.getElementById('faqChatbotForm');
+    const input = document.getElementById('faqChatbotInput');
+    const quickButtons = Array.from(document.querySelectorAll('#faqChatbotQuickList .faq-chatbot__quick-btn'));
+    const fallbackReply = "{% trans 'I could not find an exact answer for that yet. Please try one of the quick questions or contact our team for more details.' %}";
+
+    const faqItems = quickButtons.map(function (button) {
+      return {
+        question: button.dataset.question || '',
+        answer: button.dataset.answer || ''
+      };
+    });
+
+    function setOpenState(isOpen) {
+      chatbot.classList.toggle('is-open', isOpen);
+      panel.setAttribute('aria-hidden', String(!isOpen));
+      toggle.setAttribute('aria-expanded', String(isOpen));
+
+      if (isOpen) {
+        window.setTimeout(function () {
+          input.focus();
+        }, 120);
+      }
+    }
+
+    function appendMessage(text, type) {
+      const bubble = document.createElement('div');
+      bubble.className = 'faq-chatbot__bubble faq-chatbot__bubble--' + type;
+      bubble.textContent = text;
+      messages.appendChild(bubble);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function findReply(text) {
+      const normalized = text.trim().toLowerCase();
+      if (!normalized) {
+        return '';
+      }
+
+      const exactMatch = faqItems.find(function (item) {
+        return item.question.toLowerCase() === normalized;
+      });
+
+      if (exactMatch) {
+        return exactMatch.answer;
+      }
+
+      const partialMatch = faqItems.find(function (item) {
+        const question = item.question.toLowerCase();
+        return question.includes(normalized) || normalized.includes(question);
+      });
+
+      return partialMatch ? partialMatch.answer : fallbackReply;
+    }
+
+    function handleQuestion(question, answer) {
+      appendMessage(question, 'user');
+      window.setTimeout(function () {
+        appendMessage(answer || fallbackReply, 'bot');
+      }, 180);
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpenState(!chatbot.classList.contains('is-open'));
+    });
+
+    closeButton.addEventListener('click', function () {
+      setOpenState(false);
+    });
+
+    quickButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        if (!chatbot.classList.contains('is-open')) {
+          setOpenState(true);
+        }
+        handleQuestion(button.dataset.question || '', button.dataset.answer || '');
+      });
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const question = input.value.trim();
+      if (!question) {
+        return;
+      }
+
+      const reply = findReply(question);
+      handleQuestion(question, reply);
+      input.value = '';
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && chatbot.classList.contains('is-open')) {
+        setOpenState(false);
+      }
+    });
+  });
+</script>
