@@ -730,17 +730,15 @@ msgstr "ቦታ፡"
 
 #: templates/front/footer.html:268
 msgid "National engineering and technology partner"
-msgstr ""
+msgstr "ብሔራዊ የምህንድስና እና ቴክኖሎጂ አጋር"
 
 #: templates/front/footer.html:270
-#, fuzzy
-#| msgid "ABOUT BUREAU"
 msgid "ABOUT US"
-msgstr "ስለ ቢሯችን"
+msgstr "ስለ እኛ"
 
 #: templates/front/footer.html:273
 msgid "Abajifar General Trading"
-msgstr ""
+msgstr "አባጂፋር ጀነራል ትሬዲንግ"
 
 #: templates/front/footer.html:276
 msgid ""
@@ -750,10 +748,15 @@ msgid ""
 "local expertise, we specialize in cultural tours, adventure travel, guided "
 "excursions, transportation, and accommodation services across the country."
 msgstr ""
+"አባጂፋር ትሬዲንግ እና ጉብኝት ኢትዮጵያ ውስጥ የሚገኝ ሙያዊ የጉብኝት እና ጉዞ ኩባንያ ሲሆን "
+"ለሀገር ውስጥ እና ለዓለም አቀፍ ደንበኞች ብጁ እና አስተማማኝ የጉዞ ፍቱሃዎችን ይሰጣል። "
+"በእንግዳ ተቀባይነት እና ሀገር ውስጥ ልምድ ላይ ያረፈ ጠንካራ መሠረት ላይ ተገንብቶ "
+"በባህላዊ ጉብኝቶች፣ ጀብደኛ ጉዞ፣ ፍካሬ ጉዞ፣ ትራንስፖርት እና "
+"በሀገሪቱ ውስጥ የመኖሪያ አገልግሎቶች ላይ ሙያዊ ብቃት አለን።"
 
 #: templates/front/footer.html:280
 msgid "Designed to be clear, welcoming, and easy to navigate."
-msgstr ""
+msgstr "ግልጽ፣ ተቀባይ እና ለመጠቀም ቀላል ሆኖ ተዘጋጅቷል።"
 
 #: templates/front/footer.html:288
 msgid "CONTACTS"
@@ -761,15 +764,13 @@ msgstr "አድራሻዎች"
 
 #: templates/front/footer.html:315
 msgid "Website"
-msgstr ""
+msgstr "ድህረ ገጽ"
 
 #: templates/front/footer.html:320
 msgid "Contact information will appear here once added from the admin panel."
-msgstr ""
+msgstr "የመገናኛ መረጃ ከአስተዳዳሪ ፓነል ከተጨመረ በኋላ እዚህ ይታያል።"
 
 #: templates/front/footer.html:328
-#, fuzzy
-#| msgid "QUICK LINKS"
 msgid "LINKS"
 msgstr "ፈጣን ማገናኛዎች"
 
@@ -780,25 +781,23 @@ msgstr "አገልግሎቶች"
 
 #: templates/front/footer.html:360
 msgid "Audience Reach"
-msgstr ""
+msgstr "ጎብኝዎች ደርሰዋል"
 
 #: templates/front/footer.html:364
 msgid "Total visitors"
 msgstr "ጠቅላላ ጎብኝዎች"
 
 #: templates/front/footer.html:374
-#, fuzzy
-#| msgid "All Rights Reserved. Design"
 msgid "All rights reserved."
-msgstr "መብቱ በህግ የተጠበቀ ነው. ንድፍ"
+msgstr "መብቱ በህግ የተጠበቀ ነው።"
 
 #: templates/front/footer.html:379
 msgid "Developed by"
-msgstr ""
+msgstr "የተገነባው በ"
 
 #: templates/front/footer.html:381
 msgid "MelkaTech "
-msgstr ""
+msgstr "ሜልካቴክ "
 
 #: templates/front/gallery_page/02images.html:153
 #: templates/front/videos.html:37
@@ -914,51 +913,55 @@ msgid "Clients Served"
 msgstr "የተገለገሉ ደንበኞች"
 
 #: templates/front/landing_page/03our_services.html:209
-msgid "What We Do"
-msgstr ""
+msgid "Travel & Tour Experts"
+msgstr "የጉዞ እና ቱር ባለሙያዎች"
 
 #: templates/front/landing_page/03our_services.html:210
 msgid "Our Services"
-msgstr "አገልግሎቶች"
+msgstr "አገልግሎቶቻችን"
 
 #: templates/front/landing_page/03our_services.html:230
-#, fuzzy
-#| msgid "Our Services"
-msgid "Explore Service"
-msgstr "አገልግሎቶች"
+msgid "Discover More"
+msgstr "ተጨማሪ ያግኙ"
 
 #: templates/front/landing_page/03our_services.html:240
 msgid "Add services from the admin panel to display them here."
-msgstr ""
+msgstr "ከአስተዳዳሪ ፓነል አገልግሎቶችን ይጨምሩ እዚህ ይታያሉ።"
 
 #: templates/front/landing_page/04ceo_message.html:210
-#, fuzzy
-#| msgid "Send Message"
 msgid "Leadership Message"
-msgstr "መልዕክት ላክ"
+msgstr "የአመራር መልዕክት"
 
 #: templates/front/landing_page/04ceo_message.html:219
-msgid "Learn More About Us"
-msgstr ""
+msgid "Discover Our Story"
+msgstr "ታሪካችንን ያግኙ"
 
 #: templates/front/landing_page/05core_values.html:41
 msgid "Our Core Values"
-msgstr ""
+msgstr "የእኛ መሰረታዊ እሴቶች"
 
 #: templates/front/landing_page/05core_values.html:43
-msgid "The principles that guide everything we do"
+msgid ""
+"The values that guide every journey we plan — shaping how we welcome "
+"travellers, build lasting trust, and deliver unforgettable experiences "
+"across Ethiopia."
 msgstr ""
+"በእያንዳንዱ ጉዞ ዕቅዳችን የሚመሩን እሴቶቻችን — ተጓዦችን እንዴት እንደምንቀበል፣ "
+"ቋሚ አደራ እንዴት እንደምንገነባ እና በኢትዮጵያ ዘርፍ ሁሉ ዘለዓለም የማይረሳ "
+"ልምምዶችን እንዴት እንደምናቀርብ ይቀርጻሉ።"
 
 #: templates/front/landing_page/06vision_mission.html:40
-#, fuzzy
-#| msgid "Mission"
 msgid "Vision & Mission"
-msgstr "አላማ"
+msgstr "ራእይ እና አላማ"
 
 #: templates/front/landing_page/06vision_mission.html:42
 msgid ""
-"A clear statement of purpose presented in a cleaner institutional layout."
+"Discover what drives us — our commitment to connecting travellers with "
+"Ethiopia's rich culture, breathtaking landscapes, and warm hospitality."
 msgstr ""
+"ምን እንደሚገፋፋን ያግኙ — ተጓዦችን ከኢትዮጵያ ሀብታም ባህል፣ "
+"አስደናቂ ምድሮች እና ሞቅ ያለ እንግዳ ተቀባይነት ጋር "
+"ለማገናኘት ያለን ቁርጠኝነት።"
 
 #: templates/front/landing_page/08partners.html:119
 #: templates/front/navbar.html:48 templates/front/navbar.html:134
@@ -1034,24 +1037,24 @@ msgid "OUR ANSWERS FOR THE MOST QUESTIONS WE GET"
 msgstr "የጥያቄዎ መልሶች"
 
 #: templates/front/landing_page/13cta.html:52
-msgid "Ready to transform your public-facing digital experience?"
-msgstr ""
+msgid "Ready to Explore Ethiopia with Abajifar Travel & Tour?"
+msgstr "ኢትዮጵያን ከአባጂፋር ትራቨል እና ቱር ጋር ለማሰስ ዝግጁ ነዎት?"
 
 #: templates/front/landing_page/13cta.html:54
 msgid ""
-"Let's carry the same working Django functionality into a stronger modern "
-"interface."
+"Let us plan your perfect journey — cultural tours, adventure travel, guided "
+"excursions, and seamless transportation across Ethiopia."
 msgstr ""
+"ፍጹም ጉዞዎን እናቅድ — ባህላዊ ጉብኝቶች፣ ጀብደኛ ጉዞ፣ "
+"ፍካሬ ጉዞዎች እና በኢትዮጵያ ዘርፍ ሁሉ ቀልጣፋ ትራንስፖርት።"
 
 #: templates/front/landing_page/13cta.html:58
 msgid "Get Started"
-msgstr ""
+msgstr "ጀምር"
 
 #: templates/front/landing_page/13cta.html:61
-#, fuzzy
-#| msgid "Services"
 msgid "View Services"
-msgstr "አገልግሎቶች"
+msgstr "አገልግሎቶቹን ይመልከቱ"
 
 #: templates/front/landing_page/14contact_section.html:38
 msgid "Our Office Location"
@@ -1072,11 +1075,11 @@ msgstr ""
 
 #: templates/front/navbar.html:16
 msgid "Engineering for Growth"
-msgstr ""
+msgstr "ለዕድገት ምህንድስና"
 
 #: templates/front/navbar.html:18
 msgid "Abajifar Trading"
-msgstr ""
+msgstr "አባጂፋር ትሬዲንግ"
 
 #: templates/front/navbar.html:41
 #, fuzzy
@@ -1090,17 +1093,16 @@ msgid "Company Values"
 msgstr "የድርጅት ስም"
 
 #: templates/front/navbar.html:60 templates/front/navbar.html:143
-#, fuzzy
 msgid "Transportation Services"
-msgstr "አካባቢ"
+msgstr "የትራንስፖርት አገልግሎቶች"
 
 #: templates/front/navbar.html:61 templates/front/navbar.html:144
 msgid "Hotel & Accommodation Booking"
-msgstr ""
+msgstr "የሆቴል እና መኖሪያ ማስያዝ"
 
 #: templates/front/navbar.html:62 templates/front/navbar.html:145
 msgid "Travel Planning & Consultation"
-msgstr ""
+msgstr "የጉዞ ዕቅድ እና ምክር"
 
 #: templates/front/navbar.html:71 templates/front/navbar.html:151
 msgid "Announcements"
@@ -1116,7 +1118,7 @@ msgstr "የስራ ቦታዎች"
 
 #: templates/front/navbar.html:88 templates/front/navbar.html:160
 msgid "Latest"
-msgstr ""
+msgstr "ዘግይቶ የወጣ"
 
 #: templates/front/navbar.html:92 templates/front/navbar.html:162
 msgid "Blogs"
@@ -1140,13 +1142,12 @@ msgid "Videos"
 msgstr "ተንቀሳቃሽ ምስሎች"
 
 #: templates/front/navbar.html:191
-#, fuzzy
 msgid "Search..."
-msgstr "የፍለጋ ውጤቶች"
+msgstr "ፍለጋ..."
 
 #: templates/front/navbar.html:211
 msgid "Dashboard"
-msgstr ""
+msgstr "ዳሽቦርድ"
 
 #: templates/front/news.html:43
 msgid "Our News"
@@ -2806,6 +2807,42 @@ msgstr ""
 
 #~ msgid "Action successfully completed!"
 #~ msgstr "በሚገባ ተሳክቱል"
+
+#: templates/front/landing_page/15chatbot.html:254
+msgid "Abajifar Assistant"
+msgstr "የአባጂፋር ረዳት"
+
+#: templates/front/landing_page/15chatbot.html:266
+msgid "Welcome. I can help with quick answers about our services, company information, and common questions. Choose one of the questions below or type your message."
+msgstr "እንኳን ደህና መጡ። ስለ አገልግሎቶቻችን፣ የኩባንያችን መረጃ እና የተለመዱ ጥያቄዎች ፈጣን ምላሾችን ልሰጥዎ እችላለሁ። ከታች ካሉት ጥያቄዎች አንዱን ይምረጡ ወይም መልእክትዎን ይፃፉ።"
+
+#: templates/front/landing_page/15chatbot.html:272
+msgid "Quick Questions"
+msgstr "ፈጣን ጥያቄዎች"
+
+#: templates/front/landing_page/15chatbot.html:281
+msgid "What services does Abajifar provide?"
+msgstr "አባጂፋር ምን ዓይነት አገልግሎቶችን ይሰጣል?"
+
+#: templates/front/landing_page/15chatbot.html:288
+msgid "What is your address and contact info?"
+msgstr "አድራሻዎ እና የመገናኛ መረጃዎ ምንድነው?"
+
+#: templates/front/landing_page/15chatbot.html:295
+msgid "Do you work with partner institutions?"
+msgstr "ከአጋር ተቋማት ጋር አብረው ይሰራሉ?"
+
+#: templates/front/landing_page/15chatbot.html:302
+msgid "Where can I learn more about your work?"
+msgstr "ስለ ሥራዎ ተጨማሪ የት ማወቅ እችላለሁ?"
+
+#: templates/front/landing_page/15chatbot.html:328
+msgid "Chat Now!"
+msgstr "አሁን ያነጋግሩን!"
+
+#: templates/front/landing_page/15chatbot.html:314
+msgid "Type your message..."
+msgstr "መልዕክትዎን ይፃፉ..."
 
 #~ msgid "home/"
 #~ msgstr "ቤት"

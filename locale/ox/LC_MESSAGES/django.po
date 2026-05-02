@@ -727,15 +727,15 @@ msgstr "Bakka:"
 
 #: templates/front/footer.html:268
 msgid "National engineering and technology partner"
-msgstr ""
+msgstr "Michuu barnootaa fi tekinooloojii biyyaalessaa"
 
 #: templates/front/footer.html:270
 msgid "ABOUT US"
-msgstr ""
+msgstr "WA'EE KEENYA"
 
 #: templates/front/footer.html:273
 msgid "Abajifar General Trading"
-msgstr ""
+msgstr "Abajifar Daldala Waliigalaa"
 
 #: templates/front/footer.html:276
 msgid ""
@@ -745,10 +745,15 @@ msgid ""
 "local expertise, we specialize in cultural tours, adventure travel, guided "
 "excursions, transportation, and accommodation services across the country."
 msgstr ""
+"Abajifar Trading fi Tuurii Itoophiyaa keessatti kan argamu, tajaajila gara "
+"biyyaa fi idil-addunyaatif tolcha fi amansiisaa ta'e kan kennu dhaabbata "
+"tuurii fi imaltuu ogeessaa dha. Keessummummaa fi ogeessa naannoo irratti "
+"hundaa'uudhaan, tuurii aadaa, imala jajjaboo, imala qajeelchaa, "
+"geejjibaa fi tajaajila mana jireenyaa biyyicha guutuu ni kennina."
 
 #: templates/front/footer.html:280
 msgid "Designed to be clear, welcoming, and easy to navigate."
-msgstr ""
+msgstr "Iftaa, baga nagaan dhuftan jedhu fi salphatti fayyadamuuf qophaa'ame."
 
 #: templates/front/footer.html:288
 msgid "CONTACTS"
@@ -756,15 +761,13 @@ msgstr "QUUNNAMTII"
 
 #: templates/front/footer.html:315
 msgid "Website"
-msgstr ""
+msgstr "Marsariitii"
 
 #: templates/front/footer.html:320
 msgid "Contact information will appear here once added from the admin panel."
-msgstr ""
+msgstr "Odeeffannoo quunnamtii panel bulchaa irraa yoo itti dabalame as ni mul'ata."
 
 #: templates/front/footer.html:328
-#, fuzzy
-#| msgid "QUICK LINKS"
 msgid "LINKS"
 msgstr "LINK SAFFISAA"
 
@@ -775,25 +778,23 @@ msgstr "Tajaajila"
 
 #: templates/front/footer.html:360
 msgid "Audience Reach"
-msgstr ""
+msgstr "Daawwattoota gahe"
 
 #: templates/front/footer.html:364
 msgid "Total visitors"
 msgstr "Daawwattoota waliigalaa"
 
 #: templates/front/footer.html:374
-#, fuzzy
-#| msgid "All Rights Reserved. Design"
 msgid "All rights reserved."
-msgstr "Mirgi Qopheessaa Seeraan Kan Eegame. "
+msgstr "Mirgi Qopheessaa Seeraan Kan Eegame."
 
 #: templates/front/footer.html:379
 msgid "Developed by"
-msgstr ""
+msgstr "Kan mijeesse"
 
 #: templates/front/footer.html:381
 msgid "MelkaTech "
-msgstr ""
+msgstr "MelkaTech "
 
 #: templates/front/gallery_page/02images.html:153
 #: templates/front/videos.html:37
@@ -863,22 +864,20 @@ msgid "Public Access"
 msgstr "Qaqqabummaa uummataa"
 
 #: templates/front/landing_page/03our_services.html:209
-msgid "What We Do"
-msgstr ""
+msgid "Travel & Tour Experts"
+msgstr "Ogeessota Imaltuu fi Tuurii"
 
 #: templates/front/landing_page/03our_services.html:210
 msgid "Our Services"
 msgstr "Tajaajila Keenya"
 
 #: templates/front/landing_page/03our_services.html:230
-#, fuzzy
-#| msgid "Our Services"
-msgid "Explore Service"
-msgstr "Tajaajila Keenya"
+msgid "Discover More"
+msgstr "Dabalata Barbaadi"
 
 #: templates/front/landing_page/03our_services.html:240
 msgid "Add services from the admin panel to display them here."
-msgstr ""
+msgstr "Tajaajila panel bulchaa irraa dabaluu ni dandeessu as ni mul'ata."
 
 #: templates/front/base.html:19 templates/front/base.html:39
 msgid "Abajifar General Trading PLC"
@@ -925,33 +924,39 @@ msgid "Clients Served"
 msgstr "Maamiltoota tajaajilamanii"
 
 #: templates/front/landing_page/04ceo_message.html:210
-#, fuzzy
-#| msgid "Send Message"
 msgid "Leadership Message"
-msgstr "Ergaa keessan ergaa"
+msgstr "Ergaa Hogganaa"
 
 #: templates/front/landing_page/04ceo_message.html:219
-msgid "Learn More About Us"
-msgstr ""
+msgid "Discover Our Story"
+msgstr "Seenaa Keenya Barbaadi"
 
 #: templates/front/landing_page/05core_values.html:41
 msgid "Our Core Values"
-msgstr ""
+msgstr "Duudhaalee Bu'uuraa Keenya"
 
 #: templates/front/landing_page/05core_values.html:43
-msgid "The principles that guide everything we do"
+msgid ""
+"The values that guide every journey we plan — shaping how we welcome "
+"travellers, build lasting trust, and deliver unforgettable experiences "
+"across Ethiopia."
 msgstr ""
+"Imala kamiyyuu kan qindeessinu keessatti nu qajeelchuu duudhaaleen — "
+"imaltota akkamitti simachuu, amanamummaa tureera ijaaruu fi Itoophiyaa "
+"guutuu keessatti muuxannoo hin irraanfatamne kennuuf kan nu bocaniidha."
 
 #: templates/front/landing_page/06vision_mission.html:40
-#, fuzzy
-#| msgid "Mission"
 msgid "Vision & Mission"
-msgstr "Ergama"
+msgstr "Mul'ata fi Ergama"
 
 #: templates/front/landing_page/06vision_mission.html:42
 msgid ""
-"A clear statement of purpose presented in a cleaner institutional layout."
+"Discover what drives us — our commitment to connecting travellers with "
+"Ethiopia's rich culture, breathtaking landscapes, and warm hospitality."
 msgstr ""
+"Maal akka nu kakaasuu argadhu — imaltota aadaa mi'aawaa Itoophiyaa, "
+"lafa bareedduu fi keessummummaa ho'aa waliin quunnamsiisuu "
+"waadaa nu galchiinaa."
 
 #: templates/front/landing_page/08partners.html:119
 #: templates/front/navbar.html:48 templates/front/navbar.html:134
@@ -1027,24 +1032,24 @@ msgid "OUR ANSWERS FOR THE MOST QUESTIONS WE GET"
 msgstr "GAAFFIIWWAN JIRANIRRATTI,DEEBII KEENYA."
 
 #: templates/front/landing_page/13cta.html:52
-msgid "Ready to transform your public-facing digital experience?"
-msgstr ""
+msgid "Ready to Explore Ethiopia with Abajifar Travel & Tour?"
+msgstr "Itoophiyaa Abajifar Travel fi Tuurii waliin Qorachuuf Qophii Dha?"
 
 #: templates/front/landing_page/13cta.html:54
 msgid ""
-"Let's carry the same working Django functionality into a stronger modern "
-"interface."
+"Let us plan your perfect journey — cultural tours, adventure travel, guided "
+"excursions, and seamless transportation across Ethiopia."
 msgstr ""
+"Imala kee sirrii qindeessina — tuurii aadaa, imala jajjaboo, "
+"imaltoo qajeelcha qabu fi geejjiba hin dhaabbanne Itoophiyaa guutuu."
 
 #: templates/front/landing_page/13cta.html:58
 msgid "Get Started"
-msgstr ""
+msgstr "Jalqabi"
 
 #: templates/front/landing_page/13cta.html:61
-#, fuzzy
-#| msgid "Services"
 msgid "View Services"
-msgstr "Tajaajila"
+msgstr "Tajaajila Ilaali"
 
 #: templates/front/landing_page/14contact_section.html:38
 msgid "Our Office Location"
@@ -1065,11 +1070,11 @@ msgstr ""
 
 #: templates/front/navbar.html:16
 msgid "Engineering for Growth"
-msgstr ""
+msgstr "Misooma dhaaf barnootaa"
 
 #: templates/front/navbar.html:18
 msgid "Abajifar Trading"
-msgstr ""
+msgstr "Abajifar Daldala"
 
 #: templates/front/navbar.html:41
 #, fuzzy
@@ -1085,15 +1090,15 @@ msgstr "Duudhaalee"
 
 #: templates/front/navbar.html:60 templates/front/navbar.html:143
 msgid "Transportation Services"
-msgstr ""
+msgstr "Tajaajila Geejjibaa"
 
 #: templates/front/navbar.html:61 templates/front/navbar.html:144
 msgid "Hotel & Accommodation Booking"
-msgstr ""
+msgstr "Qabannoo Hoteelaa fi Manneen Jireenyaa"
 
 #: templates/front/navbar.html:62 templates/front/navbar.html:145
 msgid "Travel Planning & Consultation"
-msgstr ""
+msgstr "Karoora Imaltuu fi Gorsa"
 
 #: templates/front/navbar.html:71 templates/front/navbar.html:151
 msgid "Announcements"
@@ -1109,7 +1114,7 @@ msgstr "Gitoota hojii duwwaa"
 
 #: templates/front/navbar.html:88 templates/front/navbar.html:160
 msgid "Latest"
-msgstr ""
+msgstr "Haaraa"
 
 #: templates/front/navbar.html:92 templates/front/navbar.html:162
 msgid "Blogs"
@@ -1134,11 +1139,11 @@ msgstr "Viidiyoowwan"
 
 #: templates/front/navbar.html:191
 msgid "Search..."
-msgstr ""
+msgstr "Barbaadi..."
 
 #: templates/front/navbar.html:211
 msgid "Dashboard"
-msgstr ""
+msgstr "Daashboordii"
 
 #: templates/front/news.html:43
 msgid "Our News"
@@ -2767,6 +2772,42 @@ msgstr ""
 
 #~ msgid "Apply for Vacancy"
 #~ msgstr "Gitoota Duwwaa argachuuf galmaaí"
+
+#: templates/front/landing_page/15chatbot.html:254
+msgid "Abajifar Assistant"
+msgstr "Gargaaraa Abajifar"
+
+#: templates/front/landing_page/15chatbot.html:266
+msgid "Welcome. I can help with quick answers about our services, company information, and common questions. Choose one of the questions below or type your message."
+msgstr "Baga nagaan dhuftan. Tajaajiloota keenya, odeeffannoo dhaabbataa fi gaaffiiwwan beekamoo irratti deebii hatattamaa kennuu nan danda'a. Gaaffiiwwan asii gadii keessaa tokko filadhaa ykn ergaa keessan barreessaa."
+
+#: templates/front/landing_page/15chatbot.html:272
+msgid "Quick Questions"
+msgstr "Gaaffiiwwan Saffisaa"
+
+#: templates/front/landing_page/15chatbot.html:281
+msgid "What services does Abajifar provide?"
+msgstr "Abajifar tajaajiloota akkamii kenna?"
+
+#: templates/front/landing_page/15chatbot.html:288
+msgid "What is your address and contact info?"
+msgstr "Teessoon keessan fi odeeffannoon quunnamtii maali?"
+
+#: templates/front/landing_page/15chatbot.html:295
+msgid "Do you work with partner institutions?"
+msgstr "Dhaabbilee michootaa waliin ni hojjettuu?"
+
+#: templates/front/landing_page/15chatbot.html:302
+msgid "Where can I learn more about your work?"
+msgstr "Waa'ee hojii keessanii eessatti dabalata barachuu danda'a?"
+
+#: templates/front/landing_page/15chatbot.html:328
+msgid "Chat Now!"
+msgstr "Amma Haasa'i!"
+
+#: templates/front/landing_page/15chatbot.html:314
+msgid "Type your message..."
+msgstr "Ergaa keessan barreessaa..."
 
 #~ msgid "Fill in the details to apply for the vacancy"
 #~ msgstr "Gitoota hojii duwwaa kana galmaaúuf ibsa bal'aa guutaa"
