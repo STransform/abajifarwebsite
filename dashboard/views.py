@@ -65,6 +65,11 @@ class PermissionRequiredMixin(AccessMixin):
 # render staff dashboard page
 class Dashboard(LoginRequiredMixin, View ):
     def get(self, request):
+        import json
+        from django.utils import timezone
+        from datetime import timedelta
+        from visit_counter.models import UserVisit
+
         tasks = Task.objects.all()
         task_data = {
             'all':tasks.count(),
@@ -72,21 +77,69 @@ class Dashboard(LoginRequiredMixin, View ):
             'progress':tasks.filter(status ='Inprogress').count(),
             'pending':tasks.filter(status='Pending').count()
         }
-        return render(request, 'staff/admin_home.html', 
-                      { 'index':True,
-                        'tasks':task_data, 
-                        'jobs':Job.objects.count(), 
-                        'applications':Application.objects.count(), 
-                        'events':Event.objects.all(),
-                        'galleries':GalleryImage.objects.count(), 
-                        'videos':GalleryVideo.objects.count(),
-                        'docs':Document.objects.count(),
-                        'news':NewsArticle.objects.count(),
-                        'blogs':Blog.objects.count(),
-                        'contactus': ContactUs.objects.all()[:5],
-                        'blocked_supplier':Supplier.objects.all()[:5]
-                       }
-                    )
+
+        # Visit analytics
+        now = timezone.now()
+        today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        week_start = today_start - timedelta(days=7)
+        month_start = today_start - timedelta(days=30)
+        
+        visits = UserVisit.objects.all()
+        visits_today = visits.filter(timestamp__gte=today_start).count()
+        visits_week  = visits.filter(timestamp__gte=week_start).count()
+        visits_month = visits.filter(timestamp__gte=month_start).count()
+        total_visits = visits.count()
+
+        # Last 7 days daily visit counts for chart
+        daily_labels = []
+        daily_counts = []
+        for i in range(6, -1, -1):
+            day_start = today_start - timedelta(days=i)
+            day_end = day_start + timedelta(days=1)
+            daily_labels.append(day_start.strftime('%b %d'))
+            daily_counts.append(visits.filter(timestamp__gte=day_start, timestamp__lt=day_end).count())
+
+        # Browser breakdown
+        from django.db.models import Count
+        browser_stats = (visits.values('browser').annotate(count=Count('id'))
+                         .order_by('-count')[:5])
+
+        # Device breakdown
+        device_stats = (visits.values('device').annotate(count=Count('id'))
+                        .order_by('-count')[:4])
+
+        # Recent contact messages
+        recent_messages = ContactUs.objects.all()[:6]
+
+        # Upcoming events (next 5)
+        from django.utils.timezone import localdate
+        upcoming_events = Event.objects.filter(date__gte=localdate()).order_by('date')[:5]
+
+        return render(request, 'staff/admin_home.html', {
+            'index': True,
+            'tasks': task_data,
+            'jobs': Job.objects.count(),
+            'applications': Application.objects.count(),
+            'events': Event.objects.all(),
+            'upcoming_events': upcoming_events,
+            'galleries': GalleryImage.objects.count(),
+            'videos': GalleryVideo.objects.count(),
+            'docs': Document.objects.count(),
+            'news': NewsArticle.objects.count(),
+            'blogs': Blog.objects.count(),
+            'contactus': recent_messages,
+            'contactus_count': ContactUs.objects.count(),
+            'blocked_supplier': Supplier.objects.all()[:5],
+            # visit analytics
+            'visits_today': visits_today,
+            'visits_week': visits_week,
+            'visits_month': visits_month,
+            'total_visits': total_visits,
+            'daily_labels_json': json.dumps(daily_labels),
+            'daily_counts_json': json.dumps(daily_counts),
+            'browser_stats': list(browser_stats),
+            'device_stats': list(device_stats),
+        })
     
 # creates an object for requested model
 class CreateView(LoginRequiredMixin,PermissionRequiredMixin, View):
