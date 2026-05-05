@@ -55,6 +55,7 @@ $(function (e) {
             searchPlaceholder: 'Search...',
             sSearch: '',
         },
+        "pageLength": 5,
     });
     // file export datatable
 

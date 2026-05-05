@@ -109,11 +109,15 @@ class Dashboard(LoginRequiredMixin, View ):
                         .order_by('-count')[:4])
 
         # Recent contact messages
-        recent_messages = ContactUs.objects.all()[:6]
+        recent_messages = ContactUs.objects.all()
 
-        # Upcoming events (next 5)
+        # Recent Internal Users
+        from accounts.models import UserProfile
+        recent_users = UserProfile.objects.filter(is_active=True).order_by('-date_joined')
+
+        # Upcoming events
         from django.utils.timezone import localdate
-        upcoming_events = Event.objects.filter(date__gte=localdate()).order_by('date')[:5]
+        upcoming_events = Event.objects.filter(date__gte=localdate()).order_by('date')
 
         return render(request, 'staff/admin_home.html', {
             'index': True,
@@ -128,6 +132,7 @@ class Dashboard(LoginRequiredMixin, View ):
             'news': NewsArticle.objects.count(),
             'blogs': Blog.objects.count(),
             'contactus': recent_messages,
+            'recent_users': recent_users,
             'contactus_count': ContactUs.objects.count(),
             'blocked_supplier': Supplier.objects.all()[:5],
             # visit analytics

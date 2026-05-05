@@ -186,64 +186,24 @@ body {
   margin: 0 auto 12px;
 }
 
-/* Lists & Tables */
-.event-item {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: 16px;
-  border-radius: 12px;
-  transition: background 0.2s ease;
-  border: 1px solid transparent;
-}
-.event-item:hover {
-  background: var(--dash-bg);
-  border-color: var(--dash-border);
-}
-.event-date {
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--dash-primary-light);
-  color: var(--dash-primary);
-  font-weight: 700;
-  box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);
-}
-.event-date span:first-child { font-size: 1.2rem; line-height: 1; color: var(--dash-primary); }
-.event-date span:last-child { font-size: 0.7rem; text-transform: uppercase; margin-top: 2px; color: var(--dash-primary); }
-
-.table-inbox th {
+<!-- Lists & Tables -->
+.table-custom th {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--dash-muted);
   border-bottom: 2px solid var(--dash-border);
   padding: 16px;
+  background-color: var(--dash-bg);
 }
-.table-inbox td {
+.table-custom td {
   padding: 16px;
   vertical-align: middle;
   border-bottom: 1px solid var(--dash-border);
   color: var(--dash-text);
   font-size: 0.9rem;
 }
-.table-inbox tr:last-child td { border-bottom: none; }
-.table-inbox tr:hover { background: var(--dash-bg); }
-.avatar-circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  color: #fff;
-  font-size: 0.85rem;
-}
+.table-custom tr:hover td { background: var(--dash-primary-light); }
 
 /* Progress & Device Pills */
 .progress-thin {
@@ -472,96 +432,89 @@ body {
           <a href="{% url 'list_view' model_name='Event' %}" class="btn btn-sm btn-outline-primary rounded-pill px-4 fw-semibold">View Calendar</a>
         </div>
         
-        <div class="flex-grow-1 d-flex flex-column gap-2">
-          {% for event in upcoming_events %}
-          <div class="event-item">
-            <div class="event-date">
-              <span>{{ event.date|date:"d" }}</span>
-              <span>{{ event.date|date:"M" }}</span>
-            </div>
-            <div class="flex-fill">
-              <h6 class="fw-bold mb-1 text-dark fs-15">{{ event.title|truncatechars:45 }}</h6>
-              <div class="text-muted fs-13 d-flex align-items-center gap-3">
-                <span><i class="bx bx-map-pin text-primary opacity-75 me-1"></i> {{ event.location }}</span>
-                <span><i class="bx bx-time text-primary opacity-75 me-1"></i> {{ event.time }}</span>
-              </div>
-            </div>
-            <div>
-              <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 fw-semibold">Upcoming</span>
-            </div>
+        <div class="flex-grow-1">
+          <div class="table-responsive">
+            <table id="events-datatable" class="table table-bordered table-custom text-nowrap w-100">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Event Title</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for event in upcoming_events %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td class="fw-semibold">{{ event.title }}</td>
+                  <td>{{ event.date|date:"M d, Y" }}</td>
+                  <td>{{ event.time|default:"TBD" }}</td>
+                  <td><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-3 py-1 fs-12 fw-semibold">Upcoming</span></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
           </div>
-          {% empty %}
-          <div class="text-center py-5 m-auto">
-            <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width:80px;height:80px;">
-              <i class="bx bx-calendar-x fs-1 text-muted opacity-50"></i>
-            </div>
-            <h6 class="fw-bold text-dark mb-1">No Upcoming Events</h6>
-            <p class="text-muted fs-14">Your schedule is clear for now.</p>
-          </div>
-          {% endfor %}
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── Recent Messages ── -->
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="chart-container">
+  <!-- ── Contacts & Messages Row ── -->
+  <div class="row g-4 mb-5">
+    
+    <!-- Recent Internal Users -->
+    <div class="col-xl-6">
+      <div class="chart-container h-100">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <div>
-            <h5 class="fw-bolder mb-1">Recent Inbox Activity</h5>
-            <p class="text-muted fs-14 mb-0">Latest messages from visitors</p>
+            <h5 class="fw-bolder mb-1">Internal Users</h5>
+            <p class="text-muted fs-14 mb-0">Recently joined administrators and staff</p>
           </div>
-          <span class="badge rounded-pill bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-3 py-2 fs-13 fw-semibold">
-            <i class="bx bx-envelope me-1"></i> {{ contactus_count }} Total
-          </span>
+          <a href="{% url 'users_list' %}" class="btn btn-sm btn-outline-primary rounded-pill px-4 fw-semibold">Manage Users</a>
         </div>
         <div class="table-responsive">
-          <table class="table table-inbox align-middle mb-0">
+          <table id="recent-users-table" class="table table-inbox align-middle mb-0 w-100">
             <thead>
               <tr>
                 <th width="40"></th>
-                <th>Sender Name</th>
-                <th>Contact Details</th>
-                <th>Subject</th>
-                <th>Date Received</th>
-                <th class="text-end">Action</th>
+                <th>User</th>
+                <th>Role & Status</th>
+                <th>Joined</th>
               </tr>
             </thead>
             <tbody>
-              {% for msg in contactus %}
+              {% for u in recent_users %}
               <tr>
                 <td>
-                  {% cycle '#4f46e5' '#10b981' '#f59e0b' '#ef4444' '#8b5cf6' as bg_color silent %}
-                  <div class="avatar-circle" style="background-color: {{ bg_color }};">
-                    {{ msg.full_name|make_list|first|upper }}
+                  <div class="avatar-circle" style="background-color: var(--dash-info);">
+                    {{ u.first_name|default:u.email|slice:":1"|upper }}
                   </div>
                 </td>
                 <td>
-                  <div class="fw-bold text-dark fs-14">{{ msg.full_name|truncatechars:24 }}</div>
+                  <div class="fw-bold text-dark fs-14">{{ u.first_name }} {{ u.last_name }}</div>
+                  <div class="text-muted fs-12">{{ u.email }}</div>
                 </td>
                 <td>
-                  <div class="text-muted fs-13 mb-1"><i class="bx bx-envelope me-1 opacity-50"></i>{{ msg.email|truncatechars:26 }}</div>
-                  <div class="text-muted fs-13"><i class="bx bx-phone me-1 opacity-50"></i>{{ msg.phone }}</div>
-                </td>
-                <td>
-                  <span class="badge bg-light text-dark border px-3 py-2 fw-medium fs-12">{{ msg.subject|truncatechars:25 }}</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-1 fs-11 fw-semibold text-uppercase me-1">{{ u.role }}</span>
+                  {% if u.status == 'Active' %}
+                  <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1 fs-11 fw-semibold text-uppercase">{{ u.status }}</span>
+                  {% else %}
+                  <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-2 py-1 fs-11 fw-semibold text-uppercase">{{ u.status }}</span>
+                  {% endif %}
                 </td>
                 <td class="text-muted fs-13">
-                  <div class="fw-medium">{{ msg.sent_date|date:"M d, Y" }}</div>
-                  <div class="fs-11 opacity-75">{{ msg.sent_date|time:"h:i A" }}</div>
-                </td>
-                <td class="text-end">
-                  <button class="btn btn-sm btn-light rounded-circle" title="View Message"><i class="bx bx-chevron-right fs-5"></i></button>
+                  <div class="fw-medium">{{ u.date_joined|date:"M d, Y" }}</div>
                 </td>
               </tr>
               {% empty %}
               <tr>
-                <td colspan="6" class="text-center py-5">
-                  <div class="text-muted mb-2"><i class="bx bx-inbox fs-1 opacity-25"></i></div>
-                  <h6 class="fw-bold text-dark">Inbox Empty</h6>
-                  <p class="text-muted fs-14 mb-0">No messages have been received yet.</p>
+                <td colspan="4" class="text-center py-5">
+                  <div class="text-muted mb-2"><i class="bx bx-user fs-1 opacity-25"></i></div>
+                  <h6 class="fw-bold text-dark">No Users Found</h6>
+                  <p class="text-muted fs-14 mb-0">No active internal users available.</p>
                 </td>
               </tr>
               {% endfor %}
@@ -570,6 +523,44 @@ body {
         </div>
       </div>
     </div>
+
+    <!-- Contact Messages (DataTables List Style) -->
+    <div class="col-xl-6">
+      <div class="chart-container h-100">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h5 class="fw-bolder mb-1">Contact Messages List</h5>
+            <p class="text-muted fs-14 mb-0">Detailed list view</p>
+          </div>
+          <a href="{% url 'list_view' 'ContactUs' %}" class="btn btn-sm btn-outline-primary rounded-pill px-4 fw-semibold">View All</a>
+        </div>
+        <div class="table-responsive">
+          <table id="file-export" class="table table-bordered table-custom text-nowrap w-100">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Sent date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for msg in contactus %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td class="fw-semibold">{{ msg.full_name }}</td>
+                <td>{{ msg.email }}</td>
+                <td>{{ msg.subject }}</td>
+                <td>{{ msg.sent_date|date:"Y-m-d" }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </div><!-- /container -->
@@ -654,5 +645,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+</script>
+
+<!-- Datatables Cdn -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> 
+
+<script>
+  $(document).ready(function() {
+      if ($('#events-datatable').length) {
+          $('#events-datatable').DataTable({
+              dom: 'Bfrtip',
+              buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+              language: { searchPlaceholder: 'Search...', sSearch: '' },
+              pageLength: 5,
+          });
+      }
+      if ($('#recent-contacts-table').length) {
+          $('#recent-contacts-table').DataTable({
+              dom: 'pt', // Only pagination and table (no search, no export buttons)
+              pageLength: 5,
+              lengthChange: false,
+              info: false,
+              ordering: false
+          });
+      }
+  });
 </script>
 {% endblock %}
