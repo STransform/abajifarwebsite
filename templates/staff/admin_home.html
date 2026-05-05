@@ -2,268 +2,459 @@
 {% load static %}
 {% block css %}
 <style>
-/* ── Dashboard Custom Styles ── */
-:root{--dash-primary:#4361ee;--dash-success:#2ec4b6;--dash-warning:#ff9f1c;--dash-danger:#e63946;--dash-info:#7209b7;--dash-dark:#1a1a2e}
-.kpi-card{border:none;border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s;position:relative}
-.kpi-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(0,0,0,.15)!important}
-.kpi-card .kpi-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
-.kpi-card .kpi-value{font-size:2rem;font-weight:800;line-height:1.1}
-.kpi-card .kpi-badge{font-size:.72rem;padding:3px 10px;border-radius:20px}
-.kpi-grad-blue{background:linear-gradient(135deg,#4361ee 0%,#3a86ff 100%)}
-.kpi-grad-teal{background:linear-gradient(135deg,#2ec4b6 0%,#06d6a0 100%)}
-.kpi-grad-orange{background:linear-gradient(135deg,#ff9f1c 0%,#ffbf69 100%)}
-.kpi-grad-purple{background:linear-gradient(135deg,#7209b7 0%,#b5179e 100%)}
-.kpi-grad-red{background:linear-gradient(135deg,#e63946 0%,#f77f00 100%)}
+/* ── Premium Enterprise Dashboard Styles ── */
+:root {
+  --dash-primary: #4f46e5;
+  --dash-primary-light: rgba(79, 70, 229, 0.1);
+  --dash-success: #10b981;
+  --dash-warning: #f59e0b;
+  --dash-danger: #ef4444;
+  --dash-info: #8b5cf6;
+  --dash-bg: #f8fafc;
+  --dash-card: #ffffff;
+  --dash-text: #1e293b;
+  --dash-muted: #64748b;
+  --dash-border: rgba(226, 232, 240, 0.8);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
 
-.stat-chip{border-radius:12px;padding:18px 20px;border:1px solid rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;background:#fff}
-.stat-chip:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.10)}
-.stat-chip .chip-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.35rem}
+body {
+  background-color: var(--dash-bg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--dash-text);
+}
 
-.chart-card{border:none;border-radius:16px;box-shadow:0 2px 15px rgba(0,0,0,.06)}
-.section-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:14px}
-.activity-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px}
+/* Glassmorphic Utilities */
+.bg-glass { background-color: rgba(255, 255, 255, 0.1) !important; backdrop-filter: blur(10px); }
+.bg-glass-medium { background-color: rgba(255, 255, 255, 0.2) !important; }
+.bg-glass-strong { background-color: rgba(255, 255, 255, 0.25) !important; }
 
-.event-item{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed #eee}
-.event-item:last-child{border-bottom:none}
-.event-date-box{min-width:46px;height:46px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;line-height:1.1;font-size:.72rem}
-.progress-thin{height:6px;border-radius:4px}
-.msg-row td{vertical-align:middle;font-size:.86rem}
-.browser-bar{height:7px;border-radius:4px;margin-top:4px}
-.device-pill{border-radius:10px;padding:8px 14px;font-size:.82rem;font-weight:600;border:1.5px solid}
-.welcome-banner{border-radius:18px;background:linear-gradient(120deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%);color:#fff;padding:28px 32px;position:relative;overflow:hidden}
-.welcome-banner::after{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(67,97,238,.25)}
-.welcome-banner::before{content:'';position:absolute;right:60px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:rgba(58,134,255,.18)}
+/* Glassmorphic Welcome Banner */
+.welcome-banner {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%);
+  color: #fff !important;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.welcome-banner * {
+  color: #fff;
+}
+.welcome-banner::before,
+.welcome-banner::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 0;
+  animation: floatOrb 8s infinite alternate ease-in-out;
+}
+.welcome-banner::before {
+  width: 300px;
+  height: 300px;
+  background: rgba(139, 92, 246, 0.4);
+  top: -100px;
+  right: -50px;
+}
+.welcome-banner::after {
+  width: 250px;
+  height: 250px;
+  background: rgba(56, 189, 248, 0.3);
+  bottom: -80px;
+  right: 150px;
+  animation-delay: -4s;
+}
+@keyframes floatOrb {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-30px) scale(1.1); }
+}
+.welcome-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Bento KPI Cards */
+.bento-card {
+  background: var(--dash-card);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.bento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--dash-primary-light);
+}
+.bento-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+.bento-card:hover .bento-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+.bento-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--dash-text);
+}
+.bento-label {
+  font-size: 0.9rem;
+  color: var(--dash-muted);
+  font-weight: 500;
+  margin-top: 4px;
+}
+.bento-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dash-muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--dash-border) 0%, transparent 100%);
+}
+
+/* Chart Container */
+.chart-container {
+  background: var(--dash-card);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Stat Chips (Content Overview) */
+.stat-chip {
+  background: var(--dash-card);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+.stat-chip:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.chip-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto 12px;
+}
+
+/* Lists & Tables */
+.event-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+  border: 1px solid transparent;
+}
+.event-item:hover {
+  background: var(--dash-bg);
+  border-color: var(--dash-border);
+}
+.event-date {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--dash-primary-light);
+  color: var(--dash-primary);
+  font-weight: 700;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);
+}
+.event-date span:first-child { font-size: 1.2rem; line-height: 1; color: var(--dash-primary); }
+.event-date span:last-child { font-size: 0.7rem; text-transform: uppercase; margin-top: 2px; color: var(--dash-primary); }
+
+.table-inbox th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dash-muted);
+  border-bottom: 2px solid var(--dash-border);
+  padding: 16px;
+}
+.table-inbox td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--dash-border);
+  color: var(--dash-text);
+  font-size: 0.9rem;
+}
+.table-inbox tr:last-child td { border-bottom: none; }
+.table-inbox tr:hover { background: var(--dash-bg); }
+.avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+/* Progress & Device Pills */
+.progress-thin {
+  height: 6px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.device-pill {
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--dash-bg);
+  border: 1px solid var(--dash-border);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.device-pill:hover {
+  background: var(--dash-primary-light);
+  border-color: var(--dash-primary);
+  color: var(--dash-primary);
+}
 </style>
 {% endblock %}
+
 {% block main %}
-<div class="container-fluid py-1">
+<div class="container-fluid py-4 px-xl-5">
 
   <!-- Page Header -->
   <div class="d-md-flex align-items-center justify-content-between mb-4">
     <div>
-      <h1 class="fw-bold fs-20 mb-0">Dashboard & Analytics</h1>
-      <p class="text-muted mb-0 fs-13">Welcome back, <strong>{{ user.first_name|default:user.email }}</strong> — here's what's happening today.</p>
+      <h1 class="fw-bolder fs-3 mb-1 text-dark" style="letter-spacing:-0.03em;">Dashboard Overview</h1>
+      <p class="text-muted mb-0 fs-14">Welcome back, <strong class="text-dark">{{ user.first_name|default:user.email }}</strong>! Here's what's happening today.</p>
     </div>
-    <div class="d-flex gap-2 mt-2 mt-md-0">
-      <span class="badge bg-light text-dark border fs-12 px-3 py-2"><i class="bx bx-calendar me-1"></i>{% now "l, d M Y" %}</span>
+    <div class="d-flex gap-2 mt-3 mt-md-0">
+      <div class="bg-white px-4 py-2 rounded-pill shadow-sm border text-muted fw-medium fs-13 d-flex align-items-center">
+        <i class="bx bx-calendar text-primary me-2 fs-16"></i> {% now "l, d M Y" %}
+      </div>
     </div>
   </div>
 
   <!-- Welcome Banner -->
-  <div class="welcome-banner mb-4">
-    <div class="row align-items-center">
-      <div class="col-md-8">
-        <p class="section-title text-white opacity-75 mb-1">OVERVIEW</p>
-        <h2 class="fw-bold mb-2" style="font-size:1.55rem">Site Analytics at a Glance</h2>
-        <p class="opacity-75 mb-3 fs-14">Monitor your website traffic, content performance, and visitor engagement in real time.</p>
-        <div class="d-flex flex-wrap gap-3">
-          <div class="d-flex align-items-center gap-2">
-            <div class="rounded-circle d-flex align-items-center justify-content-center bg-white bg-opacity-15" style="width:36px;height:36px"><i class="bx bx-show text-white fs-18"></i></div>
-            <div><div class="fw-bold fs-18 text-white">{{ total_visits }}</div><div class="fs-11 opacity-60 text-white">Total Visits</div></div>
+  <div class="welcome-banner mb-5">
+    <div class="row align-items-center welcome-content">
+      <div class="col-md-7">
+        <div class="badge bg-glass-strong text-white rounded-pill px-3 py-1 mb-3 fs-12 fw-semibold border border-white border-opacity-25" style="color: #fff !important;">Live Analytics</div>
+        <h2 class="fw-bolder mb-3 text-white" style="font-size:2rem; letter-spacing:-0.02em; color: #fff !important;">Real-time Site Performance</h2>
+        <p class="mb-4 fs-15 lh-lg text-white" style="max-width: 500px; opacity: 0.85; color: #fff !important;">Monitor your website traffic, engagement, and operational health with powerful, actionable insights.</p>
+        <div class="d-flex flex-wrap gap-4">
+          <div class="d-flex align-items-center gap-3 bg-glass px-4 py-3 rounded-4 border border-white border-opacity-25 backdrop-blur">
+            <div class="rounded-circle bg-glass-medium d-flex align-items-center justify-content-center" style="width:44px;height:44px"><i class="bx bx-globe text-white fs-4" style="color: #fff !important;"></i></div>
+            <div><div class="fw-bolder fs-4 text-white lh-1" style="color: #fff !important;">{{ total_visits }}</div><div class="fs-12 text-white mt-1 fw-medium text-uppercase tracking-wide" style="color: #fff !important; opacity: 0.75;">Total Visits</div></div>
           </div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="rounded-circle d-flex align-items-center justify-content-center bg-white bg-opacity-15" style="width:36px;height:36px"><i class="bx bx-user text-white fs-18"></i></div>
-            <div><div class="fw-bold fs-18 text-white">{{ visits_today }}</div><div class="fs-11 opacity-60 text-white">Today</div></div>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="rounded-circle d-flex align-items-center justify-content-center bg-white bg-opacity-15" style="width:36px;height:36px"><i class="bx bx-trending-up text-white fs-18"></i></div>
-            <div><div class="fw-bold fs-18 text-white">{{ visits_week }}</div><div class="fs-11 opacity-60 text-white">This Week</div></div>
+          <div class="d-flex align-items-center gap-3 bg-glass px-4 py-3 rounded-4 border border-white border-opacity-25 backdrop-blur">
+            <div class="rounded-circle bg-glass-medium d-flex align-items-center justify-content-center" style="width:44px;height:44px"><i class="bx bx-user-plus text-white fs-4" style="color: #fff !important;"></i></div>
+            <div><div class="fw-bolder fs-4 text-white lh-1" style="color: #fff !important;">{{ visits_today }}</div><div class="fs-12 text-white mt-1 fw-medium text-uppercase tracking-wide" style="color: #fff !important; opacity: 0.75;">Today's Traffic</div></div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 text-end d-none d-md-block">
-        <i class="bx bx-bar-chart-alt-2" style="font-size:7rem;opacity:.12;color:#fff;position:absolute;right:30px;top:10px"></i>
+      <div class="col-md-5 text-end d-none d-md-block">
+        <img src="{% static 'dashboard/images/illustrations/analytics.svg' %}" alt="" style="max-height: 240px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));" onerror="this.style.display='none'">
+        <!-- Fallback if image doesn't exist -->
+        <i class="bx bx-bar-chart-square" style="font-size:12rem; color:rgba(255,255,255,0.1); position:absolute; right:5%; top:10%;"></i>
       </div>
     </div>
   </div>
 
-  <!-- ── KPI Cards Row ── -->
-  <div class="row g-3 mb-4">
+  <p class="section-title">KEY PERFORMANCE INDICATORS</p>
+  <!-- ── Bento KPI Cards Row ── -->
+  <div class="row g-4 mb-5">
     <div class="col-xl-3 col-md-6">
-      <div class="card kpi-card kpi-grad-blue text-white shadow-sm">
-        <div class="card-body d-flex align-items-center gap-3 py-4">
-          <div class="kpi-icon bg-white bg-opacity-25"><i class="bx bx-show"></i></div>
-          <div>
-            <div class="kpi-value">{{ visits_today }}</div>
-            <div class="opacity-75 fs-13 fw-semibold">Today's Visitors</div>
-            <span class="kpi-badge bg-white bg-opacity-20 text-white mt-1 d-inline-block">Live</span>
-          </div>
-        </div>
+      <div class="bento-card">
+        <div class="bento-badge" style="background:#e0e7ff; color:#4f46e5;">Live</div>
+        <div class="bento-icon" style="background:#e0e7ff; color:#4f46e5;"><i class="bx bx-run"></i></div>
+        <div class="bento-value">{{ visits_today }}</div>
+        <div class="bento-label">Today's Visitors</div>
       </div>
     </div>
     <div class="col-xl-3 col-md-6">
-      <div class="card kpi-card kpi-grad-teal text-white shadow-sm">
-        <div class="card-body d-flex align-items-center gap-3 py-4">
-          <div class="kpi-icon bg-white bg-opacity-25"><i class="bx bx-calendar-week"></i></div>
-          <div>
-            <div class="kpi-value">{{ visits_week }}</div>
-            <div class="opacity-75 fs-13 fw-semibold">Weekly Visitors</div>
-            <span class="kpi-badge bg-white bg-opacity-20 text-white mt-1 d-inline-block">Last 7 days</span>
-          </div>
-        </div>
+      <div class="bento-card">
+        <div class="bento-badge" style="background:#d1fae5; color:#059669;">Past 7 days</div>
+        <div class="bento-icon" style="background:#d1fae5; color:#059669;"><i class="bx bx-line-chart"></i></div>
+        <div class="bento-value">{{ visits_week }}</div>
+        <div class="bento-label">Weekly Visitors</div>
       </div>
     </div>
     <div class="col-xl-3 col-md-6">
-      <div class="card kpi-card kpi-grad-orange text-white shadow-sm">
-        <div class="card-body d-flex align-items-center gap-3 py-4">
-          <div class="kpi-icon bg-white bg-opacity-25"><i class="bx bx-calendar"></i></div>
-          <div>
-            <div class="kpi-value">{{ visits_month }}</div>
-            <div class="opacity-75 fs-13 fw-semibold">Monthly Visitors</div>
-            <span class="kpi-badge bg-white bg-opacity-20 text-white mt-1 d-inline-block">Last 30 days</span>
-          </div>
-        </div>
+      <div class="bento-card">
+        <div class="bento-badge" style="background:#fef3c7; color:#d97706;">Past 30 days</div>
+        <div class="bento-icon" style="background:#fef3c7; color:#d97706;"><i class="bx bx-calendar-event"></i></div>
+        <div class="bento-value">{{ visits_month }}</div>
+        <div class="bento-label">Monthly Visitors</div>
       </div>
     </div>
     <div class="col-xl-3 col-md-6">
-      <div class="card kpi-card kpi-grad-purple text-white shadow-sm">
-        <div class="card-body d-flex align-items-center gap-3 py-4">
-          <div class="kpi-icon bg-white bg-opacity-25"><i class="bx bx-globe"></i></div>
-          <div>
-            <div class="kpi-value">{{ total_visits }}</div>
-            <div class="opacity-75 fs-13 fw-semibold">Total Visits</div>
-            <span class="kpi-badge bg-white bg-opacity-20 text-white mt-1 d-inline-block">All time</span>
-          </div>
-        </div>
+      <div class="bento-card">
+        <div class="bento-badge" style="background:#f3e8ff; color:#7e22ce;">All Time</div>
+        <div class="bento-icon" style="background:#f3e8ff; color:#7e22ce;"><i class="bx bx-data"></i></div>
+        <div class="bento-value">{{ total_visits }}</div>
+        <div class="bento-label">Total Cumulative Visits</div>
       </div>
     </div>
   </div>
 
-  <!-- ── Chart + Task Stats ── -->
-  <div class="row g-3 mb-4">
-    <!-- Visitors Chart -->
-    <div class="col-xl-8">
-      <div class="card chart-card h-100">
-        <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4 d-flex justify-content-between align-items-center">
+  <!-- ── Traffic Chart ── -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="chart-container">
+        <div class="d-flex justify-content-between align-items-end mb-4">
           <div>
-            <p class="section-title mb-0">TRAFFIC ANALYTICS</p>
-            <h6 class="fw-bold mb-0">Daily Visitors — Last 7 Days</h6>
+            <h5 class="fw-bolder mb-1">Traffic Analytics</h5>
+            <p class="text-muted fs-14 mb-0">Daily unique visitors over the last 7 days</p>
           </div>
-          <span class="badge bg-primary-subtle text-primary rounded-pill px-3">Visitors</span>
+          <button class="btn btn-light rounded-pill btn-sm px-3 fw-medium text-primary shadow-sm border"><i class="bx bx-export me-1"></i> Export Report</button>
         </div>
-        <div class="card-body px-3 pb-3" style="height:280px">
+        <div style="height:320px; position:relative;">
           <canvas id="visitorsChart"></canvas>
         </div>
       </div>
     </div>
-
-    <!-- Task Status -->
-    <div class="col-xl-4">
-      <div class="card chart-card h-100">
-        <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4">
-          <p class="section-title mb-0">TASK MANAGER</p>
-          <h6 class="fw-bold mb-0">Task Overview</h6>
-        </div>
-        <div class="card-body px-4">
-          <div class="text-center mb-3">
-            <canvas id="taskDonut" style="max-height:160px"></canvas>
-          </div>
-          <div class="d-flex flex-column gap-2">
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="d-flex align-items-center gap-2 fs-13"><span style="width:10px;height:10px;border-radius:50%;background:#4361ee;display:inline-block"></span>Completed</span>
-              <span class="fw-bold">{{ tasks.done }}</span>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="d-flex align-items-center gap-2 fs-13"><span style="width:10px;height:10px;border-radius:50%;background:#ff9f1c;display:inline-block"></span>In Progress</span>
-              <span class="fw-bold">{{ tasks.progress }}</span>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="d-flex align-items-center gap-2 fs-13"><span style="width:10px;height:10px;border-radius:50%;background:#e63946;display:inline-block"></span>Pending</span>
-              <span class="fw-bold">{{ tasks.pending }}</span>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="d-flex align-items-center gap-2 fs-13"><span style="width:10px;height:10px;border-radius:50%;background:#2ec4b6;display:inline-block"></span>Total</span>
-              <span class="fw-bold">{{ tasks.all }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
-  <!-- ── Content Stats ── -->
   <p class="section-title">CONTENT OVERVIEW</p>
-  <div class="row g-3 mb-4">
+  <!-- ── Content Stats ── -->
+  <div class="row g-4 mb-5">
     <div class="col-xl-2 col-md-4 col-6">
-      <div class="stat-chip text-center">
-        <div class="chip-icon mx-auto mb-2" style="background:#eef2ff"><i class="bx bx-image" style="color:#4361ee;font-size:1.35rem"></i></div>
-        <div class="fw-bold fs-22">{{ galleries }}</div>
-        <div class="text-muted fs-12">Gallery Images</div>
+      <div class="stat-chip">
+        <div class="chip-icon" style="background:#e0e7ff; color:#4f46e5;"><i class="bx bx-images"></i></div>
+        <div class="fw-bolder fs-3">{{ galleries }}</div>
+        <div class="text-muted fs-13 fw-medium">Galleries</div>
       </div>
     </div>
     <div class="col-xl-2 col-md-4 col-6">
-      <div class="stat-chip text-center">
-        <div class="chip-icon mx-auto mb-2" style="background:#f0fdf4"><i class="bx bx-video" style="color:#2ec4b6;font-size:1.35rem"></i></div>
-        <div class="fw-bold fs-22">{{ videos }}</div>
-        <div class="text-muted fs-12">Videos</div>
+      <div class="stat-chip">
+        <div class="chip-icon" style="background:#d1fae5; color:#10b981;"><i class="bx bx-video"></i></div>
+        <div class="fw-bolder fs-3">{{ videos }}</div>
+        <div class="text-muted fs-13 fw-medium">Videos</div>
       </div>
     </div>
     <div class="col-xl-2 col-md-4 col-6">
-      <div class="stat-chip text-center">
-        <div class="chip-icon mx-auto mb-2" style="background:#fff7ed"><i class="bx bx-file" style="color:#ff9f1c;font-size:1.35rem"></i></div>
-        <div class="fw-bold fs-22">{{ docs }}</div>
-        <div class="text-muted fs-12">Documents</div>
+      <div class="stat-chip">
+        <div class="chip-icon" style="background:#fef3c7; color:#f59e0b;"><i class="bx bx-file-blank"></i></div>
+        <div class="fw-bolder fs-3">{{ docs }}</div>
+        <div class="text-muted fs-13 fw-medium">Documents</div>
       </div>
     </div>
     <div class="col-xl-2 col-md-4 col-6">
-      <div class="stat-chip text-center">
-        <div class="chip-icon mx-auto mb-2" style="background:#fdf4ff"><i class="bx bx-news" style="color:#7209b7;font-size:1.35rem"></i></div>
-        <div class="fw-bold fs-22">{{ blogs }}</div>
-        <div class="text-muted fs-12">Blog Posts</div>
+      <div class="stat-chip">
+        <div class="chip-icon" style="background:#f3e8ff; color:#8b5cf6;"><i class="bx bx-news"></i></div>
+        <div class="fw-bolder fs-3">{{ blogs }}</div>
+        <div class="text-muted fs-13 fw-medium">Blog Posts</div>
       </div>
     </div>
     <div class="col-xl-2 col-md-4 col-6">
-      <div class="stat-chip text-center">
-        <div class="chip-icon mx-auto mb-2" style="background:#fff0f0"><i class="bx bx-briefcase" style="color:#e63946;font-size:1.35rem"></i></div>
-        <div class="fw-bold fs-22">{{ jobs }}</div>
-        <div class="text-muted fs-12">Vacancies</div>
+      <div class="stat-chip">
+        <div class="chip-icon" style="background:#fee2e2; color:#ef4444;"><i class="bx bx-briefcase-alt-2"></i></div>
+        <div class="fw-bolder fs-3">{{ jobs }}</div>
+        <div class="text-muted fs-13 fw-medium">Vacancies</div>
       </div>
     </div>
     <div class="col-xl-2 col-md-4 col-6">
-      <div class="stat-chip text-center">
-        <div class="chip-icon mx-auto mb-2" style="background:#f0f9ff"><i class="bx bx-envelope" style="color:#3a86ff;font-size:1.35rem"></i></div>
-        <div class="fw-bold fs-22">{{ contactus.count }}</div>
-        <div class="text-muted fs-12">Messages</div>
+      <div class="stat-chip">
+        <div class="chip-icon" style="background:#e0f2fe; color:#0ea5e9;"><i class="bx bx-envelope"></i></div>
+        <div class="fw-bolder fs-3">{{ contactus.count }}</div>
+        <div class="text-muted fs-13 fw-medium">Messages</div>
       </div>
     </div>
   </div>
 
-  <!-- ── Visitors Breakdown + Upcoming Events ── -->
-  <div class="row g-3 mb-4">
+  <div class="row g-4 mb-5">
     <!-- Browser / Device -->
     <div class="col-xl-5">
-      <div class="card chart-card h-100">
-        <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4">
-          <p class="section-title mb-0">VISITOR BREAKDOWN</p>
-          <h6 class="fw-bold mb-0">Browsers & Devices</h6>
-        </div>
-        <div class="card-body px-4">
+      <div class="chart-container h-100">
+        <h5 class="fw-bolder mb-1">Visitor Demographics</h5>
+        <p class="text-muted fs-14 mb-4">Browsers and Devices breakdown</p>
+        
+        <div class="mb-4">
+          <h6 class="text-uppercase fs-12 fw-bold text-muted mb-3 letter-spacing-wide">Top Browsers</h6>
           {% if browser_stats %}
-          <p class="text-muted fs-12 mb-2 fw-semibold">Top Browsers</p>
-          {% for b in browser_stats %}
-          <div class="mb-3">
-            <div class="d-flex justify-content-between fs-13 mb-1">
-              <span class="fw-semibold">{{ b.browser|default:"Unknown"|truncatechars:22 }}</span>
-              <span class="text-muted">{{ b.count }}</span>
+            {% for b in browser_stats %}
+            <div class="mb-3">
+              <div class="d-flex justify-content-between fs-14 mb-2">
+                <span class="fw-semibold text-dark"><i class="bx bxl-internet-explorer text-primary me-2"></i>{{ b.browser|default:"Unknown"|truncatechars:22 }}</span>
+                <span class="fw-bold text-muted">{{ b.count }}</span>
+              </div>
+              <div class="progress progress-thin">
+                <div class="progress-bar" style="width:{% if total_visits %}{% widthratio b.count total_visits 100 %}%{% else %}0%{% endif %}; background:#4f46e5;"></div>
+              </div>
             </div>
-            <div class="progress progress-thin">
-              <div class="progress-bar browser-bar" style="width:{% if total_visits %}{% widthratio b.count total_visits 100 %}%{% else %}0%{% endif %};background:#4361ee"></div>
-            </div>
-          </div>
-          {% endfor %}
+            {% endfor %}
           {% else %}
-          <p class="text-muted fs-13">No browser data yet.</p>
+            <div class="alert alert-light border text-center fs-14 text-muted py-3">No browser data available yet.</div>
           {% endif %}
-          <hr class="my-3">
-          <p class="text-muted fs-12 mb-2 fw-semibold">Devices</p>
+        </div>
+        
+        <hr class="border-light my-4">
+        
+        <div>
+          <h6 class="text-uppercase fs-12 fw-bold text-muted mb-3 letter-spacing-wide">Devices</h6>
           <div class="d-flex flex-wrap gap-2">
             {% for d in device_stats %}
-            <div class="device-pill" style="border-color:#4361ee22;background:#f8faff;color:#4361ee">
-              <i class="bx bx-devices me-1"></i>{{ d.device|default:"Unknown"|truncatechars:18 }}
-              <span class="ms-1 badge" style="background:#4361ee22;color:#4361ee">{{ d.count }}</span>
+            <div class="device-pill">
+              <i class="bx {% if 'Mobile' in d.device %}bx-mobile{% elif 'Tablet' in d.device %}bx-tab{% else %}bx-laptop{% endif %} text-primary fs-5"></i>
+              {{ d.device|default:"Unknown"|truncatechars:18 }}
+              <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill ms-1">{{ d.count }}</span>
             </div>
             {% empty %}
-            <span class="text-muted fs-13">No device data yet.</span>
+            <div class="alert alert-light border text-center fs-14 text-muted py-3 w-100">No device data available yet.</div>
             {% endfor %}
           </div>
         </div>
@@ -272,31 +463,40 @@
 
     <!-- Upcoming Events -->
     <div class="col-xl-7">
-      <div class="card chart-card h-100">
-        <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4 d-flex justify-content-between align-items-center">
+      <div class="chart-container h-100 d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center mb-4">
           <div>
-            <p class="section-title mb-0">SCHEDULE</p>
-            <h6 class="fw-bold mb-0">Upcoming Events</h6>
+            <h5 class="fw-bolder mb-1">Upcoming Schedule</h5>
+            <p class="text-muted fs-14 mb-0">Events and key dates</p>
           </div>
-          <a href="{% url 'list_view' model_name='Event' %}" class="btn btn-sm btn-outline-primary rounded-pill px-3">View All</a>
+          <a href="{% url 'list_view' model_name='Event' %}" class="btn btn-sm btn-outline-primary rounded-pill px-4 fw-semibold">View Calendar</a>
         </div>
-        <div class="card-body px-4">
+        
+        <div class="flex-grow-1 d-flex flex-column gap-2">
           {% for event in upcoming_events %}
           <div class="event-item">
-            <div class="event-date-box" style="background:#eef2ff;color:#4361ee">
-              <span style="font-size:1.1rem">{{ event.date|date:"d" }}</span>
+            <div class="event-date">
+              <span>{{ event.date|date:"d" }}</span>
               <span>{{ event.date|date:"M" }}</span>
             </div>
             <div class="flex-fill">
-              <div class="fw-semibold fs-14">{{ event.title|truncatechars:40 }}</div>
-              <div class="text-muted fs-12"><i class="bx bx-map-pin me-1"></i>{{ event.location }} &nbsp;|&nbsp; <i class="bx bx-time me-1"></i>{{ event.time }}</div>
+              <h6 class="fw-bold mb-1 text-dark fs-15">{{ event.title|truncatechars:45 }}</h6>
+              <div class="text-muted fs-13 d-flex align-items-center gap-3">
+                <span><i class="bx bx-map-pin text-primary opacity-75 me-1"></i> {{ event.location }}</span>
+                <span><i class="bx bx-time text-primary opacity-75 me-1"></i> {{ event.time }}</span>
+              </div>
             </div>
-            <span class="badge bg-primary-subtle text-primary rounded-pill align-self-center">Upcoming</span>
+            <div>
+              <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 fw-semibold">Upcoming</span>
+            </div>
           </div>
           {% empty %}
-          <div class="text-center py-4">
-            <i class="bx bx-calendar-x fs-48 text-muted opacity-40"></i>
-            <p class="text-muted fs-13 mt-2">No upcoming events.</p>
+          <div class="text-center py-5 m-auto">
+            <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width:80px;height:80px;">
+              <i class="bx bx-calendar-x fs-1 text-muted opacity-50"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-1">No Upcoming Events</h6>
+            <p class="text-muted fs-14">Your schedule is clear for now.</p>
           </div>
           {% endfor %}
         </div>
@@ -305,45 +505,68 @@
   </div>
 
   <!-- ── Recent Messages ── -->
-  <div class="row g-3 mb-4">
+  <div class="row mb-4">
     <div class="col-12">
-      <div class="card chart-card">
-        <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4 d-flex justify-content-between align-items-center">
+      <div class="chart-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
           <div>
-            <p class="section-title mb-0">INBOX</p>
-            <h6 class="fw-bold mb-0">Latest Visitor Messages</h6>
+            <h5 class="fw-bolder mb-1">Recent Inbox Activity</h5>
+            <p class="text-muted fs-14 mb-0">Latest messages from visitors</p>
           </div>
-          <span class="badge rounded-pill bg-danger">{{ contactus_count }} messages</span>
+          <span class="badge rounded-pill bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-3 py-2 fs-13 fw-semibold">
+            <i class="bx bx-envelope me-1"></i> {{ contactus_count }} Total
+          </span>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th class="fs-12 text-muted fw-semibold">#</th>
-                  <th class="fs-12 text-muted fw-semibold">Name</th>
-                  <th class="fs-12 text-muted fw-semibold">Email</th>
-                  <th class="fs-12 text-muted fw-semibold">Phone</th>
-                  <th class="fs-12 text-muted fw-semibold">Subject</th>
-                  <th class="fs-12 text-muted fw-semibold">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for msg in contactus %}
-                <tr class="msg-row">
-                  <td class="text-muted">{{ forloop.counter }}</td>
-                  <td><span class="fw-semibold">{{ msg.full_name|truncatechars:22 }}</span></td>
-                  <td class="text-muted">{{ msg.email|truncatechars:24 }}</td>
-                  <td class="text-muted">{{ msg.phone }}</td>
-                  <td><span class="badge bg-light text-dark border">{{ msg.subject|truncatechars:20 }}</span></td>
-                  <td class="text-muted">{{ msg.sent_date }}</td>
-                </tr>
-                {% empty %}
-                <tr><td colspan="6" class="text-center text-muted py-4">No messages yet.</td></tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+        <div class="table-responsive">
+          <table class="table table-inbox align-middle mb-0">
+            <thead>
+              <tr>
+                <th width="40"></th>
+                <th>Sender Name</th>
+                <th>Contact Details</th>
+                <th>Subject</th>
+                <th>Date Received</th>
+                <th class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for msg in contactus %}
+              <tr>
+                <td>
+                  {% cycle '#4f46e5' '#10b981' '#f59e0b' '#ef4444' '#8b5cf6' as bg_color silent %}
+                  <div class="avatar-circle" style="background-color: {{ bg_color }};">
+                    {{ msg.full_name|make_list|first|upper }}
+                  </div>
+                </td>
+                <td>
+                  <div class="fw-bold text-dark fs-14">{{ msg.full_name|truncatechars:24 }}</div>
+                </td>
+                <td>
+                  <div class="text-muted fs-13 mb-1"><i class="bx bx-envelope me-1 opacity-50"></i>{{ msg.email|truncatechars:26 }}</div>
+                  <div class="text-muted fs-13"><i class="bx bx-phone me-1 opacity-50"></i>{{ msg.phone }}</div>
+                </td>
+                <td>
+                  <span class="badge bg-light text-dark border px-3 py-2 fw-medium fs-12">{{ msg.subject|truncatechars:25 }}</span>
+                </td>
+                <td class="text-muted fs-13">
+                  <div class="fw-medium">{{ msg.sent_date|date:"M d, Y" }}</div>
+                  <div class="fs-11 opacity-75">{{ msg.sent_date|time:"h:i A" }}</div>
+                </td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-light rounded-circle" title="View Message"><i class="bx bx-chevron-right fs-5"></i></button>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center py-5">
+                  <div class="text-muted mb-2"><i class="bx bx-inbox fs-1 opacity-25"></i></div>
+                  <h6 class="fw-bold text-dark">Inbox Empty</h6>
+                  <p class="text-muted fs-14 mb-0">No messages have been received yet.</p>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -354,52 +577,82 @@
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-// Visitors Line Chart
-(function(){
+// Advanced Visitors Line Chart Configuration
+document.addEventListener('DOMContentLoaded', function() {
   const labels = {{ daily_labels_json|safe }};
   const data   = {{ daily_counts_json|safe }};
-  const ctx = document.getElementById('visitorsChart').getContext('2d');
-  const grad = ctx.createLinearGradient(0,0,0,250);
-  grad.addColorStop(0,'rgba(67,97,238,.35)');
-  grad.addColorStop(1,'rgba(67,97,238,.01)');
-  new Chart(ctx,{
-    type:'line',
-    data:{labels,datasets:[{
-      label:'Visitors',data,
-      borderColor:'#4361ee',backgroundColor:grad,
-      borderWidth:2.5,pointRadius:5,pointHoverRadius:7,
-      pointBackgroundColor:'#fff',pointBorderColor:'#4361ee',
-      tension:.4,fill:true
-    }]},
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.parsed.y+' visitors'}}},
-      scales:{
-        x:{grid:{display:false},ticks:{font:{size:11}}},
-        y:{grid:{color:'#f0f0f0'},ticks:{stepSize:1,font:{size:11}},beginAtZero:true}
+  const canvas = document.getElementById('visitorsChart');
+  
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    
+    // Create vibrant gradient
+    const grad = ctx.createLinearGradient(0, 0, 0, 300);
+    grad.addColorStop(0, 'rgba(79, 70, 229, 0.4)');
+    grad.addColorStop(0.5, 'rgba(79, 70, 229, 0.1)');
+    grad.addColorStop(1, 'rgba(79, 70, 229, 0.0)');
+    
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Unique Visitors',
+          data: data,
+          borderColor: '#4f46e5',
+          backgroundColor: grad,
+          borderWidth: 3,
+          pointRadius: 4,
+          pointHoverRadius: 8,
+          pointBackgroundColor: '#ffffff',
+          pointBorderColor: '#4f46e5',
+          pointBorderWidth: 2,
+          tension: 0.4, // Smooth bezier curves
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+            titleFont: { size: 13, family: 'Inter', weight: 'bold' },
+            bodyFont: { size: 14, family: 'Inter', weight: 'normal' },
+            padding: 12,
+            cornerRadius: 8,
+            displayColors: false,
+            callbacks: {
+              label: function(context) {
+                return `${context.parsed.y} Visitors`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false, drawBorder: false },
+            ticks: { font: { size: 12, family: 'Inter' }, color: '#64748b', padding: 10 }
+          },
+          y: {
+            grid: { color: '#f1f5f9', borderDash: [5, 5], drawBorder: false },
+            ticks: { 
+              stepSize: 1, 
+              font: { size: 12, family: 'Inter' }, 
+              color: '#64748b',
+              padding: 10
+            },
+            beginAtZero: true
+          }
+        }
       }
-    }
-  });
-})();
-
-// Task Donut
-(function(){
-  const ctx = document.getElementById('taskDonut').getContext('2d');
-  new Chart(ctx,{
-    type:'doughnut',
-    data:{
-      labels:['Completed','In Progress','Pending'],
-      datasets:[{
-        data:[{{ tasks.done }},{{ tasks.progress }},{{ tasks.pending }}],
-        backgroundColor:['#4361ee','#ff9f1c','#e63946'],
-        borderWidth:3,borderColor:'#fff',hoverOffset:6
-      }]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,cutout:'72%',
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.parsed}}}
-    }
-  });
-})();
+    });
+  }
+});
 </script>
 {% endblock %}
