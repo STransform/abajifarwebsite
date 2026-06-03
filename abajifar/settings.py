@@ -133,7 +133,7 @@ MIDDLEWARE = [
     
 ]
 
-ROOT_URLCONF = 'otech_app.urls'
+ROOT_URLCONF = 'abajifar.urls'
 
 # template directory
 TEMPLATES = [
@@ -166,7 +166,7 @@ THUMBNAIL_PROCESSORS = (
 )
 
 # specifies the full path to the Django's runserver command
-WSGI_APPLICATION = 'otech_app.wsgi.application'
+WSGI_APPLICATION = 'abajifar.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -176,6 +176,10 @@ DATABASES = {
         'PASSWORD': 'Simon@1234',
         'HOST': 'localhost',
         'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'init_command': "SET NAMES 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'",
+        },
     }
 }
 

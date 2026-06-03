@@ -20,7 +20,7 @@
           </span>
         </a>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+        <button class="navbar-toggler otech-navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
           data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
           <i class="fas fa-bars text-primary"></i>
         </button>
@@ -224,7 +224,29 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.querySelector(".otech-navbar .navbar-toggler");
+    const mainNav = document.querySelector("#mainNav");
     const dropdownItems = document.querySelectorAll(".otech-navbar .nav-item.dropdown");
+
+    if (navToggle && mainNav) {
+      navToggle.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (window.bootstrap && window.bootstrap.Collapse) {
+          const collapse = window.bootstrap.Collapse.getOrCreateInstance(mainNav, {
+            toggle: false,
+          });
+          collapse.toggle();
+        } else {
+          mainNav.classList.toggle("show");
+        }
+
+        const isOpen = mainNav.classList.contains("show");
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        navToggle.classList.toggle("is-active", isOpen);
+      });
+    }
 
     function closeAllDropdowns(currentItem) {
       dropdownItems.forEach((item) => {
@@ -267,11 +289,27 @@
       if (!event.target.closest(".otech-navbar .nav-item.dropdown")) {
         closeAllDropdowns();
       }
+
+      if (
+        mainNav &&
+        navToggle &&
+        mainNav.classList.contains("show") &&
+        !event.target.closest(".otech-navbar")
+      ) {
+        mainNav.classList.remove("show");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.classList.remove("is-active");
+      }
     });
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
         closeAllDropdowns();
+        if (mainNav && navToggle) {
+          mainNav.classList.remove("show");
+          navToggle.setAttribute("aria-expanded", "false");
+          navToggle.classList.remove("is-active");
+        }
       }
     });
   });
