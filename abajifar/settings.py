@@ -92,9 +92,9 @@ INSTALLED_APPS = [
     "djangocms_googlemap",
     "djangocms_snippet",
     "djangocms_style",
-    "crispy_forms",
+    # "crispy_forms",
     'rosetta', #For generating language translating dashboard
-    "crispy_bootstrap5",
+    # "crispy_bootstrap5",
     
     
 ]
@@ -349,6 +349,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Logout if the user closes the browser
 # CSRF_COOKIE_SECURE = True # No csrf for http requests
 # SESSION_COOKIE_SECURE = True # No Session for http request
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
-CRISPY_TEMPLATE_PACK = "bootstrap5"
+# CRISPY_TEMPLATE_PACK = "bootstrap5"
+
