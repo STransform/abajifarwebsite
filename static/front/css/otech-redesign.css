@@ -538,10 +538,8 @@ a {
 }
 
 .otech-footer {
-  background:
-    radial-gradient(circle at top left, rgba(122, 160, 225, 0.2), transparent 28%),
-    linear-gradient(160deg, #112846 0%, #1a3a69 55%, #234980 100%);
-  color: rgba(255, 255, 255, 0.88);
+  background: #0373B9;
+  color: #ffffff;
 }
 
 .otech-footer .footer-title {
@@ -549,13 +547,14 @@ a {
 }
 
 .otech-footer .footer-title::after {
-  background: rgba(255, 255, 255, 0.55);
+  background: #ffffff;
 }
 
 .otech-footer .quick-link,
 .otech-footer .contact-text,
-.otech-footer .company-info p {
-  color: rgba(255, 255, 255, 0.75);
+.otech-footer .company-info p,
+.otech-footer a {
+  color: #ffffff !important;
 }
 
 .otech-footer .social-link {
