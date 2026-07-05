@@ -332,7 +332,7 @@
     <div class="carousel-inner">
       {% for work in featured_works %}
       <div class="carousel-item hero-carousel-item {% if forloop.first %}active{% endif %}"
-        style="background: url('{{ work.background_image.url }}') center center/contain no-repeat; background-color: #102747;">
+        style="background: url('{{ work.background_image.url }}') center center/cover no-repeat; background-color: #102747;">
         <div class="carousel-caption">
           <div class="container">
             <div class="hero-content-wrap">
