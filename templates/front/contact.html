@@ -292,6 +292,67 @@
             flex-direction: column;
         }
     }
+
+    /* Social Links on Contact Page */
+    .contact-social-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(85, 122, 189, 0.1);
+        border-bottom: 1px solid rgba(85, 122, 189, 0.1);
+    }
+
+    .contact-social-label {
+        color: var(--medium-gray);
+        font-size: 0.9rem;
+        font-weight: 600;
+        white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .contact-social-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+    }
+
+    .contact-social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 1.1rem;
+        border-radius: 999px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        color: #ffffff !important;
+    }
+
+    .contact-social-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        filter: brightness(1.08);
+    }
+
+    .contact-social-link.telegram {
+        background: #229ED9;
+    }
+
+    .contact-social-link.whatsapp {
+        background: #25D366;
+    }
+
+    .contact-social-link.facebook {
+        background: #1877F2;
+    }
+
+    .contact-social-link i {
+        font-size: 1.05rem;
+    }
 </style>
 {% endblock %}
 
@@ -430,6 +491,25 @@
                                     {% if stg and stg.email %}<a href="mailto:{{ stg.email }}">{{ stg.email }}</a>{% else %}{% trans "Email address will appear here once added from the admin panel." %}{% endif %}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="contact-social-row">
+                        <span class="contact-social-label">{% trans "Reach us on" %}</span>
+                        <div class="contact-social-icons">
+                            <a href="https://t.me/abajifartour" target="_blank" rel="noopener" class="contact-social-link telegram" title="Telegram">
+                                <i class="fab fa-telegram-plane"></i>
+                                <span>Telegram</span>
+                            </a>
+                            <a href="https://wa.me/251944444447" target="_blank" rel="noopener" class="contact-social-link whatsapp" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                            <a href="https://WWW.FACEBOOK.COM/PROFILE.PHP?ID=61556411611103" target="_blank" rel="noopener" class="contact-social-link facebook" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
                         </div>
                     </div>
 
