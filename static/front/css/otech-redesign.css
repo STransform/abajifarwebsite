@@ -576,7 +576,7 @@ a {
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 22px;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.98);
     border: 1px solid var(--surface-border);
     box-shadow: var(--shadow-card);
     pointer-events: auto;
@@ -595,6 +595,17 @@ a {
     position: relative;
     z-index: 3006;
     pointer-events: auto;
+    color: var(--dark-gray) !important;
+  }
+
+  .otech-navbar .nav-link.active,
+  .otech-navbar .dropdown-toggle.active,
+  .otech-navbar .nav-link:hover,
+  .otech-navbar .dropdown-toggle:hover,
+  .otech-navbar .dropdown-item:hover,
+  .otech-navbar .dropdown-item.active {
+    color: var(--accent-color-deep) !important;
+    background: rgba(85, 122, 189, 0.1) !important;
   }
 
   .otech-navbar .navbar-nav {
@@ -606,6 +617,8 @@ a {
     min-width: 100%;
     margin-top: 0.45rem;
     box-shadow: none;
+    background: transparent;
+    border: none;
   }
 
   .otech-brand {
