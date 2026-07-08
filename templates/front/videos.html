@@ -45,7 +45,11 @@
                         {% for video in gallery_videos %}
                             <div class="col-sm-12 col-lg-6 isotope-item {{ video.category }}">
                                 <div class="ratio ratio-16x9 ratio-borders">
-                                    {{video.link|safe}}
+                                    {% if "<iframe" in video.link %}
+                                        {{ video.link|safe }}
+                                    {% else %}
+                                        <iframe src="{{ video.link }}" title="Video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    {% endif %}
                                 </div>
 
                             </div>
