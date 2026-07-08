@@ -33,25 +33,121 @@
 </style>
 
 {% endblock %} {% if vision_mission %}
-<section class="vision-section bg-corporate-light">
+<style>
+  .vision-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  }
+
+  .vision-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 15px 40px rgba(23, 36, 69, 0.04);
+    border: 1px solid rgba(85, 122, 189, 0.08);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .vision-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(23, 36, 69, 0.08);
+  }
+
+  .vision-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, #385d9b, #5fa8d3);
+  }
+
+  .vision-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(56, 93, 155, 0.1), rgba(95, 168, 211, 0.15));
+    color: #385d9b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: inset 0 0 0 1px rgba(56, 93, 155, 0.05);
+  }
+
+  .vision-card .value-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-black);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .vision-card .service-description {
+    color: var(--medium-gray);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 991.98px) {
+    .vision-header-block {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .vision-card {
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+    }
+    .vision-card .value-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<section class="vision-section">
   <div class="container">
-    <div class="row mb-5">
-      <div class="col-12 text-center">
-        <h2 class="section-title display-4">{% trans "Vision & Mission" %}</h2>
-        <p class="lead text-muted">
-          {% trans "Discover what drives us — our commitment to connecting travellers with Ethiopia's rich culture, breathtaking landscapes, and warm hospitality." %}
-        </p>
-      </div>
-    </div>
-    <div class="row g-5">
-      {% for vision in vision_mission %}
-      <div class="col-lg-6">
-        <div class="vision-content">
-          <h3 class="value-title mb-4">{{ vision.title }}</h3>
-          <p class="service-description text-justify">{{ vision.content }}</p>
+    <div class="row g-5 align-items-center">
+      
+      <!-- Left Column: Section Header -->
+      <div class="col-lg-5">
+        <div class="vision-header-block pe-lg-4">
+          <h2 class="section-title display-4 font-weight-bold mb-4">{% trans "Vision & Mission" %}</h2>
+          <p class="lead text-muted">
+            {% trans "Discover what drives us — our commitment to connecting travellers with Ethiopia's rich culture, breathtaking landscapes, and warm hospitality." %}
+          </p>
         </div>
       </div>
-      {% endfor %}
+      
+      <!-- Right Column: Content Cards -->
+      <div class="col-lg-7">
+        <div class="row g-4">
+          {% for vision in vision_mission %}
+          <div class="col-12">
+            <div class="vision-card">
+              <div class="d-flex flex-column flex-md-row gap-4 align-items-start text-start text-md-start">
+                <div class="vision-icon flex-shrink-0">
+                  <i class="bi bi-compass"></i>
+                </div>
+                <div class="text-start">
+                  <h3 class="value-title">{{ vision.title }}</h3>
+                  <p class="service-description text-start">{{ vision.content|linebreaksbr }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      
     </div>
   </div>
 </section>
