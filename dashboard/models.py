@@ -74,6 +74,8 @@ class DirectorateMessage(models.Model):
 
     title = models.CharField(max_length=255,help_text="Make sure to submit a max of 255 characters.")
     content = models.TextField()
+    phone = models.CharField(max_length=20, blank=True, null=True, help_text="Phone number of the CEO/Owner")
+    email = models.EmailField(max_length=254, blank=True, null=True, help_text="Email address of the CEO/Owner")
     #button_text = models.CharField(max_length=80,help_text="Make sure to submit a max of 80 characters.")
     image = models.ImageField(upload_to='slider_images/',help_text="Make sure to submit an image proportional with the height of the content.")
     

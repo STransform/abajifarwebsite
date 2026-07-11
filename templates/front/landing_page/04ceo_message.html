@@ -187,6 +187,39 @@
       min-height: 360px;
       max-height: 360px;
     }
+  .contact-pill {
+    background: #f8faff;
+    border: 1px solid rgba(79, 113, 187, 0.15);
+    border-radius: 50px;
+    padding: 6px 18px 6px 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(79, 113, 187, 0.05);
+  }
+  
+  .contact-pill:hover {
+    background: #ffffff;
+    border-color: #4f71bb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(79, 113, 187, 0.12);
+  }
+  
+  .contact-pill .icon-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f71bb, #90a9df);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .contact-pill .contact-text {
+    color: #192544;
+    font-weight: 600;
+    font-size: 0.95rem;
   }
 </style>
 {% endblock %}
@@ -213,6 +246,25 @@
             <div class="about-copy">
               <p>{{ message.content|linebreaksbr }}</p>
             </div>
+
+            {% if message.phone or message.email %}
+            <div class="about-contact mt-4">
+              <div class="d-flex flex-wrap" style="gap: 1rem;">
+                {% if message.phone %}
+                <a href="tel:{{ message.phone }}" class="contact-pill d-inline-flex align-items-center text-decoration-none">
+                  <span class="icon-circle"><i class="fas fa-phone-alt"></i></span>
+                  <span class="contact-text">{{ message.phone }}</span>
+                </a>
+                {% endif %}
+                {% if message.email %}
+                <a href="mailto:{{ message.email }}" class="contact-pill d-inline-flex align-items-center text-decoration-none">
+                  <span class="icon-circle"><i class="fas fa-envelope"></i></span>
+                  <span class="contact-text">{{ message.email }}</span>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
 
             <div class="about-actions">
               <a href="{% url 'about' %}" class="btn btn-corporate-red">
