@@ -1,0 +1,195 @@
+{% load i18n %}
+<style>
+  .payment-section {
+    padding: 80px 0;
+    background-color: #f8faff;
+  }
+  .payment-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(79, 113, 187, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .payment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(79, 113, 187, 0.15);
+  }
+  .payment-card.active {
+    border: 2px solid #4f71bb;
+    background-color: #f0f4ff;
+  }
+  .payment-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f71bb, #90a9df);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .payment-details {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(23, 36, 69, 0.08);
+    margin-top: 2rem;
+    border-left: 5px solid #4f71bb;
+  }
+  .payment-details.active {
+    display: block;
+    animation: fadeIn 0.5s;
+  }
+  .payment-details h4 {
+    color: #192544;
+    font-weight: 700;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .detail-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+  }
+  .detail-label {
+    font-weight: 600;
+    color: #5d6783;
+    width: 200px;
+  }
+  .detail-value {
+    color: #192544;
+    font-weight: 700;
+    background: #f8faff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    border: 1px dashed #90a9df;
+  }
+  .detail-value.highlight {
+    color: #2e7d32;
+    background: #e8f5e9;
+    border-color: #81c784;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<section class="payment-section" id="payment">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="font-weight-bold" style="color: #192544; font-family: 'Playfair Display', serif; font-size: 2.5rem;">{% trans "Secure Payment Methods" %}</h2>
+      <p class="text-muted mt-3" style="font-size: 1.1rem;">{% trans "Choose your preferred payment option below to complete your transaction securely." %}</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card payment-card active" onclick="showPayment('telebirr', this)">
+          <div class="card-body text-center p-4">
+            <div class="payment-icon mx-auto"><i class="fas fa-mobile-alt"></i></div>
+            <h5 class="card-title font-weight-bold mb-0">Telebirr</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card payment-card" onclick="showPayment('cbe', this)">
+          <div class="card-body text-center p-4">
+            <div class="payment-icon mx-auto"><i class="fas fa-university"></i></div>
+            <h5 class="card-title font-weight-bold mb-0">CBE Account</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card payment-card" onclick="showPayment('cbe-birr', this)">
+          <div class="card-body text-center p-4">
+            <div class="payment-icon mx-auto"><i class="fas fa-wallet"></i></div>
+            <h5 class="card-title font-weight-bold mb-0">CBE Birr</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card payment-card" onclick="showPayment('cbo', this)">
+          <div class="card-body text-center p-4">
+            <div class="payment-icon mx-auto"><i class="fas fa-building"></i></div>
+            <h5 class="card-title font-weight-bold mb-0">CBO Account</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <!-- Telebirr Details -->
+        <div id="payment-telebirr" class="payment-details active">
+          <h4><i class="fas fa-mobile-alt me-2" style="color: #4f71bb;"></i> {% trans "Pay by Telebirr" %}</h4>
+          <div class="detail-row">
+            <div class="detail-label">{% trans "Phone Number" %}</div>
+            <div class="detail-value highlight">0933333338</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">{% trans "Partner ID" %}</div>
+            <div class="detail-value">844590</div>
+          </div>
+          <p class="text-muted mt-4 small"><i class="fas fa-info-circle me-1"></i> {% trans "Open your Telebirr app, choose 'Send Money' or 'Pay Merchant' using the details above." %}</p>
+        </div>
+
+        <!-- CBE Account Details -->
+        <div id="payment-cbe" class="payment-details">
+          <h4><i class="fas fa-university me-2" style="color: #4f71bb;"></i> {% trans "CBE Account Transfer" %}</h4>
+          <div class="detail-row">
+            <div class="detail-label">{% trans "Bank Account" %}</div>
+            <div class="detail-value">1000375142671</div>
+          </div>
+          <p class="text-muted mt-4 small"><i class="fas fa-info-circle me-1"></i> {% trans "Use CBE Birr app, Mobile Banking, or visit a branch to deposit to this account." %}</p>
+        </div>
+        
+        <!-- CBE Birr Details -->
+        <div id="payment-cbe-birr" class="payment-details">
+          <h4><i class="fas fa-wallet me-2" style="color: #4f71bb;"></i> {% trans "CBE Birr" %}</h4>
+          <div class="detail-row">
+            <div class="detail-label">{% trans "Phone Number" %}</div>
+            <div class="detail-value highlight">0933333338</div>
+          </div>
+          <p class="text-muted mt-4 small"><i class="fas fa-info-circle me-1"></i> {% trans "Transfer funds directly to our CBE Birr wallet using the phone number above." %}</p>
+        </div>
+
+        <!-- CBO Account Details -->
+        <div id="payment-cbo" class="payment-details">
+          <h4><i class="fas fa-building me-2" style="color: #4f71bb;"></i> {% trans "CBO Account Transfer" %}</h4>
+          <div class="detail-row">
+            <div class="detail-label">{% trans "Bank Account" %}</div>
+            <div class="detail-value">1000375142671</div>
+          </div>
+          <p class="text-muted mt-4 small"><i class="fas fa-info-circle me-1"></i> {% trans "Note: The provided account number is currently set as the default for Bank Transfers. Please contact support if you need an alternative CBO account." %}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function showPayment(id, element) {
+    document.querySelectorAll('.payment-details').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.payment-card').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    
+    document.getElementById('payment-' + id).classList.add('active');
+    element.classList.add('active');
+  }
+</script>
